@@ -1,0 +1,104 @@
+#set($title = "我的理财 - 我的投资 - 学好贷")
+#set($centerNav = "centerNav")
+#set($currentLocation = "index")
+#set($vmHeader = "common")
+#set($menuTab = "biddingItem")
+#set($lenderTab = "biddingItem")
+#set($biddingItem = 1)
+
+
+<div class="container">
+    <div class="wraper mrt60" style="border-bottom: 1px solid #ccc;">
+        <div class="acc_l" >
+            <em class="acc1 fl"></em>
+            <p class="f24 c2">￥$!account.totalInterest</p>
+            <p class="f14" style="text-align:center;">总收益</p>
+        </div>
+        <div class="acc_l" >
+            <em class="acc2 fl"></em>
+            <p class="f24 c2">￥$!account.currentInterest</p>
+            <p class="f14" style="text-align:center;">累计已赚利息</p>
+        </div>
+        <div class="acc_l" style="border: 0;">
+            <em class="acc3 fl"></em>
+            <p class="f24 c2">￥$!account.pendingEarn</p>
+            <p class="f14" style="text-align:center;">待收利息</p>
+        </div>
+    </div>
+    <div class="wraper mrt20">
+        <div class="record">
+           <form action="/lender/bidding_item.jhtml" id="sou_form">
+            <div>
+                <label>状态</label>
+                <select name="status" id="type">
+                    <option value="-1">所有</option>
+                    #foreach($status in $biddingItemEnum)
+                        <option value="$status.code"
+                            #if($query.status == $status.code)
+                                selected
+                            #end
+                                >$status.meaning</option>
+                    #end
+                </select>
+                <input type="text" placeholder="开始日期" class="" name="begin_date" id="begin_date" readonly="readonly" value='$!query.queryBeginDate'
+                       onclick="laydate({ format: 'YYYY-MM-DD',festival: true,  choose: function(datas){  }});">
+                <input type="text" placeholder="结束日期" readonly="readonly "  name="end_date" id="end_date"  readonly="readonly"
+                       value='$!query.queryEndDate'
+                       onclick="laydate({ format: 'YYYY-MM-DD',festival: true,  choose: function(datas){  }});">
+                <input type="submit" id="search" value="搜索" class="re_but">
+            </div>
+           </form>
+        </div>
+        <table class="tb_w1100">
+            <tr class="c9">
+                <td>项目名</td>
+                <td>投资本金</td>
+                <td>年化收益率</td>
+                <td>已收到期数/总期数</td>
+                <td>已赚利息 </td>
+                <td>下个收款日</td>
+                <td>状态</td>
+            </tr>
+            <tbody>
+                #foreach($bill in $flows)
+                <tr>
+                    <td><a href="/bidding/detail.jhtml?bidding_id=$bill.biddingId" target="_blank">$escapeUtils.escapeHtml(${bill.studentName})_$escapeUtils.escapeHtml($bill.courseName)</a></td>
+                    <td>¥$bill.principal</td>
+                    <td>$bill.rate</td>
+                    <td>$bill.currentStage/$bill.totalStage</td>
+                    <td>¥$bill.currentInterest</td>
+
+                    <td>
+                        #if($bill.nextRepayDate)
+                            $!dateFormatUtils.format($bill.nextRepayDate,'yyyy-MM-dd')
+                        #else
+                            ----
+                        #end
+                    </td>
+                    <td>
+                        #foreach($b in $biddingItemEnum)
+                                    #if($b.code == $bill.status)
+                            $b.meaning
+                        #end
+                                #end
+                    </td>
+                </tr>
+                #end
+            </tbody>
+        </table>
+        #if($flows.size() <= 0)
+            <p class="norecord">很抱歉，没有找到符合要求的记录</p>
+        #else
+            #pagination("/lender/bidding_item.jhtml?$!{query.queryString()}" $!queryResult)
+        #end
+    </div>
+</div>
+
+<script type="text/javascript">
+    !function(){
+        laydate.skin('qianhuang');//切换皮肤，请查看skins下面皮肤库
+    }();
+</script>
+
+
+

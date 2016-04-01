@@ -1,0 +1,98 @@
+#set($title = "交易记录 - 我的账户 - 学好贷")
+#set($centerNav = "centerNav")
+#set($currentLocation = "index")
+#set($vmHeader = "common")
+#set($flow_list = "1")
+#set($menuTab = "lenderCenter")
+#set($lenderTab = "flowList")
+
+
+<script type="text/javascript" src="/js/flow_list.js"></script>
+
+
+<div class="container">
+<div class="wraper mrt20">
+    <div class="record">
+      <form  id="search_form">
+        <div>
+            <select name="type" id="type">
+                <option selected="selected" value="-1">全部</option>
+                #foreach($type in $flowTypeEnum)
+                    <option value=$type.code>$type.meaning</option>
+                #end
+            </select>
+            <input type="text" placeholder="开始日期"  name="begin_date" id="dotime1" readonly="readonly"
+                   onclick=" laydate({ format: 'YYYY-MM-DD',festival: true,
+                                                               min:$('#begin_date').val(),
+                                                               choose: function(datas){
+                                                                }});">
+            <input type="text" placeholder="结束日期" name="end_date" readonly="readonly" id="dotime2"
+                   onclick=" laydate({ format: 'YYYY-MM-DD',festival: true,
+                                                               min:$('#begin_date').val(),
+                                                               choose: function(datas){
+                                                                }});">
+            <input type="hidden" name="page" id="page" value="$!{query.currentPage}" />
+            <input type="button" id="search_btn" value="搜索" class="re_but">
+        </div>
+      </form>
+        <input type="hidden" name="total_page" id="total_page" value="$!{queryResult.totalPage}"/>
+        <input type="hidden" name="total_records" id="total_records" value="$!{queryResult.amount}"/>
+    </div>
+    <table class="tb_w1100">
+        <tr class="c9">
+            <td>交易时间</td>
+            <td>交易类型</td>
+            <td>流动资金收支</td>
+            <td>交易状态</td>
+            <td width="300px;">备注</td>
+        </tr>
+        <tbody id="flow_list">
+        #foreach($flow in $flows)
+            <tr>
+                <td>$dateFormatUtils.format($flow.created,"yyyy-MM-dd HH:mm:ss")</td>
+                <td tyle="text-align: center">
+                    #foreach($t in $flowTypeEnum)
+                                    #if($t.code == $flow.type)
+                        $t.meaning
+                    #end
+                                #end
+                </td>
+
+                #set($balance = $flow.balanceAfter -  $flow.balanceBefore)
+                <td>
+                    #if($balance > 0)
+                        +$!moneyUtils.format($balance)
+                    #else
+                        $!moneyUtils.format($balance)
+                    #end
+                </td>
+                <td>
+                    #foreach($e in $!flowStatusEnum)
+                               #if ($e.code == $!flow.status)
+                        $e.meaning
+                    #end
+                            #end
+                </td>
+
+                <td >$flow.description</td>
+            </tr>
+
+        #end
+        </tbody>
+    </table>
+    #if($flows.size() <= 0)
+        <p class="norecord">很抱歉，没有找到符合要求的记录</p>
+    #else
+        <div id="kkpager" ></div>
+    #end
+</div>
+</div>
+
+<script type="text/javascript">
+    !function(){
+        laydate.skin('qianhuang');//切换皮肤，请查看skins下面皮肤库
+    }();
+</script>
+
+
+

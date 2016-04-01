@@ -1,0 +1,72 @@
+#set($title = "我的理财 - 收款计划 - 学好贷")
+#set($centerNav = "centerNav")
+#set($currentLocation = "index")
+#set($vmHeader = "common")
+#set($menuTab = "biddingItem")
+#set($lenderTab = "billStage")
+#set($billStage = 1)
+
+
+<div class="container">
+    <div class="wraper mrt20">
+        <div class="record">
+            <div>
+               <form method="post"  id="vdsou_form" action="/lender/bill_stage.jhtml">
+                <input type="text" placeholder="开始日期" class="" name="begin_date" id="begin_date" readonly="readonly" value='$!query.queryBeginDate'
+                       onclick="laydate({ format: 'YYYY-MM-DD',festival: true,  choose: function(datas){  }});" />
+                <input type="text" placeholder="结束日期" readonly="readonly "  name="end_date" id="end_date"
+                       value='$!query.queryEndDate'
+                       onclick="laydate({ format: 'YYYY-MM-DD',festival: true,  choose: function(datas){  }});" />
+                <input type="text"   placeholder="输入关键字" name="key_word" value="$!query.keyWord" class="bgnone"/>
+                <input type="submit" value="搜索" class="re_but">
+              </form>
+            </div>
+        </div>
+        <table class="tb_w1100">
+            <tr class="c9">
+                <td>借款人</td>
+                <td>课程名称</td>
+                <td>第几期/总期数</td>
+                <td>收款日期</td>
+                <td>应收金额 </td>
+                <td>本金</td>
+                <td>利息</td>
+                <td>状态</td>
+            </tr>
+
+            #foreach($bill in $flows)
+                <tr>
+                    <td><a class="under" href="/bidding/detail.jhtml?bidding_id=$bill.biddingId" target="_blank" title="$bill.studentName">$escapeUtils.escapeHtml($bill.studentName)</a></td>
+                    <td>$bill.courseName</td>
+                    <td>$bill.stage/$bill.totalStage</td>
+
+                    #set($pay_date = $bill.deadline)
+                    #if($pay_date)
+                        <td>$dateFormatUtils.format($pay_date,"yyyy-MM-dd")</td>
+                    #else<td>待定</td>
+                    #end
+
+                    <td>￥$bill.amount</td>
+                    <td>￥$bill.principal</td>
+                    <td>￥$bill.interest</td>
+                    <td>
+                        ${biiStageStatus.get($bill.status.toString())}
+                    </td>
+                </tr>
+            #end
+        </table>
+        #if($flows.size() <= 0)
+           <p class="norecord">很抱歉，没有找到符合要求的记录</p>
+        #else
+           #pagination("/lender/bill_stage.jhtml?$!{query.queryString()}" $!queryResult)
+        #end
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    !function(){
+        laydate.skin('qianhuang');//切换皮肤，请查看skins下面皮肤库
+    }();
+</script>
+

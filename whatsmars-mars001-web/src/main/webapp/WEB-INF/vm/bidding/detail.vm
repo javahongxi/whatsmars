@@ -1,0 +1,390 @@
+#set($layout = "/layout/default.vm")
+#set($title = "标的详情-我要投资-学好贷")
+#set($vmHeader = "common")
+#set($tab = "lender")
+
+<style>.dialog_con {padding:10px 100px}</style>
+<script type="text/javascript" src="/js/dialog.js"></script>
+<div class="container">
+    <div class="wraper mrt pr">
+        <table cellspacing="0" cellpadding="0" class="table_w1100">
+            <tr>
+                <td colspan="4">
+                    <h2>$!stringUtils.substring($!bidding.studentName, 0, 1)同学—$!{bidding.courseName}</h2>
+                    <div class="bg_xiazai">
+                        <em></em>
+                        <span><a href="$loanProtocalFile" target="_blank">借款协议范本</a></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="borrow_title w270">
+                        <h3>￥<span class="fs36">$!{bidding.required}</span></h3>
+                        <div class="bot">
+                            <span>借款金额（元）</span>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="borrow_title w270">
+                        <h3><span class="fs36">$!{bidding.rate}</span>%</h3>
+                        <div class="bot">
+                            <span>年化利率</span>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="borrow_title w270">
+                        <h3 class="bot"><span class="fs36">$!{bidding.monthLimit}</span>月</h3>
+                        <div class="bot">
+                            <span>项目期限</span>
+                        </div>
+                    </div>
+                </td>
+                <td rowspan="3">
+                    <div class="borrow_detai_rig">
+                        <div class="item">剩余可投金额</div>
+                        <div class="item"><span class="avail_money f_c1">￥$!{notObtained}</span>元</div>
+                        #if($user)
+                            <div class="item">账户余额 <span class="f_co"> #if($balance) ￥$!{balance} #else ￥0 #end <a href="/lender/recharge.jhtml?flag=bidding" class="f_cb pdl15">充值></a></div>
+                        #else
+                            <div class="item">账户余额<a href="/login.jhtml?url=/bidding/detail.jhtml?bidding_id=$!bidding.id" class="f_cb pdl15">登录</a>后可见</div>
+                        #end
+                        <form action="" name="" method="post" id="borrow_form">
+                            <input type="hidden" name="max_bidding" id="max_bidding" value="$!{notObtained}" />
+                            <input type="hidden" name="interest" id="interest" value="$!{bidding.interest}" />
+                            <input type="hidden" name="login_user" id="login_user" value="$!{loginUser.name}" />
+                            <input type="hidden" name="lender_balance" id="lender_balance" value="$!{balance}" />
+                            <div class="item">
+                                #if($!bidding.status == $!ongoing)
+                                    <input type="text" placeholder="请输入投资金额，50元起投" style="text-align:left;line-height:10px\9;" name="money" class="money" id="money" onkeyup="calculateInterest($(this))" />
+                                #end
+                                <div id="check_div">
+                                    <p style="padding-top:5px;color:red"><em class="f_c1" id="check_money"></em></p>
+                                </div>
+                                <div id="expected" style="display:none">
+                                    <p style="padding-top:5px;">预估收益： <em class="f_c1" id="expectedInterest">df</em></p>
+                                </div>
+                            </div>
+
+                        <div class="item btn">
+                            #if($!bidding.status == $!ongoing)
+                                    <input type="button" class="borrow_sub" value="马上投标" id="borrow_submit">
+                            #elseif($!bidding.status == $!fullAuditing)
+                                    <input type="button" class="borrow_sub_disabled" value="投标完成" id="borrow_submit" disabled>
+                            #elseif($!bidding.status == $!staging)
+                                    <input type="button" class="borrow_sub_disabled" value="还款中" id="borrow_submit" disabled>
+                            #elseif($!bidding.status == $!paidOff)
+                                    <input type="button" class="borrow_sub_disabled" value="已还清" id="borrow_submit" disabled>
+                            #elseif($!bidding.status == $!failure)
+                                    <input type="button" class="borrow_sub_disabled" value="流标" id="borrow_submit" disabled>
+                            #end
+                        </div>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" class="ta">
+                    <div class="fs14 bot pd20 c9">还款方式：前$!{bidding.gracePeriod}个月按月还息（月还¥$!{gracePeriodInterest}），  后$!{months}个月等额本息还款（月还¥$!{monthPay}）</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="borrow_title w270 c2">
+                        <em class="time"></em>
+                        #if($!bidding.status == $!ongoing)
+                            <input type="hidden" id="deadTime" value="$!dateFormatUtils.format($!deadTime,'yyyy/MM/dd HH:mm:ss')">
+                            <span class="fs14 span_color" id="timer"></span>
+                            <span class="fs14 c9" id="timer1"></span>
+                        #else
+                            <span class="fs14 span_color" style="color:#999999;"> 0 天 0 时 0 分 0 秒</span>
+                        #end
+                    </div>
+                </td>
+                <td colspan="2">
+                    <div class="borrow_title">
+                        <em class="speed"></em>
+                        <b class="progress-bar" style="width: 200px;">
+                            <em class="progress" style="width:$!{process}%; float:left"></em>
+                        </b>
+                        <span class="c2">#if($!process == 100) 100 #else $!{process} #end%</span>
+                    </div>
+                    #if($!bidding.status == $!ongoing)
+                        <div class="stemp">
+                            <img src="/images/stemp.png">
+                        </div>
+                    #end
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="wraper border_lrb" >
+        <h2 class="news">借款人信息</h2>
+        <table cellspacing="0" cellpadding="0" class="tb_w900 h100 f12 border_none">
+            <tr>
+                <td>姓名:$!stringUtils.substring($!bidding.studentName, 0, 1)**</td>
+                <td>性别：
+                    #if($!gender == $!male)
+                        男
+                    #elseif($!gender == $!female)
+                        女
+                    #end
+                </td>
+                <td colspan="2">年龄：$!{age}岁</td>
+            </tr>
+            <tr>
+                <td>学历：$!{degree}</td>
+                <td>学业状态：$!{graduateStatus}</td>
+                <td colspan="2">所在城市：$!{city}</td>
+            </tr>
+            <tr>
+                <td title="$!{bidding.courseName}">培训课程：$!escapeUtils.escapeHtml($!stringUtils.abbreviate($!{bidding.courseName}, 23))</td>
+                <td>预计结课日期：$!{usage.courseEndDate}</td>
+                <td colspan="2">预期职位：$!escapeUtils.escapeHtml($!{usage.expectedTitle})</td>
+            </tr>
+            <tr>
+                <td colspan="4">预期月收入：$!{usage.expectedSalary}元/月</td>
+            </tr>
+        </table>
+        <div class="div_span">
+            <p>项目信息：</p>
+            <p>借款人由与学好贷合作的全国各地优秀的教育机构推荐。合作教育机构均经过学好贷风控人员的现场尽职调查，并根据其经营状况进行评级和信用额度控制。</p>
+            <p>学好贷对于借款学员的借款资质进行核实，并要求借款学员面签和接受诚信教育。还款期间,学好贷将持续回访和调查借款人及其所在的教育机构。</p>
+            <p>教育机构需要在推荐借款人后对借款人承担连带责任，按比例缴纳风险保证金，风险保证金将用于保障投资人的本息。</p>
+        </div>
+    </div>
+    <div class="wraper border_lrb">
+        <h3 class="news">认证记录</h3>
+        <div class="detail_box">
+            <table cellspacing="0" cellpadding="0" class="tb_w880">
+                <tr>
+                    <td>身份证</td>
+                    <td><em></em><span>已通过</span></td>
+                </tr>
+                <tr>
+                    <td>学历认证</td>
+                    <td><em></em><span>已通过</span></td>
+                </tr>
+                <tr>
+                    <td>直系亲属联系人认证 </td>
+                    <td><em></em><span>已通过</span></td>
+                </tr>
+                <tr>
+                    <td>教育机构和课程认证  </td>
+                    <td><em></em><span>已通过</span></td>
+                </tr>
+            </table>
+            <p class="c9">学好贷将秉持客观、公正的原则，最大程度地核实借款人信息的真实性。学好贷并不能对个案的审核信息保证100%无误。如果借款人长期逾期，其个人信息将被公示。</p>
+        </div>
+    </div>
+    <div class="wraper border_lrb">
+        <h3 class="news">还款计划</h3>
+        <div class="w1000 pb25" >
+            <table class="table_w1000">
+                <tr>
+                    <th>期数</th>
+                    <th>最迟还款日</th>
+                    <th>应还本金</th>
+                    <th>应还利息</th>
+                    <th>应还本息</th>
+                </tr>
+                #foreach($e in $!billStages)
+                    #set($tmp = $e.principal + $e.interest)
+                    <tr>
+                        <td>第$!{e.stage}期</td><td>$!dateFormatUtils.format($!e.deadline,'yyyy-MM-dd')</td><td>$!{e.principal}
+                    </td><td>$!{e.interest}</td><td>$!moneyUtils.format($!tmp)</td>
+                    </tr>
+                #end
+            </table>
+        </div>
+    </div>
+    <div class="wraper border_lrb">
+        <h3 class="news"><p>投资记录</p></h3>
+        <div class="w1000 pb80" >
+            <p class="p_span">投资人数:<span>$!{itemCount}</span>人  投标总额:<span>$!{investSum}</span>元</p>
+            <table class='tb_w1000'>
+                <tr>
+                    <th>序号 </th>
+                    <th>投标用户 </th>
+                    <th>投标金额（元） </th>
+                    <th>投标时间 </th>
+                </tr>
+                #set($num = 0)
+                #foreach($e in $!items)
+                    #set($num = $num + 1)
+                    <tr><td>#if($num < 10) 0${num} #else $num #end</td><td class="txt_lf">$e.lenderName</td><td>$!{e.principal}</td><td>$!dateFormatUtils.format($!e.created,'yyyy-MM-dd HH:mm:ss')</td></tr>
+                #end
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="diyou_dialog" id="dialog1" style="display:none">
+    <div class="dialog_main" style="margin-top: -155.5px; margin-left: -265px; display: block;">
+        <div class="dialog_tit"><h2 style="cursor: move;">投标</h2><i class="close"></i></div>
+        <div class="dialog_con">
+            <form id="bidding_form">
+                <input type="hidden" name="bidding_id" id="bidding_id" value="$!{bidding.id}"/>
+                <input type="hidden" name="money" id="bidding_money" />
+                <div class="item"><label for="">投资金额：</label>
+                    <em class="f_c1" id="mymoney"></em>
+                </div>
+                <div class="item"><label for="">预计收益：</label>
+                    <em class="f_c1" id="yuji"></em>
+                </div>
+                <div class="item"><label for="">交易密码：</label>
+                    <input type="password"  name="deal_password" onblur="$('#check_deal_password').html('')" class="money" id="deal_password">
+                    <input type="password"  name="deal_password2" style="display: none" id="deal_password2">
+                </div>
+                <div class="item" id="check_div">
+                    <p><em class="f_c1" id="check_deal_password"></em></p>
+                </div>
+                <div class="item btn">
+                    <input type="button" class="borrow_sub" value="投 标" id="bidding_submit" style="border: 0;">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="dialog_maskLayer" style="height: 1536px;"></div>
+</div>
+
+<form id="calculateForm">
+    <input type="hidden" id="principal" name="principal" value="$!{bidding.required}">
+    <input type="hidden" id="rate" name="rate" value="$!{bidding.rate}">
+    <input type="hidden" id="monthLimit" name="month_limit" value="$!{bidding.monthLimit}">
+    <input type="hidden" id="gracePeriod" name="grace_period" value="$!{bidding.gracePeriod}">
+</form>
+
+<script type="text/javascript">
+    $('#borrow_main_tit dl dd').live('click', function() {
+        var num = $('#borrow_main_tit dl dd').index($(this));
+        $('#borrow_main_tit dl dd').removeClass('hover');
+        $(this).addClass('hover');
+        $('.j_borrow_cont').hide().eq(num).show();
+    });
+
+    $(function() {
+        var notObtained = $("#notObtained").val();
+        var biddingId = $("#");
+        $('#borrow_submit').click(function(){
+            if($("#login_user").val() == ""){
+                window.location.href = '/login.jhtml';
+            }else if($("#money").val() == ""){
+                $('#check_money').html("请输入投标金额");
+                $('#expected').hide();
+            }else if(calculateInterest($("#money"))){
+                $('#dialog1').show();
+            }else{
+                return false;
+            }
+        })
+        $('.close').click(function(){
+            $('#dialog1').hide()
+        })
+        $('#expected').hide();
+
+        $("#bidding_submit").click(function(){
+            if($("#deal_password").val() == ""){
+                $('#check_deal_password').html("请输入交易密码");
+            }else{
+                $.ajax({
+                    url:'/lender/bidding_action.jhtml',
+                    type:'post',
+                    data:$('#bidding_form').serialize(),
+                    dataType:'json',
+                    async:false,
+                    success:function(data) {
+                        if (data.code == 'S00000') {
+                            window.location.href=data.data._redirect_url;
+                        } else if(data.code == 'E00004'){
+                            $('#check_deal_password').html(data.message);
+                        }
+                    }
+                });
+
+            }
+        })
+
+        timer();
+        setInterval("timer()",1000);
+
+    })
+
+    function timer() {
+        var ms = new Date($('#deadTime').val()) - new Date();
+        //var ms = new Date(2018, 11, 11, 9, 0, 0) - new Date();
+        var dd = parseInt(ms / 1000 / 60 / 60 / 24, 10);//计算剩余的天数
+        var hh = parseInt(ms / 1000 / 60 / 60 % 24, 10);//计算剩余的小时数
+        var mm = parseInt(ms / 1000 / 60 % 60, 10);//计算剩余的分钟数
+        var ss = parseInt(ms / 1000 % 60, 10);//计算剩余的秒数
+        dd = checkTime(dd);
+        hh = checkTime(hh);
+        mm = checkTime(mm);
+        ss = checkTime(ss);
+        if(isNaN(ms)) {
+            document.getElementById("timer1").innerHTML = 0 + "天" + 0 + "时" + 0 + "分" + 0 + "秒";
+        }else {
+            document.getElementById("timer").innerHTML = dd + "天" + hh + "时" + mm + "分" + ss + "秒";
+        }
+    }
+
+    function checkTime(i)
+    {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+
+    function calculateInterest(obj) {
+        obj.val(obj.val().replace(/\D/g,''));
+        var money = parseFloat($("#money").val());
+        var max_bidding = parseFloat($("#max_bidding").val());
+        if(money < 50){
+            $('#check_money').html("投标金额不能低于50");
+            $('#expected').hide();
+            return false;
+        }else if(money > max_bidding){
+            $('#check_money').html("投标金额超过限制");
+            $('#expected').hide();
+            return false;
+        }else if(!isNaN(money)){
+
+            if($("#login_user").val() != ""){
+                var balance = parseFloat($("#lender_balance").val());
+                if(money > balance){
+                    $('#check_money').html("您的余额不足，请尽快充值");
+                    $('#expected').hide();
+                }else{
+                    var total_interest = parseFloat($("#interest").val());
+                    var principal = parseFloat($("#principal").val());
+                    var interest = parseFloat(total_interest * money / principal);
+                    $("#bidding_money").val(money);
+                    $("#mymoney").html(money);
+                    $("#yuji").html(interest.toFixed(2));
+                    $('#check_money').html("");
+                    $('#expectedInterest').html(interest.toFixed(2));
+                    $('#expected').show();
+                    return true;
+                }
+            }else{
+                var total_interest = parseFloat($("#interest").val());
+                var principal = parseFloat($("#principal").val());
+                var interest = parseFloat(total_interest * money / principal);
+                $("#bidding_money").val(money);
+                $("#mymoney").html(money);
+                $("#yuji").html(interest.toFixed(2));
+                $('#check_money').html("");
+                $('#expectedInterest').html(interest.toFixed(2));
+                $('#expected').show();
+                return true;
+            }
+        }else{
+            $('#expected').hide();
+            return false;
+        }
+    }
+
+</script>

@@ -1,0 +1,42 @@
+<!-- 用户中心的导航 -->
+<div class="submenus bg6">
+    <div class="wraper">
+        <ul class="childs">
+
+            <li #if($!menuTab == "lenderCenter") class="cur"  #end >
+                <a href="/lender/index.jhtml">我的帐户</a>
+                <ul class="ulchilds">
+                    <div class="wraper" #if($!menuTab != "lenderCenter") style="display:none;" #end >
+                        <li><a href="/lender/index.jhtml" #if($!lenderTab == "index") class="cur" #end>账户总览</a></li>
+                        <li><a href="/lender/flow_list.jhtml" #if($!lenderTab == "flowList") class="cur" #end>交易记录</a></li>
+                        <li><a href="/lender/recharge.jhtml?flag=bidding" #if($!lenderTab == "recharge") class="cur" #end>充值</a></li>
+                        <li><a href="/lender/withdraw.jhtml" #if($!lenderTab == "withdraw") class="cur" #end>提现</a></li>
+                        <li><a href="/lender/bank_card_list.jhtml" #if($!lenderTab == "bankList") class="cur" #end>我的银行卡</a></li>
+                    </div>
+                </ul>
+            </li>
+
+            <li #if($!menuTab == "biddingItem") class="cur"  #end>
+                <a href="/lender/bidding_item.jhtml">我的理财</a>
+                <ul class="ulchilds"  >
+                    <div class="wraper" #if($!menuTab != "biddingItem") style="display:none;" #end>
+                        <li><a href="/lender/bidding_item.jhtml" #if($!lenderTab == "biddingItem") class="cur" #end>我的投资</a></li>
+                        <li><a href="/lender/bill_stage.jhtml" #if($!lenderTab == "billStage") class="cur" #end>我的收款计划</a></li>
+                    </div>
+                </ul>
+            </li>
+            <li #if($!menuTab == "safeConfig") class="cur"  #end>
+                <a href="/lender/certify.jhtml">安全设置</a>
+                <ul class="ulchilds"  >
+                    <div class="wraper" #if($!menuTab != "safeConfig") style="display:none;" #end>
+                        <li><a href="/lender/certify.jhtml" #if($lenderTab == "certify") class="cur" #end>实名认证</a></li>
+                        <li><a href="/lender/update_password.jhtml" #if($lenderTab == "updatePassword") class="cur" #end>登录密码修改</a></li>
+                        <li><a href="/lender/add_deal_password.jhtml" #if($lenderTab == "dealPassword") class="cur" #end>交易密码修改</a></li>
+                       #* <li><a href="#">手机绑定</a></li>*#
+                    </div>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+</div>

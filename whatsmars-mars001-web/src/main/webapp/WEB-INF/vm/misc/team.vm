@@ -1,0 +1,48 @@
+#set($title = "团队介绍 - 学好贷")
+#set($vmHeader = "common")
+#set($tab = "about")
+#set($misc = "misc")
+#set($navTab = "team")
+
+<div class="container">
+    <div class="aboutus">
+        <div class="wraper">
+            <h2>团队介绍</h2>
+        </div>
+        <div class="wraper teambg">
+            <div class="mrt60">
+                <img src="/images/team/01.jpg" class="fl" style="width: 248px;height: 326px;">
+                <div class="t_person fl">
+                    <h2>姜立斌</h2>
+                    <h3>创始人及CEO</h3>
+                    <p>拥有15年教育培训行业工作经验，从
+                        事教育机构管理工作长达十年。历经行业起伏，对教育培训机构和学员群体特征有深刻的认识和独到的见解。决心以互联网金融的力量帮助更多学生提升自我，为拥有富余资金的理财人带来阳光、安全、正能量的理财方式。</p>
+                </div>
+            </div>
+            <div class="mrt60 cl fr">
+                <img src="/images/team/02.jpg" class="fl" style="width: 248px;height: 326px;">
+                <div class="t_person fr">
+                    <h2>彭南英</h2>
+                    <h3>风控合伙人</h3>
+                    <p>11年风险管理经验，3年P2P行业经验，8年民生银行信用卡审批经验，深刻洞察信贷产品风险，擅长制度设计。<br>拥有中国人民大学金融学硕士学位。</p>
+                </div>
+            </div>
+            <div class="mrt150 cl fl">
+                <img src="/images/team/03.jpg" class="fl" style="width: 248px;height: 326px;">
+                <div class="t_person fl">
+                    <h2>刘冠卿</h2>
+                    <h3>技术合伙人</h3>
+                    <p>8年技术开发经验。曾先后任职于淘宝网、聚淘网、京东、爱奇艺，担任资深开发工程师与架构师等职位。<br>拥有西安电子科技大学计算机科学与技术学士学位。</p>
+                </div>
+            </div>
+            <div class="mrt150 cl fr">
+                <img src="/images/team/04.jpg" class="fl" style="width: 248px;height: 326px;">
+                <div class="t_person fr">
+                    <h2>袁瑗</h2>
+                    <h3>产品运营合伙人</h3>
+                    <p>5年互联网产品运营经验。曾先后于新浪微博、人人网任职高级产品经理，并参与创立知名互联网金融平台友借友还。<br>拥有中国科学院研究生院博士学位。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

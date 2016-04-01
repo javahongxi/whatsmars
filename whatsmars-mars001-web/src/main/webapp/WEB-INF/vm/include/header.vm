@@ -1,0 +1,70 @@
+<!-- header_bar -->
+<div class="top">
+    <div class="wraper">
+        <div class="top-l">
+            <em>咨询热线： <span>400-018-0670</span>  （服务时间：9:00 - 19:00）</em>
+            <a href="javascirpt:;" class="icon sina" id="sina"></a><a href="javascirpt:;" class="icon qq" id="qq"></a>
+##            <a href="javascirpt:;" class="icon wx" id="wx"></a>
+            <div class="pophover sina-pop" style="display: none;z-index: 9999">
+                <div class="icon arrow"></div>
+                <div class="pophover-con">
+                    <img src="/images/qr.jpg" />
+                    <p>关注官方微博 <em class="c1">@学好贷</em></p>
+                </div>
+            </div>
+            <div class="pophover qq-pop" style="display: none;z-index: 9999">
+                <div class="icon arrow"></div>
+                <div class="pophover-con">
+                    <p class="f14 c9">投资群：</p>
+                    <p class="f18 c1">174262993</p>
+                </div>
+            </div>
+##            <div class="pophover wx-pop" style="display: none;z-index: 9999">
+##                <div class="icon arrow"></div>
+##                <div class="pophover-con">
+##                    <img src="/images/qr.jpg" />
+##                    <p>官方微信 扫我一下</p>
+##                </div>
+##            </div>
+        </div>
+
+            #if($!loginUser)
+
+                <div class="top-r">您好，<a href="/lender/index.jhtml" style="margin:0px;"><span class="c2">$!{loginUser.name}</span></a>  <a href="/logout.jhtml">退出</a> | <a href="/lender/index.jhtml">我的账户</a> | <a href="/misc/lender_help.jhtml">帮助中心</a></div>
+            #else
+                <div class="top-r"><a href="/register.jhtml" class="default">免费注册</a> | <a href="/login.jhtml">立即登录</a> | <a href="/misc/lender_help.jhtml">帮助中心</a></div>
+            #end
+        </div>
+    </div>
+</div>
+#if($!vmHeader == "common")
+<div class="header">
+    <div class="wraper">
+        <a href="/index.jhtml"><h1>学好贷</h1></a>
+        <ul class="menu" id="menu">
+            #if($!stringUtils.isBlank($!tab))
+                #set($tab = "index")
+            #end
+            <li #if($!tab == "index") class="cur"#end><a href="/index.jhtml">首页</a></li>
+            <li #if($!tab == "lender") class="cur"#end><a href="/bidding/list.jhtml">我要投资</a></li>
+            <li #if($!tab == "guide") class="cur"#end><a href="/misc/guide.jhtml">新手指引</a></li>
+            <li #if($!tab == "guarantee") class="cur"#end><a href="/misc/guarantee.jhtml">安全保障</a></li>
+            <li #if($!tab == "about") class="cur"#end><a href="/misc/about.jhtml">关于我们</a></li>
+        </ul>
+    </div>
+</div>
+#end
+
+#if($!centerNav == "centerNav")
+    #parse("/include/nav_uc.vm")
+#end
+
+#if($!misc == "misc")
+    #parse("/include/nav_about.vm")
+#end
+
+#if($!help == "help")
+    #parse("/include/nav_help.vm")
+#end
+
+

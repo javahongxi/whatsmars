@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	                    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	                    http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-3.2.xsd"
+	default-autowire="byName">
+
+    <context:component-scan base-package="com.whatsmars.mars001.service"/>
+
+    <!--<bean id="systemConfig" class="com.whatsmars.mars001.domain.misc.SystemConfig">
+        <property name="cookieSecurityKey" value="${ixhong.lender.cookie.security.key}"/>
+        <property name="cookieDomain" value="${ixhong.lender.cookie.domain}"/>
+        <property name="cookieKey" value="${ixhong.lender.cookie.key}"/>
+        <property name="hostName" value="${ixhong.lender.host.name}"/>
+        <property name="imageHostName" value="${ixhong.image.host.name}"/>
+        <property name="envRecharge" value="${ixhong.yeepay.env.recharge}" />
+    </bean>
+
+    <bean id="mongodbProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>classpath:mongodb-config.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="mongodbDriver" class="com.whatsmars.mars001.common.mongo.object.MongoDBDriver" init-method="init" destroy-method="close">
+        <property name="properties" ref="mongodbProperties"/>
+        <property name="configuration">
+            <bean class="com.whatsmars.mars001.common.mongo.object.MongoDBConfig">
+                <property name="addresses" value="${ixhong.mongodb.common.addresses}"/>
+                <property name="credentials">
+                    <list>
+                        <bean class="com.whatsmars.mars001.common.mongo.object.MongoDBCredential">
+                            <property name="databaseName" value="${ixhong.mongodb.common.dbname}"/>
+                            <property name="username" value="${ixhong.mongodb.common.username}"/>
+                            <property name="password" value="${ixhong.mongodb.common.password}"/>
+                        </bean>
+                    </list>
+                </property>
+
+            </bean>
+
+        </property>
+    </bean>
+
+    <bean id="mongoClient" class="com.whatsmars.mars001.common.mongo.MongoDBClient">
+        <property name="mongoDBDriver" ref="mongodbDriver"/>
+        <property name="databaseName" value="${ixhong.mongodb.common.dbname}"/>
+    </bean>-->
+
+
+</beans>

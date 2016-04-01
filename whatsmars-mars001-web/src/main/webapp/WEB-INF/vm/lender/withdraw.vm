@@ -1,0 +1,202 @@
+#set($title = "提现 - 我的账户 - 学好贷")
+#set($vmHeader = "common")
+#set($centerNav = "centerNav")
+#set($menuTab = "lenderCenter")
+#set($lenderTab = "withdraw")
+
+<div class="container">
+    <div class="wraper mrt60">
+        <div class="pay">
+            <form action="" name="withdrawForm" method="post" id="withdrawForm" autocomplete="off">
+                <input type="hidden" name="token" value="$!{token}" />
+                <input type="hidden" id="balance" value="$!{account.balance}" />
+                <div class="item">
+                    <label for="">开户姓名：</label>
+                    <span id="real_name" class="payspan">*$!stringUtils.substring($!lender.realName, 1)</span>
+                </div>
+                <div class="item">
+                    <label for="">开户银行：</label>
+                    <span id="bank"><img src="/images/bank_img/$!{account.bankName}.jpg" /></span>
+                </div>
+                <div class="item">
+                    <label for="">银行卡号：</label>
+                    <span id="bank_card_id"  class="payspan">$!bankCardId</span>
+                </div>
+                <div class="item">
+                    <label for="">目前帐户余额：</label>
+                    <span class="c2 f14 payspan"><b>￥$!{account.balance}</b></span>
+                </div>
+                <div class="item">
+                    <label for="">提现金额：</label>
+                    <input type="text" name="withdraw" id="withdraw" class="fl" autocomplete="off"/>
+                    <span class="user_warning_c" style="color: red;" id="withdraw_error"></span>
+                </div>
+                <div class="item">
+                    <label for="">手续费：</label>
+                    <span class="c2 payspan" id="fee_span">￥2.00（第三方支付公司收取）</span>
+                    <input type="hidden" id="fee" name="fee" value="2.00" />
+                </div>
+                <div class="item">
+                    <label for="">实际需支付金额：</label>
+                    <span class="c2 payspan" id="amount_span">￥0.00</span>
+                    <input type="hidden" id="amount" name="amount" value="0.00" />
+                </div>
+                <div class="item">
+                    <label for="" >交易密码：</label>
+                    <input type="password" class="u_input fl" name="password" id="password" autocomplete="off"/>
+                    <input type="password" autocomplete="off" style="display:none"/>
+                    <span style="color: red;" id="password_error"></span>
+                </div>
+                <div class="item">
+                    <label for="" >验证码：</label>
+                    <input type="text" maxlength="6" name="phone_code" id="phonecode" style="width:60px;float:left;margin-right:10px"/>
+                    <input type="button" class="pay_verifiy" id="phonecode_but" value="获取验证码" style="width:110px;height:30px;float:left;"/>
+                    <span style="color: red;" id="phonecode_error"></span>
+                </div>
+                <div class="item mrt20">
+                    <input type="button" class="btn_pay" id="withdraw_btn" value="立即提现" />
+                </div>
+            </form>
+        </div>
+        <div class="pay_p">
+            <p>温馨提示:</p>
+            <p>(1) 提现由第三方支付公司收取2元/笔的手续费。</p>
+            <p>(2) 若当日0：00-16：00申请提现，一般1个工作日内即可到账;若当日其余时间申请提现，一般2个工作日内即可到账。</p>
+            <p>(3) 如有问题请联系客服电话400-018-0670</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function() {
+        var flag = false;
+        var phoneFlag = false;
+
+        $('#phonecode').on('blur',function(){
+            if ($(this).val() == ""){
+                $("#phonecode_error").html("请输入验证码");
+            } else {
+                $("#phonecode_error").html("");
+            }
+        })
+
+        $('#password').on('blur',function(){
+            if ($(this).val() == ""){
+                $("#password_error").html("请输入交易密码");
+            } else {
+                $("#password_error").html("");
+                phoneFlag = true;
+            }
+        })
+
+        $("#phonecode_but").on("click",function(){
+            var o = $(this);
+            var wait=60;
+            var timeID=setInterval(function(){
+                if(wait==-1){
+                    clearInterval(timeID);
+                    o.val("获取手机验证码");
+                    o.removeAttr("disabled");
+                }else{
+                    o.val(wait+"秒后重新发送");wait--;
+                    o.attr("disabled",true);
+                }
+            },1000);
+
+            $.ajax({
+                url:"/withdraw/send_phone_code_action.jhtml",
+                type:"post",
+                dataType:"json",
+                success:function(data){
+                    if (data.code == "S00000"){
+                        phoneFlag = true;
+                    }else{
+                        $("#phonecode_error").html(data.message);
+                    }
+                },
+                error: function () {
+                    alert(JSON.stringify(data));
+                }
+            });
+        })
+
+        $('#withdraw').on('blur',function(){
+            var reg = new RegExp("(?!^0$)(?!^[0]{2,})(?!^0[1-9]+)(?!^0\\.[0]*$)^(([1-9]+[0-9]*)|0)(\\.\\d{1,2})?$");
+            var withdrawError = $("#withdraw_error");
+            var withdrawVal = $('#withdraw').val();
+            var balanceVal = $('#balance').val();
+            var amountVal = Number(withdrawVal) + Number(2);
+            if (withdrawVal == ""){
+                withdrawError.html("请输入提现金额");
+                $("#amount").val(0.00);
+                $("#amount_span").html("￥0.00");
+                flag = false;
+            } else if(!reg.test(withdrawVal)){
+                withdrawError.html("请输入正确的金额(如果有小数位最多2位)");
+                flag = false;
+            } else if(balanceVal - amountVal < 0){
+                withdrawError.html("账户余额不足");
+                flag = false;
+            } else {
+                withdrawError.html("");
+                amountVal = parseFloat(amountVal).toFixed(2);
+                $("#amount").val(amountVal);
+                $("#amount_span").html("￥"+amountVal);
+                flag = true;
+            }
+        })
+
+        var withdrawBtn = $('#withdraw_btn');
+        withdrawBtn.click(function() {
+            var amountValue = $("#amount").val();
+            if ($("#withdraw").val() == "" || amountValue == "" || parseFloat(amountValue) <= 0){
+                var withdrawError = $("#withdraw_error");
+                if(withdrawError.html() != ""){
+                    return false;
+                }
+                withdrawError.html("请输入提现金额");
+                return false;
+            }
+            if ($("#password").val() == ""){
+                $("#password_error").html("请输入交易密码");
+                return false;
+            }
+            if ($("#phonecode").val() == ""){
+                $("#phonecode_error").html("请输入验证码");
+                return false;
+            }
+            if (!flag){
+                return false;
+            }
+            if (!phoneFlag){
+                return false;
+            }
+            withdrawBtn.removeClass().addClass("btn_pay_disable");
+            withdrawBtn.attr("disabled","disabled");
+            withdrawBtn.val("提现处理中");
+            $.ajax({
+                type:'POST',
+                url:'/lender/withdraw_action.jhtml',
+                data:$('#withdrawForm').serialize(),
+                dataType:'json',
+                success:function(data) {
+                    if (data.code == 'S00000') {
+                        window.location.href="/lender/flow_list.jhtml";
+                    } else {
+                        if(data.hasOwnProperty("data") && data.data.hasOwnProperty("flag")){
+                            $("#phonecode_error").html(data.message);
+                        }else{
+                            $("#password_error").html(data.message);
+                        }
+                        withdrawBtn.removeClass().addClass("btn_pay");
+                        withdrawBtn.removeAttr("disabled");
+                        withdrawBtn.val("立即提现");
+                    }
+                },
+                error:function(data) {
+                    alert(JSON.stringify(data));
+                }
+            });
+        })
+    })
+</script>

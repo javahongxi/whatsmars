@@ -1,0 +1,109 @@
+#kkpager{
+	clear:both;
+	color:#999;
+	padding:15px 0px 35px 0px;
+	font-size:13px;
+	position: relative;
+	left:50%;
+	float:left;
+}
+#kkpager > div{position: relative;right:50%}
+#kkpager a{
+	float: left;
+	border: 1px solid #ccc;
+	display: inline;
+	padding: 3px 10px 3px 10px;
+	margin-right: 5px;
+	-moz-border-radius: 3px;
+	cursor: pointer;
+	background: #fff;
+	text-decoration:none;
+	color:#999;
+}
+
+#kkpager span.disable{
+	float: left;
+	display: inline;
+	padding: 3px 10px 3px 10px;
+	margin-right: 5px;
+	border:1px solid #DFDFDF;
+	background-color:#FFF;
+	color:#DFDFDF;
+}
+#kkpager span.curr{
+	float: left;
+	border: 1px solid #FF6600;
+	display: inline;
+	padding: 3px 10px 3px 10px;
+	margin-right: 5px;
+	-moz-border-radius: 3px;
+	background: #FFEEE5;
+	color: #FF6600;
+}
+#kkpager a:hover{
+	border:1px solid #FF6600; 
+	background-color:#FF6600; 
+	color:#fff;
+}
+#kkpager span.normalsize{
+}
+#kkpager_gopage_wrap{
+	position:relative;
+	left:0px;
+	top:0px;
+	display:inline-block;
+}
+#kkpager_btn_go {
+	width:44px;
+	height:22px;
+	border:0px;
+	overflow:hidden;
+	line-height:140%;
+	padding:0px;
+	margin:0px;
+	text-align:center;
+	cursor:pointer;
+	background-color:#FF6600;
+	color:#FFF;
+	position:absolute;
+	left:65px;
+	top:-2px;
+	display:block;
+}
+#kkpager_btn_go_input{
+	width:36px;
+	height:20px;
+	color:#999;
+	text-align:center;
+	margin-left:3px;
+	margin-right:3px;
+	border:1px solid #DFDFDF;
+	position:relative;
+	left:0px;
+	top:-3px;
+	outline:none;
+}
+
+#kkpager_btn_go_input.focus{
+	border-color:#FF6600;
+}
+
+#kkpager .pageBtnWrap{
+	float:left;
+}
+#kkpager .infoTextAndGoPageBtnWrap{
+	float:left;
+}
+#kkpager .spanDot{
+	float:left;
+	margin-right:5px;
+}
+
+#kkpager .currPageNum{
+	color:#FD7F4D;
+}
+
+#kkpager .infoTextAndGoPageBtnWrap{
+	padding-top:3px;
+
+}

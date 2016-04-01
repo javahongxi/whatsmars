@@ -1,0 +1,25 @@
+#set($title = "媒体报道 - 学好贷")
+#set($vmHeader = "common")
+#set($tab = "about")
+#set($misc = "misc")
+#set($navTab = "reports")
+
+<div class="container">
+    <div class="aboutus">
+        <div class="wraper">
+            <h2>媒体报道</h2>
+            <ul class="report">
+                #foreach($article in $articles)
+                    <li>
+                        <dl>
+                            <dt><img src="$!article.image" width="208" height="155" alt="" title="" /></dt>
+                            <dd><h5><a href="/misc/report_detail.jhtml?report_id=$!article.id">$!article.title</a></h5>
+                                $!article.summary
+                                <div class="b"><a href="/misc/report_detail.jhtml?report_id=$!article.id">查看详情></a>来源：学好贷</div></dd>
+                        </dl>
+                    </li>
+                #end
+            </ul>
+        </div>
+    </div>
+</div>

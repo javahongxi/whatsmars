@@ -1,0 +1,68 @@
+#set($title = "新手指引 - 学好贷")
+#set($tab = 'guide')
+#set($vmHeader = "common")
+<div class="container" style="border-top:1px solid #ccc;">
+    <div class="wraper guide">
+        <div class="guide_bg">
+            <h3>学好贷是谁</h3>
+            <p>学好贷是中国最专业的教育垂直领域信用借贷服务平台之一，由小微信贷风控专家和教育培训行业专家联手打造。投资人在帮助学生学习进取的同时获得
+                安全、稳定、可观的投资回报。</p>
+        </div>
+        <div class="wraper txt">
+            <em></em>
+        </div>
+        <div class="guide_bg">
+            <h3>服务模式</h3>
+            <p>通过学好贷撮合，投资人向由教育机构推荐并提供信用保障的上进年轻人出借学费，使他们通过专业技能培训提升职业竞争力和薪资。投资人获得安全、稳
+                健、可观的投资回报，同时享受助人助学的成就感。</p>
+            <img src="/images/guide_07.jpg">
+        </div>
+        <div class="wraper txt">
+            <em></em>
+        </div>
+        <div class="guide_bg">
+            <h3>投资优势</h3>
+            <dl>
+                <dt><img src="/images/guide_tu_12.jpg"></dt>
+                <dd class="guide_title">10~15% 的稳健收益</dd>
+                <dd class="guide_art">成为投资人后，您可通过投资获得10~15%的预期年化收益</dd>
+            </dl>
+            <dl>
+                <dt><img src="/images/guide_tu_14.jpg"></dt>
+                <dd class="guide_title">零门槛，零费用</dd>
+                <dd class="guide_art">最低50元就可以在学好贷进行投资，充值、投资费用全免</dd>
+            </dl>
+            <dl>
+                <dt><img src="/images/guide_tu_16.jpg"></dt>
+                <dd class="guide_title">本息保障计划</dd>
+                <dd class="guide_art">学好贷将通过教育机构缴纳的风险保证金保障投资人的投资安全</dd>
+            </dl>
+            <dl>
+                <dt><img src="/images/guide_tu_18.png"></dt>
+                <dd class="guide_title">资金周转灵活</dd>
+                <dd class="guide_art">您可以自主转让持有的债权，快速收回资金，最快当天即可到账</dd>
+            </dl>
+        </div>
+        <div class="wraper txt">
+            <em></em>
+        </div>
+        <div class="guide_bg">
+            <h3>简单3步，直达收益</h3>
+            <img src="/images/guide_12.png">
+            <div style="width:1000px;">
+                <span>注册认证成为投资人</span>
+                <span>账户充值</span>
+                <span>自由选择出借对象</span>
+                <span>轻松获取收益</span>
+            </div>
+        </div>
+        <div class="wraper txt">
+            <em></em>
+        </div>
+        <div class="gui">
+            <a href="/bidding/list.jhtml">马上开始投资</a>
+        </div>
+    </div>
+</div>
+
+

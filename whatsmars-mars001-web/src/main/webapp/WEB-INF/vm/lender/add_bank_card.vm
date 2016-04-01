@@ -1,0 +1,271 @@
+#set($layout = "/layout/default.vm")
+#set($title = "我的银行卡 - 我的账户 - 学好贷")
+#set($centerNav = "centerNav")
+#set($menuTab = "lenderCenter")
+#set($lenderTab = "bankList")
+#set($vmHeader = "common")
+
+<div class="container">
+    <div class="wraper mrt60">
+        <div class="reg_step reg_step3">
+        </div>
+        <div class="pay" style="width:620px;">
+            <form name="add_bank_card_form" id="add_bank_card_form" action="">
+                <input type="hidden" name="token" value="$!token">
+                <input type="hidden" name="request_id" id="request_id" value="">
+                <input type="hidden" name="flag" value="$!flag" />
+                <div class="item">
+                    <label for="">开户姓名：</label>
+                    <span class="payspan">*$!stringUtils.substring($!realName, 1)</span>
+                </div>
+                <div class="item">
+                    <label for="">开户银行：</label>
+                    <select class="selcard" style="width:145px;" id="bank_name" name="bank_name">
+                        <option value="">请选择</option>
+                        #foreach($bank in $!banks)
+                            <option value="${bank.code}" #if(${bank.code} == $!{lenderAccount.bankCode}) selected="selected" #end>
+                                ${bank.name}
+                            </option>
+                        #end
+                    </select>
+                    <div class="t" style="line-height:28px;"></div>
+                </div>
+                <div class="item">
+                    <label for="">银行卡号：</label>
+                    <input class="fl" type="text" name="bank_card_id" id="bank_card_id" onkeyup="this.value=this.value.replace(/\D/g,'');" maxlength="19" value="$!{lenderAccount.bankCardId}">
+                    <span class="pro cl">该银行卡开户名称必须为*$!stringUtils.substring($!realName, 1)，否则无法提现</span>
+                    <div class="t"></div>
+                </div>
+                <div class="item">
+                    <label for="">银行预留手机号：</label>
+                    <input type="text" name="phone"  id="phone" value="$!{lenderAccount.phone}" onkeyup="this.value=this.value.replace(/\D/g,'');" maxlength="11">
+                    <div class="t"></div>
+                </div>
+                <div class="item">
+                    <label for="" >验证码：</label>
+                    <input type="text" style="width:80px;" onkeyup="value=value.replace(/[^0-9Xx]/g,'')" maxlength="6"
+                           value="" name="phone_code" id="phone_code">
+                    <input type="button" value="获取验证码" class="pay_verifiy" id="get_verty_btn" style="width:110px;">
+                    <div class="cl"></div>
+                    <div class="t" style="margin-left:160px;"></div>
+                </div>
+                <div class="item mrt20">
+                    <input type="button" class="btn_pay" name="add_bank_card_btn" id="add_bank_card_btn" value="保存">
+                    &nbsp;<p id="message_span" style="color:red;text-align:center;"></p>
+                </div>
+            </form>
+        </div>
+        <div class="pay_p">
+            <p>温馨提示:</p>
+            <p>(1)您绑定的银行卡将用于在学好贷平台的充值和提现操作，银行卡绑定成功后您无需再次输入银行卡号。</p>
+            <p>(2)为确保您的资金安全，学好贷严格执行同卡进出。您在平台的投资收益只能提现到您充值投资时绑定的银行卡。</p>
+            <p>(3)银行卡一旦成功绑定后只能通过联系客服修改，请您慎重选择常用的银行卡进行绑定。
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+    $("#get_verty_btn").click(function() {
+        if (_check_bank_name('bank_name') && _check_bank_card_id('bank_card_id') && _check_phone('phone')) {
+            var o = $(this);
+            var wait=60;
+            var timeID=setInterval(function(){
+                if(wait==-1){
+                    clearInterval(timeID);
+                    o.val("获取验证码");
+                    o.removeAttr("disabled");
+                }
+                else{
+                    o.val(wait+'秒后重新发送');wait--;
+                    o.attr("disabled",true);
+                }
+            },1000);
+            $.ajax({
+                url:"/lender/bind_bank_card.jhtml",
+                type:"post",
+                data:$('#add_bank_card_form').serialize(),
+                dateType:"json",
+                success:function(data) {
+                    var _data = eval("("+data+")");
+                    if (_data.code == 'S00000') {
+                        $('#request_id').val(_data.data.requestId);
+                        $('#sign').val(_data.data.sign);
+                        //alert('请求成功，请输入手机接收到的6位验证码。');
+                    } else {
+                        alert(_data.message);
+                        clearInterval(timeID);
+                        o.val("获取验证码");
+                        o.removeAttr("disabled");
+                    }
+                },
+                error:function(data) {
+                    alert("网络繁忙，请稍后再试!");
+                    clearInterval(timeID);
+                    o.val("获取验证码");
+                    o.removeAttr("disabled");
+                }
+            });
+        }
+
+    });
+    
+    $(function () {
+
+        $("#add_bank_card_btn").click(function() {
+            if(_check_bank_name('bank_name') && _check_bank_card_id('bank_card_id') && _check_phone('phone') && _check_phone_code('phone_code')) {
+                if ($('#request_id').val() == '') {
+                    $("#message_span").html('请点击获取验证码');
+                    return false;
+                }
+
+                $('#add_bank_card_btn').attr('disabled', 'disabled');
+                $('#add_bank_card_btn').removeClass('btn_pay');
+                $('#add_bank_card_btn').addClass('btn_pay_disable');
+                $.ajax({
+                    type:"POST",
+                    url:"/lender/add_bank_card_action.jhtml",
+                    data:$('#add_bank_card_form').serialize(),
+                    dataType:"json",
+                    success:function(data) {
+                        if (data.code == 'S00000') {
+                            location.href = data.data._redirect_url;
+                        }else {
+                            $("#message_span").html(data.message);
+                            $('#add_bank_card_btn').removeAttr('disabled');
+                            $('#add_bank_card_btn').removeClass('btn_pay_disable');
+                            $('#add_bank_card_btn').addClass('btn_pay');
+                        }
+                    },
+                    error:function(e) {
+                        alert("网络繁忙，请稍后再试!");
+                        $('#add_bank_card_btn').removeAttr('disabled');
+                        $('#add_bank_card_btn').removeClass('btn_pay_disable');
+                        $('#add_bank_card_btn').addClass('btn_pay');
+                    }
+                });
+            }
+        });
+
+        $("#bank_card_id").bind('focus', function() {
+            $(this).siblings('.msg_box').css({
+                'display' : "inline-block"
+            });
+            _check_right('bank_card_id','');
+        }).bind('blur', function() {
+            _check_bank_card_id('bank_card_id');
+        });
+
+        $("#phone").bind('focus', function() {
+            $(this).siblings('.msg_box').css({
+                'display' : "inline-block"
+            });
+        }).bind('blur', function() {
+            _check_phone('phone');
+        });
+
+        $("#bank_name").bind('focus', function() {
+            $(this).siblings('.msg_box').css({
+                'display' : "inline-block"
+            });
+            _check_right('bank_name','');
+        }).bind('blur', function() {
+            _check_bank_name('bank_name');
+        });
+        $("#phone_code").bind('focus', function() {
+            $(this).siblings('.msg_box').css({
+                'display' : "inline-block"
+            });
+            _check_right('phone_code','');
+            $("#message_span").html('');
+        }).bind('blur', function() {
+            _check_phone_code('phone_code');
+        });
+
+    })
+
+    function _check_bank_name(_bank_name) {
+        var bank_name = $('#'+_bank_name).val();
+        if (bank_name == '') {
+            _check_error(_bank_name, '请选择开户银行');
+            return false;
+        }
+        _check_right(_bank_name,'');
+        return true;
+    }
+
+    function _check_bank_card_id(_bank_card_id) {
+        var bank_card_id = $('#' + _bank_card_id);
+        var bank_card_id_val = bank_card_id.val();
+        var bank_card_id_len = _check_len(bank_card_id_val);
+        if(bank_card_id_val==""){
+            _check_error(_bank_card_id, '请输入卡号');
+            return false;
+        }else if(bank_card_id_len<16 || bank_card_id_len>19){
+            _check_error(_bank_card_id, '卡号长度必须在16-19之间');
+            return false;
+        }else{
+            _check_right(_bank_card_id,'');
+            return true;
+        }
+    }
+
+    function _check_phone(_phone) {
+        var phone = $('#' + _phone)
+        var phone_val = phone.val();
+        var phone_reg = /^1[3|4|5|8|7][0-9]\d{8,8}$/;
+        if (phone_val == '') {
+            _check_error(_phone, '手机号码不能为空');
+            return false;
+        } else if (!phone_reg.test(phone_val)) {
+            _check_error(_phone, '请输入正确的手机号');
+            return false;
+        }else {
+            _check_right(_phone, '');
+            return true;
+        }
+    }
+
+
+    function _check_phone_code(id) {
+        var code = $('#'+id).val();
+        if (code == '' || code.length != 6) {
+            _check_error(id, '请输入6位数字验证码');
+            return false;
+        }
+        _check_right(id,'');
+        return true;
+    }
+
+    function _check_error(_name, _content) {
+        var __name = $('#' + _name);
+        __name.parent().removeClass('right').addClass('error');
+        __name.parent().find('.t').html(_content);
+
+        return false;
+    }
+
+    function _check_right(_name,_content) {
+        var __name = $('#' + _name);
+        __name.parent().removeClass('error').addClass('right');
+        __name.parent().find('.t').html(_content);
+
+        return true;
+    }
+
+    function _check_len(s) {
+        var l = 0;
+        var a = s.split("");
+        for (var i = 0; i < a.length; i++) {
+            if (a[i].charCodeAt(0) < 299) {
+                l++;
+            } else {
+                l += 2;
+            }
+        }
+        return l;
+    }
+
+</script>
+

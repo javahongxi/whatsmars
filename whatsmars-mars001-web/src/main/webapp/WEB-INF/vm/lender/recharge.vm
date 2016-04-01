@@ -1,0 +1,169 @@
+#set($title = "充值 - 我的账户 - 学好贷")
+#set($vmHeader = "common")
+#set($centerNav = "centerNav")
+#set($menuTab = "lenderCenter")
+#set($lenderTab = "recharge")
+
+
+<div class="container">
+    #if($flag)
+        <div class="reg_step reg_step3">
+        </div>
+    #end
+    <div class="wraper mrt60">
+        <div class="pay">
+        <form action="" method="post" id="rechargeForm">
+            <input type="hidden" name="token" class="input_border" value="$!{token}" />
+            <input type="hidden" name="flag" value="$!flag" />
+            <div class="item">
+                <label for="">开户姓名：</label>
+                <span>*$!stringUtils.substring($!lender.realName, 1)</span>
+            </div>
+            <div class="item">
+                <label for="">开户银行：</label>
+                <img src="/images/bank_img/$!{account.bankName}.jpg" style="vertical-align:middle;">
+            </div>
+            <div class="item">
+                <label for="">银行卡号：</label>
+                <span>$!bankCardId</span>
+            </div>
+            <div class="item">
+                <label for="">目前帐户余额：</label>
+                <span class="c2 f14"><b>￥$!account.balance</b></span>
+            </div>
+            <div class="item">
+                <label for="">充值金额：</label>
+                <input type="text" onkeyup="value=value.replace(/[^0-9Xx|.]/g,'')" name="recharge" id="recharge" class="fl" />
+                <span class="fl">元</span><span class="user_warning_c" style="color: red;" id="recharge_error"></span>
+            </div>
+            <div class="item">
+                <label for="">手续费：</label>
+                <span class="c2" id="fee">￥0.00</span>
+            </div>
+            <div class="item">
+                <label for="">实际需支付金额：</label>
+                <span class="c2" id="amount">￥0.00</span>
+            </div>
+            <div class="item">
+                <label for="" >交易密码：</label>
+                <input type="password" #*onkeyup="value=value.replace(/[^0-9Xx|.]/g,'')"*# name="deal_password" id="deal_password" class="fl" autocomplete="off"/>
+                <input type="password" autocomplete="off" style="display: none"/>
+                <span style="color: red;" id="password_error"></span>
+            </div>
+            <div class="item mrt20">
+                <input type="button" class="btn_pay" id="recharge_btn" value="立即充值">
+            </div>
+        </form>
+        </div>
+        <div class="pay_p">
+            <p>温馨提示:</p>
+            <p>(1)充值前，请您留意绑定的银行账户的余额。</p>
+            <p>(2)银行和第三方支付机构将收取充值手续费，请您留意实际需支付的金额。活动期间，学好贷将为理财客户全面承担该项费用。</p>
+            <p>(3)禁止洗钱、信用卡套现、虚假交易等行为，一经发现并确认，将予以处罚，包括但不限于：限制收款、冻结账户、永久停止服务等。</p>
+            <p>(4)如果充值金额没有及时到账，请联系客服：400-018-0670。</p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(function() {
+        $('#recharge').on('blur',function(){
+            var reg = /^(([1-9]\d{0,9})|0)(\.\d{1,2})?$/;
+            var recharge = $(this).val();
+            if (recharge == ""){
+                //$("#recharge_error").html("请输入充值金额！");
+                $("#fee").html("￥0.00");
+                $("#amount").html("￥0.00");
+            } else if (!reg.test(recharge)) {
+                $("#recharge_error").html("请输入最多两位小数的数字！");
+                $("#fee").html("￥0.00");
+                $("#amount").html("￥0.00");
+            } else if (recharge < 10) {
+                $("#recharge_error").html("最少充值10元！");
+                $("#fee").html("￥0.00");
+                $("#amount").html("￥0.00");
+            } else if (recharge > 50000) {
+                $("#recharge_error").html("最多充值50000元！");
+                $("#fee").html("￥0.00");
+                $("#amount").html("￥0.00");
+            } else {
+                $("#recharge_error").html('');
+                $.ajax({
+                    url: '/lender/recharge_fee.jhtml',
+                    type: "POST",
+                    data:{recharge:$(this).val()},
+                    async: true,
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.code == 'S00000') {
+                            var fee = parseFloat(data.data.fee).toFixed(2);
+                            var amount = parseFloat(data.data.amount).toFixed(2);
+                            $("#fee").html("￥"+fee);
+                            $("#amount").html("￥"+amount);
+                        } else {
+                            $("#withdraw_error").html(data.message);
+                            $("#fee").html("￥"+0.00);
+                            $("#amount").html("￥"+0.00);
+                        }
+                        $('#deal_password').val('');
+                    },
+                    error: function () {
+                        alert(alert('网络繁忙，请稍后再试'));
+                    }
+                });
+            }
+        })
+
+        $('#recharge').on('focus', function() {
+            $("#recharge_error").html('');
+        })
+        $('#deal_password').on('focus', function() {
+            $("#password_error").html('');
+        })
+
+        $('#recharge_btn').click(function() {
+            if ($('#recharge').val() == '') {
+                $("#recharge_error").html("请输入充值金额！");
+                return false;
+            } else if ($('#recharge').val() < 10) {
+                $("#recharge_error").html("最少充值10元！");
+                return false;
+            } else if ($('#recharge').val() > 50000) {
+                $("#recharge_error").html("最多充值50000元！");
+                return false;
+            }
+            if ($('#deal_password').val() == '') {
+                $("#password_error").html("请输入交易密码！");
+                return false;
+            }
+
+            $('#recharge_btn').attr('disabled', 'disabled');
+            $('#recharge_btn').removeClass('btn_pay');
+            $('#recharge_btn').addClass('btn_pay_disable');
+            $.ajax({
+                type:'POST',
+                url:'/lender/recharge_action.jhtml',
+                data:$('#rechargeForm').serialize(),
+                dataType:'json',
+                success:function(data) {
+                    if (data.code == 'S00000') {
+                        var _data = data.data;
+                        location.href = '/lender/recharge_success.jhtml?recharge=' + _data.recharge + '&order_id=' + _data.orderId;
+                    } else {
+                        alert(data.message);
+                        $('#recharge_btn').removeAttr('disabled');
+                        $('#recharge_btn').removeClass('btn_pay_disable');
+                        $('#recharge_btn').addClass('btn_pay');
+                    }
+                },
+                error:function(data) {
+                    //alert('请检查输入的金额是否有误');
+                    $('#recharge_btn').removeAttr('disabled');
+                    $('#recharge_btn').removeClass('btn_pay_disable');
+                    $('#recharge_btn').addClass('btn_pay');
+                }
+            });
+        })
+    })
+</script>

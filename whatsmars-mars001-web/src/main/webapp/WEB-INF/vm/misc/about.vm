@@ -1,0 +1,107 @@
+#set($title = "关于我们 - 学好贷")
+#set($vmHeader = "common")
+#set($tab = "about")
+#set($misc = "misc")
+#set($navTab = "about")
+
+<div class="container">
+    <div class="aboutus">
+        <div class="wraper c6">
+            <h2 class="border_none">关于学好贷</h2>
+        </div>
+        <div class="wraper">
+            <div class="div_w1000">
+                <img src="/images/xhd_03.png" class="img_about">
+                <div class="div_pro">
+                    <h3>简介</h3>
+                    <p>学好贷是中国最专业的教育垂直领域信用借贷服务平台之一，专注于给在校大学生、工作早期的年轻人群体提
+                        供接受职业教育、专业培训、技能提升课程所需的学习相关费用的解决方案。学好贷通过互联网平台连接投资
+                        人与学生群体，帮助学生解决学习过程中的资金需求，使他们通过专业培训获得更强的职业竞争力，从而提升
+                        他们的人生轨迹。投资人在帮助学生努力进取的同时获得安全、稳定、可观的投资回报。
+                    </p>
+                </div>
+                <div class="div_pro">
+                    <h3>核心价值</h3>
+                    <p>
+                        学好贷坚信：在互联网金融大潮中，来自优质、重信誉、趋势向上的年轻自然人，并且额度小、用途清晰的借
+                        款资源将会愈发体现出独特、宝贵的价值。
+                    </p>
+                </div>
+                <div class="div_pro">
+                    <h3>公司使命</h3>
+                    <p>学好贷将国家倡导的“教育改变生活”、“终身学习、终身教育”理念通过互联网金融落到实处。给千千万万
+                        奋发向上、追逐更高职业目标的年轻人提供一个改变的机会，让投资人在帮助别人实现职业发展目标的同时取
+                        得稳健的投资收益。学好贷在实现信用价值和金融价值的过程中，激发和传递学习、奋斗、助人的快乐！</p>
+                </div>
+            </div>
+        </div>
+        <div class="wraper wraper_border_top">
+            <div class="bt">
+                <div class="">
+                    <h3>服务模式</h3>
+                    <p>1. 通过开放、便利、高效的网络信息咨询服务平台匹配学生借款需求和投资人理财需求：学生凭借个人信用申请借款，取得学费；投资人通过公开信息自主选择进行出借，获得回报；</p>
+                    <p>2. 学好贷信用风险控制体系由小微信贷风控专家和教育培训行业专家联手打造，针对教育培训行业与学生发展轨迹实际，逐步建立并完善最符合学贷特点的金融风险定价机制；</p>
+                    <p>3. 基于精准的信用风险定价机制和安全分散的投资策略，同时采取机构风险保证金制等多重风险防范措施，学好贷最大程度上保障投资安全，实现出借人与借款人的共赢。</p>
+                </div>
+                <img src="/images/xhd_07.png" class="img_mar80">
+                <ul>
+                    <li>
+                        <em></em><span>学好贷与经过教育行业和风控专家团队严格审核的教育培训机构建立合作关系。无论是学历教育，或是职业教育（包括IT培训、语言类培训、艺术类培训、技能类培训、在线教育等），学好贷均可以根据
+教育培训机构的特点，结合学生的具体需求，提供专项用于提升自身，培训学习的学习费用解决方案。使学生可以轻松通过分期付款、先学习后付款等形式来完成学业。</span>
+                    </li>
+                    <li>
+                        <em></em><span>学好贷将为合作的教育培训机构建立风险等级评价体系，通过风险评价体系来确定该校与学好贷合作的风险保证金的比例，从而有效地通过教育培训机构来帮助投资人抵御学生还款违约的风险。</span>
+                    </li>
+                    <li>
+                        <em></em><span>学好贷还根据学生的个人信用情况、学习课程、预期还款能力来评估借款申请。学生通过借款获得学习培训机会提升技能后，将有稳定的薪资收入可用于还款。学员人生的第一笔重要借款通过学好贷平台
+实现，他（她）在人生的起步上升阶段的信用记录将会影响今后的长期发展。</span>
+                    </li>
+                    <li>
+                        <em></em><span>学好贷将会是好贷网大平台上一支“小而美”的专注于教育行业的P2P平台。</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="wraper wraper_border_top">
+            <div class="bt">
+                <p class="xhdaptitude">学好贷资质</p>
+                <div class="aptitude">
+                    <ul>
+                        <li>
+                            <a id="example2-1" href="/images/3793633099_3e1e53e4ac_o.jpg">
+                                <img src="/images/3793633099_4f9c3e08b3_m.jpg" >
+                            </a>
+                        </li>
+                        <li>
+                            <a id="example2-2" href="/images/shuiwu.png">
+                                <img src="/images/tu_06.jpg" >
+                            </a>
+                        </li>
+                        <li>
+                            <a id="example2-3" href="/images/jigou.jpg">
+                                <img src="/images/tu_08.png" >
+                            </a>
+                        </li>
+                        <li>
+                            <a id="example2-4" href="/images/kaihu.JPG">
+                                <img src="/images/tu_11.png" >
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="wraper wraper_border_top">
+            <div class="bt">
+                <img src="/images/addr_18.png" class="fl">
+                <div style="padding:100px 0px 0px 38px;overflow:hidden;">
+                    <p class="xhd">联系我们</p>
+                    <p>北京学好贷信息技术有限公司</p>
+                    <p>公司总部：北京市东城区东四北大街107号科林文化产业园A座（100007）</p>
+                    <p>商务合作：bd@xuehaodai.com</p>
+                    <p>媒体合作：media@xuehaodai.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

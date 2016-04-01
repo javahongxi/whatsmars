@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="lazyLoadingEnabled" value="false" />
+		<setting name="logImpl" value="LOG4J"/>
+	</settings>
+	<typeAliases>
+
+		<typeAlias type="com.ixhong.domain.pojo.LenderAccountDO" alias="LenderAccountDO"/>
+
+    </typeAliases>
+	<mappers>
+		<mapper resource="sqlmap/Lender-account-mapper.xml"/>
+	</mappers>
+</configuration>

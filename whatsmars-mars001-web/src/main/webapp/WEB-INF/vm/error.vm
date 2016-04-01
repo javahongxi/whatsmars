@@ -1,0 +1,18 @@
+#set($title = "系统错误")
+
+
+
+<div class="topbanner"></div>
+<div class="content line">
+    <div class="wraper">
+        <div class="reg-box border_none">
+            <div class="con m0">
+                <i class="error404"></i>
+                <h6 class="f24 c6">抱歉！没有找到您要查看的页面</h6>
+                <p><a href="/index.html">返回首页</a><a href="javascript:history.go(-1);">返回上一页</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
