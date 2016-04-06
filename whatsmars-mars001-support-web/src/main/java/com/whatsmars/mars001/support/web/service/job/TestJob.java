@@ -1,4 +1,4 @@
-package com.whatsmars.support.web.service.job;
+package com.whatsmars.mars001.support.web.service.job;
 
 /**
  * Created by shenhongxi on 2016/4/6.

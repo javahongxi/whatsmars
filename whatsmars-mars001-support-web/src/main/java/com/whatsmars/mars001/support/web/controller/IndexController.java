@@ -1,4 +1,4 @@
-package com.whatsmars.support.web.controller;
+package com.whatsmars.mars001.support.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
