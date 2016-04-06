@@ -17,6 +17,7 @@
         <module>whatsmars-fs-web</module>
         <module>whatsmars-mars001-support-web</module>
         <module>whatsmars-tomcat-web</module>
+        <module>whatsmars-javase-example</module>
     </modules>
 
     <properties>
