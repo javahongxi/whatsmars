@@ -7,12 +7,14 @@ import com.whatsmars.mars001.domain.pojo.OrganizationDO;
 import com.whatsmars.mars001.domain.query.OrganizationQuery;
 import com.whatsmars.mars001.domain.query.QueryResult;
 import com.whatsmars.mars001.service.OrganizationService;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
 /**
  * Created by shenhongxi on 2016/4/6.
  */
+@Service("organizationService")
 public class OrganizationServiceImpl implements OrganizationService {
 
     private OrganizationDao organizationDao;
