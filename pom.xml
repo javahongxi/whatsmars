@@ -14,6 +14,8 @@
         <module>whatsmars-mars001-dao</module>
         <module>whatsmars-mars001-service</module>
         <module>whatsmars-mars001-web</module>
+        <module>whatsmars-fs-web</module>
+        <module>whatsmars-support-web</module>
     </modules>
 
     <properties>

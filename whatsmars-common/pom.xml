@@ -2,20 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>whatsmars-mars001</artifactId>
-        <groupId>com.whatsmars</groupId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
 
+    <modelVersion>4.0.0</modelVersion>
     <artifactId>whatsmars-common</artifactId>
+    <groupId>com.whatsmars</groupId>
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>whatsmars-common</name>
     <url>http://maven.apache.org</url>
-    <build>
-        <finalName>whatsmars-common</finalName>
-    </build>
 
     <dependencies>
         <!-- 图片压缩工具 -->
@@ -112,6 +106,33 @@
             <version>1.6.1</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <finalName>whatsmars-common</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.1</version>
+            </plugin>
+        </plugins>
+    </build>
 
 
 </project>
