@@ -15,7 +15,7 @@
         <module>whatsmars-mars001-service</module>
         <module>whatsmars-mars001-web</module>
         <module>whatsmars-fs-web</module>
-        <module>whatsmars-support-web</module>
+        <module>whatsmars-mars001-support-web</module>
     </modules>
 
     <properties>
@@ -128,6 +128,11 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-jms</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
                 <version>${spring.version}</version>
             </dependency>
 
