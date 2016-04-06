@@ -1,6 +1,6 @@
 package com.whatsmars.mars001.web.controller;
 
-import com.whatsmars.mars001.common.util.DESUtils;
+import com.whatsmars.common.util.DESUtils;
 import com.whatsmars.mars001.domain.constants.Constants;
 import com.whatsmars.mars001.domain.misc.SystemConfig;
 import org.apache.commons.lang.RandomStringUtils;

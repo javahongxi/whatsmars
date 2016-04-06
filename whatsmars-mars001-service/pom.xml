@@ -20,7 +20,7 @@
     <dependencies>
         <dependency>
             <groupId>com.whatsmars</groupId>
-            <artifactId>whatsmars-mars001-common</artifactId>
+            <artifactId>whatsmars-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

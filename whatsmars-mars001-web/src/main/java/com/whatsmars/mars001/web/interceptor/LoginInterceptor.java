@@ -1,6 +1,6 @@
 package com.whatsmars.mars001.web.interceptor;
 
-import com.whatsmars.mars001.common.util.DESUtils;
+import com.whatsmars.common.util.DESUtils;
 import com.whatsmars.mars001.domain.misc.LoginContext;
 import com.whatsmars.mars001.domain.misc.LoginContextHolder;
 import com.whatsmars.mars001.domain.misc.SystemConfig;
@@ -15,7 +15,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Author: qing

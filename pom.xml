@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>whatsmars-mars001-common</module>
+        <module>whatsmars-common</module>
         <module>whatsmars-mars001-domain</module>
         <module>whatsmars-mars001-dao</module>
         <module>whatsmars-mars001-service</module>

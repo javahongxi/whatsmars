@@ -27,14 +27,14 @@
         </property>
     </bean>
 
-    <bean id="mongodbDriver" class="com.whatsmars.mars001.common.mongo.object.MongoDBDriver" init-method="init" destroy-method="close">
+    <bean id="mongodbDriver" class="MongoDBDriver" init-method="init" destroy-method="close">
         <property name="properties" ref="mongodbProperties"/>
         <property name="configuration">
-            <bean class="com.whatsmars.mars001.common.mongo.object.MongoDBConfig">
+            <bean class="MongoDBConfig">
                 <property name="addresses" value="${ixhong.mongodb.common.addresses}"/>
                 <property name="credentials">
                     <list>
-                        <bean class="com.whatsmars.mars001.common.mongo.object.MongoDBCredential">
+                        <bean class="MongoDBCredential">
                             <property name="databaseName" value="${ixhong.mongodb.common.dbname}"/>
                             <property name="username" value="${ixhong.mongodb.common.username}"/>
                             <property name="password" value="${ixhong.mongodb.common.password}"/>
@@ -47,7 +47,7 @@
         </property>
     </bean>
 
-    <bean id="mongoClient" class="com.whatsmars.mars001.common.mongo.MongoDBClient">
+    <bean id="mongoClient" class="MongoDBClient">
         <property name="mongoDBDriver" ref="mongodbDriver"/>
         <property name="databaseName" value="${ixhong.mongodb.common.dbname}"/>
     </bean>-->

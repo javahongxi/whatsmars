@@ -1,6 +1,6 @@
 package com.whatsmars.mars001.service.impl;
 
-import com.whatsmars.mars001.common.pojo.Result;
+import com.whatsmars.common.pojo.Result;
 import com.whatsmars.mars001.dao.AccountDao;
 import com.whatsmars.mars001.service.AccountService;
 import org.springframework.stereotype.Service;

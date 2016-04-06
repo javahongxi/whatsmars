@@ -1,6 +1,6 @@
 package com.whatsmars.mars001.service;
 
-import com.whatsmars.mars001.common.pojo.Result;
+import com.whatsmars.common.pojo.Result;
 
 /**
  * Created by shenhongxi on 2016/4/1.

@@ -1,8 +1,7 @@
 package com.whatsmars.mars001.web.controller;
 
-import com.whatsmars.mars001.common.pojo.Result;
-import com.whatsmars.mars001.common.pojo.ResultCode;
-import com.whatsmars.mars001.common.util.ResultHelper;
+import com.whatsmars.common.pojo.Result;
+import com.whatsmars.common.util.ResultHelper;
 import com.whatsmars.mars001.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
