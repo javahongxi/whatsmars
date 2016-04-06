@@ -341,15 +341,15 @@ public class GridFSClient extends MongoDBClient{
             mongoDBConfig.setAddresses("61.172.240.58:27017");
             List<MongoDBCredential> credentials = new ArrayList<MongoDBCredential>();
             MongoDBCredential credential = new MongoDBCredential();
-            credential.setDatabaseName("ixhong-fs");
-            credential.setUsername("xuehaodai");
+            credential.setDatabaseName("whatsmars-fs");
+            credential.setUsername("whatsmars");
             //credential.setPassword("haodai.com");
             credential.setPassword("passwordisfs");
             credentials.add(credential);
             mongoDBConfig.setCredentials(credentials);
             mongoDBDriver.setConfiguration(mongoDBConfig);
             mongoDBDriver.init();
-            client.setDatabaseName("ixhong-fs");
+            client.setDatabaseName("whatsmars-fs");
             client.setMongoDBDriver(mongoDBDriver);
             testUpload(client);
             //testClear(client.getInstance());

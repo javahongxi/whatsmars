@@ -106,13 +106,13 @@ public class EmailSenderClient {
         EmailSenderClient client = new EmailSenderClient();
         client.setSmtpPort(25);
         client.setHostName("smtp.qq.com");
-        client.setUsername("service@xuehaodai.com");
-        client.setPassword("xuehaodai99");//您的邮箱密码
+        client.setUsername("service@whatsmars.com");
+        client.setPassword("whatsmars99");//您的邮箱密码
         client.setSslOn(true);
-        client.setFromAddress("service@xuehaodai.com");
+        client.setFromAddress("service@whatsmars.com");
 
-        String targetAddress = "shift_alt_ctrl@163.com";
-        //client.sendTextEmail("shift_alt_ctrl@163.com","测试邮件","是否可以收到邮件！");
+        String targetAddress = "javahongxi@163.com";
+        //client.sendTextEmail("javahongxi@163.com","测试邮件","是否可以收到邮件！");
         Map<String,URL> attaches = new HashMap<String, URL>();
         attaches.put("logo",new URL("http://www.baidu.com/img/bd_logo1.png"));
         attaches.put("logo2",new URL("http://commons.apache.org/proper/commons-email/images/commons-logo.png"));

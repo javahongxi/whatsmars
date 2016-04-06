@@ -47,12 +47,12 @@ public class MongoDBClient {
         MongoDBDriver mongoDBDriver = new MongoDBDriver();
         try{
             MongoDBConfig mongoDBConfig = new MongoDBConfig();
-            //mongoDBConfig.setAddresses("61.172.238.149:27017");
-            mongoDBConfig.setAddresses("61.172.240.61:27017");
+            //mongoDBConfig.setAddresses("61.171.123.234:27017");
+            mongoDBConfig.setAddresses("61.171.123.234:27017");
             List<MongoDBCredential> credentials = new ArrayList<MongoDBCredential>();
             MongoDBCredential credential = new MongoDBCredential();
-            credential.setDatabaseName("ixhong-common");
-            credential.setUsername("xuehaodai");
+            credential.setDatabaseName("whatsmars-common");
+            credential.setUsername("whatsmars");
             //credential.setPassword("haodai.com");
             credential.setPassword("passwordiscommon");
             credentials.add(credential);
@@ -60,7 +60,7 @@ public class MongoDBClient {
             mongoDBDriver.setConfiguration(mongoDBConfig);
             mongoDBDriver.init();
             MongoDBClient client = new MongoDBClient();
-            client.setDatabaseName("ixhong-common");
+            client.setDatabaseName("whatsmars-common");
             client.setMongoDBDriver(mongoDBDriver);
             ListCollectionsIterable<Document> documents = client.getDatabase().listCollections();
             MongoCursor<Document> it = documents.iterator();
