@@ -59,8 +59,4 @@ public class DESUtils {
     }
 
 
-    public static void main(String[] args) {
-       
-    }
-
 }

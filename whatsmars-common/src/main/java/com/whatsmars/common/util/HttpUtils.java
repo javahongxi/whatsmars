@@ -261,10 +261,10 @@ public class HttpUtils {
 
 
     public static void main(String[] args) throws Exception {
-        String url = "http://stat.xuehaodai.com/ds/x2/f00qvewaxsqdnrzazhhyguhduc7wd8sv.png";
+        String url = "http://stat.whatsmars.com/ds/x2/f00qvewaxsqdnrzazhhyguhduc7wd8sv.png";
         InputStream inputStream = HttpUtils.httpGetStream(url, null);
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(new File("/Users/liuguanqing/Documents/test22222.png"));
+            FileOutputStream fileOutputStream = new FileOutputStream(new File("/Users/javahongxi/Documents/test22222.png"));
             while (true) {
                 int i = inputStream.read();
                 if( i == -1) {
