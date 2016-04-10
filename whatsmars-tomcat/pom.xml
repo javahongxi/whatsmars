@@ -5,11 +5,11 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>whatsmars-tomcat-web</artifactId>
+    <artifactId>whatsmars-tomcat</artifactId>
     <groupId>com.whatsmars</groupId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>ixhong-tomcat-web</name>
+    <name>whatsmars-tomcat</name>
     <url>http://maven.apache.org</url>
 
     <dependencies>
