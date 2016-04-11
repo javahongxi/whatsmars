@@ -22,9 +22,32 @@ public class HttpProcessor {
             output = socket.getOutputStream();
 
             // create HttpRequest object and parse
-
+//            request = new HttpRequest(input);
+//            response = new HttpResponse(output);
+//            response.setRequest(request);
+//            response.setHeaders("Server", "Mars Servlet Container");
+            
+            parseRequest(input, output);
+            parseHeaders(input);
+            
+//            Processor processor = null;
+//            if (request.getRequestURI().startsWith("/servlet/")) {
+//                processor = new ServletProcessor();
+//            } else {
+//                processor = new StaticResourceProcessor();
+//            }
+//            processor.process(request, response);
+            
+            socket.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void parseHeaders(SocketInputStream input) {
+    }
+
+    private void parseRequest(SocketInputStream input, OutputStream output) {
+                
     }
 }
