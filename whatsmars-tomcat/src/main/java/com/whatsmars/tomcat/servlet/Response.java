@@ -1,7 +1,5 @@
 package com.whatsmars.tomcat.servlet;
 
-import com.whatsmars.tomcat.server.HttpServer;
-
 import javax.servlet.ServletOutputStream;
 import javax.servlet.ServletResponse;
 import java.io.*;
@@ -24,7 +22,7 @@ public class Response implements ServletResponse {
         byte[] bytes = new byte[BUFFER_SIZE];
         FileInputStream fis = null;
         try {
-            File file = new File(HttpServer.WEB_ROOT, request.getUri());
+            File file = new File(Constants.WEB_ROOT, request.getUri());
             if (file.exists()) {
                 fis = new FileInputStream(file);
                 int ch = fis.read(bytes, 0, BUFFER_SIZE);
