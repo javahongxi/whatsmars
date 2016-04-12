@@ -1,6 +1,5 @@
-package com.whatsmars.tomcat.server;
+package com.whatsmars.tomcat.servlet;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -13,15 +12,12 @@ import java.net.Socket;
  */
 public class HttpServer {
 
-    public static final String WEB_ROOT = System.getProperty("user.dir") + File.separator + "whatsmars-tomcat/src/main/webapp";
-
-    private static final String SHUTDOWN_COMMAND = "SHUTDOWN";
+    private static final String SHUTDOWN_COMMAND = "/SHUTDOWN";
 
     private boolean shutdown = false;
 
     public static void main(String[] args) {
         HttpServer server = new HttpServer();
-        System.out.println(WEB_ROOT);
         server.await();
     }
 
@@ -50,7 +46,15 @@ public class HttpServer {
 
                 Response response = new Response(output);
                 response.setRequest(request);
-                response.sendStaticResource();
+
+                // check if this is a request for a servlet or a static resource
+                if (request.getUri().startsWith("/servlet/")) {
+                    ServletProcessor processor = new ServletProcessor();
+                    processor.process(request, response);
+                } else {
+                    StaticResourceProcessor processor = new StaticResourceProcessor();
+                    processor.process(request, response);
+                }
 
                 socket.close();
 
