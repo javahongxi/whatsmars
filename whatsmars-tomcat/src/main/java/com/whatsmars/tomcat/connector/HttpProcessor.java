@@ -1,6 +1,5 @@
 package com.whatsmars.tomcat.connector;
 
-import com.whatsmars.tomcat.servlet.ServletProcessor;
 import com.whatsmars.tomcat.servlet.StaticResourceProcessor;
 
 import javax.servlet.ServletException;
