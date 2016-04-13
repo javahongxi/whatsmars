@@ -15,7 +15,7 @@ public class RequestFacade implements ServletRequest {
 
     private ServletRequest request;
 
-    public RequestFacade(ServletRequest request) {
+    public RequestFacade(Request request) {
         this.request = request;
     }
 

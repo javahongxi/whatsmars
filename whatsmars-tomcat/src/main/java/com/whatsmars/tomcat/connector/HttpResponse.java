@@ -15,6 +15,7 @@ import java.util.Locale;
 public class HttpResponse implements HttpServletResponse {
     OutputStream output;
     HttpRequest request;
+    PrintWriter writer;
 
     public HttpResponse(OutputStream output) {
         this.output = output;
@@ -22,6 +23,18 @@ public class HttpResponse implements HttpServletResponse {
 
     public void setRequest(HttpRequest request) {
         this.request = request;
+    }
+
+    /**
+     * call this method to send headers and response to the output
+     */
+    public void finishResponse() {
+        // sendHeaders();
+        // Flush and close the appropriate output mechanism
+        if (writer != null) {
+            writer.flush();
+            writer.close();
+        }
     }
 
     public void addCookie(Cookie cookie) {

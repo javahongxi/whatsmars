@@ -6,28 +6,62 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
-import java.util.Collection;
-import java.util.Enumeration;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by shenhongxi on 16/4/11.
  */
 public class HttpRequest implements HttpServletRequest {
-    SocketInputStream input;
-    String uri;
+
+    private String requestURI;
+    private int contentLength;
+    private String contentType;
+    private String queryString;
+    private String method;
+    private String protocol;
+
+    protected Map headers = new HashMap();
+
+    protected SocketInputStream input;
 
     public HttpRequest(SocketInputStream input) {
         this.input = input;
     }
 
-    public String getUri() {
-        return uri;
+    public void addHeader(String name, String value) {
+        name = name.toLowerCase();
+        synchronized (headers) {
+            ArrayList values = (ArrayList) headers.get(name);
+            if (values == null) {
+                values = new ArrayList();
+                headers.put(name, values);
+            }
+            values.add(value);
+        }
     }
 
-    public void setUri(String uri) {
-        this.uri = uri;
+    public void setRequestURI(String requestURI) {
+        this.requestURI = requestURI;
+    }
+
+    public void setContentLength(int contentLength) {
+        this.contentLength = contentLength;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
+    public void setQueryString(String queryString) {
+        this.queryString = queryString;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
+    }
+
+    public void setProtocol(String protocol) {
+        this.protocol = protocol;
     }
 
     public String getAuthType() {
@@ -59,7 +93,7 @@ public class HttpRequest implements HttpServletRequest {
     }
 
     public String getMethod() {
-        return null;
+        return method;
     }
 
     public String getPathInfo() {
@@ -75,7 +109,7 @@ public class HttpRequest implements HttpServletRequest {
     }
 
     public String getQueryString() {
-        return null;
+        return queryString;
     }
 
     public String getRemoteUser() {
@@ -95,7 +129,7 @@ public class HttpRequest implements HttpServletRequest {
     }
 
     public String getRequestURI() {
-        return null;
+        return requestURI;
     }
 
     public StringBuffer getRequestURL() {
@@ -167,11 +201,11 @@ public class HttpRequest implements HttpServletRequest {
     }
 
     public int getContentLength() {
-        return 0;
+        return this.contentLength;
     }
 
     public String getContentType() {
-        return null;
+        return contentType;
     }
 
     public ServletInputStream getInputStream() throws IOException {
@@ -195,7 +229,7 @@ public class HttpRequest implements HttpServletRequest {
     }
 
     public String getProtocol() {
-        return null;
+        return protocol;
     }
 
     public String getScheme() {

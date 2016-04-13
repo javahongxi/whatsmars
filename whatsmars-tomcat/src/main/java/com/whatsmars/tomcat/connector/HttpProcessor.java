@@ -3,6 +3,7 @@ package com.whatsmars.tomcat.connector;
 import com.whatsmars.tomcat.servlet.ServletProcessor;
 import com.whatsmars.tomcat.servlet.StaticResourceProcessor;
 
+import javax.servlet.ServletException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
@@ -12,9 +13,10 @@ import java.net.Socket;
  */
 public class HttpProcessor {
 
-    HttpConnector connector;
-    HttpRequest request;
-    HttpResponse response;
+    private HttpConnector connector;
+    private HttpRequest request;
+    private HttpResponse response;
+    private HttpRequestLine requestLine = new HttpRequestLine();
 
     public HttpProcessor(HttpConnector connector) {
         this.connector = connector;
@@ -35,9 +37,8 @@ public class HttpProcessor {
             
             parseRequest(input, output); // 解析请求行，即HTTP请求的第一行内容
             parseHeaders(input); // 解析请求头
-            // request.addHeader(name, value); // 将请求头的名/值添加到request对象的HashMap请求头中
 
-            if (request.getUri().startsWith("/servlet/")) {
+            if (request.getRequestURI().startsWith("/servlet/")) {
                 ServletProcessor processor = new ServletProcessor();
                 //processor.process(request, response);
             } else {
@@ -51,46 +52,83 @@ public class HttpProcessor {
         }
     }
 
-    private void parseHeaders(SocketInputStream input) {
-        int line = -1;
-        while (line != -1) { // 一行一行解析完hear
-            HttpHeader httpHeader = new HttpHeader();
-            input.readHeader(httpHeader);
-        }
-    }
-
-    private void parseRequest(SocketInputStream input, OutputStream output) {
-        StringBuffer requestStr = new StringBuffer(2048);
-        int i;
-        byte[] buffer = new byte[2048];
-        try {
-            i = input.read(buffer);
-        } catch (IOException e) {
-            e.printStackTrace();
-            i = -1;
-        }
-        for (int j = 0; j < i; j++) {
-            requestStr.append((char) buffer[j]);
-        }
-        System.out.println(requestStr.toString());
-        String uri = parseUri(requestStr.toString());
-        request.setUri(uri);
-
-        // 填充HttpRequest对象
-    }
-
-    private String parseUri(String requestStr) {
-        // GET /index.html HTTP/1.1
-        // Accept: text/plain; text/html
-        // ...
-        int index1 = requestStr.indexOf(' ');
-        int index2;
-        if (index1 != -1) {
-            index2 = requestStr.indexOf(' ', index1 + 1);
-            if (index2 > index1) {
-                return requestStr.substring(index1 + 1, index2);
+    private void parseHeaders(SocketInputStream input) throws IOException, ServletException{
+        while (true) { // 一行一行解析完header
+            HttpHeader header = new HttpHeader();
+            // Read the next header
+            input.readHeader(header);
+            if (header.nameEnd == 0) {
+                if (header.valueEnd == 0) {
+                    return;
+                } else {
+                    throw new ServletException("httpProcessor parseHeaders colon");
+                }
+            }
+            String name = new String(header.name, 0, header.nameEnd);
+            String value = new String(header.value, 0, header.valueEnd);
+            request.addHeader(name, value);
+            // do something for some headers, ignore others.
+            if (name.equals("cookie")) {
+                // ...
+                // request.addCookie(cookies[i]);
+            } else if (name.equals("content-length")) {
+                int n = -1;
+                try {
+                    n = Integer.parseInt(value);
+                } catch (Exception e) {
+                    throw new ServletException("httpProcessor.parseHeaders.contentLength");
+                }
+                request.setContentLength(n);
+            } else if (name.equals("content-type")) {
+                request.setContentType(value);
             }
         }
-        return null;
+    }
+
+    private void parseRequest(SocketInputStream input, OutputStream output) throws IOException, ServletException {
+        input.readRequestLine(requestLine);
+
+        String method = new String(requestLine.method, 0, requestLine.methodEnd);
+        String uri = null;
+        String protocol = new String(requestLine.protocol, 0, requestLine.protocolEnd);
+
+        // Validate the incoming request line
+        if (method.length() < 1) {
+            throw new ServletException("Missing HTTP request method");
+        } else if (requestLine.uriEnd < 1) {
+            throw new ServletException("Missing HTTP request URI");
+        }
+        // Parse any query parameters out of the request URI
+        int question = requestLine.indexOf("?");
+        if (question >= 0) {
+            request.setQueryString(new String(requestLine.uri, question + 1,
+                    requestLine.uriEnd - question - 1));
+            uri = new String(requestLine.uri, 0, question);
+        } else {
+            request.setQueryString(null);
+            uri = new String(requestLine.uri, 0, requestLine.uriEnd);
+        }
+        String normalizedUri = normalize(uri);
+
+        ((HttpRequest) request).setMethod(method);
+        request.setProtocol(protocol);
+        if (normalizedUri != null) {
+            ((HttpRequest) request).setRequestURI(normalizedUri);
+        }
+        else {
+            ((HttpRequest) request).setRequestURI(uri);
+        }
+
+        if (normalizedUri == null) {
+            throw new ServletException("Invalid URI: " + uri + "'");
+        }
+    }
+
+    // Return a context-relative path, beginning with a "/"
+    protected String normalize(String path) {
+        if (path == null) return null;
+        String normalized = path;
+        // ...
+        return path;
     }
 }
