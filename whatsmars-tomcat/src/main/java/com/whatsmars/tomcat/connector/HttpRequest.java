@@ -1,5 +1,9 @@
 package com.whatsmars.tomcat.connector;
 
+import org.apache.catalina.util.Enumerator;
+import org.apache.catalina.util.ParameterMap;
+import org.apache.catalina.util.RequestUtil;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.BufferedReader;
@@ -24,6 +28,25 @@ public class HttpRequest implements HttpServletRequest {
 
     protected SocketInputStream input;
 
+    /**
+     * The parsed parameters for this request.  This is populated only if
+     * parameter information is requested via one of the
+     * <code>getParameter()</code> family of method calls.  The key is the
+     * parameter name, while the value is a String array of values for this
+     * parameter.
+     * <p>
+     * <strong>IMPLEMENTATION NOTE</strong> - Once the parameters for a
+     * particular request are parsed and stored here, they are not modified.
+     * Therefore, application level access to the parameters need not be
+     * synchronized.
+     */
+    protected ParameterMap parameters = null; // extends LinkedHashMap has a boolean var 'locked'
+
+    /**
+     * Have the parameters for this request been parsed yet?
+     */
+    protected boolean parsed = false;
+
     public HttpRequest(SocketInputStream input) {
         this.input = input;
     }
@@ -38,6 +61,99 @@ public class HttpRequest implements HttpServletRequest {
             }
             values.add(value);
         }
+    }
+
+    public String getParameter(String name) {
+        parseParameters();
+        String values[] = (String[]) parameters.get(name);
+        if (values != null)
+            return (values[0]);
+        else
+            return (null);
+    }
+
+    public Map getParameterMap() {
+        parseParameters();
+        return (this.parameters);
+    }
+
+    public Enumeration getParameterNames() {
+        parseParameters();
+        return (new Enumerator(parameters.keySet()));
+    }
+
+    public String[] getParameterValues(String name) {
+        parseParameters();
+        String values[] = (String[]) parameters.get(name);
+        if (values != null)
+            return (values);
+        else
+            return null;
+    }
+
+    /**
+     * Parse the parameters of this request, if it has not already occurred.
+     * If parameters are present in both the query string and the request
+     * content, they are merged.
+     */
+    protected void parseParameters() {
+        if (parsed) return;
+        ParameterMap results = parameters;
+        if (results == null)
+            results = new ParameterMap();
+        results.setLocked(false);
+        String encoding = getCharacterEncoding();
+        if (encoding == null)
+            encoding = "ISO-8859-1";
+
+        // Parse any parameters specified in the query string
+        String queryString = getQueryString();
+        try {
+            RequestUtil.parseParameters(results, queryString, encoding);
+        } catch (Exception e) {
+            ;
+        }
+
+        // Parse any parameters specified in the input stream
+        String contentType = getContentType();
+        if (contentType == null)
+            contentType = "";
+        int semicolon = contentType.indexOf(';');
+        if (semicolon >= 0) {
+            contentType = contentType.substring(0, semicolon).trim();
+        } else {
+            contentType = contentType.trim();
+        }
+        if ("POST".equals(getMethod()) && (getContentLength() > 0)
+                && "application/x-www-form-urlencoded".equals(contentType)) {
+            try {
+                int max = getContentLength();
+                int len = 0;
+                byte buf[] = new byte[getContentLength()];
+                ServletInputStream is = getInputStream();
+                while (len < max) {
+                    int next = is.read(buf, len, max - len);
+                    if (next < 0 ) {
+                        break;
+                    }
+                    len += next;
+                }
+                is.close();
+                if (len < max) {
+                    throw new RuntimeException("Content length mismatch");
+                }
+                RequestUtil.parseParameters(results, buf, encoding);
+            } catch (UnsupportedEncodingException ue) {
+                ;
+            } catch (IOException e) {
+                throw new RuntimeException("Content read fail");
+            }
+        }
+
+        // Store the final results
+        results.setLocked(true);
+        parsed = true;
+        parameters = results;
     }
 
     public void setRequestURI(String requestURI) {
@@ -209,22 +325,6 @@ public class HttpRequest implements HttpServletRequest {
     }
 
     public ServletInputStream getInputStream() throws IOException {
-        return null;
-    }
-
-    public String getParameter(String name) {
-        return null;
-    }
-
-    public Enumeration<String> getParameterNames() {
-        return null;
-    }
-
-    public String[] getParameterValues(String name) {
-        return new String[0];
-    }
-
-    public Map<String, String[]> getParameterMap() {
         return null;
     }
 
