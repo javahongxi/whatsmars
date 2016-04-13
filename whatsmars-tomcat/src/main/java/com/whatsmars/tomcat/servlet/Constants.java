@@ -8,5 +8,5 @@ import java.io.File;
 public class Constants {
 
     public static final String WEB_ROOT = System.getProperty("user.dir") + File.separator +
-            "whatsmars-tomcat/src/main/java/com/whatsmars/tomcat/servlet";
+            "whatsmars-tomcat/src/main/webapp"; // 资源文件,class文件等
 }
