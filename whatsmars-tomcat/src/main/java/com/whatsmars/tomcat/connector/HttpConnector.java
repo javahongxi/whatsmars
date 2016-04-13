@@ -10,9 +10,13 @@ import java.net.Socket;
  */
 public class HttpConnector implements Runnable {
 
+    private Container container;
+
     boolean stopped;
 
     private String scheme = "http";
+
+    private int bufferSize;
 
     public void run() {
         ServerSocket serverSocket = null;
@@ -43,5 +47,21 @@ public class HttpConnector implements Runnable {
 
     public String getScheme() {
         return scheme;
+    }
+
+    public int getBufferSize() {
+        return bufferSize;
+    }
+
+    public void setBufferSize(int bufferSize) {
+        this.bufferSize = bufferSize;
+    }
+
+    public Container getContainer() {
+        return container;
+    }
+
+    public void setContainer(Container container) {
+        this.container = container;
     }
 }

@@ -4,6 +4,8 @@ import com.whatsmars.tomcat.servlet.ServletProcessor;
 import com.whatsmars.tomcat.servlet.StaticResourceProcessor;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
@@ -26,7 +28,7 @@ public class HttpProcessor {
         SocketInputStream input = null;
         OutputStream output = null;
         try {
-            input = new SocketInputStream(socket.getInputStream(), 2048); // 1.读取套接字的输入流
+            input = new SocketInputStream(socket.getInputStream(), connector.getBufferSize()); // 1.读取套接字的输入流
             output = socket.getOutputStream();
 
             // create HttpRequest object and parse
@@ -39,8 +41,7 @@ public class HttpProcessor {
             parseHeaders(input); // 解析请求头
 
             if (request.getRequestURI().startsWith("/servlet/")) {
-                ServletProcessor processor = new ServletProcessor();
-                //processor.process(request, response);
+                connector.getContainer().invoke((HttpServletRequest) request, (HttpServletResponse) response);
             } else {
                 StaticResourceProcessor processor = new StaticResourceProcessor();
                 //processor.process(request, response);
