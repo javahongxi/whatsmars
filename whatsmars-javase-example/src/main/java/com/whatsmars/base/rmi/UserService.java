@@ -8,5 +8,5 @@ import java.rmi.RemoteException;
  */
 public interface UserService extends Remote {
 
-    public void hi(String name) throws RemoteException;
+    public String hi(User user) throws RemoteException;
 }

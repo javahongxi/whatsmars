@@ -13,7 +13,7 @@ public class UserServiceImpl extends UnicastRemoteObject implements UserService 
     }
 
     @Override
-    public void hi(String name) throws RemoteException {
-        System.out.println("Hi, " + name);
+    public String hi(User user) throws RemoteException {
+        return "Hi, " + user.getName() + ", your age is " + user.getAge() + "?";
     }
 }

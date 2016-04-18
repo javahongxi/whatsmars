@@ -5,6 +5,7 @@ import java.rmi.registry.LocateRegistry;
 
 /**
  * Created by shenhongxi on 2016/4/18.
+ * java RMI 的局限性是只能在java环境使用，另外依赖ip/port
  */
 public class Server {
 
