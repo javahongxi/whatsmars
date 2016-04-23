@@ -9,10 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>whatsmars-support-web</artifactId>
+    <artifactId>whatsmars-mars001-support-web</artifactId>
 
     <packaging>war</packaging>
-    <name>whatsmars-support-web</name>
+    <name>whatsmars-mars001-support-web</name>
     <url>http://maven.apache.org</url>
     <!-- 依赖包 -->
     <dependencies>
@@ -128,7 +128,7 @@
 
     </dependencies>
     <build>
-        <finalName>whatsmars-support-web</finalName>
+        <finalName>whatsmars-mars001-support-web</finalName>
         <outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
         <resources>
             <resource>

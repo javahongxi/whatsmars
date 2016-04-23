@@ -22,13 +22,13 @@
         <property name="properties" ref="mongodbProperties"/>
         <property name="configuration">
             <bean class="com.whatsmars.common.mongo.object.MongoDBConfig">
-                <property name="addresses" value="${xhd.mongodb.common.addresses}"/>
+                <property name="addresses" value="${whatsmars.mongodb.common.addresses}"/>
                 <property name="credentials">
                     <list>
                         <bean class="com.whatsmars.common.mongo.object.MongoDBCredential">
-                            <property name="databaseName" value="${xhd.mongodb.common.dbname}"/>
-                            <property name="username" value="${xhd.mongodb.common.username}"/>
-                            <property name="password" value="${xhd.mongodb.common.password}"/>
+                            <property name="databaseName" value="${whatsmars.mongodb.common.dbname}"/>
+                            <property name="username" value="${whatsmars.mongodb.common.username}"/>
+                            <property name="password" value="${whatsmars.mongodb.common.password}"/>
                         </bean>
                     </list>
                 </property>
@@ -40,7 +40,7 @@
 
     <bean id="mongoClient" class="com.whatsmars.common.mongo.MongoDBClient">
         <property name="mongoDBDriver" ref="mongodbDriver"/>
-        <property name="databaseName" value="${xhd.mongodb.common.dbname}"/>
+        <property name="databaseName" value="${whatsmars.mongodb.common.dbname}"/>
     </bean>
 
 </beans>

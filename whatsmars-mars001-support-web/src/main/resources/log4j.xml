@@ -10,12 +10,12 @@
 
 		<!--限制输出级别 -->
 		<filter class="org.apache.log4j.varia.LevelRangeFilter">
-			<param name="LevelMin" value="${xhd.log4j.logger.level}" />
+			<param name="LevelMin" value="${whatsmars.log4j.logger.level}" />
 		</filter>
 	</appender>
 
 	<appender name="FILE-ALL" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="${xhd.log4j.logger.path}/support-web/web-all.log" />
+		<param name="File" value="${whatsmars.log4j.logger.path}/support-web/web-all.log" />
 		<param name="Append" value="true" />
 		<param name="Encoding" value="UTF-8" />
 		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
@@ -23,12 +23,12 @@
 			<param name="ConversionPattern" value="%d - %c -%-4r [%t] %-5p %x - %m%n" />
 		</layout>
 		<filter class="org.apache.log4j.varia.LevelRangeFilter">
-			<param name="LevelMin" value="${xhd.log4j.logger.level}" />
+			<param name="LevelMin" value="${whatsmars.log4j.logger.level}" />
 		</filter>
 	</appender>
 
 	<appender name="FILE-ERROR" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="${xhd.log4j.logger.path}/support-web/web-error.log" />
+		<param name="File" value="${whatsmars.log4j.logger.path}/support-web/web-error.log" />
 		<param name="Append" value="true" />
 		<param name="Encoding" value="UTF-8" />
 		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
@@ -42,7 +42,7 @@
 	
 	<!-- 页面VM日志 -->
 	<appender name="FILE-VELOCITY" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="${xhd.log4j.logger.path}/support-web/web-velocity.log" />
+		<param name="File" value="${whatsmars.log4j.logger.path}/support-web/web-velocity.log" />
 		<param name="Append" value="true" />
 		<param name="Encoding" value="UTF-8" />
 		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
@@ -56,7 +56,7 @@
 
 	<!-- 账户数据流变化日志 -->
 	<appender name="FLOW-DATA" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="${xhd.log4j.logger.path}/support-web/flow-data.log" />
+		<param name="File" value="${whatsmars.log4j.logger.path}/support-web/flow-data.log" />
 		<param name="Append" value="true" />
 		<param name="Encoding" value="UTF-8" />
 		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
@@ -70,7 +70,7 @@
 
 	<!-- 投资人提现查询接口日志 -->
 	<appender name="LENDER-WITHDRAW-DATA" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="${xhd.log4j.logger.path}/support-web/lender-withdraw-data.log" />
+		<param name="File" value="${whatsmars.log4j.logger.path}/support-web/lender-withdraw-data.log" />
 		<param name="Append" value="true" />
 		<param name="Encoding" value="UTF-8" />
 		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
@@ -84,7 +84,7 @@
 
 	<!-- 机构提现查询接口日志 -->
 	<appender name="ORGANIZATION-WITHDRAW-DATA" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="${xhd.log4j.logger.path}/support-web/organization-withdraw-data.log" />
+		<param name="File" value="${whatsmars.log4j.logger.path}/support-web/organization-withdraw-data.log" />
 		<param name="Append" value="true" />
 		<param name="Encoding" value="UTF-8" />
 		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
@@ -97,35 +97,35 @@
 	</appender>
 	
 	<category name="org.apache.velocity" additivity="false">
-		<level value="${xhd.log4j.logger.level}" />
+		<level value="${whatsmars.log4j.logger.level}" />
 		<appender-ref ref="FILE-VELOCITY" />
 		<appender-ref ref="FILE-ALL" />
 	</category>
 
-    <category name="com.xhd.support" additivity="true">
-        <level value="${xhd.log4j.logger.level}" />
+    <category name="com.whatsmars.support" additivity="true">
+        <level value="${whatsmars.log4j.logger.level}" />
         <appender-ref ref="FILE-VELOCITY" />
         <appender-ref ref="FILE-ERROR"/>
         <appender-ref ref="FILE-ALL" />
     </category>
 
 	<category name="flow-data-logger" additivity="false">
-		<level value="${xhd.log4j.logger.level}" />
+		<level value="${whatsmars.log4j.logger.level}" />
 		<appender-ref ref="FLOW-DATA" />
 	</category>
 
 	<category name="lender-withdraw-data-logger" additivity="false">
-		<level value="${xhd.log4j.logger.level}" />
+		<level value="${whatsmars.log4j.logger.level}" />
 		<appender-ref ref="LENDER-WITHDRAW-DATA" />
 	</category>
 
 	<category name="organization-withdraw-data-logger" additivity="false">
-		<level value="${xhd.log4j.logger.level}" />
+		<level value="${whatsmars.log4j.logger.level}" />
 		<appender-ref ref="ORGANIZATION-WITHDRAW-DATA" />
 	</category>
 
     <root>
-        <level value="${xhd.log4j.logger.level}"/>
+        <level value="${whatsmars.log4j.logger.level}"/>
         <appender-ref ref="CONSOLE"/>
     </root>
 

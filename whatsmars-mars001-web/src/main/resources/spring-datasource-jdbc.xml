@@ -11,9 +11,9 @@
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="${ixhong.jdbc.mysql.url}?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true"></property>
-		<property name="username" value="${ixhong.jdbc.mysql.username}"></property>
-		<property name="password" value="${ixhong.jdbc.mysql.password}"></property>
+		<property name="url" value="${whatsmars.jdbc.mysql.url}?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true"></property>
+		<property name="username" value="${whatsmars.jdbc.mysql.username}"></property>
+		<property name="password" value="${whatsmars.jdbc.mysql.password}"></property>
 		<property name="maxActive" value="${dbcp.maxActive}"></property>
 		<property name="maxIdle" value="${dbcp.maxIdle}"></property>
 		<property name="minIdle" value="${dbcp.minIdle}"></property>

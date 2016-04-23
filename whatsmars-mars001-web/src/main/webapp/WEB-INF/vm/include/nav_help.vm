@@ -1,9 +1,0 @@
-<div class="submenu bg6">
-    <div class="wraper">
-        #if($!stringUtils.isBlank($!navTab))
-            #set($navTab = "help")
-        #end
-        <a #if($!navTab == "help") class="cur"#end href="/misc/lender_help.jhtml">投资人帮助</a>
-        <a #if($!navTab == "manage") class="cur"#end href="/misc/account_help.jhtml">账户管理</a>
-    </div>
-</div>

@@ -11,12 +11,12 @@
     <context:component-scan base-package="com.whatsmars.mars001.service"/>
 
     <!--<bean id="systemConfig" class="com.whatsmars.mars001.domain.misc.SystemConfig">
-        <property name="cookieSecurityKey" value="${ixhong.lender.cookie.security.key}"/>
-        <property name="cookieDomain" value="${ixhong.lender.cookie.domain}"/>
-        <property name="cookieKey" value="${ixhong.lender.cookie.key}"/>
-        <property name="hostName" value="${ixhong.lender.host.name}"/>
-        <property name="imageHostName" value="${ixhong.image.host.name}"/>
-        <property name="envRecharge" value="${ixhong.yeepay.env.recharge}" />
+        <property name="cookieSecurityKey" value="${whatsmars.lender.cookie.security.key}"/>
+        <property name="cookieDomain" value="${whatsmars.lender.cookie.domain}"/>
+        <property name="cookieKey" value="${whatsmars.lender.cookie.key}"/>
+        <property name="hostName" value="${whatsmars.lender.host.name}"/>
+        <property name="imageHostName" value="${whatsmars.image.host.name}"/>
+        <property name="envRecharge" value="${whatsmars.yeepay.env.recharge}" />
     </bean>
 
     <bean id="mongodbProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
@@ -31,13 +31,13 @@
         <property name="properties" ref="mongodbProperties"/>
         <property name="configuration">
             <bean class="MongoDBConfig">
-                <property name="addresses" value="${ixhong.mongodb.common.addresses}"/>
+                <property name="addresses" value="${whatsmars.mongodb.common.addresses}"/>
                 <property name="credentials">
                     <list>
                         <bean class="MongoDBCredential">
-                            <property name="databaseName" value="${ixhong.mongodb.common.dbname}"/>
-                            <property name="username" value="${ixhong.mongodb.common.username}"/>
-                            <property name="password" value="${ixhong.mongodb.common.password}"/>
+                            <property name="databaseName" value="${whatsmars.mongodb.common.dbname}"/>
+                            <property name="username" value="${whatsmars.mongodb.common.username}"/>
+                            <property name="password" value="${whatsmars.mongodb.common.password}"/>
                         </bean>
                     </list>
                 </property>
@@ -49,7 +49,7 @@
 
     <bean id="mongoClient" class="MongoDBClient">
         <property name="mongoDBDriver" ref="mongodbDriver"/>
-        <property name="databaseName" value="${ixhong.mongodb.common.dbname}"/>
+        <property name="databaseName" value="${whatsmars.mongodb.common.dbname}"/>
     </bean>-->
 
 

@@ -16,10 +16,10 @@
     </tool>
     <tool>
         <key>moneyUtils</key>
-        <class>com.ixhong.domain.utils.CalculatorUtils</class>
+        <class>com.whatsmars.mars001.domain.utils.CalculatorUtils</class>
     </tool>
     <tool>
         <key>numberFormatUtils</key>
-        <class>com.ixhong.common.utils.NumberFormatUtils</class>
+        <class>com.whatsmars.common.utils.NumberFormatUtils</class>
     </tool>
 </toolbox>

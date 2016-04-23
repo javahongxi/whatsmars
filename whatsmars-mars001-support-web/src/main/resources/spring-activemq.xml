@@ -6,12 +6,12 @@
 	   default-autowire="byName">
 
     <bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
-        <property name="brokerURL" value="${xhd.activemq.broker.url}"></property>
+        <property name="brokerURL" value="${whatsmars.activemq.broker.url}"></property>
     </bean>
 
     <!-- 提现-->
     <bean id="withdrawQueueDestination" class="org.apache.activemq.command.ActiveMQQueue">
-        <constructor-arg index="0" value="${xhd.activemq.queue.withdraw}"></constructor-arg>
+        <constructor-arg index="0" value="${whatsmars.activemq.queue.withdraw}"></constructor-arg>
     </bean>
 
     <bean id="withdrawQueueListener" class="com.whatsmars.mars001.support.web.service.listener.TestListener"/>

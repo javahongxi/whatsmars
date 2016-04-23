@@ -10,12 +10,12 @@
 
 		<!--限制输出级别 -->
 		<filter class="org.apache.log4j.varia.LevelRangeFilter">
-			<param name="LevelMin" value="${xhd.log4j.logger.path}" />
+			<param name="LevelMin" value="${whatsmars.log4j.logger.path}" />
 		</filter>
 	</appender>
 
 	<appender name="FILE-ALL" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="${xhd.log4j.logger.path}/fs-web/fs-web-all.log" />
+		<param name="File" value="${whatsmars.log4j.logger.path}/fs-web/fs-web-all.log" />
 		<param name="Append" value="true" />
 		<param name="Encoding" value="UTF-8" />
 		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
@@ -23,12 +23,12 @@
 			<param name="ConversionPattern" value="%d - %c -%-4r [%t] %-5p %x - %m%n" />
 		</layout>
 		<filter class="org.apache.log4j.varia.LevelRangeFilter">
-			<param name="LevelMin" value="${xhd.log4j.logger.path}" />
+			<param name="LevelMin" value="${whatsmars.log4j.logger.path}" />
 		</filter>
 	</appender>
 
 	<appender name="FILE-ERROR" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="${xhd.log4j.logger.path}/fs-web/fs-web-error.log" />
+		<param name="File" value="${whatsmars.log4j.logger.path}/fs-web/fs-web-error.log" />
 		<param name="Append" value="true" />
 		<param name="Encoding" value="UTF-8" />
 		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
@@ -41,7 +41,7 @@
 	</appender>
 
 	<category name="org.apache.velocity" additivity="false">
-		<priority value="${xhd.log4j.logger.path}" />
+		<priority value="${whatsmars.log4j.logger.path}" />
 		<appender-ref ref="FILE-ERROR" />
 		<appender-ref ref="FILE-ALL" />
 	</category>

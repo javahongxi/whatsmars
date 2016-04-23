@@ -6,7 +6,7 @@
          version="3.0"
          metadata-complete="true">
 
-    <display-name>ixhong-support-web</display-name>
+    <display-name>whatsmars-mars001-support-web</display-name>
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
