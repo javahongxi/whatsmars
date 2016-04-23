@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping(value = "/organization")
 @Permission(roles = {UserTypeEnum.ADMIN})
-public class OrganizationController extends BaseController{
+public class EarthController extends BaseController{
 
     @Autowired
     private OrganizationService organizationService;

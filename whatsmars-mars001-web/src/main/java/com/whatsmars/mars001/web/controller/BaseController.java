@@ -11,14 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by liuguanqing on 15/4/10.
+ * Created by javahongxi on 15/4/10.
  */
 public class BaseController {
 
     @Autowired(required = false)
     protected SystemConfig systemConfig;
 
-    protected static final String TOKEN_KEY = "_lender_token_";
+    protected static final String TOKEN_KEY = "_mars001_token_";
 
     /**
      * 创建CXRF Token，避免表单重复提交或者跨站操作

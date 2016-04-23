@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 @RequestMapping("/account")
-public class AccountController extends BaseController {
+public class MarsController extends BaseController {
 
     @Autowired
     private AccountService accountService;
