@@ -11,7 +11,7 @@
 
     <artifactId>whatsmars-earth-service</artifactId>
     <packaging>jar</packaging>
-    <name>whatsmars-mars001-service</name>
+    <name>whatsmars-earth-service</name>
     <url>http://maven.apache.org</url>
     <build>
         <finalName>whatsmars-earth-service</finalName>

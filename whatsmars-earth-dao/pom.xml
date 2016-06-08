@@ -11,7 +11,7 @@
 
     <artifactId>whatsmars-earth-dao</artifactId>
     <packaging>jar</packaging>
-    <name>whatsmars-mars001-dao</name>
+    <name>whatsmars-earth-dao</name>
     <url>http://maven.apache.org</url>
     <build>
         <finalName>whatsmars-earth-dao</finalName>
