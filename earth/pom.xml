@@ -84,7 +84,7 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <createSourcesJar>true</createSourcesJar>
+                            <createSourcesJar>false</createSourcesJar>
                             <promoteTransitiveDependencies>true</promoteTransitiveDependencies>
                             <artifactSet>
                                 <includes>
