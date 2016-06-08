@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>whatsmars-parent</artifactId>
-        <groupId>com.whatsmars</groupId>
+        <groupId>com.itlong</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -19,12 +19,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.whatsmars</groupId>
+            <groupId>com.itlong</groupId>
             <artifactId>whatsmars-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.whatsmars</groupId>
+            <groupId>com.itlong</groupId>
             <artifactId>whatsmars-earth-dao</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
