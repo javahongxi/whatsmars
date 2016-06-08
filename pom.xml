@@ -10,12 +10,12 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>whatsmars-common</module>
-        <module>whatsmars-mars001-domain</module>
-        <module>whatsmars-mars001-dao</module>
-        <module>whatsmars-mars001-service</module>
-        <module>whatsmars-mars001-web</module>
+        <module>whatsmars-earth-domain</module>
+        <module>whatsmars-earth-dao</module>
+        <module>whatsmars-earth-service</module>
+        <module>whatsmars-earth-web</module>
         <module>whatsmars-fs-web</module>
-        <module>whatsmars-mars001-support-web</module>
+        <module>whatsmars-earth-support-web</module>
         <module>whatsmars-tomcat</module>
         <module>whatsmars-javase-example</module>
     </modules>

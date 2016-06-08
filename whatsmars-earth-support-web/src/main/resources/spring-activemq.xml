@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+	   default-autowire="byName">
+
+    <bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="${whatsmars.activemq.broker.url}"></property>
+    </bean>
+
+    <!-- 提现-->
+    <bean id="withdrawQueueDestination" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg index="0" value="${whatsmars.activemq.queue.withdraw}"></constructor-arg>
+    </bean>
+
+    <bean id="withdrawQueueListener" class="com.itlong.whatsmars.earth.support.web.service.listener.TestListener"/>
+    <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="connectionFactory"></property>
+        <property name="destination" ref="withdrawQueueDestination"></property>
+        <property name="messageListener" ref="withdrawQueueListener"></property>
+        <property name="concurrentConsumers" value="1"></property>
+        <property name="autoStartup" value="true"/>
+        <property name="sessionAcknowledgeMode" value="2"/>
+    </bean>
+
+
+
+    <!-- 提现消息发送端 -->
+    <bean id="withdrawQueueSender" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="connectionFactory"></property>
+        <property name="defaultDestination" ref="withdrawQueueDestination"></property>
+        <!-- 是否在message中开启timestamp属性 -->
+        <property name="messageTimestampEnabled" value="true"></property>
+        <property name="deliveryPersistent" value="true"/>
+    </bean>
+
+
+</beans>
