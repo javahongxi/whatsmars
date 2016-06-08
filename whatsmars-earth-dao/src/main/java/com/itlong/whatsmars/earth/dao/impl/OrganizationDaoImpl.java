@@ -1,7 +1,7 @@
 package com.itlong.whatsmars.earth.dao.impl;
 
 import com.itlong.whatsmars.earth.dao.OrganizationDao;
-import com.whatsmars.mars001.domain.pojo.OrganizationDO;
+import com.itlong.whatsmars.earth.domain.pojo.OrganizationDO;
 import com.itlong.whatsmars.earth.domain.query.OrganizationQuery;
 import com.itlong.whatsmars.earth.domain.query.QueryResult;
 

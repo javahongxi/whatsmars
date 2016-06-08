@@ -4,7 +4,7 @@ import com.itlong.whatsmars.common.pojo.Result;
 import com.itlong.whatsmars.common.pojo.ResultCode;
 import com.itlong.whatsmars.earth.dao.OrganizationDao;
 import com.itlong.whatsmars.earth.service.OrganizationService;
-import com.whatsmars.mars001.domain.pojo.OrganizationDO;
+import com.itlong.whatsmars.earth.domain.pojo.OrganizationDO;
 import com.itlong.whatsmars.earth.domain.query.OrganizationQuery;
 import com.itlong.whatsmars.earth.domain.query.QueryResult;
 import org.springframework.stereotype.Service;
