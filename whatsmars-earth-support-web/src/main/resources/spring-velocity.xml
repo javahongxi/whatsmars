@@ -25,7 +25,7 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
-    <context:component-scan base-package="com.whatsmars.mars001.support.web.controller"/>
+    <context:component-scan base-package="com.itlong.whatsmars.earth.support.web.controller"/>
 
     <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
         <property name="resourceLoaderPath" value="/WEB-INF/vm"/>
