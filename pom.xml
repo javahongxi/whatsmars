@@ -18,6 +18,7 @@
         <module>whatsmars-earth-support-web</module>
         <module>whatsmars-tomcat</module>
         <module>whatsmars-javase-example</module>
+        <module>earth</module>
     </modules>
 
     <properties>
