@@ -1,2 +1,2 @@
-# whatsmars-mars001
+# whatsmars
 www.itlong.com
