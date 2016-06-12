@@ -11,10 +11,10 @@
 
     <artifactId>whatsmars-earth-domain</artifactId>
     <packaging>jar</packaging>
-    <name>whatsmars-earth-domain</name>
+    <name>${project.artifactId}</name>
     <url>http://maven.apache.org</url>
     <build>
-        <finalName>whatsmars-earth-domain</finalName>
+        <finalName>${project.artifactId}</finalName>
     </build>
 
     <dependencies>

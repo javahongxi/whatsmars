@@ -12,7 +12,7 @@
 
     <artifactId>whatsmars-tomcat</artifactId>
     <packaging>jar</packaging>
-    <name>whatsmars-tomcat</name>
+    <name>${project.artifactId}</name>
     <url>http://maven.apache.org</url>
 
     <dependencies>
@@ -46,7 +46,7 @@
     </dependencies>
 
     <build>
-        <finalName>ROOT</finalName>
+        <finalName>${project.artifactId}</finalName>
         <outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
         <resources>
             <resource>

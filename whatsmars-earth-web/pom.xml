@@ -11,7 +11,7 @@
 
     <artifactId>whatsmars-earth-web</artifactId>
     <packaging>war</packaging>
-    <name>whatsmars-earth-web</name>
+    <name>${project.artifactId}</name>
     <url>http://maven.apache.org</url>
 
     <dependencies>
@@ -57,7 +57,7 @@
     </dependencies>
 
     <build>
-        <finalName>whatsmars-earth-web</finalName>
+        <finalName>${project.artifactId}</finalName>
         <outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
         <resources>
             <resource>

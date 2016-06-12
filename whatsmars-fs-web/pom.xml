@@ -12,7 +12,7 @@
 
     <artifactId>whatsmars-fs-web</artifactId>
     <packaging>war</packaging>
-    <name>whatsmars-fs-web</name>
+    <name>${project.artifactId}</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -92,7 +92,7 @@
 
     </dependencies>
     <build>
-        <finalName>whatsmars-fs-web</finalName>
+        <finalName>${project.artifactId}</finalName>
         <outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
         <resources>
             <resource>

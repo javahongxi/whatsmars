@@ -11,10 +11,10 @@
 
     <artifactId>whatsmars-earth-dao</artifactId>
     <packaging>jar</packaging>
-    <name>whatsmars-earth-dao</name>
+    <name>${project.artifactId}</name>
     <url>http://maven.apache.org</url>
     <build>
-        <finalName>whatsmars-earth-dao</finalName>
+        <finalName>${project.artifactId}</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>

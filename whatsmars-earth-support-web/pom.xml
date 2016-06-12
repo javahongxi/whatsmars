@@ -12,7 +12,7 @@
     <artifactId>whatsmars-earth-support-web</artifactId>
 
     <packaging>war</packaging>
-    <name>whatsmars-earth-support-web</name>
+    <name>${project.artifactId}</name>
     <url>http://maven.apache.org</url>
     <!-- 依赖包 -->
     <dependencies>
@@ -128,7 +128,7 @@
 
     </dependencies>
     <build>
-        <finalName>whatsmars-earth-support-web</finalName>
+        <finalName>${project.artifactId}</finalName>
         <outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
         <resources>
             <resource>

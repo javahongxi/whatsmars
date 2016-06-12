@@ -12,7 +12,7 @@
 
     <artifactId>whatsmars-common</artifactId>
     <packaging>jar</packaging>
-    <name>whatsmars-common</name>
+    <name>${project.artifactId}</name>
     <url>http://maven.apache.org</url>
 
     <dependencies>
@@ -118,7 +118,7 @@
     </dependencies>
 
     <build>
-        <finalName>whatsmars-common</finalName>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
