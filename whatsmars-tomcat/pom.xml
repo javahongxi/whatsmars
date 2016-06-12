@@ -54,37 +54,21 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>true</addMavenDescriptor>
+                        <manifest>
+                            <mainClass>com.itlong.whatsmars.tomcat.server.HttpServer</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>development</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <build>
-                <filters>
-                    <filter>../profile/development.properties</filter>
-                </filters>
-            </build>
-        </profile>
-        <profile>
-            <id>test</id>
-            <build>
-                <filters>
-                    <filter>../profile/test.properties</filter>
-                </filters>
-            </build>
-        </profile>
-        <profile>
-            <id>production</id>
-            <build>
-                <filters>
-                    <filter>../profile/production.properties</filter>
-                </filters>
-            </build>
-        </profile>
-    </profiles>
 
 
 </project>
