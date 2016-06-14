@@ -13,9 +13,6 @@
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
     <description>The all in one project of whatsmars-earth</description>
-    <properties>
-        <skip_maven_deploy>false</skip_maven_deploy>
-    </properties>
 
     <dependencies>
         <dependency>
