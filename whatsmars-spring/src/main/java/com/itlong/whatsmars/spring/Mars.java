@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.earth.web.spring;
+package com.itlong.whatsmars.spring;
 
 /**
  * Created by shenhongxi on 2016/4/7.

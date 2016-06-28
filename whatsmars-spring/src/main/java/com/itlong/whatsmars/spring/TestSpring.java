@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.earth.web.spring;
+package com.itlong.whatsmars.spring;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.context.ContextLoaderListener;
@@ -16,6 +16,6 @@ public class TestSpring {
         System.out.println(mars.getAge());
         System.out.println(mars.getCnName());
 
-        ServletContextListener contextListener = new ContextLoaderListener();
+        //ServletContextListener contextListener = new ContextLoaderListener();
     }
 }
