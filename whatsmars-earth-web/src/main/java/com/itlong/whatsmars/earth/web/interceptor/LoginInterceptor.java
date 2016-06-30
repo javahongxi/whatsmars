@@ -4,7 +4,7 @@ import com.itlong.whatsmars.common.util.DESUtils;
 import com.itlong.whatsmars.earth.domain.misc.LoginContext;
 import com.itlong.whatsmars.earth.domain.misc.LoginContextHolder;
 import com.itlong.whatsmars.earth.domain.misc.SystemConfig;
-import com.itlong.whatsmars.earth.domain.pojo.UserDO;
+import com.itlong.whatsmars.earth.domain.pojo.User;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -45,7 +45,7 @@ public class LoginInterceptor implements HandlerInterceptor{
             if(key.equalsIgnoreCase(cookieKey)) {
                if(StringUtils.isNotBlank(content)) {
                    String source = DESUtils.decrypt(content, systemConfig.getCookieSecurityKey());
-                   UserDO user = this.decoder(source);
+                   User user = this.decoder(source);
                    LoginContext context = new LoginContext();
                    context.setUser(user);
                    LoginContextHolder.set(context);
@@ -58,7 +58,7 @@ public class LoginInterceptor implements HandlerInterceptor{
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         if(modelAndView != null) {
-            UserDO user = LoginContextHolder.getLoginUser();
+            User user = LoginContextHolder.getLoginUser();
             modelAndView.addObject("loginUser", user);
         }
     }
@@ -69,7 +69,7 @@ public class LoginInterceptor implements HandlerInterceptor{
     }
 
 
-    protected UserDO decoder(String content){
+    protected User decoder(String content){
         if(StringUtils.isBlank(content)){
             return null;
         }
@@ -77,7 +77,7 @@ public class LoginInterceptor implements HandlerInterceptor{
         if(json.isNullObject()){
             return null;
         }
-        UserDO user = new UserDO();
+        User user = new User();
         user.setId(json.getInt("id"));
 
         user.setName(json.getString("name"));

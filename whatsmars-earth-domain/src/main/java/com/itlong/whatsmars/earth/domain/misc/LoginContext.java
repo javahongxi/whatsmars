@@ -1,7 +1,7 @@
 package com.itlong.whatsmars.earth.domain.misc;
 
 
-import com.itlong.whatsmars.earth.domain.pojo.UserDO;
+import com.itlong.whatsmars.earth.domain.pojo.User;
 
 /**
  * Author: qing
@@ -10,14 +10,14 @@ import com.itlong.whatsmars.earth.domain.pojo.UserDO;
  */
 public class LoginContext {
 
-    private UserDO user;
+    private User user;
 
 
-    public UserDO getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(UserDO user) {
+    public void setUser(User user) {
         this.user = user;
     }
 

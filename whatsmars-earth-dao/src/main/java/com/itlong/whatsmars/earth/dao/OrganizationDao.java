@@ -1,6 +1,6 @@
 package com.itlong.whatsmars.earth.dao;
 
-import com.itlong.whatsmars.earth.domain.pojo.OrganizationDO;
+import com.itlong.whatsmars.earth.domain.pojo.Organization;
 import com.itlong.whatsmars.earth.domain.query.OrganizationQuery;
 import com.itlong.whatsmars.earth.domain.query.QueryResult;
 
@@ -9,5 +9,5 @@ import com.itlong.whatsmars.earth.domain.query.QueryResult;
  */
 public interface OrganizationDao {
 
-    public QueryResult<OrganizationDO> query(OrganizationQuery query);
+    public QueryResult<Organization> query(OrganizationQuery query);
 }

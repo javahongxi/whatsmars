@@ -1,7 +1,7 @@
 package com.itlong.whatsmars.earth.dao.impl;
 
 import com.itlong.whatsmars.earth.dao.OrganizationDao;
-import com.itlong.whatsmars.earth.domain.pojo.OrganizationDO;
+import com.itlong.whatsmars.earth.domain.pojo.Organization;
 import com.itlong.whatsmars.earth.domain.query.OrganizationQuery;
 import com.itlong.whatsmars.earth.domain.query.QueryResult;
 
@@ -14,8 +14,8 @@ import java.util.Map;
  */
 public class OrganizationDaoImpl extends BaseDao implements OrganizationDao {
     @Override
-    public QueryResult<OrganizationDO> query(OrganizationQuery query) {
-        QueryResult<OrganizationDO> qr = new QueryResult<OrganizationDO>();
+    public QueryResult<Organization> query(OrganizationQuery query) {
+        QueryResult<Organization> qr = new QueryResult<Organization>();
         qr.setQuery(query);
 
         Map<String,Object> params = query.build();
@@ -26,7 +26,7 @@ public class OrganizationDaoImpl extends BaseDao implements OrganizationDao {
             return qr;
         }
 
-        List<OrganizationDO> organizations =  this.sqlSession.selectList("OrganizationMapper.query", params);
+        List<Organization> organizations =  this.sqlSession.selectList("OrganizationMapper.query", params);
         qr.setResultList(organizations);
         return qr;
     }

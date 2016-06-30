@@ -1,7 +1,7 @@
 package com.itlong.whatsmars.earth.domain.misc;
 
 
-import com.itlong.whatsmars.earth.domain.pojo.UserDO;
+import com.itlong.whatsmars.earth.domain.pojo.User;
 
 /**
  * Author: qing
@@ -23,7 +23,7 @@ public class LoginContextHolder {
         holder.remove();
     }
 
-    public static UserDO getLoginUser() {
+    public static User getLoginUser() {
         LoginContext context = holder.get();
         return context == null ? null : context.getUser();
     }

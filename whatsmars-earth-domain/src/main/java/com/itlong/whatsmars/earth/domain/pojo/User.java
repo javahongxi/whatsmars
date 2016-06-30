@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  * Created by shenhongxi on 2016/4/29.
  */
-public class UserDO implements Serializable {
+public class User implements Serializable {
 
     private Integer id;
 

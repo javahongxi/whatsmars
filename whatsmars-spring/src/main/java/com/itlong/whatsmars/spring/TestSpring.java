@@ -17,5 +17,10 @@ public class TestSpring {
         System.out.println(mars.getCnName());
 
         //ServletContextListener contextListener = new ContextLoaderListener();
+        String s = "http://jd.com";
+        System.out.println(s.substring(5, s.length()));
+
+        Integer n = 3;
+        System.out.println("3".equals(n));
     }
 }
