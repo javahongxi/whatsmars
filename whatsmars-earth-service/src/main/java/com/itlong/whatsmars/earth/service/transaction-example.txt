@@ -1,0 +1,162 @@
+@Override
+    public Result withdraw(final Double withdraw, String clientIp, String dealPassword, String phoneCode) {
+        final Result result = new Result();
+        Integer lenderId = LoginContextHolder.getLoginUser().getId();
+        try {
+            final LenderAccountDO account = this.lenderAccountManager.validateDealPassword(lenderId, dealPassword);
+            if (account == null) {
+                result.setResultCode(ResultCode.VALIDATE_FAILURE);
+                result.setMessage("交易密码不正确");
+                return result;
+            }
+
+            if (StringUtils.isBlank(account.getBankName()) || StringUtils.isBlank(account.getBankCardId())){
+                result.setResultCode(ResultCode.VALIDATE_FAILURE);
+                result.setMessage("您还未绑定银行卡");
+                return result;
+            }
+
+            if(account.getBalance() <= 0 || account.getBalanceFrozen() < 0) {
+                result.setResultCode(ResultCode.VALIDATE_FAILURE);
+                result.setMessage("账户余额不足，无法提现");
+                return result;
+            }
+
+            //校验手机校验码是否正确
+            final LenderDO lender = lenderManager.getById(lenderId);
+            MongoCollection<Document> dbCollection = mongoDBClient.getCollection(Constants.MONGO_SMS_SEND_OPERATION_COLLECTION);
+            Bson parentFilter = Filters.and(Filters.eq("phone", lender.getPhone()), Filters.eq("type", withdrawPhoneCode));
+            Document document = dbCollection.find(parentFilter).limit(1).first();
+
+            result.setResultCode(ResultCode.VALIDATE_FAILURE);
+            result.addModel("flag", "code_error");
+            if (document == null) {
+                result.setMessage("验证码非法");
+                return result;
+            }
+            Long created = document.getLong("created");
+            if (created + 20 * 60000L <= System.currentTimeMillis()) {
+                result.setMessage("验证码已经过期");
+                return result;
+            }
+            if (!phoneCode.equals(document.get("checkCode"))) {
+                result.setMessage("验证码错误");
+                return result;
+            }
+
+            // 提现金额+手续费=交易总额
+            final Double amount = CalculatorUtils.format(withdraw + 2);
+            if (amount.compareTo(account.getBalance()) > 0){
+                result.setResultCode(ResultCode.VALIDATE_FAILURE);
+                result.setMessage("账户余额不足");
+                return result;
+            }
+
+            final long time = System.currentTimeMillis();
+            //计算出商家订单号
+            final String orderId = "LW" + lenderId + "-" + time;
+
+            /**
+             * 发送提现请求
+             */
+            String bankCardId = account.getBankCardId();
+            String top = bankCardId.substring(0, 6);
+            String last = bankCardId.substring(bankCardId.length() - 4, bankCardId.length());
+            final WithdrawRequestEntity requestEntity = new WithdrawRequestEntity();
+            requestEntity.setRequestId(orderId);
+            requestEntity.setIdentityId(lender.getCardId());
+            requestEntity.setCardTop(top);
+            requestEntity.setCardLast(last);
+            requestEntity.setAmount(((Double) (withdraw * 100)).intValue());
+            requestEntity.setClientIp(clientIp);
+
+            //事务操作
+            boolean isSuccess = transactionTemplate.execute(new TransactionCallback<Boolean>() {
+                @Override
+                public Boolean doInTransaction(TransactionStatus transactionStatus) {
+                    try {
+                        //修改投资人账户
+                        Double balanceBefore = account.getBalance();
+                        Double balanceAfter = CalculatorUtils.format(balanceBefore - amount);
+                        Double frozenBefore = account.getBalanceFrozen();
+                        Double frozenAfter = CalculatorUtils.format(frozenBefore + amount);
+                        account.setBalance(balanceAfter);
+                        account.setBalanceFrozen(frozenAfter);
+                        lenderAccountManager.updateBalance(account);
+
+                        //新建一条投资人流水
+                        final LenderAccountFlowDO flow = new LenderAccountFlowDO();
+                        flow.setLenderId(lender.getId());
+                        flow.setLenderName(lender.getName());
+                        flow.setLenderRealName(lender.getRealName());
+                        flow.setPhone(lender.getPhone());
+                        flow.setType(LenderFlowTypeEnum.WITHDRAW.code);
+                        flow.setOrderId(orderId);
+                        flow.setAmount(amount);
+                        flow.setWithdraw(withdraw);
+                        flow.setFee(2.0D);
+                        flow.setDescription("提现金额:" + withdraw + "元；手续费2元。");
+                        flow.setBalanceBefore(balanceBefore);
+                        flow.setBalanceAfter(balanceAfter);
+                        flow.setFrozenBefore(frozenBefore);
+                        flow.setFrozenAfter(frozenAfter);
+                        //将流水状态设为提现处理中
+                        flow.setStatus(FlowStatusEnum.ONGOING.code);
+                        lenderAccountFlowManager.insert(flow);
+
+                        JSONObject responseJson = null;
+                        try {
+                            responseJson = TZTUtils.withdraw(requestEntity);
+                            withdrawLogger.error(responseJson.toString());
+                        } catch (Exception e) {
+                            logger.error("lender withdraw request error, lenderId:" + lender.getId(), e);
+                            result.setMessage("第三方支付系统繁忙，请稍后再试");
+                            throw new RuntimeException(e);
+                        }
+
+                        if (responseJson.containsKey("error_code")) {
+                            result.setResultCode(ResultCode.VALIDATE_FAILURE);
+                            result.setMessage("{" + responseJson.getString("error_code") + ":" + responseJson.getString("error_msg") + "}");
+                            throw new RuntimeException("{" + responseJson.getString("error_code") + ":" + responseJson.getString("error_msg") + "}");
+                        }
+
+                        if (responseJson.containsKey("clientSignError")) {
+                            result.setResultCode(ResultCode.VALIDATE_FAILURE);
+                            result.setMessage(responseJson.getString("clientSignError"));
+                            throw new RuntimeException(responseJson.getString("clientSignError"));
+                        }
+
+                        //提现请求状态：FAILURE：请求失败 SUCCESS：请求成功 UNKNOW:未知
+                        String withdrawStatus = responseJson.getString("status");
+                        if (withdrawStatus.equals("FAILURE")) {
+                            result.setResultCode(ResultCode.VALIDATE_FAILURE);
+                            result.setMessage("提现请求失败，请稍后重试!");
+                            throw new RuntimeException("提现请求失败，状态：" + withdrawStatus);
+                        }
+
+                        //易宝返回的商家订单号
+                        String requestId = responseJson.getString("requestid");
+                        if (!orderId.equals(requestId)) {
+                            result.setResultCode(ResultCode.VALIDATE_FAILURE);
+                            result.setMessage("订单号不一致，订单号：" + orderId);
+                            throw new RuntimeException("订单号不一致，订单号：" + orderId);
+                        }
+
+                        //提现流水日志
+                        buildFlowLog(flow, time);
+                        return true;
+                    } catch (Exception e) {
+                        transactionStatus.setRollbackOnly();
+                    }
+                    return false;
+                }
+            });
+
+            result.setSuccess(isSuccess);
+        } catch (Exception e) {
+            logger.error("withdraw error, lenderId:" + lenderId, e);
+            result.setResultCode(ResultCode.SYSTEM_ERROR);
+            result.setMessage("系统错误，请稍后再试!");
+        }
+        return result;
+    }
