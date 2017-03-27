@@ -12,7 +12,7 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 //这个注解导入刚才增加的jdbc配置文件
 @PropertySource("classpath:prop.properties")
-public class DataSourceConfiguration {
+public class DataSourceConfig {
     @Value("${jdbc.driver}")
     private String driver;
     @Value("${jdbc.url}")
