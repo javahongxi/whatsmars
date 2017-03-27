@@ -20,6 +20,7 @@
         <module>whatsmars-javase-example</module>
         <module>earth</module>
         <module>whatsmars-spring</module>
+        <module>whatsmars-spring-boot</module>
     </modules>
 
     <properties>
