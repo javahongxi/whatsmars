@@ -39,7 +39,7 @@
 
     <build>
         <plugins>
-            <plugin>
+            <!--<plugin>
                 <artifactId>maven-source-plugin</artifactId>
                 <executions>
                     <execution>
@@ -47,7 +47,7 @@
                         <phase>none</phase>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
             <!--<plugin>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <executions>
