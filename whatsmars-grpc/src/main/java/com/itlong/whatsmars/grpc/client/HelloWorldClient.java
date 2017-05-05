@@ -39,5 +39,6 @@ public class HelloWorldClient {
         for(int i = 0; i < 5; i++) {
             client.greet("world:" + i);
         }
+        client.shutdown();
     }
 }
