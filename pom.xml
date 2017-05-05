@@ -22,6 +22,9 @@
         <module>whatsmars-spring</module>
         <module>whatsmars-spring-boot</module>
         <module>whatsmars-grpc</module>
+        <module>whatsmars-grpc-interface</module>
+        <module>whatsmars-grpc-service</module>
+        <module>whatsmars-grpc-client</module>
     </modules>
 
     <properties>

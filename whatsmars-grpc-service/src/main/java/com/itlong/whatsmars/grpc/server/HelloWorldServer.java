@@ -1,11 +1,8 @@
 package com.itlong.whatsmars.grpc.server;
 
+import com.itlong.whatsmars.grpc.service.impl.HelloServiceImpl;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-import io.grpc.stub.StreamObserver;
-import com.itlong.whatsmars.grpc.service.HelloServiceGrpc;
-import com.itlong.whatsmars.grpc.service.HelloRequest;
-import com.itlong.whatsmars.grpc.service.HelloResponse;
 
 import java.io.IOException;
 
@@ -56,14 +53,4 @@ public class HelloWorldServer {
         server.blockUntilShutdown();
     }
 
-    // 实现 定义一个实现服务接口的类 
-    private class HelloServiceImpl extends HelloServiceGrpc.HelloServiceImplBase {
-
-        public void sayHello(HelloRequest req, StreamObserver<HelloResponse> responseObserver) {
-            System.out.println("service:" + req.getName());
-            HelloResponse response = HelloResponse.newBuilder().setMessage(("Hello: " + req.getName())).build();
-            responseObserver.onNext(response);
-            responseObserver.onCompleted();
-        }
-    }
 }

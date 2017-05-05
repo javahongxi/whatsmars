@@ -1,10 +1,10 @@
 package com.itlong.whatsmars.grpc.client;
 
-import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
-import com.itlong.whatsmars.grpc.service.HelloServiceGrpc;
 import com.itlong.whatsmars.grpc.service.HelloRequest;
 import com.itlong.whatsmars.grpc.service.HelloResponse;
+import com.itlong.whatsmars.grpc.service.HelloServiceGrpc;
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
 
 import java.util.concurrent.TimeUnit;
 
@@ -16,7 +16,7 @@ public class HelloWorldClient {
     private final ManagedChannel channel;
     private final HelloServiceGrpc.HelloServiceBlockingStub blockingStub;
 
-    public HelloWorldClient(String host,int port){
+    public HelloWorldClient(String host, int port){
         channel = ManagedChannelBuilder.forAddress(host, port)
                 .usePlaintext(true)
                 .build();
