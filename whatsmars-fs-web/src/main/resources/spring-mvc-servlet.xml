@@ -29,6 +29,6 @@
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
 
-    <bean id="exceptionResolver" class="com.itlong.whatsmars.fs.web.ExceptionHandler"/>
+    <bean id="exceptionResolver" class="ExceptionHandler"/>
 
 </beans>
