@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.uuid.web;
+package xx;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

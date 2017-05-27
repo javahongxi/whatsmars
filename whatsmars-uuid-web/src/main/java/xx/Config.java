@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.uuid.web;
+package xx;
 
 /**
  * Created by shenhongxi on 2016/8/12.

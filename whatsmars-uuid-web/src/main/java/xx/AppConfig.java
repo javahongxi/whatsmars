@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.uuid.web;
+package xx;
 
 import java.io.File;
 import java.io.FileInputStream;

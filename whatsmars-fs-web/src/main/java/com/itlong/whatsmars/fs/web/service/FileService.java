@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.uuid.web.service;
+package com.itlong.whatsmars.fs.web.service;
 
 
 import com.itlong.whatsmars.common.pojo.Result;

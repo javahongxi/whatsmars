@@ -1,11 +1,11 @@
-package com.itlong.whatsmars.uuid.web.controller;
+package com.itlong.whatsmars.fs.web.controller;
 
 import com.itlong.whatsmars.common.CommonConstants;
 import com.itlong.whatsmars.common.pojo.Result;
 import com.itlong.whatsmars.common.pojo.ResultCode;
 import com.itlong.whatsmars.common.util.DESUtils;
 import com.itlong.whatsmars.common.util.ResultHelper;
-import com.itlong.whatsmars.uuid.web.service.FileService;
+import com.itlong.whatsmars.fs.web.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;

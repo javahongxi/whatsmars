@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.uuid.web;
+package xx;
 
 
 import org.springframework.context.ApplicationContext;

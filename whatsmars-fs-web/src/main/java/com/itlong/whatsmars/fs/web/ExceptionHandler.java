@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.uuid.web;
+package com.itlong.whatsmars.fs.web;
 
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;

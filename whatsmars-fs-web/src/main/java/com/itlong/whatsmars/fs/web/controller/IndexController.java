@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.uuid.web.controller;
+package com.itlong.whatsmars.fs.web.controller;
 
 import com.itlong.whatsmars.common.pojo.ResultCode;
 import com.itlong.whatsmars.common.util.ResultHelper;

@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.uuid.web;
+package xx;
 
 public class TestThread extends Thread{
 

@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.uuid.web;
+package com.itlong.whatsmars.earth.support.web.service.uuid;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

@@ -25,7 +25,6 @@
         <module>whatsmars-grpc-interface</module>
         <module>whatsmars-grpc-service</module>
         <module>whatsmars-grpc-client</module>
-        <module>whatsmars-uuid-web</module>
     </modules>
 
     <properties>
