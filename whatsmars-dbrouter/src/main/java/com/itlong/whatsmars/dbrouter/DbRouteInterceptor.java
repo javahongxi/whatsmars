@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.earth.support.web.service.dbrouter;
+package com.itlong.whatsmars.dbrouter;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.StringUtils;

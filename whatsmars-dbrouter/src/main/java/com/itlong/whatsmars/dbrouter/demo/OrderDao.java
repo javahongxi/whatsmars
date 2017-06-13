@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.earth.support.web.service.dbrouter;
+package com.itlong.whatsmars.dbrouter.demo;
 
 /**
  * Created by shenhongxi on 16/7/16.

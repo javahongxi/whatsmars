@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.earth.support.web.service.dbrouter;
+package com.itlong.whatsmars.dbrouter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

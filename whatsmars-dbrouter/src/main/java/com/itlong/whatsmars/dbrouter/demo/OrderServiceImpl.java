@@ -1,5 +1,6 @@
-package com.itlong.whatsmars.earth.support.web.service.dbrouter;
+package com.itlong.whatsmars.dbrouter.demo;
 
+import com.itlong.whatsmars.dbrouter.DbRoute;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,6 @@
-package com.itlong.whatsmars.earth.support.web.service.dbrouter;
+package com.itlong.whatsmars.dbrouter;
 
-import com.itlong.whatsmars.earth.support.web.job.base.DbContext;
-import org.apache.commons.lang.StringUtils;
+import org.springframework.util.StringUtils;
 
 /**
  * Created by shenhongxi on 16/7/16.

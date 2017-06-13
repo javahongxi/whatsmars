@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.earth.support.web.service.dbrouter;
+package com.itlong.whatsmars.dbrouter;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

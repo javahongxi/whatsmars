@@ -1,6 +1,4 @@
-package com.itlong.whatsmars.earth.support.web.service.dbrouter;
-
-import com.itlong.whatsmars.earth.dao.impl.BaseDao;
+package com.itlong.whatsmars.dbrouter.demo;
 
 /**
  * Created by shenhongxi on 16/7/16.

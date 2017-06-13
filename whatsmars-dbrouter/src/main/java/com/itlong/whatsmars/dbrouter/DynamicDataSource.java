@@ -1,6 +1,5 @@
-package com.itlong.whatsmars.earth.support.web.service.dbrouter;
+package com.itlong.whatsmars.dbrouter;
 
-import com.itlong.whatsmars.earth.support.web.job.base.DbContext;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 /**
