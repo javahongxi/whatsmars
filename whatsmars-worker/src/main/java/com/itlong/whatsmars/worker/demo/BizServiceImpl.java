@@ -3,7 +3,6 @@ package com.itlong.whatsmars.worker.demo;
 import com.itlong.whatsmars.worker.base.DbContext;
 import com.itlong.whatsmars.worker.base.Task;
 import net.sf.json.JSONObject;
-import org.apache.activemq.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jms.core.JmsTemplate;
@@ -11,6 +10,9 @@ import org.springframework.jms.core.MessageCreator;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import javax.annotation.Resource;
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.Session;
 import java.util.List;
 
 /**

@@ -1,7 +1,8 @@
 package com.itlong.whatsmars.worker.demo;
 
-import com.itlong.whatsmars.earth.support.web.job.base.Task;
-import com.itlong.whatsmars.earth.support.web.job.base.TaskDao;
+import com.itlong.whatsmars.worker.base.SimpleTaskService;
+import com.itlong.whatsmars.worker.base.Task;
+import com.itlong.whatsmars.worker.base.TaskDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
