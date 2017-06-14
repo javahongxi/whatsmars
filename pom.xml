@@ -21,12 +21,12 @@
         <module>earth</module>
         <module>whatsmars-spring</module>
         <module>whatsmars-spring-boot</module>
-        <module>whatsmars-grpc</module>
         <module>whatsmars-grpc-interface</module>
         <module>whatsmars-grpc-service</module>
         <module>whatsmars-grpc-client</module>
         <module>whatsmars-dbrouter</module>
         <module>whatsmars-worker</module>
+        <module>whatsmars-rpc</module>
     </modules>
 
     <properties>

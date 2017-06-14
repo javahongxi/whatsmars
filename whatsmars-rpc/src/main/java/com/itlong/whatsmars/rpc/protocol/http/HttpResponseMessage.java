@@ -1,4 +1,4 @@
- package com.itlong.whatsmars.http;
+ package com.itlong.whatsmars.rpc.protocol.http;
 
  import org.slf4j.Logger;
  import org.slf4j.LoggerFactory;

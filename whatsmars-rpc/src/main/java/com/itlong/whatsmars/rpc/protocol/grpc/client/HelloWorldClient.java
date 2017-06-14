@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.grpc.client;
+package com.itlong.whatsmars.rpc.protocol.grpc.client;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;

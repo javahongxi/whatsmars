@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.grpc.server;
+package com.itlong.whatsmars.rpc.protocol.grpc.server;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;

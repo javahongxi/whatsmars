@@ -1,4 +1,4 @@
- package com.itlong.whatsmars.http;
+ package com.itlong.whatsmars.rpc.protocol.http;
 
  import java.util.HashMap;
  import java.util.Map;
