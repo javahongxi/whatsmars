@@ -1,5 +1,6 @@
 package com.itlong.whatsmars.spring.boot;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,10 +13,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @EnableAutoConfiguration
 public class SampleController {
 
+    @Autowired
+    private UserConfig userConfig;
+
     @RequestMapping("/")
     @ResponseBody
     String home() {
-        return "Hello World!";
+        return userConfig.getNoFilterUrl().toString();
     }
 
 }

@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by shenhongxi on 2017/6/20.
  */
-@ConfigurationProperties(prefix="whatsmars")
+@ConfigurationProperties(prefix="user")
 public class UserConfig {
     private List<String> noFilterUrl;
 
