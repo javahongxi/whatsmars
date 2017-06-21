@@ -9,5 +9,6 @@ whatsmars-spring 研究spring<br />
 whatsmars-tomcat 模拟tomcat实现<br />
 whatsmars-dbrouter 分库分表实现<br />
 whatsmars-worker 多实例任务调度<br />
+whatsmars-dubbo Dubbo demo<br />
 whatsmars-rpc 常用rpc<br />
 whatsmars-spring-boot springboot果然很方便<br />
