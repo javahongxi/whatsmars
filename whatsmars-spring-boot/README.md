@@ -1,4 +1,4 @@
-启动后访问 http://localhost/user/ <br />
+启动后访问 http://localhost/ <br />
 
 mvn clean package -DskipTests <br />
 得到的jar包中的MANIFEST.MF其中几行： <br />

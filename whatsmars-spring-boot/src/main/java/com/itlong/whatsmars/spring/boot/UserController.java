@@ -19,7 +19,7 @@ public class UserController {
     @RequestMapping("/")
     @ResponseBody
     String home() {
-        return userConfig.getNoFilterUrl().toString();
+        return userConfig.getWelcome();
     }
 
 }

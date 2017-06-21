@@ -9,7 +9,18 @@ import java.util.List;
  */
 @ConfigurationProperties(prefix="user")
 public class UserConfig {
+
+    private String welcome;
+
     private List<String> noFilterUrl;
+
+    public String getWelcome() {
+        return welcome;
+    }
+
+    public void setWelcome(String welcome) {
+        this.welcome = welcome;
+    }
 
     public List<String> getNoFilterUrl() {
         return noFilterUrl;
