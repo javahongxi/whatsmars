@@ -24,6 +24,7 @@
         <module>whatsmars-dbrouter</module>
         <module>whatsmars-worker</module>
         <module>whatsmars-rpc</module>
+        <module>whatsmars-dubbo</module>
     </modules>
 
     <properties>
