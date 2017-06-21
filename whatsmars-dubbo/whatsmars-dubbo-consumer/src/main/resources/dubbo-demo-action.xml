@@ -22,6 +22,7 @@
 
 	<bean class="com.itlong.whatsmars.dubbo.demo.consumer.DemoAction" init-method="start">
 		<property name="demoService" ref="demoService" />
+		<property name="userService" ref="userService" />
 	</bean>
 
 </beans>
