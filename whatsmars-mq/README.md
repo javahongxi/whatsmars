@@ -1,0 +1,1 @@
+修改NamesrvStartup,BrokerStartup中的配置文件路径，依次启动NamesrvStartup,BrokerStartup,Consumer,Producer.
