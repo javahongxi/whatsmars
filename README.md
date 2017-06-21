@@ -11,5 +11,6 @@ whatsmars-dbrouter 分库分表实现<br />
 whatsmars-worker 多实例任务调度<br />
 whatsmars-dubbo Dubbo demo<br />
 whatsmars-mq rocketmq,activemq<br />
+rocketmq-console rocketmq管理后台<br />
 whatsmars-rpc 常用rpc<br />
 whatsmars-spring-boot springboot果然很方便<br />
