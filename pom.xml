@@ -25,6 +25,7 @@
         <module>whatsmars-worker</module>
         <module>whatsmars-rpc</module>
         <module>whatsmars-dubbo</module>
+        <module>whatsmars-mq</module>
     </modules>
 
     <properties>
