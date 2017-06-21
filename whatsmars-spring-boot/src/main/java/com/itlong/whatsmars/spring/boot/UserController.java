@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @EnableAutoConfiguration
-public class SampleController {
+public class UserController {
 
     @Autowired
     private UserConfig userConfig;
