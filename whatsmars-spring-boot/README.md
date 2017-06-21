@@ -16,7 +16,7 @@ start.sh <br />
 
 #!/bin/sh <br />
 rm -f tpid <br />
-nohup java -jar /data/app/myapp.jar --spring.profiles.active=stg > /dev/null 2>&1 & <br />
+nohup java -jar /data/app/whatsmars-spring-boot.jar --spring.profiles.active=stg > /dev/null 2>&1 & <br />
 echo $! > tpid <br />
 
 stop.sh <br />
@@ -41,5 +41,4 @@ fi <br />
 kill.sh <br />
 
 #!/bin/sh <br />
-# kill -9 `ps -ef|grep 项目名称|awk '{print $2}'` <br />
-kill -9 `ps -ef|grep demo|awk '{print $2}'` <br />
+kill -9 `ps -ef|grep whatsmars-spring-boot|awk '{print $2}'` <br />
