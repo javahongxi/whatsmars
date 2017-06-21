@@ -11,5 +11,3 @@ whatsmars-*/bin
 *.iml
 *.ipr
 .idea/*
-profile/production.properties
-profile/test.properties

@@ -1,0 +1,65 @@
+#set($title = "课程审核")
+<div class="content">
+    <div class="titles">
+        <p><span>课程审核</span></p>
+    </div>
+    <div class="querybox" style="width:100%;">
+        <form name="searchForm" action="/course/list.jhtml" method="post">
+            <div class="sel" style="margin-left: 80px;">
+                <select name="status" class="homeselect">
+                    <option value="-1" selected="selected">全部审核状态</option>
+                    #foreach($status in $!statusEnums)
+                        <option value="$!status.code" #if($!status.code == $!query.status) selected="selected" #end>$!status.meaning</option>
+                    #end
+                </select>
+            </div>
+            <label>课程名称</label>
+            <input type="text" class="classname" id="name" name="name" value="$!query.name" />
+            <label>机构名称</label>
+            <input type="text" class="jgname" id="organization_name" name="organization_name" value="$!query.organizationName" />
+            <input type="submit" style="cursor: pointer;" class="jgbut" id="jgbut" value="搜索" />
+        </form>
+    </div>
+    <table class="table1" style="width: 100%;">
+        <tr class="headline">
+            <td width="20%">课程名称</td>
+            <td width="20%">机构名称</td>
+            <td width="10%">课程周期（月）</td>
+            <td width="10%">课程价格（元）</td>
+            <td width="15%">审核状态</td>
+            <td width="10%">添加时间</td>
+            <td width="15%">操作</td>
+        </tr>
+        #foreach( $course in $!courses )
+            <tr>
+                <td>
+                    #if($!course.status == $!courseChecking)
+                            <b>$!course.name</b>
+                        #else
+                            <a href="/course/detail.jhtml?id=$!course.id" style="color: coral;"><b>$!course.name</b></a>
+                    #end
+                </td>
+                <td>$!course.organizationName</td>
+                <td>$!course.totalMonths</td>
+                <td>$!course.price</td>
+                <td>
+                    #foreach($status in $!statusEnums)
+                    #if($!status.code == $!course.status)
+                        $!status.meaning
+                    #end
+                #end
+                </td>
+                <td>
+                    $!dateFormatUtils.format($!course.created,'yyyy-MM-dd')
+                </td>
+                <td>
+                    <a href="/course/detail.jhtml?id=$!course.id" style="color: coral;text-decoration: underline;">查看</a>
+                    #if($!course.status == $!courseChecking)
+                        <a href="/course/audit.jhtml?id=$!course.id" style="color:darkgreen;text-decoration: underline;">审核</a>
+                    #end
+                </td>
+            </tr>
+        #end
+    </table>
+    #pagination("/course/list.jhtml?$!{query.queryString()}" $!queryResult)
+</div>
