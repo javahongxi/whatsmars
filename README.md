@@ -1,7 +1,7 @@
 # whatsmars
 www.itlong.com
 
-whatsmars-earth-web velocity模版为视图的web工程<br />
+whatsmars-earth-web springmvc+velocity<br />
 whatsmars-earth-support-web earth工程的辅助工程<br />
 whatmars-fs-web 用mongodb存储图片<br />
 whatsmars-javase-example Java基础学习<br />
