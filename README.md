@@ -1,5 +1,5 @@
 # whatsmars
-www.itlong.com
+https://github.com/javahongxi
 
 whatsmars-earth-web springmvc+velocity<br />
 whatsmars-earth-support-web earth工程的辅助工程<br />
