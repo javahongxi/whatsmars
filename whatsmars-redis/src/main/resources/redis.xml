@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+       default-autowire="byName">
+
+    <bean id="singletonRedisClient" class="com.itlong.whatsmars.redis.client.singleton.SingletonRedisClient">
+        <property name="host" value="127.0.0.1"/>
+        <property name="port" value="6379" />
+        <property name="maxTotal" value="256"/>
+        <property name="maxIdle" value="8" />
+        <property name="maxWait" value="3000" />
+        <property name="timeout" value="3000" />
+        <property name="minIdle" value="2" />
+    </bean>
+
+    <bean id="readWriteRedisClient" class="com.itlong.whatsmars.redis.client.readwrite.ReadWriteRedisClient">
+        <property name="hosts" value="127.0.0.1:6379,127.0.0.1:7379"/>
+        <property name="maxTotal" value="256"/>
+        <property name="maxIdle" value="8" />
+        <property name="maxWait" value="3000" />
+        <property name="timeout" value="3000" />
+        <property name="minIdle" value="2" />
+    </bean>
+
+    <bean id="redisClusterClient" class="com.itlong.whatsmars.redis.client.cluster.RedisClusterClient">
+        <property name="addresses" value="127.0.0.1:6379,127.0.01:7379,127.0.0.1:8379"/>
+        <property name="maxTotal" value="256"/>
+        <property name="maxIdle" value="8" />
+        <property name="maxWait" value="3000" />
+        <property name="timeout" value="3000" />
+        <property name="minIdle" value="2" />
+    </bean>
+
+</beans>
