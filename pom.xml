@@ -27,6 +27,7 @@
         <module>whatsmars-dubbo</module>
         <module>whatsmars-mq</module>
         <module>rocketmq-console</module>
+        <module>whatsmars-redis</module>
     </modules>
 
     <properties>
