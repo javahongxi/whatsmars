@@ -5,6 +5,7 @@
                            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
        default-autowire="byName">
 
+    <!-- 单个实例 -->
     <bean id="singletonRedisClient" class="com.itlong.whatsmars.redis.client.singleton.SingletonRedisClient">
         <property name="host" value="127.0.0.1"/>
         <property name="port" value="6379" />
@@ -14,7 +15,7 @@
         <property name="timeout" value="3000" />
         <property name="minIdle" value="2" />
     </bean>
-
+    <!-- M-S读写分离 -->
     <bean id="readWriteRedisClient" class="com.itlong.whatsmars.redis.client.readwrite.ReadWriteRedisClient">
         <property name="hosts" value="127.0.0.1:6379,127.0.0.1:7379"/>
         <property name="maxTotal" value="256"/>
@@ -23,7 +24,7 @@
         <property name="timeout" value="3000" />
         <property name="minIdle" value="2" />
     </bean>
-
+    <!-- Cluster模式 -->
     <bean id="redisClusterClient" class="com.itlong.whatsmars.redis.client.cluster.RedisClusterClient">
         <property name="addresses" value="127.0.0.1:6379,127.0.01:7379,127.0.0.1:8379"/>
         <property name="maxTotal" value="256"/>
@@ -32,5 +33,7 @@
         <property name="timeout" value="3000" />
         <property name="minIdle" value="2" />
     </bean>
+
+    <!-- 客户端sharding模式，待进行 -->
 
 </beans>
