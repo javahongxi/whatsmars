@@ -1,10 +1,6 @@
 package com.itlong.whatsmars.base.tmp;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by shenhongxi on 2015/11/9.
@@ -12,25 +8,14 @@ import java.util.Map;
  */
 public class T {
     public static void main(String[] args) throws Exception {
-        String path = "E:/btdata/bt_cumulation.txt";
-        BufferedReader br = new BufferedReader(new FileReader(path));
-        String line = null;
-        br.readLine();
+        BitSet bitSet = new BitSet(Integer.MAX_VALUE);//hashcode的值域
 
-        PrintWriter pw = new PrintWriter("E:/btdata/bt_cumulation2.txt");
-        int i = 0;
-        while ((line = br.readLine()) != null) {
-            //System.out.println("'" + line + "',");
-            String[] ss = line.split(",");
-            String pin = ss[1];
-            pw.println(pin);
-            if (i++ % 10 == 0) {
-                pw.flush();
-                System.out.println(i);
-            }
-        }
+        String url = "http://baidu.com/a";
+        int hashcode = url.hashCode() & 0x7FFFFFFF;
+        bitSet.set(hashcode);
 
-        br.close();
-        pw.close();
+        System.out.println(bitSet.cardinality());//着色位的个数
+        System.out.println(bitSet.get(hashcode));//检测存在性
+        bitSet.clear(hashcode);//清除位数据
     }
 }
