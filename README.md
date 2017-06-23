@@ -2,7 +2,7 @@
 https://github.com/javahongxi/whatsmars
 
 whatsmars-earth-web springmvc+velocity<br />
-whatsmars-earth-support-web earth工程的辅助工程<br />
+whatsmars-earth-support-web earth工程的辅助工程(task,mq,uuid,monitor..)<br />
 whatmars-fs-web 用mongodb存储图片<br />
 whatsmars-javase-example Java基础学习<br />
 whatsmars-spring spring原理、集成及新特性<br />
