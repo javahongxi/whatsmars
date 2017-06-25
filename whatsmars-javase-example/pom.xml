@@ -14,9 +14,13 @@
     <name>${project.artifactId}</name>
     <url>http://maven.apache.org</url>
 
-    <build>
-        <finalName>${project.artifactId}</finalName>
-    </build>
-
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>Test</scope>
+        </dependency>
+    </dependencies>
 
 </project>
