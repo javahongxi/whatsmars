@@ -27,7 +27,7 @@
     </settings>
 
     <typeAliases>
-        <package name="com.itlong.whatsmars.*.model"/>
+        <typeAlias type="com.itlong.whatsmars.spring.boot.model.User" alias="User" />
     </typeAliases>
 
     <plugins>
@@ -62,7 +62,7 @@
     </plugins>
 
     <mappers>
-        <mapper resource="mapper/User-mapper.xml"/>
+        <mapper resource="mapper/UserMapper.xml"/>
 
     </mappers>
 

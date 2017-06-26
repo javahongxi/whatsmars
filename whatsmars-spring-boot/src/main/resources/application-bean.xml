@@ -6,6 +6,6 @@
        default-autowire="byName">
 
     <!-- 本配置文件纯粹为了演示怎么加载xml bean -->
-    <bean id="userService" class="com.itlong.whatsmars.spring.boot.UserService"></bean>
+    <!--<bean id="userService" clacom.itlong.whatsmars.spring.boot.service.impl.UserServiceImpl"></bean>-->
 
 </beans>

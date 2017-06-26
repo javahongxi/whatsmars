@@ -1,5 +1,6 @@
-package com.itlong.whatsmars.spring.boot;
+package com.itlong.whatsmars.spring.boot.controller;
 
+import com.itlong.whatsmars.spring.boot.config.UserConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;

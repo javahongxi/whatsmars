@@ -93,7 +93,7 @@
             <appender-ref ref="RollingFileTrace"/>
         </root>
         
-        <logger name="com.itlong.whatsmars.spring.boot.UserService" level="info" additivity="false">
+        <logger name="com.itlong.whatsmars.spring.boot.service.impl.UserServiceImpl" level="info" additivity="false">
             <appender-ref ref="UserService"/>
         </logger>
 

@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.spring.boot;
+package com.itlong.whatsmars.spring.boot.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
