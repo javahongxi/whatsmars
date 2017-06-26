@@ -5,6 +5,7 @@
                            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
        default-autowire="byName">
 
+    <!-- 本配置文件纯粹为了演示怎么加载xml bean -->
     <bean id="userService" class="com.itlong.whatsmars.spring.boot.UserService"></bean>
 
 </beans>
