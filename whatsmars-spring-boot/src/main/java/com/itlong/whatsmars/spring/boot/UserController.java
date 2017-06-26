@@ -30,9 +30,9 @@ public class UserController {
      */
     @Bean
     public LocaleResolver localeResolver() {
-        FixedLocaleResolver slr = new FixedLocaleResolver ();
-        slr.setDefaultLocale(Locale.US);
-        return slr;
+        FixedLocaleResolver localeResolver = new FixedLocaleResolver ();
+        localeResolver.setDefaultLocale(Locale.US);
+        return localeResolver;
 
     }
 
