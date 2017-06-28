@@ -13,4 +13,4 @@ java -jar whatsmars-spring-boot.jar --spring.config.location=/opt/config/applica
 正确、安全地停止应用
 endpoints.shutdown.enabled=true
 management.context-path=/manage
-curl -X POST host:port/shutdown
+curl -X POST host:port/manage/shutdown
