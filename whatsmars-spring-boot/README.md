@@ -10,35 +10,7 @@ Spring-Boot-Lib: BOOT-INF/lib/ <br />
 可以外部配置文件启动 <br />
 java -jar whatsmars-spring-boot.jar --spring.config.location=/opt/config/application.properties <br />
 
-shell: <br />
-
-start.sh <br />
-
-#!/bin/sh <br />
-rm -f tpid <br />
-nohup java -jar /data/app/whatsmars-spring-boot.jar --spring.profiles.active=stg > /dev/null 2>&1 & <br />
-echo $! > tpid <br />
-
-stop.sh <br />
-
-tpid=`cat tpid | awk '{print $1}'` <br />
-tpid=`ps -aef | grep $tpid | awk '{print $2}' |grep $tpid` <br />
-if [ ${tpid} ]; then <br />
-        kill -9 $tpid <br />
-fi <br />
-
-check.sh <br />
-
-#!/bin/sh <br />
-tpid=`cat tpid | awk '{print $1}'` <br />
-tpid=`ps -aef | grep $tpid | awk '{print $2}' |grep $tpid` <br />
-if [ ${tpid} ]; then <br />
-        echo App is running. <br />
-else <br />
-        echo App is NOT running. <br />
-fi <br />
-
-kill.sh <br />
-
-#!/bin/sh <br />
-kill -9 `ps -ef|grep whatsmars-spring-boot|awk '{print $2}'` <br />
+正确、安全地停止应用
+endpoints.shutdown.enabled=true
+management.context-path=/manage
+curl -X POST host:port/shutdown
