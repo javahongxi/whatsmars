@@ -33,7 +33,7 @@ public class UserController {
     @Bean
     public LocaleResolver localeResolver() {
         AbstractLocaleResolver localeResolver = new SessionLocaleResolver();
-        localeResolver.setDefaultLocale(Locale.CHINA);
+        localeResolver.setDefaultLocale(Locale.US);
         return localeResolver;
     }
 
@@ -50,6 +50,7 @@ public class UserController {
 
     @RequestMapping("/")
     public String home(Map<String,Object> map) {
+        System.out.println(localeUtils.isEnLocale());
         map.put("hello", "Hi, boy!");
         map.put("country", localeUtils.getMessage("country"));
         return "index";

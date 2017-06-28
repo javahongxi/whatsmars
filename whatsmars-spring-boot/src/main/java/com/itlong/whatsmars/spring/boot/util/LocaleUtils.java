@@ -20,4 +20,8 @@ public class LocaleUtils {
         Locale locale = LocaleContextHolder.getLocale();
         return messageSource.getMessage(key, null, locale);
     }
+
+    public boolean isEnLocale() {
+        return LocaleContextHolder.getLocale() == Locale.US;
+    }
 }
