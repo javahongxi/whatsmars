@@ -3,7 +3,7 @@
 mvn clean package -DskipTests <br />
 得到的jar包中的MANIFEST.MF其中几行： <br />
 Main-Class: org.springframework.boot.loader.JarLauncher <br />
-Start-Class: com.itlong.whatsmars.spring.boot.Application <br />
+Start-Class: com.itlong.whatsmars.spring.boot.App <br />
 Spring-Boot-Classes: BOOT-INF/classes/ <br />
 Spring-Boot-Lib: BOOT-INF/lib/ <br />
 

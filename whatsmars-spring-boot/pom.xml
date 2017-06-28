@@ -12,7 +12,7 @@
 
     <properties>
         <!-- The main class to start by executing java -jar -->
-        <start-class>com.itlong.whatsmars.spring.boot.Application</start-class>
+        <start-class>com.itlong.whatsmars.spring.boot.App</start-class>
     </properties>
 
     <parent>
