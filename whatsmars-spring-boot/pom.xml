@@ -116,6 +116,14 @@
             <version>1.0.31</version>
         </dependency>
 
+        <!--dubbo-->
+        <!--<dependency>
+            <groupId>com.itlong</groupId>
+            <artifactId>whatsmars-dubbo-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>-->
+
+
 
     </dependencies>
 
