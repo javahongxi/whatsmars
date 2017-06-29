@@ -2,8 +2,11 @@ package com.itlong.whatsmars.spring.boot.controller;
 
 import com.itlong.whatsmars.spring.boot.config.UserConfig;
 import com.itlong.whatsmars.spring.boot.common.LocaleService;
+import com.itlong.whatsmars.spring.boot.motan.MotanDemoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,6 +14,7 @@ import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.AbstractLocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Locale;
 import java.util.Map;
@@ -19,13 +23,16 @@ import java.util.Map;
  * Created by shenhongxi on 2017/3/27.
  */
 @Controller
-public class UserController {
+public class SampleController {
 
     @Autowired
     private UserConfig userConfig;
 
     @Autowired
     private LocaleService localeService;
+
+//    @Resource(name = "motanDemoService")
+//    private MotanDemoService motanDemoService;
 
     /**
      * 设置区域解析器 (default is AcceptHeaderLocaleResolver)
@@ -56,10 +63,13 @@ public class UserController {
         return "index";
     }
 
-    @RequestMapping("/do")
+    @RequestMapping("/motan")
     @ResponseBody
-    public String doSth() {
-        return userConfig.getWelcome();
+    public String motan() {
+        ApplicationContext ctx = new ClassPathXmlApplicationContext(new String[]{"classpath:spring/motan_demo_client.xml"});
+
+        MotanDemoService service = (MotanDemoService) ctx.getBean("motanDemoReferer");
+        return userConfig.getWelcome() + service.hello("motan");
     }
 
 }
