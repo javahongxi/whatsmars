@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ImportResource;
 // 加上exclude=DataSource..后，不会连接数据库，同时@Mapper也不会起作用
 @EnableAutoConfiguration//(exclude={DataSourceAutoConfiguration.class})
 @EnableConfigurationProperties({UserConfig.class})
-@ImportResource(locations={"classpath*:spring/*.xml"})
+@ImportResource(locations={"classpath*:spring/*server.xml"})
 public class App {
 
     public static void main(String[] args) {

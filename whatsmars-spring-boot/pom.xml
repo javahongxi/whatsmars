@@ -13,7 +13,7 @@
     <properties>
         <!-- The main class to start by executing java -jar -->
         <start-class>com.itlong.whatsmars.spring.boot.App</start-class>
-        <motan.version>0.3.0</motan.version>
+        <motan.version>0.1.1</motan.version>
     </properties>
 
     <parent>

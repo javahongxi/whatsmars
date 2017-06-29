@@ -67,7 +67,6 @@ public class SampleController {
     @ResponseBody
     public String motan() {
         ApplicationContext ctx = new ClassPathXmlApplicationContext(new String[]{"classpath:spring/motan_demo_client.xml"});
-
         MotanDemoService service = (MotanDemoService) ctx.getBean("motanDemoReferer");
         return userConfig.getWelcome() + service.hello("motan");
     }
