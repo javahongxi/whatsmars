@@ -29,6 +29,7 @@
         <module>rocketmq-console</module>
         <module>whatsmars-redis</module>
         <module>whatsmars-motan</module>
+        <module>whatsmars-motan-demo</module>
     </modules>
 
     <properties>

@@ -22,7 +22,7 @@
        http://api.weibo.com/schema/motan http://api.weibo.com/schema/motan.xsd">
 
     <!-- 业务具体实现类 -->
-    <bean id="motanDemoServiceImpl" class="com.itlong.whatsmars.spring.boot.motan.MotanDemoServiceImpl"/>
+    <bean id="demoMotanService" class="com.itlong.motan.demo.DemoMotanServiceImpl"/>
 
     <!-- 协议配置。为防止多个业务配置冲突，推荐使用id表示具体协议。-->
     <motan:protocol id="demoMotan" default="true" name="motan"
@@ -35,11 +35,11 @@
                         application="myMotanDemo" registry="registry" id="serviceBasicConfig"/>
 
     <!-- 具体rpc服务配置，声明实现的接口类。-->
-    <motan:service interface="com.itlong.whatsmars.spring.boot.motan.MotanDemoService"
-                   ref="motanDemoServiceImpl" export="demoMotan:8003" basicService="serviceBasicConfig">
+    <motan:service interface="com.itlong.motan.demo.DemoMotanService"
+                   ref="demoMotanService" export="demoMotan:8003" basicService="serviceBasicConfig">
     </motan:service>
-    <motan:service interface="com.itlong.whatsmars.spring.boot.motan.MotanDemoService"
-                   ref="motanDemoServiceImpl" export="demoMotan:8004" basicService="serviceBasicConfig">
+    <motan:service interface="com.itlong.motan.demo.DemoMotanService"
+                   ref="demoMotanService" export="demoMotan:8004" basicService="serviceBasicConfig">
     </motan:service>
 
 </beans>

@@ -2,9 +2,9 @@
  * Created by shenhongxi on 2017/3/27.
  */
 
-package com.itlong.whatsmars.spring.boot.motan;
+package com.itlong.motan.demo;
 
-public class MotanDemoServiceImpl implements MotanDemoService {
+public class DemoMotanServiceImpl implements DemoMotanService {
 
     public String hello(String name) {
         System.out.println(name);

@@ -2,11 +2,8 @@ package com.itlong.whatsmars.spring.boot.controller;
 
 import com.itlong.whatsmars.spring.boot.config.UserConfig;
 import com.itlong.whatsmars.spring.boot.common.LocaleService;
-import com.weibo.motan.demo.service.MotanDemoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,7 +11,6 @@ import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.AbstractLocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Locale;
 import java.util.Map;
@@ -30,9 +26,6 @@ public class SampleController {
 
     @Autowired
     private LocaleService localeService;
-
-    @Resource(name = "motanDemoService")
-    private MotanDemoService motanDemoService;
 
     /**
      * 设置区域解析器 (default is AcceptHeaderLocaleResolver)
@@ -63,10 +56,10 @@ public class SampleController {
         return "index";
     }
 
-    @RequestMapping("/motan")
+    @RequestMapping("/do")
     @ResponseBody
     public String motan() {
-        return userConfig.getWelcome() + motanDemoService.hello("motan");
+        return userConfig.getWelcome();
     }
 
 }

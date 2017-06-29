@@ -2,14 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>whatsmars-motan</artifactId>
+    <artifactId>whatsmars-motan-demo</artifactId>
 
     <properties>
         <!-- The main class to start by executing java -jar -->
-        <start-class>com.weibo.motan.demo.service.App</start-class>
+        <start-class>com.itlong.motan.demo.App</start-class>
         <motan.version>0.1.1</motan.version>
     </properties>
 
@@ -51,6 +50,12 @@
             <groupId>com.weibo</groupId>
             <artifactId>motan-springsupport</artifactId>
             <version>${motan.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>whatsmars-motan</artifactId>
+            <version>1.5.2.RELEASE</version>
         </dependency>
     </dependencies>
 
