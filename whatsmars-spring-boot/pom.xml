@@ -146,6 +146,11 @@
             <version>${motan.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>whatsmars-motan</artifactId>
+        </dependency>
+
 
     </dependencies>
 
