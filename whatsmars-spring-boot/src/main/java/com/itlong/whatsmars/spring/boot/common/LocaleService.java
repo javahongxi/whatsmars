@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.spring.boot.util;
+package com.itlong.whatsmars.spring.boot.common;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -11,7 +11,7 @@ import java.util.Locale;
  * Created by shenhongxi on 2017/6/28.
  */
 @Component
-public class LocaleUtils {
+public class LocaleService {
 
     @Autowired
     private MessageSource messageSource;

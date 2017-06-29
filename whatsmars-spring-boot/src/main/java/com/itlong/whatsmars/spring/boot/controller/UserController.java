@@ -1,7 +1,7 @@
 package com.itlong.whatsmars.spring.boot.controller;
 
 import com.itlong.whatsmars.spring.boot.config.UserConfig;
-import com.itlong.whatsmars.spring.boot.util.LocaleUtils;
+import com.itlong.whatsmars.spring.boot.common.LocaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
@@ -25,7 +25,7 @@ public class UserController {
     private UserConfig userConfig;
 
     @Autowired
-    private LocaleUtils localeUtils;
+    private LocaleService localeService;
 
     /**
      * 设置区域解析器 (default is AcceptHeaderLocaleResolver)
@@ -50,9 +50,9 @@ public class UserController {
 
     @RequestMapping("/")
     public String home(Map<String,Object> map) {
-        System.out.println(localeUtils.isEnLocale());
+        System.out.println(localeService.isEnLocale());
         map.put("hello", "Hi, boy!");
-        map.put("country", localeUtils.getMessage("country"));
+        map.put("country", localeService.getMessage("country"));
         return "index";
     }
 
