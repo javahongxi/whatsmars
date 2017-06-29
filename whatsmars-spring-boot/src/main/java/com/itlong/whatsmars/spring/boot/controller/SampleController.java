@@ -2,7 +2,6 @@ package com.itlong.whatsmars.spring.boot.controller;
 
 import com.itlong.whatsmars.spring.boot.config.UserConfig;
 import com.itlong.whatsmars.spring.boot.common.LocaleService;
-import com.itlong.whatsmars.spring.boot.motan.MotanDemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -67,7 +66,7 @@ public class SampleController {
     @ResponseBody
     public String motan() {
         ApplicationContext ctx = new ClassPathXmlApplicationContext(new String[]{"classpath:spring/motan_demo_client.xml"});
-        MotanDemoService service = (MotanDemoService) ctx.getBean("motanDemoReferer");
+        com.weibo.motan.demo.service.MotanDemoService service = (com.weibo.motan.demo.service.MotanDemoService) ctx.getBean("motanDemoReferer");
         return userConfig.getWelcome() + service.hello("motan");
     }
 
