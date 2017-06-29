@@ -20,12 +20,12 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-	<!-- 提供方应用信息，用于计算依赖关系 -->
-	<dubbo:application name="whatsmars_provider" />
-	<!-- 使用zookeeper注册中心暴露服务地址 -->
-	<dubbo:registry address="zookeeper://127.0.0.1:2181" />
-	<!-- 用dubbo协议在20880端口暴露服务 -->
-	<dubbo:protocol name="dubbo" port="20880" />
+	<!--&lt;!&ndash; 提供方应用信息，用于计算依赖关系 &ndash;&gt;-->
+	<!--<dubbo:application name="whatsmars_provider" />-->
+	<!--&lt;!&ndash; 使用zookeeper注册中心暴露服务地址 &ndash;&gt;-->
+	<!--<dubbo:registry address="zookeeper://127.0.0.1:2181" />-->
+	<!--&lt;!&ndash; 用dubbo协议在20880端口暴露服务 &ndash;&gt;-->
+	<!--<dubbo:protocol name="dubbo" port="20880" />-->
 	
 	<bean id="demoService" class="com.itlong.whatsmars.dubbo.demo.provider.DemoServiceImpl" />
 	<bean id="userService" class="com.itlong.whatsmars.dubbo.demo.provider.UserServiceImpl" />
