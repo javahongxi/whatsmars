@@ -17,7 +17,9 @@
 package com.weibo.motan.demo.service.impl;
 
 import com.weibo.motan.demo.service.MotanDemoService;
+import org.springframework.stereotype.Service;
 
+@Service("motanDemoService")
 public class MotanDemoServiceImpl implements MotanDemoService {
 
     public String hello(String name) {
