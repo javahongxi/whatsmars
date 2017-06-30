@@ -6,7 +6,9 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
+@EnableScheduling
 @SpringBootApplication
 // 加上exclude=DataSource..后，不会连接数据库，同时@Mapper也不会起作用
 @EnableAutoConfiguration//(exclude={DataSourceAutoConfiguration.class})
