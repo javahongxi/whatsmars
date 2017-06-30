@@ -2,6 +2,7 @@ package com.itlong.motan.demo;
 
 import com.weibo.motan.demo.service.MotanDemoService;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -10,6 +11,7 @@ import javax.annotation.Resource;
  * Created by javahongxi on 2017/6/30.
  */
 @Component
+@Order(value = 2)
 public class DemoCommandRunner implements CommandLineRunner {
     @Resource(name = "motanDemoService")
     private MotanDemoService motanDemoService;

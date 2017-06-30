@@ -15,9 +15,6 @@ public class App {
 
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
-        // 在使用注册中心时要主动调用下面代码
-        MotanSwitcherUtil.setSwitcherValue(MotanConstants.REGISTRY_HEARTBEAT_SWITCHER, true);
-        System.out.println("server start...");
     }
 
 }
