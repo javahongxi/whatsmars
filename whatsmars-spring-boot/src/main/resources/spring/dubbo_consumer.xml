@@ -5,7 +5,6 @@
                            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
        default-autowire="byName">
 
-    <!-- 本配置文件纯粹为了演示怎么加载xml bean -->
-    <!--<bean id="userService" clacom.itlong.whatsmars.spring.boot.service.impl.UserServiceImpl"></bean>-->
+    <!--dubbo,motan等服务化框架的注解配置做的不是很好，适合用xml配置-->
 
 </beans>
