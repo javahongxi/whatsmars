@@ -33,7 +33,7 @@ public class SampleController {
     @Bean
     public LocaleResolver localeResolver() {
         AbstractLocaleResolver localeResolver = new SessionLocaleResolver();
-        localeResolver.setDefaultLocale(Locale.US);
+        //localeResolver.setDefaultLocale(Locale.US);
         return localeResolver;
     }
 
