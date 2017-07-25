@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.AbstractLocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Locale;
 import java.util.Map;
 
@@ -39,11 +41,14 @@ public class SampleController {
 
     @RequestMapping("/changeLang")
     @ResponseBody
-    public String changeLang(HttpServletRequest request, String lang){
+    public String changeLang(HttpServletRequest request, HttpServletResponse response, String lang){
+        LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);
         if ("zh".equals(lang)) {
-            request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, new Locale("zh", "CN"));
+            // request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, new Locale("zh", "CN"));
+            localeResolver.setLocale(request, response, new Locale("zh", "CN"));
         } else if("en".equals(lang)){
-            request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, new Locale("en", "US"));
+            // request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, new Locale("en", "US"));
+            localeResolver.setLocale(request, response, new Locale("en", "US"));
         }
         return "lang:" + lang;
     }
