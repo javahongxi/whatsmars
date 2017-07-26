@@ -1,6 +1,7 @@
 # whatsmars
 https://github.com/javahongxi/whatsmars
 
+whatsmars-common mongodb,mail,AES,DES加解密
 whatsmars-earth-web springmvc+velocity<br />
 whatsmars-earth-support-web earth工程的辅助工程(task,mq,uuid,monitor..)<br />
 whatmars-fs-web 用mongodb存储图片和文件<br />
