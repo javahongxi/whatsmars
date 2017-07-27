@@ -22,6 +22,6 @@ public class LocaleService {
     }
 
     public boolean isEnLocale() {
-        return LocaleContextHolder.getLocale() == Locale.US;
+        return LocaleContextHolder.getLocale().getLanguage().equals("en");
     }
 }

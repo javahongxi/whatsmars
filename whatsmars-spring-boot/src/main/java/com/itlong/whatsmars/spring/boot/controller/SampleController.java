@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.AbstractLocaleResolver;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
@@ -36,6 +37,9 @@ public class SampleController {
     public LocaleResolver localeResolver() {
         AbstractLocaleResolver localeResolver = new SessionLocaleResolver();
         //localeResolver.setDefaultLocale(Locale.US);
+//        CookieLocaleResolver localeResolver = new CookieLocaleResolver();
+//        localeResolver.setCookieName("language");
+//        localeResolver.setCookieMaxAge(3600);
         return localeResolver;
     }
 
