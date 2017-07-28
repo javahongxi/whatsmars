@@ -41,7 +41,7 @@
 
     <bean id="gridFSClient" class="com.itlong.whatsmars.common.mongo.GridFSClient">
         <property name="mongoDBDriver" ref="mongodbDriver"/>
-        <property name="databaseName" value="${whatsmars.mongodb.filesystem.dbname}"/>
+        <property name="databaseName" value="${whatsmars.mongodb.admin.dbname}"/>
     </bean>
 
 </beans>
