@@ -1,12 +1,15 @@
 package com.itlong.whatsmars.spring.boot.controller;
 
+import com.itlong.whatsmars.spring.boot.common.LocaleUtils;
 import com.itlong.whatsmars.spring.boot.config.UserConfig;
 import com.itlong.whatsmars.spring.boot.common.LocaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.AbstractLocaleResolver;
@@ -60,13 +63,14 @@ public class SampleController {
 
     @RequestMapping("/")
     public String home(Map<String,Object> map) {
-        System.out.println(localeService.isEnLocale());
+        System.out.println(LocaleUtils.isEnLocale());
         map.put("hello", "Hi, boy!");
         map.put("country", localeService.getMessage("country"));
         return "index";
     }
 
-    @RequestMapping("/do")
+    @Profile("test,dev")
+    @RequestMapping(value = "/do", method = RequestMethod.GET)
     @ResponseBody
     public String motan() {
         return userConfig.getWelcome();
