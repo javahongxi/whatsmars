@@ -10,6 +10,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.AbstractLocaleResolver;
@@ -49,7 +50,7 @@ public class SampleController {
 
     @RequestMapping("/changeLang")
     @ResponseBody
-    public String changeLang(HttpServletRequest request, HttpServletResponse response, String lang){
+    public String changeLang(HttpServletRequest request, HttpServletResponse response, @RequestParam String lang){
         LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);
         if ("zh".equals(lang)) {
             // request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, new Locale("zh", "CN"));
@@ -61,7 +62,7 @@ public class SampleController {
         return "lang:" + LocaleContextHolder.getLocale().getLanguage();
     }
 
-    @RequestMapping("/")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Map<String,Object> map) {
         System.out.println(LocaleUtils.isEnLocale());
         map.put("hello", "Hi, boy!");

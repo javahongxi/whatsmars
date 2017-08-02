@@ -1,4 +1,5 @@
-启动后访问 http://localhost/ <br />
+启动后访问 http://localhost:8081/ <br />
+swagger http://localhost:8081/swagger-ui.html
 
 mvn clean package -DskipTests <br />
 得到的jar包中的MANIFEST.MF其中几行： <br />
