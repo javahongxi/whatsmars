@@ -3,6 +3,7 @@ package com.itlong.whatsmars.spring.boot.controller;
 import com.itlong.whatsmars.spring.boot.common.LocaleUtils;
 import com.itlong.whatsmars.spring.boot.config.UserConfig;
 import com.itlong.whatsmars.spring.boot.common.LocaleService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
@@ -26,6 +27,7 @@ import java.util.Map;
 /**
  * Created by shenhongxi on 2017/3/27.
  */
+@Api(tags = "Sample", description = "样例")
 @Controller
 public class SampleController {
 
