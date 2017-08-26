@@ -1,4 +1,3 @@
-[![](https://badge.juejin.im/entry/599d25aa6fb9a0248b408853/likes.svg?style=flat)](https://juejin.im/entry/599d25aa6fb9a0248b408853/detail)
 # whatsmars
 https://github.com/javahongxi/whatsmars
 
