@@ -22,4 +22,4 @@ whatsmars-motan-demo weibo分布式RPC框架 demo server&client <br />
 # 技术生态 java.toutiao.im
 www.toutiao.im sina.im
 <br /><br />
-友情连接 laoda.toutiao.im kaitao.toutiao.im
+友情链接 laoda.toutiao.im kaitao.toutiao.im
