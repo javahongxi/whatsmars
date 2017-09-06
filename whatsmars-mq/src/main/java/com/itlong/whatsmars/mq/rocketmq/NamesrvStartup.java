@@ -7,7 +7,7 @@ public class NamesrvStartup {
 
     public static void main(String[] args) {
         String classpath = BrokerStartup.class.getResource("/").getPath();
-        args = new String[] {"-c", classpath + "conf.properties"};
+        args = new String[] {"-c", classpath + "namesrv.properties"};
         org.apache.rocketmq.namesrv.NamesrvStartup.main(args);
     }
 }
