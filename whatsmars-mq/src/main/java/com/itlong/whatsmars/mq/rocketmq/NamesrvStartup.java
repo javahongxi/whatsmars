@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.mq.rocketmq.quickstart;
+package com.itlong.whatsmars.mq.rocketmq;
 
 /**
  * Created by shenhongxi on 2017/6/21.
@@ -6,7 +6,8 @@ package com.itlong.whatsmars.mq.rocketmq.quickstart;
 public class NamesrvStartup {
 
     public static void main(String[] args) {
-        args = new String[] {"-c", "D:\\github\\whatsmars\\whatsmars-mq\\src\\main\\resources\\conf.properties"};
+        String classpath = BrokerStartup.class.getResource("/").getPath();
+        args = new String[] {"-c", classpath + "conf.properties"};
         org.apache.rocketmq.namesrv.NamesrvStartup.main(args);
     }
 }
