@@ -6,7 +6,7 @@ import org.apache.activemq.broker.BrokerService;
  * Created by shenhongxi on 2017/9/8.
  */
 public class BrokerStartup {
-
+    // 启动win64/activemq.bat可启动broker和console
     public static void main(String[] args) throws Exception {
         // BrokerService broker =BrokerFactory.createBroker(new URI("broker:tcp://localhost:61616"));
         BrokerService broker =new BrokerService();
