@@ -20,6 +20,6 @@ whatsmars-motan weibo分布式RPC框架 demo server <br />
 whatsmars-motan-demo weibo分布式RPC框架 demo server&client <br />
 
 # Java生态 javaeco.com
-www.toutiao.im sina.im
+www.toutiao.im
 <br /><br />
 友情链接 laoda.toutiao.im kaitao.toutiao.im
