@@ -5,7 +5,7 @@ import org.zeromq.ZMQ;
 public class Subscriber {
 
     public static void main(String args[]) {  
-        for (int j = 0; j < 100; j++) {  
+        for (int j = 0; j < 10; j++) {
             new Thread(new Runnable(){
                 public void run() {  
                     ZMQ.Context context = ZMQ.context(1);
@@ -16,7 +16,7 @@ public class Subscriber {
                     try {
                         while (true) {
                             byte[] message = subscriber.recv();
-                            System.out.println("receive : " + new String(message));
+                            System.out.println(Thread.currentThread().getName() + " receive : " + new String(message));
                         }
                     } finally {
                         subscriber.close();
