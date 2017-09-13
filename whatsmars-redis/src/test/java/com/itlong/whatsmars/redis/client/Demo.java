@@ -25,8 +25,8 @@ public class Demo {
     @Autowired
     private ReadWriteRedisClient readWriteRedisClient;
 
-    //@Autowired
-    //@Qualifier("redisClusterClient")
+    @Autowired
+    @Qualifier("redisClusterClient")
     private JedisCluster jedisCluster;
 
     @Test

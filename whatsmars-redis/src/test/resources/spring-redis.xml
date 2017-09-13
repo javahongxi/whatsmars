@@ -24,7 +24,7 @@
         <property name="timeout" value="3000" />
         <property name="minIdle" value="2" />
     </bean>
-    <!-- Cluster模式 -->
+    <!-- Cluster模式 (windows redis 不支持)-->
     <bean id="redisClusterClient" class="com.itlong.whatsmars.redis.client.cluster.RedisClusterClient">
         <property name="addresses" value="127.0.0.1:6379,127.0.01:7379,127.0.0.1:8379"/>
         <property name="maxTotal" value="256"/>
