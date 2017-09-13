@@ -25,31 +25,26 @@ public class Demo {
     @Autowired
     private ReadWriteRedisClient readWriteRedisClient;
 
-    @Autowired
-    @Qualifier("redisClusterClient")
+    //@Autowired
+    //@Qualifier("redisClusterClient")
     private JedisCluster jedisCluster;
 
     @Test
     public void testSingleton() {
         Jedis jedis = singletonRedisClient.getResource();
         String cacheContent = null;
-        try {
-            cacheContent = jedis.get("hello_world");
-        }finally {
-            singletonRedisClient.close();
-        }
-        // 获取redis数据之后，立即释放连接，然后开始进行业务处理
-        if(cacheContent == null) {
-            // DB operation
-        }
-        // ..
+        cacheContent = jedis.get("hello_world");
+        if (cacheContent == null) jedis.set("hello_world", "Hello World!");
+        System.out.println(cacheContent);
     }
 
     @Test
     public void testReadWrite() {
         String cacheContent = null;
         try {
+            readWriteRedisClient.set("hello_world", "Hi World!");
             cacheContent = readWriteRedisClient.get("hello_world");
+            System.out.println(cacheContent);
         } catch (Exception e) {
             //如果异常，你可以决定是否忽略
         }
