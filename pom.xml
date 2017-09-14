@@ -18,7 +18,6 @@
         <module>whatsmars-earth-support-web</module>
         <module>whatsmars-tomcat</module>
         <module>whatsmars-javase-example</module>
-        <module>earth</module>
         <module>whatsmars-spring</module>
         <module>whatsmars-spring-boot</module>
         <module>whatsmars-dbrouter</module>
