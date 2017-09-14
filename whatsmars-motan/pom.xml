@@ -3,79 +3,26 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+    <parent>
+        <artifactId>whatsmars-parent</artifactId>
+        <groupId>com.itlong</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>whatsmars-motan</artifactId>
-
+    <packaging>pom</packaging>
+    <name>${project.artifactId}</name>
+    <description>The demo module of motan project</description>
     <properties>
-        <!-- The main class to start by executing java -jar -->
-        <start-class>com.weibo.motan.demo.service.App</start-class>
-        <motan.version>0.1.1</motan.version>
+        <skip_maven_deploy>true</skip_maven_deploy>
     </properties>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.2.RELEASE</version>
-    </parent>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-        <!--weibo motan-->
-        <dependency>
-            <groupId>com.weibo</groupId>
-            <artifactId>motan-core</artifactId>
-            <version>${motan.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.weibo</groupId>
-            <artifactId>motan-transport-netty</artifactId>
-            <version>${motan.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.weibo</groupId>
-            <artifactId>motan-registry-consul</artifactId>
-            <version>${motan.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.weibo</groupId>
-            <artifactId>motan-registry-zookeeper</artifactId>
-            <version>${motan.version}</version>
-        </dependency>
-
-        <!-- dependencies blow were only needed for spring-based features -->
-        <dependency>
-            <groupId>com.weibo</groupId>
-            <artifactId>motan-springsupport</artifactId>
-            <version>${motan.version}</version>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <finalName>${project.artifactId}</finalName>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>springloaded</artifactId>
-                        <version>1.2.6.RELEASE</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-        </plugins>
-    </build>
+    <modules>
+        <module>whatsmars-motan-api</module>
+        <module>whatsmars-motan-consumer</module>
+        <module>whatsmars-motan-provider</module>
+        <module>whatsmars-motan-consumer</module>
+    </modules>
 
 
 </project>
