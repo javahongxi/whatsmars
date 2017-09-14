@@ -19,7 +19,6 @@
     </properties>
     <modules>
         <module>whatsmars-motan-api</module>
-        <module>whatsmars-motan-consumer</module>
         <module>whatsmars-motan-provider</module>
         <module>whatsmars-motan-consumer</module>
     </modules>

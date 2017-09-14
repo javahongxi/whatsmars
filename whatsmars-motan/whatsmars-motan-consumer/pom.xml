@@ -55,7 +55,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.itlong</groupId>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>whatsmars-motan-api</artifactId>
             <version>1.5.2.RELEASE</version>
         </dependency>
