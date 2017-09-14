@@ -11,3 +11,4 @@ whatsmars-*/bin
 *.iml
 *.ipr
 .idea/*
+activemq-data/*
