@@ -1,5 +1,6 @@
 package com.itlong.whatsmars.springcloud.consumer.controller;
 
+import com.itlong.whatsmars.springcloud.consumer.feign.DemoFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +18,16 @@ public class DemoController {
 //    @Value("${foo}")
 //    private String foo;
 
+    @Autowired
+    private DemoFeign demoFeign;
+
     @RequestMapping("/hello")
     public String hello(String name) {
         return restTemplate.getForObject("http://demo-provider/hello?name=" + name, String.class);
+    }
+
+    @RequestMapping("/hi")
+    public String hi(String name) {
+        return demoFeign.hello(name);
     }
 }
