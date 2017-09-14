@@ -7,3 +7,8 @@ server:
 spring:
   application:
     name: demo-consumer
+  cloud:
+    config:
+      label: master
+      profile: test
+      uri: http://localhost:8762/
