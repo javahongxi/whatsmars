@@ -8,6 +8,6 @@ spring:
         git:
           uri: https://github.com/javahongxi/whatsmars/
           searchPaths: whatsmars-spring-cloud/configfile
-          username: javahongxi
-          password: jd854749
+          #username:
+          #password:
       label: master
