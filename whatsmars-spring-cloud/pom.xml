@@ -16,7 +16,6 @@
     <description>The demo module of springcloud project</description>
     <modules>
         <module>whatsmars-springcloud-eureka</module>
-        <module>whatsmars-springcloud-configserver</module>
         <module>whatsmars-springcloud-provider</module>
         <module>whatsmars-springcloud-consumer</module>
     </modules>
