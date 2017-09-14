@@ -1,5 +1,5 @@
 server:
-  port: 8762
+  port: 8888
 
 spring:
   application:
@@ -10,6 +10,6 @@ spring:
         git:
           uri: https://github.com/javahongxi/whatsmars/
           searchPaths: whatsmars-spring-cloud/configfile
-          #username:
-          #password:
+#          username:
+#          password:
       label: master

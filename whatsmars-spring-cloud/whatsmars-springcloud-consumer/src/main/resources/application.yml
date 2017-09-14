@@ -3,12 +3,12 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 server:
-  port: 8764
+  port: 8763
 spring:
   application:
     name: demo-consumer
-  cloud:
-    config:
-      label: master
-      profile: test
-      uri: http://localhost:8762/
+#  cloud:
+#    config:
+#      label: master
+#      profile: test
+#      uri: http://localhost:8888/

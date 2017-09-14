@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.springcloud.server;
+package com.itlong.whatsmars.springcloud.provider;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -9,8 +9,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @EnableDiscoveryClient
 @SpringBootApplication
-public class ServerApplication {
+public class ProviderApplication {
     public static void main(String[] args) {
-        new SpringApplicationBuilder(ServerApplication.class).web(true).run(args);
+        new SpringApplicationBuilder(ProviderApplication.class).web(true).run(args);
     }
 }

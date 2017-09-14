@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.springcloud.client.controller;
+package com.itlong.whatsmars.springcloud.consumer.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,12 +14,11 @@ public class DemoController {
 
     @Autowired
     private RestTemplate restTemplate;
-    @Value("${foo}")
-    private String foo;
+//    @Value("${foo}")
+//    private String foo;
 
     @RequestMapping("/hello")
     public String hello(String name) {
-        System.out.println(foo);
-        return restTemplate.getForObject("http://demo-server/hello?name=" + name, String.class);
+        return restTemplate.getForObject("http://demo-provider/hello?name=" + name, String.class);
     }
 }

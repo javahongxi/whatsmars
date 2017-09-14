@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.springcloud.server.resource;
+package com.itlong.whatsmars.springcloud.provider.resource;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
