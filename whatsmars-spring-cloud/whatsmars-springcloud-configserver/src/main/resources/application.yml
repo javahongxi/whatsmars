@@ -6,7 +6,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/javahongxi/whatsmars
+          uri: https://github.com/javahongxi/whatsmars/
           searchPaths: whatsmars-spring-cloud/configfile
           username: javahongxi
           password: jd854749
