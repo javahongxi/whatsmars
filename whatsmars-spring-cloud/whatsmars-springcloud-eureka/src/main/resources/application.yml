@@ -1,3 +1,26 @@
+spring:
+  profiles:
+    active: dev
+
+---
+spring:
+  profiles: test
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: test.toutiao.im
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://test.toutiao.im:8761/eureka/
+
+---
+spring:
+  profiles: dev
 server:
   port: 8761
 
@@ -8,4 +31,4 @@ eureka:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://localhost:8761/eureka/

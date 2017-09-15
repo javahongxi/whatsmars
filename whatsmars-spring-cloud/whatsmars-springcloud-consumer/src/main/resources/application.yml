@@ -1,3 +1,20 @@
+spring:
+  profiles:
+    active: dev
+
+---
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://test.toutiao.im:8761/eureka/
+server:
+  port: 8763
+spring:
+  application:
+    name: demo-consumer
+  profiles: test
+
+---
 eureka:
   client:
     serviceUrl:
@@ -7,3 +24,4 @@ server:
 spring:
   application:
     name: demo-consumer
+  profiles: dev
