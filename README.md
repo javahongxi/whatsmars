@@ -1,8 +1,7 @@
-[![Build Status](https://travis-ci.org/javahongxi/whatsmars.svg?branch=master)](https://travis-ci.org/javahongxi/whatsmars)
 # whatsmars
-
+[![Build Status](https://travis-ci.org/javahongxi/whatsmars.svg?branch=master)](https://travis-ci.org/javahongxi/whatsmars)
 [![Join the chat at https://gitter.im/whatsmars/Lobby](https://badges.gitter.im/whatsmars/Lobby.svg)](https://gitter.im/whatsmars/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-https://github.com/javahongxi/whatsmars
+<br />https://github.com/javahongxi/whatsmars
 
 whatsmars-common mongodb,mail,AES,DES加解密<br />
 whatsmars-earth-web springmvc+velocity<br />
