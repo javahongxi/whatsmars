@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/javahongxi/whatsmars.svg?branch=master)](https://travis-ci.org/javahongxi/whatsmars)
 # whatsmars
 https://github.com/javahongxi/whatsmars
 
