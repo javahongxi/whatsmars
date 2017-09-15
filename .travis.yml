@@ -3,4 +3,4 @@ jdk:
     - oraclejdk8
     - openjdk7
 
-script: mvn compile
+script: mvn -DskipTests=true clean package
