@@ -21,6 +21,8 @@ whatsmars-spring-boot springboot果然很方便<br />
 whatsmars-spring-cloud 你好，springcloud<br />
 whatsmars-redis redis客户端简单封装 <br />
 whatsmars-motan weibo分布式RPC框架 demo <br />
+<br>
+Gradle + Spring Cloud http://gradle.toutiao.im
 
 ### Java生态
 www.javaeco.com
