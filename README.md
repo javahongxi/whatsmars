@@ -1,7 +1,7 @@
 # whatsmars
 [![Build Status](https://travis-ci.org/javahongxi/whatsmars.svg?branch=master)](https://travis-ci.org/javahongxi/whatsmars)
 [![Join the chat at https://gitter.im/whatsmars/Lobby](https://badges.gitter.im/whatsmars/Lobby.svg)](https://gitter.im/whatsmars/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-研究各种Java技术(Springboot+Redis+Dubbo+Rocketmq) 
+<br>研究各种Java技术(Springboot+Redis+Dubbo+Rocketmq) 
 
 ### 模块说明
 whatsmars-common mongodb,mail,AES,DES加解密<br />
@@ -21,8 +21,9 @@ whatsmars-spring-boot springboot果然很方便<br />
 whatsmars-spring-cloud 你好，springcloud<br />
 whatsmars-redis redis客户端简单封装 <br />
 whatsmars-motan weibo分布式RPC框架 demo <br />
-<br>
-Gradle + Spring Cloud http://gradle.toutiao.im
+
+### Gradle + Spring Cloud
+http://gradle.toutiao.im
 
 ### Java生态
 www.javaeco.com
