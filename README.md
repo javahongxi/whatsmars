@@ -3,7 +3,7 @@
 [![Join the chat at https://gitter.im/whatsmars/Lobby](https://badges.gitter.im/whatsmars/Lobby.svg)](https://gitter.im/whatsmars/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <br>Java生态研究(Springboot+Redis+Dubbo+Rocketmq)@javaeco.com
 
-### 模块说明
+### Modules intro
 whatsmars-common mongodb,mail,AES,DES加解密<br />
 whatsmars-earth-web springmvc+velocity<br />
 whatsmars-earth-support-web earth工程的辅助工程<br />
@@ -28,5 +28,5 @@ http://gradle.toutiao.im
 ### Mars Plan
 http://mars.toutiao.im
 
-### 友情链接
+### Friendship link
 www.toutiao.im laoda.toutiao.im kaitao.toutiao.im
