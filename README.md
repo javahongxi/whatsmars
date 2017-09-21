@@ -32,7 +32,7 @@ http://mars.toutiao.im
 http://blog.toutiao.im
 
 ### Gitee
-http:// m.toutiao.im
+http://m.toutiao.im
 
 ### Friendship link
 www.toutiao.im laoda.toutiao.im kaitao.toutiao.im
