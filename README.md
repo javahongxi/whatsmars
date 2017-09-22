@@ -25,14 +25,5 @@ whatsmars-motan weibo分布式RPC框架 demo <br />
 ### Gradle + Spring Cloud
 http://gradle.toutiao.im
 
-### Mars Plan
-http://mars.toutiao.im
-
-### Blog
-http://blog.toutiao.im
-
-### Gitee
-http://m.toutiao.im
-
 ### Friendship link
 www.toutiao.im laoda.toutiao.im kaitao.toutiao.im
