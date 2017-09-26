@@ -26,4 +26,7 @@ whatsmars-motan weibo分布式RPC框架 demo <br />
 http://gradle.toutiao.im
 
 ### Friendship link
-www.toutiao.im laoda.toutiao.im kaitao.toutiao.im
+- 技术博客 www.toutiao.im
+- 深入一点 [laoda.toutiao.im](http://laoda.toutiao.im)
+- 开涛 [kaitao.toutiao.im](http://kaitao.toutiao.im)
+- 码云 [m.tutiao.im](http://m.toutiao.im)
