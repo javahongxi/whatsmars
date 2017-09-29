@@ -29,5 +29,6 @@ http://gradle.toutiao.im
 - 技术博客 www.toutiao.im
 - 深入一点 [laoda.toutiao.im](http://laoda.toutiao.im)
 - 开涛 [kaitao.toutiao.im](http://kaitao.toutiao.im)
-- 码云 [m.toutiao.im](http://m.toutiao.im)
 - 火星计划 [mars.toutiao.im](http://mars.toutiao.im)
+- 码云 [m.toutiao.im](http://m.toutiao.im)
+- 开源中国 [blog.toutiao.im](http://blog.toutiao.im)
