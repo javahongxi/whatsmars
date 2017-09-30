@@ -32,3 +32,4 @@ http://gradle.toutiao.im
 - 火星计划 [mars.toutiao.im](http://mars.toutiao.im)
 - 码云 [m.toutiao.im](http://m.toutiao.im)
 - 开源中国 [blog.toutiao.im](http://blog.toutiao.im)
+- 购物网站项目 [youcai.toutiao.im](http://youcai.toutiao.im)
