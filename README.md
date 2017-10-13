@@ -22,8 +22,9 @@ whatsmars-spring-cloud 你好，springcloud<br />
 whatsmars-redis redis客户端简单封装 <br />
 whatsmars-motan weibo分布式RPC框架 demo <br />
 
-### Gradle + Spring Cloud
-http://gradle.toutiao.im
+### More Projects
+- Gradle + Spring Cloud [gradle.toutiao.im](http://gradle.toutiao.im)
+- 购物网站(SSH+JSP) [youcai.toutiao.im](http://youcai.toutiao.im)
 
 ### Friendship link
 - 技术博客 www.toutiao.im
@@ -32,4 +33,4 @@ http://gradle.toutiao.im
 - 火星计划 [mars.toutiao.im](http://mars.toutiao.im)
 - 码云 [m.toutiao.im](http://m.toutiao.im)
 - 开源中国 [blog.toutiao.im](http://blog.toutiao.im)
-- 购物网站项目 [youcai.toutiao.im](http://youcai.toutiao.im)
+
