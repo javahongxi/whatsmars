@@ -2,6 +2,7 @@ package com.itlong.whatsmars.redis.client.singleton;
 
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
+import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
@@ -107,5 +108,15 @@ public class SingletonRedisClient implements FactoryBean<JedisPool>,Initializing
     @Override
     public boolean isSingleton() {
         return true;
+    }
+
+    public static void main(String[] args) throws Exception {
+        SingletonRedisClient client = new SingletonRedisClient();
+        client.setHost("10.142.103.52");
+        client.setPort(1251);
+        client.setPassword("71b5d8fe3c826c80");
+        client.afterPropertiesSet();
+        Jedis jedis = client.getObject().getResource();
+        jedis.get("hello_world");
     }
 }
