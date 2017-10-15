@@ -2,7 +2,7 @@
 <configuration status="debug">
 
     <properties>
-        <property name="logPath">/data/wely/logs</property>
+        <property name="logPath">/data/logs/whatsmars-spring-boot</property>
     </properties>
 
     <appenders>

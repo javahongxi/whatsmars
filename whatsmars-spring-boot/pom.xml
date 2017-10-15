@@ -87,6 +87,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- 这个主要是为了自动restart, 但idea在程序running时不会自动编译，需手动compile -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
         <!-- 开启如下依赖后，应用会自动检测相关配置 -->
         <!--<dependency>
             <groupId>org.springframework.session</groupId>
