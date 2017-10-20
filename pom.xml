@@ -32,7 +32,7 @@
     </modules>
 
     <properties>
-        <spring.version>3.2.11.RELEASE</spring.version>
+        <spring.version>4.0.0.RELEASE</spring.version>
         <ibatis.version>3.2.7</ibatis.version>
         <rootdir>${basedir}</rootdir>
     </properties>
@@ -151,6 +151,10 @@
                     <exclusion>
                         <groupId>org.apache.struts</groupId>
                         <artifactId>*</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>javax.servlet</groupId>
+                        <artifactId>servlet-api</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>
