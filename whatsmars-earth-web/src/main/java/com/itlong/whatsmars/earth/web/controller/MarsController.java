@@ -3,6 +3,7 @@ package com.itlong.whatsmars.earth.web.controller;
 import com.itlong.whatsmars.common.pojo.Result;
 import com.itlong.whatsmars.common.util.ResultHelper;
 import com.itlong.whatsmars.earth.service.AccountService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping("/account")
 public class MarsController extends BaseController {
+
+    private Logger accountLogger = Logger.getLogger("account-logger");
 
     @Autowired
     private AccountService accountService;

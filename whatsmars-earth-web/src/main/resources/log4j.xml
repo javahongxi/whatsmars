@@ -55,36 +55,8 @@
 	</appender>
 
 	<!-- 投资人账户数据流变化日志 -->
-	<appender name="FLOW-DATA" class="org.apache.log4j.DailyRollingFileAppender">
+	<appender name="ACCOUNT" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="File" value="${whatsmars.log4j.logger.path}/earth-web/flow-data.log" />
-		<param name="Append" value="true" />
-		<param name="Encoding" value="UTF-8" />
-		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
-		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%d - %m%n" />
-		</layout>
-		<filter class="org.apache.log4j.varia.LevelRangeFilter">
-			<param name="LevelMin" value="INFO" />
-		</filter>
-	</appender>
-
-	<!-- 投资人提现请求接口日志 -->
-	<appender name="WITHDRAW-DATA" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="${whatsmars.log4j.logger.path}/earth-web/withdraw-data.log" />
-		<param name="Append" value="true" />
-		<param name="Encoding" value="UTF-8" />
-		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
-		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%d - %m%n" />
-		</layout>
-		<filter class="org.apache.log4j.varia.LevelRangeFilter">
-			<param name="LevelMin" value="INFO" />
-		</filter>
-	</appender>
-
-	<!-- 投资人充值回调日志 -->
-	<appender name="RECHARGE-DATA" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="${whatsmars.log4j.logger.path}/earth-web/recharge-data.log" />
 		<param name="Append" value="true" />
 		<param name="Encoding" value="UTF-8" />
 		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
@@ -127,19 +99,9 @@
 		<appender-ref ref="FILE-ALL" />
 	</category>
 
-	<category name="flow-data-logger" additivity="false">
+	<category name="account-logger" additivity="false">
 		<level value="${whatsmars.log4j.logger.level}" />
-		<appender-ref ref="FLOW-DATA" />
-	</category>
-
-	<category name="withdraw-data-logger" additivity="false">
-		<level value="${whatsmars.log4j.logger.level}" />
-		<appender-ref ref="WITHDRAW-DATA" />
-	</category>
-
-	<category name="recharge-data-logger" additivity="false">
-		<level value="${whatsmars.log4j.logger.level}" />
-		<appender-ref ref="RECHARGE-DATA" />
+		<appender-ref ref="ACCOUNT" />
 	</category>
 
 	<root>
