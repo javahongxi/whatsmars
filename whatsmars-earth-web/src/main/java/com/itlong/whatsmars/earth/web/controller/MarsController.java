@@ -26,6 +26,7 @@ public class MarsController extends BaseController {
     @Autowired
     private AccountService accountService;
 
+    // ex. http://localhost:8080/account/hello.jhtml?name=lily
     @RequestMapping("/hello")
     @ResponseBody
     public String hello(@RequestParam("name")String name,
