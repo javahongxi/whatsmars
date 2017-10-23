@@ -23,7 +23,7 @@ whatsmars-redis redis客户端简单封装 <br />
 whatsmars-motan weibo分布式RPC框架 demo <br />
 
 ### More Projects
-- Red Spring Cloud [cloud.toutiao.im](http://cloud.toutiao.im)
+- Boot Spring Cloud [cloud.toutiao.im](http://cloud.toutiao.im)
 
 ### Friendship link
 - *技术博客* [www.toutiao.im](http://www.toutiao.im)
