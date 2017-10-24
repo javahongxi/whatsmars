@@ -39,6 +39,11 @@ public class RequestFacade implements ServletRequest {
         return 0;
     }
 
+    @Override
+    public long getContentLengthLong() {
+        return 0;
+    }
+
     public String getContentType() {
         return null;
     }

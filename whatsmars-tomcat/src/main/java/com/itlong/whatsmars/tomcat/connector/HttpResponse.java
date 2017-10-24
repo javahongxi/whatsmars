@@ -145,6 +145,11 @@ public class HttpResponse implements HttpServletResponse {
 
     }
 
+    @Override
+    public void setContentLengthLong(long l) {
+
+    }
+
     public void setContentType(String type) {
 
     }

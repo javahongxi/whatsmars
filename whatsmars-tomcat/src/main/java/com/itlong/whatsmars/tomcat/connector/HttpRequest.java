@@ -1,6 +1,6 @@
 package com.itlong.whatsmars.tomcat.connector;
 
-import org.apache.catalina.util.Enumerator;
+//import org.apache.catalina.util.Enumerator;
 import org.apache.catalina.util.ParameterMap;
 import org.apache.catalina.util.RequestUtil;
 
@@ -79,7 +79,8 @@ public class HttpRequest implements HttpServletRequest {
 
     public Enumeration getParameterNames() {
         parseParameters();
-        return (new Enumerator(parameters.keySet()));
+        //return (new Enumerator(parameters.keySet()));
+        return null;
     }
 
     public String[] getParameterValues(String name) {
@@ -109,7 +110,7 @@ public class HttpRequest implements HttpServletRequest {
         // Parse any parameters specified in the query string
         String queryString = getQueryString();
         try {
-            RequestUtil.parseParameters(results, queryString, encoding);
+            //RequestUtil.parseParameters(results, queryString, encoding);
         } catch (Exception e) {
             ;
         }
@@ -142,7 +143,7 @@ public class HttpRequest implements HttpServletRequest {
                 if (len < max) {
                     throw new RuntimeException("Content length mismatch");
                 }
-                RequestUtil.parseParameters(results, buf, encoding);
+                //RequestUtil.parseParameters(results, buf, encoding);
             } catch (UnsupportedEncodingException ue) {
                 ;
             } catch (IOException e) {
@@ -264,6 +265,11 @@ public class HttpRequest implements HttpServletRequest {
         return null;
     }
 
+    @Override
+    public String changeSessionId() {
+        return null;
+    }
+
     public boolean isRequestedSessionIdValid() {
         return false;
     }
@@ -300,6 +306,11 @@ public class HttpRequest implements HttpServletRequest {
         return null;
     }
 
+    @Override
+    public <T extends HttpUpgradeHandler> T upgrade(Class<T> aClass) throws IOException, ServletException {
+        return null;
+    }
+
     public Object getAttribute(String name) {
         return null;
     }
@@ -318,6 +329,11 @@ public class HttpRequest implements HttpServletRequest {
 
     public int getContentLength() {
         return this.contentLength;
+    }
+
+    @Override
+    public long getContentLengthLong() {
+        return 0;
     }
 
     public String getContentType() {
