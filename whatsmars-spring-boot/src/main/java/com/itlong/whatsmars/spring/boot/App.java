@@ -11,7 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @SpringBootApplication
 // 加上exclude=DataSource..后，不会连接数据库，同时@Mapper也不会起作用
-@EnableAutoConfiguration//(exclude={DataSourceAutoConfiguration.class})
+//@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 @EnableConfigurationProperties({UserConfig.class})
 @ImportResource(locations={"classpath*:spring/*.xml"})
 public class App {
