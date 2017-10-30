@@ -33,8 +33,8 @@ whatsmars-motan weibo分布式RPC框架 demo <br />
 - *码云* [m.toutiao.im](http://m.toutiao.im)
 
 ### Warm tips
-- 带着问题去看源代码，不要想着把源代码看完
-- 看源代码最大的技巧是看英文注释
+- 带着问题去看源代码，没必要把源代码看完
+- 看源代码最大的技巧是看英文注释，另一个技巧是日志+DEBUG
 
 @**火星计划** [**Mars**.toutiao.im](http://mars.toutiao.im)
 
