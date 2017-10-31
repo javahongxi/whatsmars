@@ -12,7 +12,7 @@ whatsmars-javase-example Java基础学习<br />
 whatsmars-spring spring原理、集成及新特性<br />
 whatsmars-tomcat 模拟tomcat实现，嵌入式(embed)tomcat<br />
 whatsmars-dbrouter 分库分表实现<br />
-whatsmars-worker 多实例任务调度<br />
+whatsmars-elasticjob 分布式调度<br />
 whatsmars-dubbo Dubbo demo<br />
 whatsmars-mq rocketmq,activemq<br />
 rocketmq-console rocketmq管理后台<br />

@@ -21,7 +21,7 @@
         <module>whatsmars-spring</module>
         <module>whatsmars-spring-boot</module>
         <module>whatsmars-dbrouter</module>
-        <module>whatsmars-worker</module>
+        <module>whatsmars-elasticjob</module>
         <module>whatsmars-rpc</module>
         <module>whatsmars-dubbo</module>
         <module>whatsmars-mq</module>
