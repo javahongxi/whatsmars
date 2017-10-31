@@ -1,5 +1,6 @@
 package com.itlong.whatsmars.spring;
 
+import com.itlong.whatsmars.spring.model.Mars;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

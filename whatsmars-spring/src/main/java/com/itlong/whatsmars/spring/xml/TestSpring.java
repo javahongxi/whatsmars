@@ -1,9 +1,7 @@
-package com.itlong.whatsmars.spring;
+package com.itlong.whatsmars.spring.xml;
 
+import com.itlong.whatsmars.spring.model.Mars;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.web.context.ContextLoaderListener;
-
-import javax.servlet.ServletContextListener;
 
 /**
  * Created by shenhongxi on 2016/4/7.
@@ -15,12 +13,5 @@ public class TestSpring {
         Mars mars = (Mars) context.getBean("mars");
         System.out.println(mars.getAge());
         System.out.println(mars.getCnName());
-
-        //ServletContextListener contextListener = new ContextLoaderListener();
-        String s = "http://jd.com";
-        System.out.println(s.substring(5, s.length()));
-
-        Integer n = 3;
-        System.out.println("3".equals(n));
     }
 }

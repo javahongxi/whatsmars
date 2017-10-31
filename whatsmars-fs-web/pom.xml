@@ -15,10 +15,6 @@
     <name>${project.artifactId}</name>
     <url>http://maven.apache.org</url>
 
-    <properties>
-        <spring.version>3.2.11.RELEASE</spring.version>
-    </properties>
-
     <!-- 依赖包 -->
     <dependencies>
         <dependency>

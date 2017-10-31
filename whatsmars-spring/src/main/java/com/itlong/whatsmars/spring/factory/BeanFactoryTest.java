@@ -1,6 +1,6 @@
-package com.itlong.whatsmars.spring.bean;
+package com.itlong.whatsmars.spring.factory;
 
-import com.itlong.whatsmars.spring.Mars;
+import com.itlong.whatsmars.spring.model.Mars;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.Resource;
