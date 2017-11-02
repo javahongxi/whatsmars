@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.spring.xml;
+package com.itlong.whatsmars.spring.context;
 
 import com.itlong.whatsmars.spring.model.Mars;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -9,7 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class TestSpring {
 
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-test.xml");
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         Mars mars = (Mars) context.getBean("mars");
         System.out.println(mars.getAge());
         System.out.println(mars.getCnName());

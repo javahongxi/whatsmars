@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.spring.annotation;
+package com.itlong.whatsmars.spring.context.annotation;
 
 import com.itlong.whatsmars.spring.model.Mars;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

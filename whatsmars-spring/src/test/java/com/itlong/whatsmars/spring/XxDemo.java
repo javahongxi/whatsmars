@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * Created by shenhongxi on 2016/7/5.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/spring-test.xml")
+@ContextConfiguration("/applicationContext.xml")
 public class XxDemo {
     @Autowired
     private Mars mars;
