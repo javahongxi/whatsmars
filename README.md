@@ -31,7 +31,7 @@ whatsmars-motan weibo分布式RPC框架 demo <br />
 - *深入一点* [laoda.toutiao.im](http://laoda.toutiao.im)
 - *开涛* [kaitao.toutiao.im](http://kaitao.toutiao.im)
 - *码云* [m.toutiao.im](http://m.toutiao.im)
-- *好书推荐* [book](book/)
+- *好书推荐* [book](book/README.md)
 
 ### Warm tips
 - 带着问题去看源代码，没必要把源代码看完
