@@ -12,7 +12,7 @@ import javax.servlet.ServletContextListener;
 public class ServContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        System.out.println("===============Hello, Server....");
+        System.out.println("================Hello, Server....");
     }
 
     @Override
