@@ -1,8 +1,10 @@
 package com.itlong.whatsmars.earth.web.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,11 +14,13 @@ import java.util.Map;
 @RestController
 public class NewController {
 
-    // ex. http://localhost:8080/t.jhtml
+    // ex. http://localhost:8080/t.jhtml?month=2017-11
     @RequestMapping("/t")
-    public Map<String, String> t() {
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("name", "Lily");
-        return map;
+    public User t(@RequestParam(required = false) Date month) {
+        User user = new User();
+        user.setName("Lily");
+        user.setMonth(month);
+        return user;
     }
 }
+

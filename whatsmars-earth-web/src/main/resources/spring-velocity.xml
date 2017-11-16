@@ -11,8 +11,10 @@
                            http://www.springframework.org/schema/context
                            http://www.springframework.org/schema/context/spring-context-3.2.xsd"
        default-autowire="byName">
-    <!-- -->
-    <mvc:annotation-driven>
+
+    <context:component-scan base-package="com.itlong.whatsmars.earth.web"/>
+
+    <mvc:annotation-driven  conversion-service="conversionService">
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                 <property name = "supportedMediaTypes">
@@ -22,15 +24,22 @@
                     </list>
                 </property>
             </bean>
-
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
         </mvc:message-converters>
     </mvc:annotation-driven>
+
+    <bean id="conversionService"
+          class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="com.itlong.whatsmars.earth.web.converter.StringToDateConverter"/>
+            </list>
+        </property>
+    </bean>
 
     <mvc:resources mapping="/css/**" location="/css/"/>
     <mvc:resources mapping="/js/**" location="/js/"/>
     <mvc:resources mapping="/images/**" location="/images/"/>
-    
-    <context:component-scan base-package="com.itlong.whatsmars.earth.web.controller"/>
 
     <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
         <property name="resourceLoaderPath" value="/WEB-INF/vm"/>
