@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.earth.support.web.service.monitor;
+package com.itlong.whatsmars.spring.aspect;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
