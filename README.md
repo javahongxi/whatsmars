@@ -5,20 +5,20 @@
 <br>Spring Boot 系列(Servlet, Tomcat, Spring, SpringMVC, Spring Boot)
 
 ### Modules intro
-whatsmars-common mongodb,mail,AES,DES加解密<br />
+whatsmars-common mail,HttpUtils,AES,DES加解密<br />
 whatsmars-earth-web springmvc+velocity<br />
-whatsmars-earth-support-web earth工程的辅助工程<br />
+whatsmars-earth-support-web 全局唯一ID生成简单实现<br />
 whatmars-fs-web 用mongodb存储图片和文件<br />
 whatsmars-javase-example Java基础学习<br />
 whatsmars-spring spring原理、集成及新特性<br />
 whatsmars-tomcat 模拟tomcat实现，嵌入式(embed)tomcat<br />
 whatsmars-dbrouter 分库分表实现<br />
 whatsmars-elasticjob 分布式调度<br />
-whatsmars-dubbo Dubbo demo<br />
-whatsmars-mq rocketmq,activemq<br />
+whatsmars-dubbo 阿里分布式RPC框架(服务化)<br />
+whatsmars-mq 消息中间件rocketmq,activemq<br />
 rocketmq-console rocketmq管理后台<br />
-whatsmars-rpc 常用rpc<br />
-whatsmars-spring-boot springboot果然很方便<br />
+whatsmars-rpc RPC & Protocol<br />
+whatsmars-spring-boot springboot实战<br />
 whatsmars-spring-cloud springcloud demo<br />
 whatsmars-redis redis客户端简单封装 <br />
 whatsmars-motan weibo分布式RPC框架 demo <br />
