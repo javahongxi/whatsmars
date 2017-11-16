@@ -4,9 +4,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.itlong.whatsmars.earth.domain.pojo.User;
+
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by javahongxi on 2017/10/22.
@@ -19,7 +19,7 @@ public class NewController {
     public User t(@RequestParam(required = false) Date month) {
         User user = new User();
         user.setName("Lily");
-        user.setMonth(month);
+        user.setCreated(month);
         return user;
     }
 }
