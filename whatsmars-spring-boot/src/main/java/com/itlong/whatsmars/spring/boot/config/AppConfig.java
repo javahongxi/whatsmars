@@ -25,7 +25,7 @@ public class AppConfig {
     private UserConfig userConfig;
 
     @ConditionalOnProperty(value = "api.auth.enable")
-    @Profile({"test", "prod"})
+    @Profile({"dev", "prod"})
     @Configuration
     public static class WebMvcConf extends WebMvcConfigurerAdapter {
 
@@ -33,7 +33,7 @@ public class AppConfig {
         public void addInterceptors(InterceptorRegistry registry) {
             registry.addInterceptor(apiAuthInterceptor())
                     .addPathPatterns("/api/mars/**")
-                    .addPathPatterns("/api/toutiao/**")
+                    .addPathPatterns("/do")
                     .pathMatcher(new AntPathMatcher());
         }
 
