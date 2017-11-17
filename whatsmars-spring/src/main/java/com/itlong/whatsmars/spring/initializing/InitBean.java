@@ -4,7 +4,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by shenhongxi-os on 2017/11/16.
+ * Created by shenhongxi on 2017/11/16.
  */
 @Component
 public class InitBean implements InitializingBean {
