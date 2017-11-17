@@ -5,7 +5,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 
 /**
- * Created by zhaozhong on 2016/8/29.
+ * Created by shenhongxi on 2017/11/16.
  */
 public class BusinessException extends RuntimeException {
 

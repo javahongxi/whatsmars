@@ -20,7 +20,7 @@ import java.util.Map;
 
 /**
  * 异常信息拦截
- * Created by zhaozhong on 2016/8/29.
+ * Created by shenhongxi on 2017/11/16.
  */
 @ControllerAdvice(annotations = { RestController.class, Controller.class})
 public class BusinessExceptionHandler {
