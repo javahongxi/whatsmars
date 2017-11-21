@@ -7,8 +7,8 @@
 
 ### Modules intro
 | Module | Intro |
-| - | - |
-| whatsmars-common | mail,HttpUtils,AES,DES加解密 |
+| :- | :- |
+whatsmars-common | mail,HttpUtils,AES,DES加解密
 whatsmars-earth-web | springmvc+velocity实战
 whatsmars-earth-support-web | 全局唯一ID生成简单实现
 whatmars-fs-web | 用mongodb存储图片和文件
@@ -25,11 +25,6 @@ whatsmars-spring-boot | springboot实战
 whatsmars-spring-cloud | springcloud demo
 whatsmars-redis | redis客户端简单封装
 whatsmars-motan | 微博分布式RPC框架
-
-### Test
-| Module | Intro |
-| - | - |
-| whatsmars-common | mail,HttpUtils,AES,DES加解密 |
 
 ### More Projects
 - [Spring Cloud 微服务生态探索](http://cloud.toutiao.im)
