@@ -6,23 +6,25 @@
 <br>Spring Boot 系列(Servlet, Tomcat, Spring, SpringMVC, Spring Boot)
 
 ### Modules intro
-whatsmars-common mail,HttpUtils,AES,DES加解密<br />
-whatsmars-earth-web springmvc+velocity实战<br />
-whatsmars-earth-support-web 全局唯一ID生成简单实现<br />
-whatmars-fs-web 用mongodb存储图片和文件<br />
-whatsmars-javase-example Java基础学习<br />
-whatsmars-spring spring深入研究<br />
-whatsmars-tomcat 模拟tomcat实现，嵌入式(embed)tomcat<br />
-whatsmars-dbrouter 分库分表实现<br />
-whatsmars-elasticjob 分布式调度<br />
-whatsmars-dubbo 阿里分布式RPC(服务化)框架<br />
-whatsmars-mq 消息中间件rocketmq,activemq<br />
-rocketmq-console rocketmq管理后台<br />
-whatsmars-rpc RPC & Protocol<br />
-whatsmars-spring-boot springboot实战<br />
-whatsmars-spring-cloud springcloud demo<br />
-whatsmars-redis redis客户端简单封装 <br />
-whatsmars-motan 微博分布式RPC框架 <br />
+Module | Intro
+- | -
+whatsmars-common | mail,HttpUtils,AES,DES加解密
+whatsmars-earth-web | springmvc+velocity实战
+whatsmars-earth-support-web | 全局唯一ID生成简单实现
+whatmars-fs-web | 用mongodb存储图片和文件
+whatsmars-javase-example | Java基础学习
+whatsmars-spring | spring深入研究
+whatsmars-tomcat | 模拟tomcat实现，embed tomcat
+whatsmars-dbrouter | 分库分表实现
+whatsmars-elasticjob | 分布式调度
+whatsmars-dubbo | 阿里分布式RPC(服务化)框架
+whatsmars-mq | 消息中间件rocketmq,activemq
+rocketmq-console | rocketmq管理后台
+whatsmars-rpc | RPC & Protocol
+whatsmars-spring-boot | springboot实战
+whatsmars-spring-cloud | springcloud demo
+whatsmars-redis | redis客户端简单封装
+whatsmars-motan | 微博分布式RPC框架
 
 ### More Projects
 - [Spring Cloud 微服务生态探索](http://cloud.toutiao.im)
