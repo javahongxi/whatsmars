@@ -25,7 +25,7 @@ whatsmars-redis redis客户端简单封装 <br />
 whatsmars-motan 微博分布式RPC框架 <br />
 
 ### More Projects
-- Boot Spring Cloud [cloud.toutiao.im](http://cloud.toutiao.im)
+- Spring Cloud 微服务生态探索 [cloud.toutiao.im](http://cloud.toutiao.im)
 
 ### Friendship link
 - *技术博客* [www.toutiao.im](http://wely.iteye.com)
