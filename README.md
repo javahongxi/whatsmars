@@ -30,6 +30,7 @@ whatsmars-motan | 微博分布式RPC框架
 - [Spring Cloud 微服务生态探索](http://cloud.toutiao.im)
 
 ### Friendship link
+- [*阿里巴巴Java开发手册*](https://github.com/alibaba/Alibaba-Java-Coding-Guidelines)
 - *技术博客* [www.toutiao.im](http://wely.iteye.com)
 - *深入一点* [laoda.toutiao.im](http://laoda.toutiao.im)
 - *开涛* [kaitao.toutiao.im](http://kaitao.toutiao.im)
