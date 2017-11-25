@@ -31,7 +31,7 @@ whatsmars-motan | 微博分布式RPC框架
 
 ### Friendship link
 - [*阿里巴巴Java开发手册*](https://github.com/alibaba/Alibaba-Java-Coding-Guidelines)
-- *技术博客* [www.toutiao.im](http://wely.iteye.com)
+- *技术博客* [blog.toutiao.im](http://wely.iteye.com)
 - *深入一点* [laoda.toutiao.im](http://laoda.toutiao.im)
 - *开涛* [kaitao.toutiao.im](http://kaitao.toutiao.im)
 - *码云* [m.toutiao.im](http://m.toutiao.im)
