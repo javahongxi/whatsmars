@@ -1,4 +1,8 @@
-package com.itlong.whatsmars.spring.boot.common.pojo;
+package com.itlong.whatsmars.spring.boot.common;
+
+import com.itlong.whatsmars.spring.boot.common.pojo.ReturnItem;
+import com.itlong.whatsmars.spring.boot.common.pojo.ReturnItems;
+import com.itlong.whatsmars.spring.boot.common.pojo.ReturnMessage;
 
 import java.util.List;
 
