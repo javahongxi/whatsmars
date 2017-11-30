@@ -2,7 +2,7 @@
 
 <br>RocketMQ:<br>
 .properties指定rocketmqHome,namesrvAddr等，依次启动NamesrvStartup,BrokerStartup,Consumer,Producer. <br>
-管理后台：rocketmq-console <br>
+管理后台：https://github.com/apache/rocketmq-externals <br>
 rocketmq原理与实践 http://wely.iteye.com/blog/2392089<br>
 
 <br>ActiveMQ:<br>
