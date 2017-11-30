@@ -1,0 +1,131 @@
+spring:
+  profiles:
+    active: dev
+  thymeleaf:
+    cache: false
+  messages:
+    basename: i18n/messages
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+mybatis:
+  config-location: classpath:mybatis-config.xml
+endpoints:
+  shutdown:
+    enabled: true
+    path: /danger
+    sensitive: true
+management:
+  port: 9900
+  address: 127.0.0.1
+  context-path: /manage
+  security:
+    role: SUPERUSER
+security:
+  user:
+    name: admin
+    password: secret
+api:
+  auth:
+    enabled: true
+
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/wely?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    tomcat:
+      min-idle: 10
+      max-idle: 50
+      max-active: 100
+      max-wait: 100000
+      max-age: 10000
+      test-on-borrow: true
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 5000
+      validation-query: SELECT 1
+server:
+  port: 8081
+  tomcat:
+    uri-encoding: UTF-8
+    basedir: /data/logs/whatsmars-spring-boot
+    accesslog:
+      directory: logs
+      enabled: true
+      pattern: common
+      prefix: access_log
+      suffix: .log
+user:
+  welcome: Hello, World!
+  noFilterUrl: /,/login
+
+---
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/wely?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    tomcat:
+      min-idle: 10
+      max-idle: 50
+      max-active: 100
+      max-wait: 100000
+      max-age: 10000
+      test-on-borrow: true
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 5000
+      validation-query: SELECT 1
+server:
+  port: 8081
+  tomcat:
+    uri-encoding: UTF-8
+    basedir: /data/logs/whatsmars-spring-boot
+    accesslog:
+      directory: logs
+      enabled: true
+      pattern: common
+      prefix: access_log
+      suffix: .log
+user:
+  welcome: Hello, World!
+  noFilterUrl: /,/login
+
+---
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/wely?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    tomcat:
+      min-idle: 10
+      max-idle: 50
+      max-active: 100
+      max-wait: 100000
+      max-age: 10000
+      test-on-borrow: true
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 5000
+      validation-query: SELECT 1
+server:
+  port: 8081
+  tomcat:
+    uri-encoding: UTF-8
+    basedir: /data/logs/whatsmars-spring-boot
+    accesslog:
+      directory: logs
+      enabled: true
+      pattern: common
+      prefix: access_log
+      suffix: .log
+user:
+  welcome: Hello, World!
+  noFilterUrl: /,/login
