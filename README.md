@@ -19,7 +19,6 @@ whatsmars-dbrouter | 分库分表实现
 whatsmars-elasticjob | 分布式调度
 whatsmars-dubbo | 阿里分布式RPC(服务化)框架
 whatsmars-mq | 消息中间件rocketmq,activemq
-rocketmq-console | rocketmq管理后台
 whatsmars-rpc | RPC & Protocol
 whatsmars-spring-boot | springboot实战
 whatsmars-spring-cloud | springcloud demo
