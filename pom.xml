@@ -25,7 +25,6 @@
         <module>whatsmars-rpc</module>
         <module>whatsmars-dubbo</module>
         <module>whatsmars-mq</module>
-        <module>rocketmq-console</module>
         <module>whatsmars-redis</module>
         <module>whatsmars-motan</module>
         <module>whatsmars-spring-cloud</module>
