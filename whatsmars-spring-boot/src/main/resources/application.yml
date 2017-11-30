@@ -27,6 +27,9 @@ security:
 api:
   auth:
     enabled: true
+user:
+  welcome: Hello, World!
+  noFilterUrl: /,/login
 
 ---
 spring:
@@ -58,9 +61,6 @@ server:
       pattern: common
       prefix: access_log
       suffix: .log
-user:
-  welcome: Hello, World!
-  noFilterUrl: /,/login
 
 ---
 spring:
@@ -92,9 +92,6 @@ server:
       pattern: common
       prefix: access_log
       suffix: .log
-user:
-  welcome: Hello, World!
-  noFilterUrl: /,/login
 
 ---
 spring:
@@ -126,6 +123,3 @@ server:
       pattern: common
       prefix: access_log
       suffix: .log
-user:
-  welcome: Hello, World!
-  noFilterUrl: /,/login

@@ -24,7 +24,7 @@ public class AppConfig {
     @Autowired
     private UserConfig userConfig;
 
-    @ConditionalOnProperty(value = "api.auth.enable")
+    @ConditionalOnProperty(value = "api.auth.enabled")
     @Profile({"dev", "prod"})
     @Configuration
     public static class WebMvcConf extends WebMvcConfigurerAdapter {
