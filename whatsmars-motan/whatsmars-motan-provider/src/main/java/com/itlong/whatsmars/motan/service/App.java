@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
-@EnableAutoConfiguration
 @ImportResource(locations={"classpath*:spring/*server.xml"})
 public class App {
 
