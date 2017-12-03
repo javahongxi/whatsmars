@@ -17,7 +17,7 @@
     <properties>
         <!-- The main class to start by executing java -jar -->
         <start-class>com.itlong.whatsmars.motan.service.App</start-class>
-        <motan.version>0.1.1</motan.version>
+        <motan.version>1.0.0</motan.version>
     </properties>
 
     <dependencies>
