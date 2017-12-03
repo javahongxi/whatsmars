@@ -5,3 +5,5 @@
 服务，并在M-S集群中将read操作分流，此时我们的Redis集群将可以支撑更高的QPS。本实例中，仅仅提供了“读写分
 离”的样板，尚未对所有的redis方法进行重写和封装，请开发者后续继续补充即可。此外，slave节点如果异常，我们
 应该支持failover，这一部分特性后续再扩展。
+
+https://github.com/antirez/redis
