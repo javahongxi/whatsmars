@@ -4,7 +4,7 @@
 package com.itlong.whatsmars.dubbo.demo.provider;
 
 import com.alibaba.dubbo.rpc.RpcContext;
-import com.itlong.whatsmars.dubbo.demo.DemoService;
+import com.itlong.whatsmars.dubbo.demo.api.DemoService;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

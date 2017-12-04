@@ -30,7 +30,7 @@
 	<bean id="demoService" class="com.itlong.whatsmars.dubbo.demo.provider.DemoServiceImpl" />
 	<bean id="userService" class="com.itlong.whatsmars.dubbo.demo.provider.UserServiceImpl" />
 
-	<dubbo:service interface="com.itlong.whatsmars.dubbo.demo.DemoService" ref="demoService" />
-	<dubbo:service interface="com.itlong.whatsmars.dubbo.demo.UserService" ref="userService" />
+	<dubbo:service interface="com.itlong.whatsmars.dubbo.demo.api.DemoService" ref="demoService" />
+	<dubbo:service interface="com.itlong.whatsmars.dubbo.demo.api.UserService" ref="userService" />
 
 </beans>
