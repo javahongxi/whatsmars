@@ -8,9 +8,9 @@
                         http://www.springframework.org/schema/context/spring-context-3.2.xsd"
 	default-autowire="byName">
 
-    <context:component-scan base-package="com.itlong.whatsmars.spring.initializing"/>
+    <context:component-scan base-package="com.whatsmars.spring.initializing"/>
 
-    <bean id="mars" class="com.itlong.whatsmars.spring.model.Mars">
+    <bean id="mars" class="com.whatsmars.spring.model.Mars">
         <property name="age" value="45" />
         <property name="cnName" value="火星" />
     </bean>
