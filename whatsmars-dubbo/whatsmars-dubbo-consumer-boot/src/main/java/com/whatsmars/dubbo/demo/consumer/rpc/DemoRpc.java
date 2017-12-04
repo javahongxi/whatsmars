@@ -1,7 +1,7 @@
 package com.whatsmars.dubbo.demo.consumer.rpc;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.itlong.whatsmars.dubbo.demo.api.DemoService;
+import com.whatsmars.dubbo.demo.api.DemoService;
 import org.springframework.stereotype.Component;
 
 /**

@@ -1,7 +1,7 @@
 /**
  * Created by shenhongxi on 2017/6/21.
  */
-package com.itlong.whatsmars.dubbo.demo.provider;
+package com.whatsmars.dubbo.demo.provider;
 
 import java.io.IOException;
 

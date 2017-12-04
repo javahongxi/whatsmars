@@ -1,7 +1,7 @@
 /**
  * Created by shenhongxi on 2017/6/21.
  */
-package com.itlong.whatsmars.dubbo.demo.consumer;
+package com.whatsmars.dubbo.demo.consumer;
 
 public class DemoConsumer {
 	

@@ -1,18 +1,18 @@
 /**
- * Created by shenhongxi on 2017/12/4.
+ * Created by shenhongxi on 2017/6/21.
  */
-package com.whatsmars.dubbo.demo.provider.resource;
+package com.whatsmars.dubbo.demo.provider;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.dubbo.rpc.RpcContext;
 import com.whatsmars.dubbo.demo.api.DemoService;
 import com.whatsmars.dubbo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@Service(version = "1.0.0")
+@Service("demoService")
 public class DemoServiceImpl implements DemoService {
 
     @Autowired

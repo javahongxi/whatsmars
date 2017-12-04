@@ -43,6 +43,11 @@
             <artifactId>zkclient</artifactId>
             <version>0.9</version>
         </dependency>
+        <dependency>
+            <groupId>com.itlong</groupId>
+            <artifactId>whatsmars-dubbo-service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 
