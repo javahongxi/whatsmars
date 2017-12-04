@@ -8,10 +8,10 @@
 	</settings>
 	<typeAliases>
 
-		<typeAlias type="com.ixhong.domain.pojo.LenderAccountDO" alias="LenderAccountDO"/>
+		<typeAlias type="com.whatsmars.earth.domain.pojo.Organization" alias="Organization"/>
 
     </typeAliases>
 	<mappers>
-		<mapper resource="sqlmap/Lender-account-mapper.xml"/>
+		<mapper resource="sqlmap/Organization-mapper.xml"/>
 	</mappers>
 </configuration>
