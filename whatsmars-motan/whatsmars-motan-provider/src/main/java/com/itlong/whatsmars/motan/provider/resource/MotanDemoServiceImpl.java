@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package com.itlong.whatsmars.motan.service.impl;
+package com.itlong.whatsmars.motan.provider.resource;
 
 import com.itlong.whatsmars.motan.api.MotanDemoService;
 import org.springframework.stereotype.Service;

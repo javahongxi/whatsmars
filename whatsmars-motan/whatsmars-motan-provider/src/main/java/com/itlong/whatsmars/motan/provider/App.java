@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.motan.service;
+package com.itlong.whatsmars.motan.provider;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
