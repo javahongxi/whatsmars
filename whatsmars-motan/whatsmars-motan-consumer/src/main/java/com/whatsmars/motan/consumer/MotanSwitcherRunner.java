@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.motan.consumer;
+package com.whatsmars.motan.consumer;
 
 import com.weibo.api.motan.common.MotanConstants;
 import com.weibo.api.motan.util.MotanSwitcherUtil;
