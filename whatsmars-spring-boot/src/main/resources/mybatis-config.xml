@@ -27,7 +27,7 @@
     </settings>
 
     <typeAliases>
-        <typeAlias type="com.itlong.whatsmars.spring.boot.model.User" alias="User" />
+        <typeAlias type="com.whatsmars.spring.boot.model.User" alias="User" />
     </typeAliases>
 
     <plugins>

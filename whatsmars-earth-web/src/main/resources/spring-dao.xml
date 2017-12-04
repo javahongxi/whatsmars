@@ -5,5 +5,5 @@
 	                    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
 	default-autowire="byName">
 
-	<bean id="accountDao" class="com.itlong.whatsmars.earth.dao.impl.AccountDaoImpl" />
+	<bean id="accountDao" class="com.whatsmars.earth.dao.impl.AccountDaoImpl" />
 </beans>

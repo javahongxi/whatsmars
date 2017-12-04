@@ -34,7 +34,7 @@
 
     <!-- 具体referer配置。使用方通过beanid使用服务接口类 -->
     <motan:referer id="motanDemoService"
-                   interface="com.itlong.whatsmars.motan.api.MotanDemoService"
+                   interface="com.whatsmars.motan.api.MotanDemoService"
                    connectTimeout="300" requestTimeout="300" basicReferer="motantestClientBasicConfig"/>
 
 </beans>
