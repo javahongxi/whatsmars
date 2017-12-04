@@ -22,6 +22,7 @@
         <module>whatsmars-dubbo-provider</module>
         <module>whatsmars-dubbo-provider-boot</module>
         <module>whatsmars-dubbo-consumer-boot</module>
+        <module>whatsmars-dubbo-service</module>
     </modules>
 
 

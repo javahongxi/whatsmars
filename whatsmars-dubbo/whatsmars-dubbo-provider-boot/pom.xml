@@ -50,6 +50,11 @@
             <artifactId>whatsmars-dubbo-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.itlong</groupId>
+            <artifactId>whatsmars-dubbo-service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
