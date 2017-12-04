@@ -35,7 +35,7 @@
     <bean id="handlerMapping" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
     </bean>
 
-    <bean id="exceptionResolver" class="com.itlong.whatsmars.earth.support.web.ExceptionHandler"/>
+    <bean id="exceptionResolver" class="com.whatsmars.earth.support.web.ExceptionHandler"/>
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
         <property name="suffix" value=".vm"/>

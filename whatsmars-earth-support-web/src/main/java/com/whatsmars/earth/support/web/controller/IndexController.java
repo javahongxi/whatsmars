@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.earth.support.web.controller;
+package com.whatsmars.earth.support.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

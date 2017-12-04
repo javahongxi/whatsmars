@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.earth.support.web.service.uuid;
+package com.whatsmars.earth.support.web.service.uuid;
 
 import java.io.File;
 import java.io.FileInputStream;
