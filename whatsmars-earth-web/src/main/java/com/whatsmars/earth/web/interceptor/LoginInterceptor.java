@@ -1,10 +1,10 @@
-package com.itlong.whatsmars.earth.web.interceptor;
+package com.whatsmars.earth.web.interceptor;
 
-import com.itlong.whatsmars.common.util.DESUtils;
-import com.itlong.whatsmars.earth.domain.misc.LoginContext;
-import com.itlong.whatsmars.earth.domain.misc.LoginContextHolder;
-import com.itlong.whatsmars.earth.domain.misc.SystemConfig;
-import com.itlong.whatsmars.earth.domain.pojo.User;
+import com.whatsmars.common.util.DESUtils;
+import com.whatsmars.earth.domain.misc.LoginContext;
+import com.whatsmars.earth.domain.misc.LoginContextHolder;
+import com.whatsmars.earth.domain.misc.SystemConfig;
+import com.whatsmars.earth.domain.pojo.User;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;

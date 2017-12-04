@@ -16,10 +16,10 @@
     </tool>
     <tool>
         <key>moneyUtils</key>
-        <class>com.itlong.whatsmars.earth.domain.util.CalculatorUtils</class>
+        <class>com.whatsmars.earth.domain.util.CalculatorUtils</class>
     </tool>
     <tool>
         <key>numberFormatUtils</key>
-        <class>com.itlong.whatsmars.common.util.NumberFormatUtils</class>
+        <class>com.whatsmars.common.util.NumberFormatUtils</class>
     </tool>
 </toolbox>

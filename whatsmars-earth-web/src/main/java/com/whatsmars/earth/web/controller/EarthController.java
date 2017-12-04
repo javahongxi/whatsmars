@@ -1,12 +1,12 @@
-package com.itlong.whatsmars.earth.web.controller;
+package com.whatsmars.earth.web.controller;
 
-import com.itlong.whatsmars.earth.domain.enums.OrganizationLevelEnum;
-import com.itlong.whatsmars.earth.domain.enums.OrganizationStatusEnum;
-import com.itlong.whatsmars.earth.domain.enums.UserTypeEnum;
-import com.itlong.whatsmars.earth.service.OrganizationService;
-import com.itlong.whatsmars.common.pojo.Result;
-import com.itlong.whatsmars.earth.domain.permission.Permission;
-import com.itlong.whatsmars.earth.domain.query.OrganizationQuery;
+import com.whatsmars.earth.domain.enums.OrganizationLevelEnum;
+import com.whatsmars.earth.domain.enums.OrganizationStatusEnum;
+import com.whatsmars.earth.domain.enums.UserTypeEnum;
+import com.whatsmars.earth.service.OrganizationService;
+import com.whatsmars.common.pojo.Result;
+import com.whatsmars.earth.domain.permission.Permission;
+import com.whatsmars.earth.domain.query.OrganizationQuery;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

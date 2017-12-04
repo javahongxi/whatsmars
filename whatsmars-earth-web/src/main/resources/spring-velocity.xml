@@ -12,7 +12,7 @@
                            http://www.springframework.org/schema/context/spring-context-3.2.xsd"
        default-autowire="byName">
 
-    <context:component-scan base-package="com.itlong.whatsmars.earth.web"/>
+    <context:component-scan base-package="com.whatsmars.earth.web"/>
 
     <mvc:annotation-driven  conversion-service="conversionService">
         <mvc:message-converters>
@@ -32,7 +32,7 @@
           class="org.springframework.context.support.ConversionServiceFactoryBean">
         <property name="converters">
             <list>
-                <bean class="com.itlong.whatsmars.earth.web.converter.StringToDateConverter"/>
+                <bean class="com.whatsmars.earth.web.converter.StringToDateConverter"/>
             </list>
         </property>
     </bean>
@@ -54,7 +54,7 @@
     <bean id="handlerMapping" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
     </bean>
 
-    <bean id="exceptionResolver" class="com.itlong.whatsmars.earth.web.ExceptionHandler"/>
+    <bean id="exceptionResolver" class="com.whatsmars.earth.web.ExceptionHandler"/>
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
         <property name="suffix" value=".vm"/>

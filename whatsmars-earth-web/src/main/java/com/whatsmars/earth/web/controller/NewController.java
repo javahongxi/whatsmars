@@ -1,10 +1,10 @@
-package com.itlong.whatsmars.earth.web.controller;
+package com.whatsmars.earth.web.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.itlong.whatsmars.earth.domain.pojo.User;
+import com.whatsmars.earth.domain.pojo.User;
 
 import java.util.Date;
 

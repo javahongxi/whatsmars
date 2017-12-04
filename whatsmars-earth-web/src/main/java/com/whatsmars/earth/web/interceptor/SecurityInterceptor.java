@@ -1,7 +1,7 @@
-package com.itlong.whatsmars.earth.web.interceptor;
+package com.whatsmars.earth.web.interceptor;
 
-import com.itlong.whatsmars.earth.domain.misc.LoginContext;
-import com.itlong.whatsmars.earth.domain.misc.LoginContextHolder;
+import com.whatsmars.earth.domain.misc.LoginContext;
+import com.whatsmars.earth.domain.misc.LoginContextHolder;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 

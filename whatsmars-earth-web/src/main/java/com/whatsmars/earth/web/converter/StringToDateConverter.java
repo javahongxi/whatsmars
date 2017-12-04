@@ -1,9 +1,8 @@
-package com.itlong.whatsmars.earth.web.converter;
+package com.whatsmars.earth.web.converter;
 
-import com.itlong.whatsmars.common.util.DateUtils;
+import com.whatsmars.common.util.DateUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.core.convert.converter.Converter;
-import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.regex.Pattern;

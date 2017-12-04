@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.earth.web;
+package com.whatsmars.earth.web;
 
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
