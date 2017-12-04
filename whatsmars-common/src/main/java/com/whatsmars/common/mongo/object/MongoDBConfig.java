@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.common.mongo.object;
+package com.whatsmars.common.mongo.object;
 
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;

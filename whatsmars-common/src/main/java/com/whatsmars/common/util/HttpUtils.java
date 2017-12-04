@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.common.util;
+package com.whatsmars.common.util;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;

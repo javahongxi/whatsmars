@@ -1,6 +1,6 @@
-package com.itlong.whatsmars.common.util;
+package com.whatsmars.common.util;
 
-import com.itlong.whatsmars.common.pojo.Result;
+import com.whatsmars.common.pojo.Result;
 import org.codehaus.jackson.map.ObjectMapper;
 
 /**

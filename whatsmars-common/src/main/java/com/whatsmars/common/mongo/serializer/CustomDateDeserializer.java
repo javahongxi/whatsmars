@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.common.mongo.serializer;
+package com.whatsmars.common.mongo.serializer;
 
 import org.apache.commons.lang.time.DateUtils;
 import org.codehaus.jackson.JsonParser;

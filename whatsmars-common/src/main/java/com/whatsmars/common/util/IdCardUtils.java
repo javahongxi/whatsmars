@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.common.util;
+package com.whatsmars.common.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

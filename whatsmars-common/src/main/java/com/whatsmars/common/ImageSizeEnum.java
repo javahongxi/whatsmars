@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.common;
+package com.whatsmars.common;
 
 /**
  * Created by liuguanqing on 15/4/20.

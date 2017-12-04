@@ -1,7 +1,7 @@
-package com.itlong.whatsmars.common.util;
+package com.whatsmars.common.util;
 
-import com.itlong.whatsmars.common.pojo.Result;
-import com.itlong.whatsmars.common.pojo.ResultCode;
+import com.whatsmars.common.pojo.Result;
+import com.whatsmars.common.pojo.ResultCode;
 import net.sf.json.JSONObject;
 
 import java.util.Map;
