@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.dbrouter;
+package com.whatsmars.dbrouter;
 
 /**
  * Created by shenhongxi on 2016/7/11.

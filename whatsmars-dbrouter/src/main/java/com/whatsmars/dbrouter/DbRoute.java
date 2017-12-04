@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.dbrouter;
+package com.whatsmars.dbrouter;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
