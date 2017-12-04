@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.springcloud.provider;
+package com.whatsmars.springcloud.provider;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
