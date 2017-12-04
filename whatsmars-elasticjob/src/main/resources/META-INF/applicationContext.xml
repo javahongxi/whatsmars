@@ -13,7 +13,7 @@
                         http://www.dangdang.com/schema/ddframe/job 
                         http://www.dangdang.com/schema/ddframe/job/job.xsd 
                         ">
-    <context:component-scan base-package="com.itlong.whatsmars.job" />
+    <context:component-scan base-package="com.whatsmars.job" />
     <context:property-placeholder location="classpath:conf/*.properties" />
     
     <bean id="elasticJobLog" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
