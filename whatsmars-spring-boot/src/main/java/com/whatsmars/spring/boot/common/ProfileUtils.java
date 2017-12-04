@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.spring.boot.common;
+package com.whatsmars.spring.boot.common;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;

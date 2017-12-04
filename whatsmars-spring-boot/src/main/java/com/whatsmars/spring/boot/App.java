@@ -1,8 +1,7 @@
-package com.itlong.whatsmars.spring.boot;
+package com.whatsmars.spring.boot;
 
-import com.itlong.whatsmars.spring.boot.config.UserConfig;
+import com.whatsmars.spring.boot.config.UserConfig;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.ImportResource;

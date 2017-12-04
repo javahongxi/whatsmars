@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.spring.boot.interceptor;
+package com.whatsmars.spring.boot.interceptor;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;

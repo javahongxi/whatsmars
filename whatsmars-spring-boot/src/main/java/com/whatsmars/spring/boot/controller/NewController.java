@@ -1,6 +1,6 @@
-package com.itlong.whatsmars.spring.boot.controller;
+package com.whatsmars.spring.boot.controller;
 
-import com.itlong.whatsmars.spring.boot.exception.BusinessException;
+import com.whatsmars.spring.boot.exception.BusinessException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,8 +1,8 @@
-package com.itlong.whatsmars.spring.boot.service.impl;
+package com.whatsmars.spring.boot.service.impl;
 
-import com.itlong.whatsmars.spring.boot.dao.UserMapper;
-import com.itlong.whatsmars.spring.boot.model.User;
-import com.itlong.whatsmars.spring.boot.service.UserService;
+import com.whatsmars.spring.boot.dao.UserMapper;
+import com.whatsmars.spring.boot.model.User;
+import com.whatsmars.spring.boot.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

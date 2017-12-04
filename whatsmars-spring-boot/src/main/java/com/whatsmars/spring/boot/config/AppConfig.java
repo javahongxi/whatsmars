@@ -1,6 +1,6 @@
-package com.itlong.whatsmars.spring.boot.config;
+package com.whatsmars.spring.boot.config;
 
-import com.itlong.whatsmars.spring.boot.interceptor.ApiAuthInterceptor;
+import com.whatsmars.spring.boot.interceptor.ApiAuthInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;

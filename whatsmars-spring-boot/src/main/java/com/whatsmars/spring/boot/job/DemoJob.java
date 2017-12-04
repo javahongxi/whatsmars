@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.spring.boot.job;
+package com.whatsmars.spring.boot.job;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;

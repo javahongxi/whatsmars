@@ -1,4 +1,4 @@
-package com.itlong.whatsmars.spring.boot.common.pojo;
+package com.whatsmars.spring.boot.common.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

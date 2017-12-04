@@ -1,8 +1,8 @@
-package com.itlong.whatsmars.spring.boot.controller;
+package com.whatsmars.spring.boot.controller;
 
-import com.itlong.whatsmars.spring.boot.common.LocaleUtils;
-import com.itlong.whatsmars.spring.boot.config.UserConfig;
-import com.itlong.whatsmars.spring.boot.common.LocaleService;
+import com.whatsmars.spring.boot.common.LocaleUtils;
+import com.whatsmars.spring.boot.config.UserConfig;
+import com.whatsmars.spring.boot.common.LocaleService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.AbstractLocaleResolver;
-import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
