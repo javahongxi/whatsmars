@@ -55,7 +55,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.itlong</groupId>
+            <groupId>com.whatsmars</groupId>
             <artifactId>whatsmars-motan-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>

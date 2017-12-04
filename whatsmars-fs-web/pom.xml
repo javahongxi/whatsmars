@@ -5,7 +5,7 @@
 
     <parent>
         <artifactId>whatsmars-parent</artifactId>
-        <groupId>com.itlong</groupId>
+        <groupId>com.whatsmars</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -18,7 +18,7 @@
     <!-- 依赖包 -->
     <dependencies>
         <dependency>
-            <groupId>com.itlong</groupId>
+            <groupId>com.whatsmars</groupId>
             <artifactId>whatsmars-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
