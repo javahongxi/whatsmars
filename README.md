@@ -10,7 +10,7 @@
 | :- | :- |
 whatsmars-common | mail,HttpUtils,AES,DES加解密
 whatsmars-earth-web | springmvc+velocity实战
-whatsmars-earth-support-web | 全局唯一ID生成简单实现
+whatsmars-earth-support-web | earth-web的辅助工程
 whatmars-fs-web | 用mongodb存储图片和文件
 whatsmars-javase-example | Java基础学习
 whatsmars-spring | spring深入研究
