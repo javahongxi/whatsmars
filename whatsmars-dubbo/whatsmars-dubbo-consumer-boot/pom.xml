@@ -35,7 +35,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- bad idea -->
+        <!-- bad idea, just for using the latest version -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
