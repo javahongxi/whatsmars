@@ -37,10 +37,16 @@
             <version>${rocketmq.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.rocketmq/rocketmq-client -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.apache.rocketmq</groupId>
             <artifactId>rocketmq-client</artifactId>
             <version>${rocketmq.version}</version>
+        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/org.apache.rocketmq/spring-boot-starter-rocketmq -->
+        <dependency>
+            <groupId>com.qianmi</groupId>
+            <artifactId>spring-boot-starter-rocketmq</artifactId>
+            <version>1.0.2-RELEASE</version>
         </dependency>
 
         <dependency>
