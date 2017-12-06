@@ -12,7 +12,7 @@ public interface RedisService<T> {
 	 * &#64;return 被删除的记录数
 	 * </pre>
 	 */
-	public long delete(String... keys);
+	long delete(String... keys);
 
 	/**
 	 * <pre>
@@ -22,7 +22,7 @@ public interface RedisService<T> {
 	 * &#64;return 被删除的记录数
 	 * </pre>
 	 */
-	public long delete(Collection<String> keys);
+	long delete(Collection<String> keys);
 
 	/**
 	 * <pre>
@@ -33,7 +33,7 @@ public interface RedisService<T> {
 	 *  &#64;return 添加key value 并且设置存活时间
 	 * </pre>
 	 */
-	public boolean set(byte[] key, byte[] value, long activeTime);
+	boolean set(byte[] key, byte[] value, long activeTime);
 
 	/**
 	 * <pre>
@@ -44,7 +44,7 @@ public interface RedisService<T> {
 	 * &#64;return 添加key value 并且设置存活时间
 	 * </pre>
 	 */
-	public boolean set(String key, String value, long activeTime);
+	boolean set(String key, String value, long activeTime);
 
 	/**
 	 * <pre>
@@ -54,7 +54,7 @@ public interface RedisService<T> {
 	 *  &#64;return 添加key value
 	 * </pre>
 	 */
-	public boolean set(String key, String value);
+	boolean set(String key, String value);
 
 	/**
 	 * <pre>
@@ -64,9 +64,9 @@ public interface RedisService<T> {
 	 *  &#64;return 添加key value
 	 * </pre>
 	 */
-	public boolean set(byte[] key, byte[] value);
+	boolean set(byte[] key, byte[] value);
 	
-	public boolean set(byte[] key, T value, long activeTime);
+	boolean set(byte[] key, T value, long activeTime);
 
 	/**
 	 * <pre>
@@ -75,11 +75,11 @@ public interface RedisService<T> {
 	 * &#64;return 获得value
 	 * </pre>
 	 */
-	public String get(String key);
+	String get(String key);
 	
-	public T getObject(String key, Class<T> c);
+	T getObject(String key, Class<T> c);
 	
-	public byte[] getB(String key);
+	byte[] getB(String key);
 
 	/**
 	 * <pre>
@@ -88,7 +88,7 @@ public interface RedisService<T> {
 	 * &#64;return 通过正则匹配keys
 	 * </pre>
 	 */
-	public Set<String> matchKeys(String pattern);
+	Set<String> matchKeys(String pattern);
 
 	/**
 	 * <pre>
@@ -97,7 +97,7 @@ public interface RedisService<T> {
 	 * &#64;return 检查key是否已经存在
 	 * </pre>
 	 */
-	public boolean exists(String key);
+	boolean exists(String key);
 
 	/**
 	 * <pre>
@@ -105,9 +105,9 @@ public interface RedisService<T> {
 	 * &#64;return 清空所有数据
 	 * </pre>
 	 */
-	public boolean flushDB();
+	boolean flushDB();
 
     void pubMsg(String channel, Object obj);
 
-    public Set<String> getSet(String key);
+    Set<String> getSet(String key);
 }

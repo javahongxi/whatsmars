@@ -4,17 +4,17 @@ import java.util.List;
 
 public interface RedisListService {
 
-	public long rpush(byte[] key, byte[]... values);
+	long rpush(byte[] key, byte[]... values);
 
-	public long rpush(String key, byte[]... values);
+	long rpush(String key, byte[]... values);
 	
-	public List<byte[]> lrange(byte[] key, long begin, long end);
+	List<byte[]> lrange(byte[] key, long begin, long end);
 	
-	public List<byte[]> lrange(String key, long begin, long end);
+	List<byte[]> lrange(String key, long begin, long end);
 	
-	public List<byte[]> lrange(String key);
+	List<byte[]> lrange(String key);
 	
-	public long del(byte[] key);
+	long del(byte[] key);
 	
-	public long del(String key);
+	long del(String key);
 }
