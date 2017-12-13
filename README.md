@@ -43,4 +43,4 @@ whatsmars-motan | 微博分布式RPC框架
 - 带着问题去看源代码，没必要把源代码看完
 - 看源代码最大的技巧是看英文注释，另一个技巧是日志+DEBUG
 
-@ [**toutiao.im**](http://toutiao.im) | [typora.io](https://typora.io)
+&copy; javahongxi | [**toutiao.im**](http://toutiao.im) | [typora.io](https://typora.io)
