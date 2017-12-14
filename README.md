@@ -27,7 +27,7 @@ whatsmars-motan | 微博分布式RPC框架
 
 *[motan](https://github.com/weibocom/motan)属于轻量级[dubbo](https://github.com/alibaba/dubbo)，易入手，建议学习dubbo先从motan开始*
 
-### More Projects
+### More projects&ensp; \[[more](https://github.com/javahongxi/javahongxi.github.io/blob/master/project/index.md)]
 - [Spring Cloud 微服务生态探索](http://cloud.toutiao.im)
 
 ### Friendship links
