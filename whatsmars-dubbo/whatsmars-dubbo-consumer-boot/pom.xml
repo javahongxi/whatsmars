@@ -16,7 +16,7 @@
     <properties>
         <!-- The main class to start by executing java -jar -->
         <start-class>com.whatsmars.dubbo.demo.consumer.App</start-class>
-        <dubbo.version>2.5.7</dubbo.version>
+        <dubbo.version>2.5.8</dubbo.version>
     </properties>
 
     <dependencies>
