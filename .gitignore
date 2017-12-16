@@ -6,6 +6,9 @@
 whatsmars-*/.settings
 whatsmars-*/target
 whatsmars-*/bin
+whatsmars-*/whatsmars-*/.settings
+whatsmars-*/whatsmars-*/target
+whatsmars-*/whatsmars-*/bin
 .settings
 *.iws
 *.iml
