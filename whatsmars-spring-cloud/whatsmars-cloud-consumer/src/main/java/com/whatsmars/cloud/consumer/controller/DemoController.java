@@ -1,6 +1,6 @@
-package com.whatsmars.springcloud.consumer.controller;
+package com.whatsmars.cloud.consumer.controller;
 
-import com.whatsmars.springcloud.consumer.feign.DemoFeign;
+import com.whatsmars.cloud.consumer.feign.DemoFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

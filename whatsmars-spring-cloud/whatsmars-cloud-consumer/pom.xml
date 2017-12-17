@@ -13,13 +13,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.whatsmars</groupId>
-    <artifactId>whatsmars-springcloud-consumer</artifactId>
+    <artifactId>whatsmars-cloud-consumer</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
 
     <properties>
-        <start-class>com.whatsmars.springcloud.consumer.ConsumerApplication</start-class>
+        <start-class>com.whatsmars.cloud.consumer.ConsumerApplication</start-class>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.7</java.version>

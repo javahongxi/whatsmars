@@ -1,4 +1,4 @@
-package com.whatsmars.springcloud.consumer;
+package com.whatsmars.cloud.consumer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

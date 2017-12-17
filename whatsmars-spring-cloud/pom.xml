@@ -15,7 +15,7 @@
     <name>${project.artifactId}</name>
     <description>The demo module of springcloud project</description>
     <modules>
-        <module>whatsmars-springcloud-consumer</module>
+        <module>whatsmars-cloud-consumer</module>
         <module>whatsmars-cloud-eureka</module>
         <module>whatsmars-cloud-provider</module>
     </modules>
