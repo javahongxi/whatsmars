@@ -26,7 +26,6 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:sqlmap-config.xml"></property>
-		<!-- <property name="dataSource" ref="dataSource" /> -->
 	</bean>
 	<bean name="jdbcTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		 <property name="dataSource" ref="dataSource"/>
@@ -38,7 +37,6 @@
         <property name="timeout" value="30"/>
     </bean>
 
-	<!-- core api -->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>

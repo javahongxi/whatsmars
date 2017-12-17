@@ -72,16 +72,16 @@
             </map>
         </property>
     </bean>
-    <!--<mvc:interceptors>
+    <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**" />
-            <bean class="LoginInterceptor" />
+            <bean class="com.whatsmars.earth.web.interceptor.LoginInterceptor" />
         </mvc:interceptor>
         <mvc:interceptor>
             <mvc:mapping path="/account/**" />
             <mvc:exclude-mapping path="/lender/recharge_callback.jhtml"/>
-            <bean class="SecurityInterceptor" />
+            <bean class="com.whatsmars.earth.web.interceptor.SecurityInterceptor" />
         </mvc:interceptor>
 
-    </mvc:interceptors>-->
+    </mvc:interceptors>
 </beans>
