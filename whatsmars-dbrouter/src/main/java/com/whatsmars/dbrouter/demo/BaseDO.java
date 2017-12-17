@@ -1,5 +1,7 @@
 package com.whatsmars.dbrouter.demo;
 
+import com.whatsmars.dbrouter.DbContext;
+
 /**
  * Created by shenhongxi on 16/7/16.
  */
@@ -28,10 +30,12 @@ public class BaseDO {
     }
 
     public String getTableIndex() {
-        return tableIndex;
+        if (tableIndex != null && !"".equals(tableIndex)) return tableIndex;
+        return DbContext.getTableIndex();
     }
 
     public void setTableIndex(String tableIndex) {
         this.tableIndex = tableIndex;
+        DbContext.setTableIndex(tableIndex);
     }
 }

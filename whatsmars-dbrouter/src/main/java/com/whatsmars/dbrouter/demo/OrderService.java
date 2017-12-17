@@ -1,5 +1,6 @@
 package com.whatsmars.dbrouter.demo;
 
+import com.whatsmars.dbrouter.DbContext;
 import com.whatsmars.dbrouter.DbRoute;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,8 @@ public class OrderService {
         order.setUserId(req.getUserId());
         order.setOrderId(order.getUserId() + System.currentTimeMillis());
         order.setAmount(req.getAmount());
+        System.out.println(DbContext.getDbKey() + ":" + DbContext.getTableIndex());
+        order.setTableIndex(DbContext.getTableIndex());
         orderDao.insert(order);
     }
 }

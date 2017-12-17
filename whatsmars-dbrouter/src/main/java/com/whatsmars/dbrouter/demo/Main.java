@@ -1,6 +1,5 @@
 package com.whatsmars.dbrouter.demo;
 
-import com.whatsmars.dbrouter.DbContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -18,6 +17,5 @@ public class Main {
         addOrderReq.setUserId("jd123456789");
         addOrderReq.setAmount(new BigDecimal(1000));
         orderService.addOrder(addOrderReq);
-        System.out.println(DbContext.getDbKey() + ":" + DbContext.getTableIndex());
     }
 }
