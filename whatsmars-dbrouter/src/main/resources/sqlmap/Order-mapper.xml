@@ -7,7 +7,7 @@
 	</sql>
 
     <select id="insert" parameterType="Order">
-        insert into order_#{tableIndex} (userId,orderId,amount) values (#{userId}, #{orderId}, #{amount})
+        insert into order_${tableIndex} (userId,orderId,amount) values (#{userId}, #{orderId}, #{amount})
     </select>
 
 </mapper>
