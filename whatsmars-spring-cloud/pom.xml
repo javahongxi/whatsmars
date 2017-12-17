@@ -18,6 +18,8 @@
         <module>whatsmars-springcloud-eureka</module>
         <module>whatsmars-springcloud-provider</module>
         <module>whatsmars-springcloud-consumer</module>
+        <module>whatsmars-cloud-eureka</module>
+        <module>whatsmars-cloud-provider</module>
     </modules>
     <properties>
         <skip_maven_deploy>true</skip_maven_deploy>
