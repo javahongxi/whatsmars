@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
  * Created by shenhongxi on 16/7/16.
  */
 @Service("orderService")
-public class OrderServiceImpl {
+public class OrderService {
 
     @Autowired
     private OrderDao orderDao;

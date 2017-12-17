@@ -8,8 +8,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
@@ -17,21 +15,18 @@ import java.lang.reflect.Method;
 @Aspect
 @Component
 public class DbRouteInterceptor {
-    private static final Logger log = LoggerFactory.getLogger(DbRouteInterceptor.class);
     private DbRouter dbRouter;
   
-    public DbRouteInterceptor() {
-    }  
+    public DbRouteInterceptor() {}
   
-    @Pointcut("@annotation(com.itlong.bjxizhan.support.web.service.dbrouter.DbRoute)")
-    public void aopPoint() {  
-    }  
+    @Pointcut("@annotation(com.whatsmars.dbrouter.DbRoute)")
+    public void aopPoint() {}
   
     @Before("aopPoint()")
     public Object doRoute(JoinPoint jp) throws Throwable {
         boolean result = true;
         Method method = this.getMethod(jp);
-        DbRoute dbRoute = (DbRoute)method.getAnnotation(DbRoute.class);
+        DbRoute dbRoute = method.getAnnotation(DbRoute.class);
         String routeField = dbRoute.field();  // userId
         Object[] args = jp.getArgs();  
         if(args != null && args.length > 0) {  

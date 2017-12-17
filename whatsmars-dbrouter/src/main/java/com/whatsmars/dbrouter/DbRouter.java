@@ -8,14 +8,13 @@ import org.springframework.util.StringUtils;
 public class DbRouter {
 
     public void route(String fieldId) {
-        if(StringUtils.isEmpty(fieldId)) {
+        if (StringUtils.isEmpty(fieldId)) {
             throw new IllegalArgumentException("dbsCount and tablesCount must be both positive!");
         } else {
-            // base64编码得到的字符串取hashcode
-            int routeFieldInt = RouteUtils.getResourceCode(fieldId);
+            int routeFieldInt = fieldId.hashCode();
             // 分库又分表
-            int dbs = 6;
-            int tbs = 200;
+            int dbs = 2;
+            int tbs = 2;
             int mode = dbs * tbs;
             Integer dbIndex = routeFieldInt % mode / tbs;
             Integer tableIndex = routeFieldInt % tbs;

@@ -11,9 +11,9 @@
 
 	<bean id="dataSource1" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="${bjxizhan.jdbc.mysql.url}?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true"></property>
-		<property name="username" value="${bjxizhan.jdbc.mysql.username}"></property>
-		<property name="password" value="${bjxizhan.jdbc.mysql.password}"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/demo_ds_0?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true"></property>
+		<property name="username" value="${whatsmars.jdbc.mysql.username}"></property>
+		<property name="password" value="${whatsmars.jdbc.mysql.password}"></property>
 		<property name="maxActive" value="${dbcp.maxActive}"></property>
 		<property name="maxIdle" value="${dbcp.maxIdle}"></property>
 		<property name="minIdle" value="${dbcp.minIdle}"></property>
@@ -25,9 +25,9 @@
 
 	<bean id="dataSource2" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="${bjxizhan.jdbc.mysql.url}?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true"></property>
-		<property name="username" value="${bjxizhan.jdbc.mysql.username}"></property>
-		<property name="password" value="${bjxizhan.jdbc.mysql.password}"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/demo_ds_1?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true"></property>
+		<property name="username" value="${whatsmars.jdbc.mysql.username}"></property>
+		<property name="password" value="${whatsmars.jdbc.mysql.password}"></property>
 		<property name="maxActive" value="${dbcp.maxActive}"></property>
 		<property name="maxIdle" value="${dbcp.maxIdle}"></property>
 		<property name="minIdle" value="${dbcp.minIdle}"></property>
