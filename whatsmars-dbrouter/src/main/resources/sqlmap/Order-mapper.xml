@@ -6,8 +6,8 @@
 		id,userId,orderId,amount
 	</sql>
 
-    <select id="insert" resultType="Order">
-        insert into order_$tableIndex$(userId,orderId,amount) values(#userId#,#orderId#,#amount#)
+    <select id="insert" parameterType="Order">
+        insert into order_#tableIndex#(userId,orderId,amount) values(#{userId}, #{orderId}, #{amount})
     </select>
 
 </mapper>

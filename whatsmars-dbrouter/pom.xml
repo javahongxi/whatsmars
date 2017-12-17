@@ -13,9 +13,13 @@
 
     <dependencies>
         <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
-            <version>3.2.7</version>
+            <version>${ibatis.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-dbcp</groupId>
