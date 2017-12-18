@@ -2,6 +2,7 @@ package com.whatsmars.spring.boot.controller;
 
 import com.whatsmars.spring.boot.exception.BusinessException;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,10 +16,10 @@ import java.util.Map;
 @RequestMapping("/new")
 public class NewController {
 
-    @RequestMapping("/t")
-    public Map<String, Object> t() {
+    @RequestMapping(value = "/t", method = RequestMethod.POST)
+    public Map<String, Object> t(@RequestParam(name = "domain") String domain) {
         Map<String, Object> m = new HashMap<String, Object>();
-        m.put("domain", "toutiao.im");
+        m.put("domain", domain);
         return m;
     }
 

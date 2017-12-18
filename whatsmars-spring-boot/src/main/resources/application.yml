@@ -50,6 +50,10 @@ spring:
       test-while-idle: true
       time-between-eviction-runs-millis: 5000
       validation-query: SELECT 1
+#  data:
+#    mongodb:
+#      uri: mongodb://mongo:123456@127.0.0.1:7980/admin
+#      database: test
 server:
   port: 8081
   tomcat:
