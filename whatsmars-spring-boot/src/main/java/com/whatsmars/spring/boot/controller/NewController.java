@@ -16,10 +16,10 @@ import java.util.Map;
 @RequestMapping("/new")
 public class NewController {
 
-    @RequestMapping(value = "/t", method = RequestMethod.POST)
-    public Map<String, Object> t(@RequestParam(name = "domain") String domain) {
+    @RequestMapping("/t")
+    public Map<String, Object> t() {
         Map<String, Object> m = new HashMap<String, Object>();
-        m.put("domain", domain);
+        m.put("domain", "toutiao.im");
         return m;
     }
 
