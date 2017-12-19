@@ -50,8 +50,6 @@ whatsmars-motan | 微博分布式RPC框架
 - *技术博客* [blog.toutiao.im](http://blog.toutiao.im)
 - *深入一点* [laoda.toutiao.im](http://laoda.toutiao.im)
 - *开涛* [kaitao.toutiao.im](http://kaitao.toutiao.im)
-- *码云* [m.toutiao.im](http://m.toutiao.im)
-- *好书推荐* [book.toutiao.im](book/README.md)
 - *阿里云开发者中心* [dev.toutiao.im](http://dev.toutiao.im)
 
 ### Warm tips
