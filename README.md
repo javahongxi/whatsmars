@@ -13,7 +13,7 @@ whatsmars-earth-web | springmvc+velocity实战
 whatsmars-earth-support-web | earth-web的辅助工程
 whatmars-fs-web | 用mongodb存储图片和文件
 whatsmars-javase-example | Java基础学习
-whatsmars-spring | spring深入研究
+whatsmars-spring | spring原理、集成及新特性
 whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 whatsmars-dbrouter | 分库分表实现
 whatsmars-sharding-jdbc | 开源分布式数据库中间件

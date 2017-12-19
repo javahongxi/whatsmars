@@ -20,7 +20,7 @@ public class BeanFactoryTest {
 
     private static void testXml() {
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        Resource res = resolver.getResource("classpath:applicationContext.xml");
+        Resource res = resolver.getResource("classpath:spring-context.xml");
         BeanFactory bf = new XmlBeanFactory(res);
         System.out.println("init BeanFactory");
 
@@ -30,7 +30,7 @@ public class BeanFactoryTest {
 
     private static void testDefault() {
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        Resource res = resolver.getResource("classpath:applicationContext.xml");
+        Resource res = resolver.getResource("classpath:spring-context.xml");
         DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
         XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(bf);
         reader.loadBeanDefinitions(res);

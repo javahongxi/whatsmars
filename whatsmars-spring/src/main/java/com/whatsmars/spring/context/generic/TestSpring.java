@@ -13,7 +13,7 @@ public class TestSpring {
     public static void main(String[] args) {
         GenericApplicationContext ctx = new GenericApplicationContext();
         XmlBeanDefinitionReader xmlReader = new XmlBeanDefinitionReader(ctx);
-        xmlReader.loadBeanDefinitions(new ClassPathResource("applicationContext.xml"));
+        xmlReader.loadBeanDefinitions(new ClassPathResource("spring-context.xml"));
         PropertiesBeanDefinitionReader propReader = new PropertiesBeanDefinitionReader(ctx);
         propReader.loadBeanDefinitions(new ClassPathResource("otherBeans.properties"));
         ctx.refresh();
