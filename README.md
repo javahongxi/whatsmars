@@ -6,8 +6,8 @@
 <br>Spring Boot 系列(Servlet, Tomcat, Spring, SpringMVC, Spring Boot)
 
 ### Modules intro
-| Module | Intro |
-| :- | :- |
+Module | Intro
+- | -
 whatsmars-common | mail,HttpUtils,AES,DES加解密
 whatsmars-earth-web | springmvc+velocity实战
 whatsmars-earth-support-web | earth-web的辅助工程
