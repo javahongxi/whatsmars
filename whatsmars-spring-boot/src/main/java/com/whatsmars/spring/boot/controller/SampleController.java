@@ -49,7 +49,7 @@ public class SampleController {
         return localeResolver;
     }
 
-    @RequestMapping("/changeLang")
+    @RequestMapping(value = "/changeLang", method = RequestMethod.POST)
     @ResponseBody
     public String changeLang(HttpServletRequest request, HttpServletResponse response, @RequestParam String lang){
         LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);
