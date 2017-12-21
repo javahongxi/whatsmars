@@ -23,15 +23,15 @@ import java.util.Map;
  * Created by shenhongxi on 2017/11/16.
  */
 @ControllerAdvice(annotations = { RestController.class, Controller.class})
-public class BusinessExceptionHandler {
+public class AppExceptionHandler {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
      * 业务异常处理，直接返回异常信息提示
      */
-    @ExceptionHandler(BusinessException.class)
-    public ResponseEntity<ReturnItem> businessExceptionHandle(BusinessException exception, HttpServletRequest request) {
+    @ExceptionHandler(AppException.class)
+    public ResponseEntity<ReturnItem> businessExceptionHandle(AppException exception, HttpServletRequest request) {
         logError(exception, request, LogLevel.WARN);
         return new ResponseEntity<ReturnItem>(exception.toResultItem(), HttpStatus.OK);
     }
@@ -42,7 +42,7 @@ public class BusinessExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ReturnItem> defaultExceptionHandle(Exception exception, HttpServletRequest request) {
         logError(exception, request, LogLevel.ERROR);
-        return new ResponseEntity<ReturnItem>(new ReturnItem(BusinessException.Code.ERROR.getValue(), ProfileUtils.isDev() ? exception.getMessage() : ReturnMessage.Message.OPERATION_ERROR.getValue()), HttpStatus.OK);
+        return new ResponseEntity<ReturnItem>(new ReturnItem(AppException.Code.ERROR.getValue(), ProfileUtils.isDev() ? exception.getMessage() : ReturnMessage.Message.OPERATION_ERROR.getValue()), HttpStatus.OK);
     }
 
 

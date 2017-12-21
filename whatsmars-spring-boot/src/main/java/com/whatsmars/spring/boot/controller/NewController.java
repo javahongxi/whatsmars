@@ -1,6 +1,6 @@
 package com.whatsmars.spring.boot.controller;
 
-import com.whatsmars.spring.boot.exception.BusinessException;
+import com.whatsmars.spring.boot.exception.AppException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,7 +47,7 @@ public class NewController {
 
     @RequestMapping(value = "/e", method = RequestMethod.GET)
     public HttpStatus e(@RequestParam(required = false) String error) {
-        if (error != null) throw BusinessException.build(error);
+        if (error != null) throw AppException.build(error);
         return HttpStatus.OK;
     }
 }
