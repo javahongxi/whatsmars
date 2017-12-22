@@ -21,6 +21,7 @@
     </modules>
     <properties>
         <skip_maven_deploy>true</skip_maven_deploy>
+        <spring-cloud.version>Dalston.RC1</spring-cloud.version>
     </properties>
 
 

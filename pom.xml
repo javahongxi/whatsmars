@@ -28,6 +28,7 @@
     </modules>
 
     <properties>
+        <spring-boot.version>1.5.2.RELEASE</spring-boot.version>
         <spring.version>4.3.7.RELEASE</spring.version>
         <ibatis.version>3.2.7</ibatis.version>
 

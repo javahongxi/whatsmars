@@ -16,6 +16,7 @@
     <description>The demo module of motan project</description>
     <properties>
         <skip_maven_deploy>true</skip_maven_deploy>
+        <motan.version>1.0.0</motan.version>
     </properties>
     <modules>
         <module>whatsmars-motan-api</module>
