@@ -25,6 +25,7 @@
         <module>whatsmars-spring-cloud</module>
         <module>whatsmars-sharding-jdbc</module>
         <module>whatsmars-earth</module>
+        <module>whatsmars-spring-boot-samples</module>
     </modules>
 
     <properties>
