@@ -14,21 +14,25 @@
     <name>${project.artifactId}</name>
     <url>http://maven.apache.org</url>
 
+    <properties>
+        <grpc.version>1.0.0</grpc.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-netty</artifactId>
-            <version>1.0.0</version>
+            <version>${grpc.version}</version>
         </dependency>
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-protobuf</artifactId>
-            <version>1.0.0</version>
+            <version>${grpc.version}</version>
         </dependency>
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-stub</artifactId>
-            <version>1.0.0</version>
+            <version>${grpc.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.mina</groupId>

@@ -19,11 +19,9 @@
     <properties>
         <!-- The main class to start by executing java -jar -->
         <start-class>com.whatsmars.spring.boot.App</start-class>
-        <motan.version>0.1.1</motan.version>
         <springfox.swagger2.version>2.5.0</springfox.swagger2.version>
         <google.gson.version>2.8.0</google.gson.version>
         <google.guava.version>20.0</google.guava.version>
-        <fastjson_version>1.2.31</fastjson_version>
     </properties>
 
     <dependencyManagement>
@@ -117,10 +115,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+        </dependency>
         <dependency>
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>
-            <version>1.4</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
@@ -171,7 +173,6 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>${fastjson_version}</version>
         </dependency>
 
         <!--<dependency>

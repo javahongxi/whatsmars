@@ -32,7 +32,6 @@
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
-            <version>${ibatis.version}</version>
         </dependency>
     </dependencies>
 
