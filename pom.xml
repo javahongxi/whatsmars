@@ -50,6 +50,8 @@
         <commons-beanutils.version>1.9.3</commons-beanutils.version>
         <fastjson.version>1.2.31</fastjson.version>
         <aspectj.version>1.8.13</aspectj.version>
+        <httpcomponents.version>4.3.2</httpcomponents.version>
+        <guava.version>18.0</guava.version>
         <junit.version>4.11</junit.version>
 
         <!-- for maven compiler&resources plugin -->
@@ -244,6 +246,25 @@
                         <artifactId>servlet-api</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+
+            <!-- guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <!-- httpcomponents -->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpcomponents.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpmime</artifactId>
+                <version>${httpcomponents.version}</version>
             </dependency>
 
             <!-- test -->
