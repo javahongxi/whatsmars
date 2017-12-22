@@ -30,6 +30,12 @@
     <properties>
         <spring.version>4.3.7.RELEASE</spring.version>
         <ibatis.version>3.2.7</ibatis.version>
+
+        <!-- for maven compiler&resources plugin -->
+        <java-source.version>1.6</java-source.version>
+        <java-target.version>1.6</java-target.version>
+        <file-encoding>UTF-8</file-encoding>
+
         <rootdir>${basedir}</rootdir>
     </properties>
 
@@ -163,27 +169,26 @@
         </dependencies>
     </dependencyManagement>
 
-    <!--<scm>
-        <connection>scm:git:git@git.whatsmars.com:whatsmars/mars001.git</connection>
-        <url>scm:git:git@git.whatsmars.com:whatsmars/mars001.git</url>
-        <developerConnection>scm:git:git@git.whatsmars.com:whatsmars/mars001.git</developerConnection>
-    </scm>-->
+    <scm>
+        <url>https://github.com/javahongxi/whatsmars</url>
+        <connection>https://github.com/javahongxi/whatsmars.git</connection>
+    </scm>
     <build>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                    <encoding>UTF-8</encoding>
+                    <source>${java-source.version}</source>
+                    <target>${java-target.version}</target>
+                    <encoding>${file-encoding}</encoding>
                 </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.6</version>
                 <configuration>
-                    <encoding>UTF-8</encoding>
+                    <encoding>${file-encoding}</encoding>
                 </configuration>
             </plugin>
             <plugin>
