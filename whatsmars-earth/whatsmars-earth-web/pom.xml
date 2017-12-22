@@ -119,7 +119,7 @@
             </activation>
             <build>
                 <filters>
-                    <filter>../profile/development.properties</filter>
+                    <filter>../../profile/development.properties</filter>
                 </filters>
             </build>
         </profile>
@@ -127,7 +127,7 @@
             <id>test</id>
             <build>
                 <filters>
-                    <filter>../profile/test.properties</filter>
+                    <filter>../../profile/test.properties</filter>
                 </filters>
             </build>
         </profile>
@@ -135,7 +135,7 @@
             <id>production</id>
             <build>
                 <filters>
-                    <filter>../profile/production.properties</filter>
+                    <filter>../../profile/production.properties</filter>
                 </filters>
             </build>
         </profile>

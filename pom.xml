@@ -10,12 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>whatsmars-common</module>
-        <module>whatsmars-earth-domain</module>
-        <module>whatsmars-earth-dao</module>
-        <module>whatsmars-earth-service</module>
-        <module>whatsmars-earth-web</module>
         <module>whatsmars-fs-web</module>
-        <module>whatsmars-earth-support-web</module>
         <module>whatsmars-tomcat</module>
         <module>whatsmars-javase-example</module>
         <module>whatsmars-spring</module>
@@ -29,6 +24,7 @@
         <module>whatsmars-motan</module>
         <module>whatsmars-spring-cloud</module>
         <module>whatsmars-sharding-jdbc</module>
+        <module>whatsmars-earth</module>
     </modules>
 
     <properties>
