@@ -19,11 +19,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
-    public UserServiceImpl() {
-        logger.info("UserServiceImpl init...");
-        System.out.println("UserServiceImpl init...");
-    }
-
     @Override
     public User findByUsername(String username) {
         return userMapper.findByUsername(username);
@@ -32,5 +27,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public void add(User user) {
         userMapper.insert(user);
+        logger.info("add user success, username: {}", user.getUsername());
     }
 }

@@ -2,7 +2,7 @@
 <configuration status="debug">
 
     <properties>
-        <property name="logPath">/data/logs/whatsmars-spring-boot</property>
+        <property name="log.path">/data/logs/whatsmars-spring-boot</property>
     </properties>
 
     <appenders>
@@ -14,8 +14,8 @@
             <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%p] [%t] - [%X{sid}] %c{1.} - %m%n"/>
         </console>
 
-        <RollingFile name="RollingFileDebug" fileName="${logPath}/debug.log"
-                     filePattern="${logPath}/$${date:yyyy-MM-dd}/debug-%d{yyyy-MM-dd}-%i.log">
+        <RollingFile name="RollingFileDebug" fileName="${log.path}/debug.log"
+                     filePattern="${log.path}/$${date:yyyy-MM-dd}/debug-%d{yyyy-MM-dd}-%i.log">
             <Filters>
                 <ThresholdFilter level="INFO" onMatch="DENY"
                                  onMismatch="ACCEPT"/>
@@ -29,8 +29,8 @@
             </Policies>
         </RollingFile>
 
-        <RollingFile name="RollingFileInfo" fileName="${logPath}/info.log"
-                     filePattern="${logPath}/$${date:yyyy-MM-dd}/info-%d{yyyy-MM-dd}-%i.log">
+        <RollingFile name="RollingFileInfo" fileName="${log.path}/info.log"
+                     filePattern="${log.path}/$${date:yyyy-MM-dd}/info-%d{yyyy-MM-dd}-%i.log">
             <Filters>
                 <ThresholdFilter level="INFO"/>
                 <ThresholdFilter level="WARN" onMatch="DENY"
@@ -43,8 +43,8 @@
             </Policies>
         </RollingFile>
 
-        <RollingFile name="RollingFileWarn" fileName="${logPath}/warn.log"
-                     filePattern="${logPath}/$${date:yyyy-MM-dd}/warn-%d{yyyy-MM-dd}-%i.log">
+        <RollingFile name="RollingFileWarn" fileName="${log.path}/warn.log"
+                     filePattern="${log.path}/$${date:yyyy-MM-dd}/warn-%d{yyyy-MM-dd}-%i.log">
             <Filters>
                 <ThresholdFilter level="WARN"/>
                 <ThresholdFilter level="ERROR" onMatch="DENY"
@@ -57,8 +57,8 @@
             </Policies>
         </RollingFile>
 
-        <RollingFile name="RollingFileError" fileName="${logPath}/error.log"
-                     filePattern="${logPath}/$${date:yyyy-MM-dd}/error-%d{yyyy-MM-dd}-%i.log">
+        <RollingFile name="RollingFileError" fileName="${log.path}/error.log"
+                     filePattern="${log.path}/$${date:yyyy-MM-dd}/error-%d{yyyy-MM-dd}-%i.log">
             <ThresholdFilter level="ERROR"/>
             <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%p] [%t] - [%X{sid}] %c{1.} - %m%n"/>
             <Policies>
@@ -67,8 +67,8 @@
             </Policies>
         </RollingFile>
 
-        <RollingFile name="RollingFileTrace" fileName="${logPath}/trace.log"
-                     filePattern="${logPath}/$${date:yyyy-MM-dd}/trace-%d{yyyy-MM-dd}-%i.log">
+        <RollingFile name="RollingFileTrace" fileName="${log.path}/trace.log"
+                     filePattern="${log.path}/$${date:yyyy-MM-dd}/trace-%d{yyyy-MM-dd}-%i.log">
             <ThresholdFilter level="TRACE" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%p] [%t] - [%X{sid}] %c{1.} - %m%n"/>
             <Policies>
@@ -77,7 +77,7 @@
             </Policies>
         </RollingFile>
         
-        <File name="UserService" fileName="${logPath}/user-service.log">
+        <File name="UserService" fileName="${log.path}/user-service.log">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />  
         </File>
 
