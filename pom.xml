@@ -52,7 +52,9 @@
         <fastjson.version>1.2.31</fastjson.version>
         <aspectj.version>1.8.13</aspectj.version>
         <httpcomponents.version>4.3.2</httpcomponents.version>
-        <guava.version>18.0</guava.version>
+        <gson.version>2.8.0</gson.version>
+        <guava.version>20.0</guava.version>
+        <pagehelper.version>4.1.6</pagehelper.version>
         <junit.version>4.11</junit.version>
 
         <!-- for maven compiler&resources plugin -->
@@ -120,6 +122,11 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql-connector-java.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>${pagehelper.version}</version>
             </dependency>
 
             <!-- commons -->
@@ -250,7 +257,12 @@
                 </exclusions>
             </dependency>
 
-            <!-- guava -->
+            <!-- google -->
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
