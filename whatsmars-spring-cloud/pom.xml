@@ -13,17 +13,47 @@
     <artifactId>whatsmars-spring-cloud</artifactId>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
-    <description>The demo module of springcloud project</description>
+    <description>The demo module of spring cloud project</description>
     <modules>
         <module>whatsmars-cloud-consumer</module>
         <module>whatsmars-cloud-eureka</module>
         <module>whatsmars-cloud-provider</module>
     </modules>
     <properties>
-        <skip_maven_deploy>true</skip_maven_deploy>
         <spring-cloud.version>Dalston.RC1</spring-cloud.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.7</java.version>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
 </project>

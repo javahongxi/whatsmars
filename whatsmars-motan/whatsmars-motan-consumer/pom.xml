@@ -91,6 +91,18 @@
                         <version>1.2.6.RELEASE</version>
                     </dependency>
                 </dependencies>
+                <!-- POM不是继承spring-boot-starter-parent的话，需要下面的指定 -->
+                <configuration>
+                    <mainClass>${start-class}</mainClass>
+                    <layout>ZIP</layout>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

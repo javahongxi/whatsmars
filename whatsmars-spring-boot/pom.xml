@@ -125,7 +125,7 @@
                     </dependency>
                 </dependencies>
                 <!-- POM不是继承spring-boot-starter-parent的话，需要下面的指定 -->
-                <!--<configuration>
+                <configuration>
                     <mainClass>${start-class}</mainClass>
                     <layout>ZIP</layout>
                 </configuration>
@@ -135,7 +135,7 @@
                             <goal>repackage</goal>
                         </goals>
                     </execution>
-                </executions>-->
+                </executions>
             </plugin>
         </plugins>
     </build>
