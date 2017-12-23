@@ -8,4 +8,6 @@ import com.whatsmars.spring.boot.model.User;
 public interface UserService {
 
     User findByUsername(String username);
+
+    void add(User user);
 }

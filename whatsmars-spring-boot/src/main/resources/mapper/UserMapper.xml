@@ -5,5 +5,10 @@
     <select id="findByUsername" parameterType="string" resultType="User">
         select * from user where username = #username#
     </select>
+    
+    <insert id="insert" parameterType="User">
+        insert into user(username, nickname, gender, age, create_date, update_date)
+        values(#{username}, #{nickname}, #{gender}, #{age}, NOW(), NOW())
+    </insert>
 
 </mapper>

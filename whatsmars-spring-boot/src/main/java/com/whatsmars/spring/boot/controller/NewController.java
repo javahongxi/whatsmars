@@ -1,6 +1,9 @@
 package com.whatsmars.spring.boot.controller;
 
 import com.whatsmars.spring.boot.exception.AppException;
+import com.whatsmars.spring.boot.model.User;
+import com.whatsmars.spring.boot.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +20,9 @@ import java.util.Map;
 @RequestMapping("/new")
 public class NewController {
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(value = "/t", method = RequestMethod.GET)
     public Map<String, Object> query() {
         Map<String, Object> m = new HashMap<String, Object>();
@@ -25,10 +31,17 @@ public class NewController {
     }
 
     @RequestMapping(value = "/t", method = RequestMethod.POST)
-    public Map<String, Object> add() {
-        Map<String, Object> m = new HashMap<String, Object>();
-        m.put("domain", "toutiao.im");
-        return m;
+    public HttpStatus add(@RequestParam(name = "name") String username,
+                          @RequestParam(required = false) String nickname,
+                          @RequestParam(required = false, defaultValue = "1") Integer gender,
+                          @RequestParam Integer age) {
+        User user = new User();
+        user.setUsername(username);
+        user.setNickname(nickname);
+        user.setGender(gender);
+        user.setAge(age);
+        userService.add(user);
+        return HttpStatus.OK;
     }
 
     @RequestMapping(value = "/t", method = RequestMethod.PUT)

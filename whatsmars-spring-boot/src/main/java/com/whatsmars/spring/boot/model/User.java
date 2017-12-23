@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class User {
 
-    private Integer id;
+    private Long id;
 
     private String username;
 
@@ -17,15 +17,15 @@ public class User {
 
     private Integer age;
 
-    private Date created;
+    private Date createDate;
 
-    private Date modified;
+    private Date updateDate;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -61,19 +61,19 @@ public class User {
         this.age = age;
     }
 
-    public Date getCreated() {
-        return created;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
-    public Date getModified() {
-        return modified;
+    public Date getUpdateDate() {
+        return updateDate;
     }
 
-    public void setModified(Date modified) {
-        this.modified = modified;
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 }
