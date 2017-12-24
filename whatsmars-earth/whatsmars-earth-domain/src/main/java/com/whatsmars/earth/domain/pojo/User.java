@@ -2,117 +2,48 @@ package com.whatsmars.earth.domain.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 
 /**
  * Created by shenhongxi on 2016/4/29.
  */
 public class User implements Serializable {
 
-    private Integer id;
+    private Long id;
 
-    private String name;
+    private String username;
+
+    private String nickname;
 
     private Integer gender;
 
-    private Integer organizationId;//如果是机构，此处为机构ID
+    private Integer age;
 
-    private Integer teacherId;//如果用户位教师，此处位教师ID
+    private Date createDate;
 
-    private Integer adminId;//如果是管理员，此处位管理员ID
+    private Date updateDate;
 
-    private Integer studentId;//如果是学生，此处为学生ID；
-
-    private int type;
-
-    private Date created;
-
-    private Date modified;
-
-    private Set<String> operations;//此用户允许的操作
-
-    private Date loginTime;
-
-    private String phone;
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public int getType() {
-        return type;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getModified() {
-        return modified;
-    }
-
-    public void setModified(Date modified) {
-        this.modified = modified;
-    }
-
-    public Set<String> getOperations() {
-        return operations;
-    }
-
-    public void setOperations(Set<String> operations) {
-        this.operations = operations;
-    }
-
-    public Integer getOrganizationId() {
-        return organizationId;
-    }
-
-    public void setOrganizationId(Integer organizationId) {
-        this.organizationId = organizationId;
-    }
-
-    public Integer getTeacherId() {
-        return teacherId;
-    }
-
-    public void setTeacherId(Integer teacherId) {
-        this.teacherId = teacherId;
-    }
-
-    public Integer getAdminId() {
-        return adminId;
-    }
-
-    public void setAdminId(Integer adminId) {
-        this.adminId = adminId;
-    }
-
-    public Integer getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public Integer getGender() {
@@ -123,19 +54,27 @@ public class User implements Serializable {
         this.gender = gender;
     }
 
-    public Date getLoginTime() {
-        return loginTime;
+    public Integer getAge() {
+        return age;
     }
 
-    public void setLoginTime(Date loginTime) {
-        this.loginTime = loginTime;
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
-    public String getPhone() {
-        return phone;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 }

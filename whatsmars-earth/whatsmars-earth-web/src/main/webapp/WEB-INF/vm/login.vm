@@ -1,0 +1,126 @@
+#set($title = '登录 - 学好贷')
+<div class="header">
+    <div class="wraper">
+        <a href="/index.html"><h1>学好贷</h1></a>
+        <span class="h-txt">登录</span>
+    </div>
+</div>
+
+<div class="container">
+    <div class="login-box">
+
+            <div class="login">
+
+                <div class="item error" id="login_Message"  style="color: #6B6B6B;border: 2px solid #FF8080;line-height: 18px;padding: 2px 10px 2px 2px;display:none">
+                    <img src="/images/warning.png" style="display:inline" width="15px" height="13px"/> <p id="mind_tip" style="display: inline">用户名、密码、验证码不能为空</p>
+                </div>
+
+                <input type="hidden" name="url" id="url" value="$!url">
+
+                <div class="item ">
+                    <div class="i-name ico"></div>
+                    <input type="text"  placeholder="邮箱/手机/用户名" name="username" id="username"  />
+                    <div class="t">请输入帐号！</div>
+                </div>
+
+                <div class="item">
+                    <div class="i-pwd ico"></div>
+                    <input type="password" placeholder="密码" id="password" name="password" />
+                    <div class="t">请输入密码！</div>
+                </div>
+                <div class="item clearfix">
+                    <input type="text" placeholder="验证码" id="validate_code" name="validate_code" class="vc" /> <img src="/get_validate_code.jhtml" alt="点击刷新" onclick="changeValidateCode(this)" id="valicode"  />
+                </div>
+                <div class="item">
+                    <input type="submit" class="btn-login" id="login_btn" value="登录">
+                </div>
+                <div class="item txt"><span><a href="/find_password.jhtml">忘记密码?</a></span>没有帐号? 立即<a href="/register.jhtml" class="sel">免费注册</a></div>
+
+            </div>
+
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+    $(function(){
+        $("#login_btn").on('click',function(){
+            var username = $("#username").val();
+            var password = $("#password").val();
+            var validate_code = $("#validate_code").val();
+            var url = $("#url").val();
+            var str = "";
+            var status = 1;
+            if (username.length == 0) {
+                status = 0;
+                str = "用户名、"
+            }
+            if (password.length == 0) {
+                status = 0;
+                str = str + "密码、"
+            }
+            if (validate_code.length == 0) {
+                status = 0;
+                str = str + "验证码、"
+            }
+            str = str.substring(0,str.length-1);
+
+            str = str + "不能为空";
+
+            if( status == 0){
+                showTipMessage(str);
+                return false;
+            }
+
+            $("#login_Message").hide();
+
+            var login_data = {
+                username:username,
+                password:password,
+                validate_code:validate_code,
+                url:url
+            };
+            $.ajax({
+                url:"/login_action.jhtml",
+                dataType:"json",
+                type:"post",
+                cache:false,
+                data:login_data,
+                success:function(data){
+                    if(data.code == 'S00000'){
+                        var url = data.data.url;
+                        if(url != "") {
+                            window.location.href = url;
+                            return;
+                        }
+                        window.location.href = '/lender/index.jhtml';
+                    }else{
+                        showTipMessage(data.message);
+                        $("#valicode").attr("src","/get_validate_code.jhtml?"+(new Date()).getTime());
+
+                    }
+
+                },
+                error:function(e){
+                    console.log(e.message);
+                    $("#valicode").attr("src","/get_validate_code.jhtml?"+(new Date()).getTime());
+                }
+            });
+
+        })
+    })
+
+    function changeValidateCode(obj) {
+        obj.src = "/get_validate_code.jhtml?"+(new Date()).getTime();
+    }
+
+    function showTipMessage(str){
+        var tip = $("#mind_tip");
+        tip.html('');
+        tip.append(str);
+        $("#login_Message").show();
+    }
+</script>

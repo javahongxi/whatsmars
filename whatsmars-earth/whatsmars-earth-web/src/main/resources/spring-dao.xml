@@ -6,4 +6,6 @@
 	default-autowire="byName">
 
 	<bean id="accountDao" class="com.whatsmars.earth.dao.impl.AccountDaoImpl" />
+	<bean id="organizationDao" class="com.whatsmars.earth.dao.impl.OrganizationDaoImpl" />
+	<bean id="userDao" class="com.whatsmars.earth.dao.impl.UserDaoImpl" />
 </beans>

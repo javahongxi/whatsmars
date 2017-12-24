@@ -78,16 +78,16 @@ public class LoginInterceptor implements HandlerInterceptor{
             return null;
         }
         User user = new User();
-        user.setId(json.getInt("id"));
+        user.setId(json.getLong("id"));
 
-        user.setName(json.getString("name"));
-        user.setType(json.getInt("type"));
-        if(json.has("phone")){
-            user.setPhone(json.getString("phone"));
-        }
-        if(json.has("loginTime")) {
-            user.setLoginTime(new Date(json.getLong("loginTime")));
-        }
+        user.setUsername(json.getString("name"));
+//        user.setType(json.getInt("type"));
+//        if(json.has("phone")){
+//            user.setPhone(json.getString("phone"));
+//        }
+//        if(json.has("loginTime")) {
+//            user.setLoginTime(new Date(json.getLong("loginTime")));
+//        }
         return user;
     }
 

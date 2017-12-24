@@ -9,9 +9,11 @@
 	<typeAliases>
 
 		<typeAlias type="com.whatsmars.earth.domain.pojo.Organization" alias="Organization"/>
+		<typeAlias type="com.whatsmars.earth.domain.pojo.User" alias="User"/>
 
     </typeAliases>
 	<mappers>
 		<mapper resource="sqlmap/Organization-mapper.xml"/>
+		<mapper resource="sqlmap/User-mapper.xml"/>
 	</mappers>
 </configuration>
