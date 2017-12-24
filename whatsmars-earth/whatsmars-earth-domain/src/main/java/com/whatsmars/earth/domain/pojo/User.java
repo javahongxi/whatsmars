@@ -2,6 +2,7 @@ package com.whatsmars.earth.domain.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by shenhongxi on 2016/4/29.
@@ -17,6 +18,14 @@ public class User implements Serializable {
     private Integer gender;
 
     private Integer age;
+
+    private int type;
+
+    private Set<String> operations;//此用户允许的操作
+
+    private Date loginTime;
+
+    private String phone;
 
     private Date createDate;
 
@@ -60,6 +69,38 @@ public class User implements Serializable {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public Set<String> getOperations() {
+        return operations;
+    }
+
+    public void setOperations(Set<String> operations) {
+        this.operations = operations;
+    }
+
+    public Date getLoginTime() {
+        return loginTime;
+    }
+
+    public void setLoginTime(Date loginTime) {
+        this.loginTime = loginTime;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Date getCreateDate() {
