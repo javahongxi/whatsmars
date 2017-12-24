@@ -24,7 +24,13 @@ public class IndexController extends BaseController {
             return mav;
         }
         mav.addObject("url", StringUtils.isNotBlank(url) ? url : null);
-        mav.addObject("token", this.createToken(request, response));
+//        mav.addObject("token", this.createToken(request, response));
+        return mav;
+    }
+
+    @RequestMapping("/example/list")
+    public ModelAndView test() {
+        ModelAndView mav = new ModelAndView();
         return mav;
     }
 }
