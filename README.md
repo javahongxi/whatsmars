@@ -1,6 +1,5 @@
 # whatsmars
 [![Build Status](https://travis-ci.org/javahongxi/whatsmars.svg?branch=master)](https://travis-ci.org/javahongxi/whatsmars)
-[![Join the chat at https://gitter.im/whatsmars/Lobby](https://badges.gitter.im/whatsmars/Lobby.svg)](https://gitter.im/whatsmars/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![GitHub stars](https://img.shields.io/github/stars/javahongxi/whatsmars.svg?style=social&label=Stars)](https://github.com/javahongxi/whatsmars)
 [![GitHub forks](https://img.shields.io/github/forks/javahongxi/whatsmars.svg?style=social&label=Fork)](https://github.com/javahongxi/whatsmars)
 <br>$ *`mvn clean package -Dmaven.test.skip=true` `jdk7+`*
