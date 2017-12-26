@@ -1,7 +1,5 @@
 # whatsmars
 [![Build Status](https://travis-ci.org/javahongxi/whatsmars.svg?branch=master)](https://travis-ci.org/javahongxi/whatsmars)
-[![GitHub stars](https://img.shields.io/github/stars/javahongxi/whatsmars.svg?style=social&label=Stars)](https://github.com/javahongxi/whatsmars)
-[![GitHub forks](https://img.shields.io/github/forks/javahongxi/whatsmars.svg?style=social&label=Fork)](https://github.com/javahongxi/whatsmars)
 <br>$ *`mvn clean package -Dmaven.test.skip=true` `jdk7+`*
 <br>Java生态研究(Spring Boot + Redis + Dubbo + RocketMQ)
 <br>Spring Boot 系列(Servlet, Tomcat, Spring, SpringMVC, Spring Boot)
