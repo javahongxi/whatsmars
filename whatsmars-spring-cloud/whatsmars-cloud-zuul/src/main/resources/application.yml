@@ -27,12 +27,8 @@ spring:
   profiles: dev
 
 zuul:
-  debug:
-    request: true
   routes:
-    moneygod:
-      path: /**
-      stripPrefix: false
-#      url: http://localhost:8083/
-      serviceId: demo-consumer
-      sensitiveHeaders:
+    demo:
+        path: /**
+        serviceId: demo-consumer
+        stripPrefix: false
