@@ -29,17 +29,18 @@
     </modules>
 
     <properties>
-        <!-- 重要：各依赖之间，版本尽量对应 -->
+        <!-- 重要：如下6个依赖之间，版本尽量对应 mvn dependency:tree -Dverbose -->
         <spring-boot.version>1.5.6.RELEASE</spring-boot.version>
         <spring.version>4.3.10.RELEASE</spring.version>
         <mybatis.version>3.4.5</mybatis.version>
         <mybatis-spring.version>1.3.1</mybatis-spring.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <mysql-connector-java.version>5.1.32</mysql-connector-java.version>
+
         <commons-lang.version>2.6</commons-lang.version>
-        <commons-collections.version>3.2.1</commons-collections.version>
-        <commons-codec.version>1.10</commons-codec.version>
-        <commons-fileupload.version>1.3.1</commons-fileupload.version>
+        <commons-collections.version>3.2.2</commons-collections.version>
+        <commons-codec.version>1.11</commons-codec.version>
+        <commons-fileupload.version>1.3.3</commons-fileupload.version>
         <log4j.version>1.2.17</log4j.version>
         <servlet.version>3.1.0</servlet.version>
         <velocity.version>1.7</velocity.version>
@@ -48,15 +49,15 @@
         <ezmorph.version>1.0.6</ezmorph.version>
         <slf4j.version>1.7.25</slf4j.version>
         <logback.version>1.2.3</logback.version>
-        <jackson.version>2.8.5</jackson.version>
+        <jackson.version>2.9.3</jackson.version>
         <commons-beanutils.version>1.9.3</commons-beanutils.version>
-        <fastjson.version>1.2.31</fastjson.version>
+        <fastjson.version>1.2.44</fastjson.version>
         <aspectj.version>1.8.13</aspectj.version>
         <httpcomponents.version>4.5.3</httpcomponents.version>
-        <gson.version>2.8.0</gson.version>
-        <guava.version>20.0</guava.version>
-        <pagehelper.version>4.1.6</pagehelper.version>
-        <junit.version>4.11</junit.version>
+        <gson.version>2.8.2</gson.version>
+        <guava.version>23.6-jre</guava.version>
+        <pagehelper.version>5.1.2</pagehelper.version>
+        <junit.version>4.12</junit.version>
 
         <!-- for maven compiler&resources plugin -->
         <java-source.version>1.6</java-source.version>
