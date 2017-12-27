@@ -18,6 +18,7 @@
         <module>whatsmars-cloud-consumer</module>
         <module>whatsmars-cloud-eureka</module>
         <module>whatsmars-cloud-provider</module>
+        <module>whatsmars-cloud-zuul</module>
     </modules>
     <properties>
         <spring-cloud.version>Dalston.RC1</spring-cloud.version>

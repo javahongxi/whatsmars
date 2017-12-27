@@ -1,0 +1,38 @@
+spring:
+  profiles:
+    active: dev
+
+---
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://test.toutiao.im:8761/eureka/
+server:
+  port: 8764
+spring:
+  application:
+    name: demo-zuul
+  profiles: test
+
+---
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8764
+spring:
+  application:
+    name: demo-zuul
+  profiles: dev
+
+zuul:
+  debug:
+    request: true
+  routes:
+    moneygod:
+      path: /**
+      stripPrefix: false
+#      url: http://localhost:8083/
+      serviceId: demo-consumer
+      sensitiveHeaders:
