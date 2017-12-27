@@ -5,7 +5,7 @@
 
     <parent>
         <artifactId>whatsmars-parent</artifactId>
-        <groupId>com.whatsmars</groupId>
+        <groupId>org.hongxi</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -68,7 +68,7 @@
                     <archive>
                         <addMavenDescriptor>true</addMavenDescriptor>
                         <manifest>
-                            <mainClass>com.whatsmars.tomcat.server.HttpServer</mainClass>
+                            <mainClass>org.hongxi.tomcat.server.HttpServer</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
