@@ -2,6 +2,7 @@ package com.whatsmars.cloud.consumer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
@@ -11,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 /**
  * Created by shenhongxi on 2017/9/14.
  */
+@EnableCircuitBreaker
 @EnableFeignClients
 @EnableDiscoveryClient
 @SpringBootApplication

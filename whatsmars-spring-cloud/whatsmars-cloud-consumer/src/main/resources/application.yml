@@ -13,6 +13,9 @@ spring:
   application:
     name: demo-consumer
   profiles: test
+feign:
+  hystrix:
+    enabled: true
 
 ---
 eureka:
@@ -25,3 +28,6 @@ spring:
   application:
     name: demo-consumer
   profiles: dev
+feign:
+  hystrix:
+    enabled: true
