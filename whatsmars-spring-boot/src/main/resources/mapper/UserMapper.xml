@@ -11,4 +11,11 @@
         values(#{username}, #{nickname}, #{gender}, #{age}, NOW(), NOW())
     </insert>
 
+    <insert id="insertBatch" parameterType="list">
+        insert into user(username, nickname, gender, age, create_date, update_date) values
+        <foreach collection="list" item="item" separator=",">
+            (#{username}, #{nickname}, #{gender}, #{age}, NOW(), NOW())
+        </foreach>
+    </insert>
+
 </mapper>

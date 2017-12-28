@@ -3,6 +3,8 @@ package com.whatsmars.spring.boot.dao;
 import com.whatsmars.spring.boot.model.User;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * Created by shenhongxi on 2017/6/26.
  */
@@ -12,4 +14,6 @@ public interface UserMapper {
     User findByUsername(String username);
 
     void insert(User user);
+
+    void insertBatch(List<User> users);
 }
