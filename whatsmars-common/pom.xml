@@ -106,16 +106,16 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                    <encoding>UTF-8</encoding>
+                    <source>${java-source.version}</source>
+                    <target>${java-target.version}</target>
+                    <encoding>${file-encoding}</encoding>
                 </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.6</version>
                 <configuration>
-                    <encoding>UTF-8</encoding>
+                    <encoding>${file-encoding}</encoding>
                 </configuration>
             </plugin>
             <plugin>

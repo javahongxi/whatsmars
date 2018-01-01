@@ -60,8 +60,8 @@
         <junit.version>4.12</junit.version>
 
         <!-- for maven compiler&resources plugin -->
-        <java-source.version>1.6</java-source.version>
-        <java-target.version>1.6</java-target.version>
+        <java-source.version>1.7</java-source.version>
+        <java-target.version>1.7</java-target.version>
         <file-encoding>UTF-8</file-encoding>
 
         <rootdir>${basedir}</rootdir>
