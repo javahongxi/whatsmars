@@ -6,5 +6,5 @@ branches:
   only:
     - master
 before_install:
-    - chmod +x mvnw
+#    - chmod +x _mvnw
 script: mvn clean package -Dmaven.test.skip=true
