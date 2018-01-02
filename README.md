@@ -1,5 +1,5 @@
 # whatsmars
-*`mvn clean package -Dmaven.test.skip=true`*
+*`mvn clean package -Dmaven.test.skip=true`* `jdk7+`
 <br>Java生态研究(Spring Boot + Redis + Dubbo + RocketMQ)
 <br>Spring Boot 系列(Servlet, Tomcat, Spring, SpringMVC, Spring Boot)
 
