@@ -5,4 +5,4 @@ https://github.com/spring-cloud/spring-cloud-netflix
 2. 网关访问 localhost:8764/hi?name=hongxi&accessToken=123456 localhost:8764/hi?name=hongxi
 3. 停掉provider，再次进行上面的访问
 
-Gradle版 https://github.com/javahongxi/bootcloud
+Gradle版 https://github.com/javahongxi/solar
