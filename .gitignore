@@ -2,7 +2,6 @@
 .project
 .classpath
 *.MF
-*git*
 whatsmars-*/.settings
 whatsmars-*/target
 whatsmars-*/bin
