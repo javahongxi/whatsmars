@@ -29,6 +29,10 @@ spring:
 zuul:
   routes:
     demo:
-        path: /**
-        serviceId: demo-consumer
-        stripPrefix: false
+      path: /demo/**
+      serviceId: demo-consumer
+      stripPrefix: true
+    demo2:
+      path: /demo2/**
+      serviceId: demo2-consumer
+      stripPrefix: true
