@@ -1,4 +1,4 @@
-package com.whatsmars.dbrouter.demo;
+package org.hongxi.whatsmars.dbrouter.demo;
 
 import org.springframework.stereotype.Repository;
 

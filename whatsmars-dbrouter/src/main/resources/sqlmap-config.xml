@@ -8,7 +8,7 @@
 	</settings>
 	<typeAliases>
 
-		<typeAlias type="com.whatsmars.dbrouter.demo.OrderDO" alias="Order"/>
+		<typeAlias type="org.hongxi.whatsmars.dbrouter.demo.OrderDO" alias="Order"/>
 
     </typeAliases>
 	<mappers>

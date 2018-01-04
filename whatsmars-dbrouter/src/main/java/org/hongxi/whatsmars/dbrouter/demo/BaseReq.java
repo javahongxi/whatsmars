@@ -1,4 +1,4 @@
-package com.whatsmars.dbrouter.demo;
+package org.hongxi.whatsmars.dbrouter.demo;
 
 /**
  * Created by shenhongxi on 16/7/16.

@@ -37,7 +37,7 @@
 		<property name="minEvictableIdleTimeMillis" value="${dbcp.minEvictableIdleTimeMillis}"></property>
 	</bean>
 
-	<bean id="dynamicDataSource" class="com.whatsmars.dbrouter.DynamicDataSource">
+	<bean id="dynamicDataSource" class="org.hongxi.whatsmars.dbrouter.DynamicDataSource">
 		<property name="targetDataSources">
 			<map key-type="java.lang.String">
 				<entry key="db1" value-ref="dataSource1"/>

@@ -1,6 +1,6 @@
-package com.whatsmars.dbrouter.demo;
+package org.hongxi.whatsmars.dbrouter.demo;
 
-import com.whatsmars.dbrouter.DbContext;
+import org.hongxi.whatsmars.dbrouter.DbContext;
 
 /**
  * Created by shenhongxi on 16/7/16.

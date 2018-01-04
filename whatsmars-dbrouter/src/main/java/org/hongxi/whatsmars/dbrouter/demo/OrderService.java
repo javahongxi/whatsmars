@@ -1,7 +1,7 @@
-package com.whatsmars.dbrouter.demo;
+package org.hongxi.whatsmars.dbrouter.demo;
 
-import com.whatsmars.dbrouter.DbContext;
-import com.whatsmars.dbrouter.DbRoute;
+import org.hongxi.whatsmars.dbrouter.DbContext;
+import org.hongxi.whatsmars.dbrouter.DbRoute;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

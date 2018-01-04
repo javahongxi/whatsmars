@@ -1,4 +1,4 @@
-package com.whatsmars.dbrouter;
+package org.hongxi.whatsmars.dbrouter;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.StringUtils;

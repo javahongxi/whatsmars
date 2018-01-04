@@ -1,4 +1,4 @@
-package com.whatsmars.dbrouter;
+package org.hongxi.whatsmars.dbrouter;
 
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
