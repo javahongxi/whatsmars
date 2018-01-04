@@ -68,7 +68,7 @@
                     <archive>
                         <addMavenDescriptor>true</addMavenDescriptor>
                         <manifest>
-                            <mainClass>com.whatsmars.tomcat.server.HttpServer</mainClass>
+                            <mainClass>org.hongxi.whatsmars.tomcat.server.HttpServer</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
