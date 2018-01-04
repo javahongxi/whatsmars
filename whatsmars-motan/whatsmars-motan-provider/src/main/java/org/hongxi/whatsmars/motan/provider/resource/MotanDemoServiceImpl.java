@@ -14,9 +14,9 @@
  *    limitations under the License.
  */
 
-package com.whatsmars.motan.provider.resource;
+package org.hongxi.whatsmars.motan.provider.resource;
 
-import com.whatsmars.motan.api.MotanDemoService;
+import org.hongxi.whatsmars.motan.api.MotanDemoService;
 import org.springframework.stereotype.Service;
 
 @Service("motanDemoService")

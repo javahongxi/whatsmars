@@ -1,4 +1,4 @@
-package com.whatsmars.motan.consumer;
+package org.hongxi.whatsmars.motan.provider;
 
 import com.weibo.api.motan.common.MotanConstants;
 import com.weibo.api.motan.util.MotanSwitcherUtil;
@@ -16,6 +16,6 @@ public class MotanSwitcherRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         // 在使用注册中心时要主动调用下面代码
         MotanSwitcherUtil.setSwitcherValue(MotanConstants.REGISTRY_HEARTBEAT_SWITCHER, true);
-        System.out.println("consumer started...");
+        System.out.println("provider started...");
     }
 }

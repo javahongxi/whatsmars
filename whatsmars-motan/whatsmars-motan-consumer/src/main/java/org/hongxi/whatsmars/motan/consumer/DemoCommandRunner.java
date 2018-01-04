@@ -1,6 +1,6 @@
-package com.whatsmars.motan.consumer;
+package org.hongxi.whatsmars.motan.consumer;
 
-import com.whatsmars.motan.api.MotanDemoService;
+import org.hongxi.whatsmars.motan.api.MotanDemoService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;

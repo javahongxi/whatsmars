@@ -1,4 +1,4 @@
-package com.whatsmars.motan.api;
+package org.hongxi.whatsmars.motan.api;
 
 /**
  * Created by shenhongxi on 2017/6/29.

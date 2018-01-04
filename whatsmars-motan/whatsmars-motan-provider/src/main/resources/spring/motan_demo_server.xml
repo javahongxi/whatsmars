@@ -40,10 +40,10 @@
                         application="myMotanDemo" registry="registry" id="serviceBasicConfig"/>
 
     <!-- 具体rpc服务配置，声明实现的接口类。-->
-    <motan:service interface="com.whatsmars.motan.api.MotanDemoService"
+    <motan:service interface="org.hongxi.whatsmars.motan.api.MotanDemoService"
                    ref="motanDemoService" export="demoMotan:8001" basicService="serviceBasicConfig">
     </motan:service>
-    <motan:service interface="com.whatsmars.motan.api.MotanDemoService"
+    <motan:service interface="org.hongxi.whatsmars.motan.api.MotanDemoService"
                    ref="motanDemoService" export="demoMotan:8002" basicService="serviceBasicConfig">
     </motan:service>
 
