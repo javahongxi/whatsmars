@@ -1,10 +1,10 @@
-package com.whatsmars.fs.web.service.impl;
+package org.hongxi.whatsmars.fs.web.service.impl;
 
 import org.hongxi.whatsmars.common.ImageSizeEnum;
 import org.hongxi.whatsmars.common.mongo.GridFSClient;
 import org.hongxi.whatsmars.common.pojo.Result;
 import org.hongxi.whatsmars.common.pojo.ResultCode;
-import com.whatsmars.fs.web.service.FileService;
+import org.hongxi.whatsmars.fs.web.service.FileService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

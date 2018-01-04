@@ -1,4 +1,4 @@
-package com.whatsmars.fs.web.controller;
+package org.hongxi.whatsmars.fs.web.controller;
 
 import org.hongxi.whatsmars.common.pojo.ResultCode;
 import org.hongxi.whatsmars.common.util.ResultHelper;

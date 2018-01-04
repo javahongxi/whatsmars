@@ -1,4 +1,4 @@
-package com.whatsmars.fs.web;
+package org.hongxi.whatsmars.fs.web;
 
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;

@@ -9,7 +9,7 @@
 	    http://www.springframework.org/schema/context/spring-context-3.2.xsd"
     default-autowire="byName">
 
-    <context:component-scan base-package="com.whatsmars.fs.web.service" />
+    <context:component-scan base-package="org.hongxi.whatsmars.fs.web.service" />
 
     <bean id="mongodbProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="locations">

@@ -1,4 +1,4 @@
-package com.whatsmars.fs.web.filter;
+package org.hongxi.whatsmars.fs.web.filter;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

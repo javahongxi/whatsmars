@@ -1,4 +1,4 @@
-package com.whatsmars.fs.web.service;
+package org.hongxi.whatsmars.fs.web.service;
 
 
 import org.hongxi.whatsmars.common.pojo.Result;
