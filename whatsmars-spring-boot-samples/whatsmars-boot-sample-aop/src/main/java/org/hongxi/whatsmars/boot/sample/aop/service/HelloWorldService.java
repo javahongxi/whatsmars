@@ -1,4 +1,4 @@
-package com.whatsmars.boot.sample.aop.service;
+package org.hongxi.whatsmars.boot.sample.aop.service;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

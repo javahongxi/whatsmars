@@ -1,6 +1,6 @@
-package com.whatsmars.boot.sample.aop;
+package org.hongxi.whatsmars.boot.sample.aop;
 
-import com.whatsmars.boot.sample.aop.service.HelloWorldService;
+import org.hongxi.whatsmars.boot.sample.aop.service.HelloWorldService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
