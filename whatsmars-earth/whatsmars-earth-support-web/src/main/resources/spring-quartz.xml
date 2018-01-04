@@ -30,7 +30,7 @@
         <property name="targetMethod" value="execute"/>
         <property name="concurrent" value="false"/>
     </bean>
-    <bean id="lenderWithdrawJob" class="com.whatsmars.earth.support.web.service.job.TestJob" />
+    <bean id="lenderWithdrawJob" class="org.hongxi.whatsmars.earth.support.web.service.job.TestJob" />
 
 
 </beans>

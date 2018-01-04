@@ -14,7 +14,7 @@
         <constructor-arg index="0" value="${whatsmars.activemq.queue.withdraw}"></constructor-arg>
     </bean>
 
-    <bean id="withdrawQueueListener" class="com.whatsmars.earth.support.web.listener.TestListener"/>
+    <bean id="withdrawQueueListener" class="org.hongxi.whatsmars.earth.support.web.listener.TestListener"/>
     <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
         <property name="connectionFactory" ref="connectionFactory"></property>
         <property name="destination" ref="withdrawQueueDestination"></property>

@@ -8,8 +8,8 @@
 	</settings>
 	<typeAliases>
 
-		<typeAlias type="com.whatsmars.earth.domain.pojo.Organization" alias="Organization"/>
-		<typeAlias type="com.whatsmars.earth.domain.pojo.User" alias="User"/>
+		<typeAlias type="org.hongxi.whatsmars.earth.domain.pojo.Organization" alias="Organization"/>
+		<typeAlias type="org.hongxi.whatsmars.earth.domain.pojo.User" alias="User"/>
 
     </typeAliases>
 	<mappers>

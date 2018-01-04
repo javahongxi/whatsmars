@@ -12,7 +12,7 @@
                            http://www.springframework.org/schema/context/spring-context-3.2.xsd"
        default-autowire="byName">
 
-    <context:component-scan base-package="com.whatsmars.earth.web"/>
+    <context:component-scan base-package="org.hongxi.whatsmars.earth.web"/>
 
     <mvc:annotation-driven>
         <mvc:message-converters>
@@ -55,7 +55,7 @@
     <bean id="handlerMapping" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
     </bean>
 
-    <bean id="exceptionResolver" class="com.whatsmars.earth.web.ExceptionHandler"/>
+    <bean id="exceptionResolver" class="org.hongxi.whatsmars.earth.web.ExceptionHandler"/>
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
         <property name="suffix" value=".vm"/>
@@ -76,12 +76,12 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**" />
-            <bean class="com.whatsmars.earth.web.interceptor.LoginInterceptor" />
+            <bean class="org.hongxi.whatsmars.earth.web.interceptor.LoginInterceptor" />
         </mvc:interceptor>
         <mvc:interceptor>
             <mvc:mapping path="/account/**" />
             <mvc:exclude-mapping path="/lender/recharge_callback.jhtml"/>
-            <bean class="com.whatsmars.earth.web.interceptor.SecurityInterceptor" />
+            <bean class="org.hongxi.whatsmars.earth.web.interceptor.SecurityInterceptor" />
         </mvc:interceptor>
 
     </mvc:interceptors>
