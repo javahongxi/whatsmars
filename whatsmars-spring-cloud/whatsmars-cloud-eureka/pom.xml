@@ -13,7 +13,7 @@
     <name>${project.artifactId}</name>
 
     <properties>
-        <start-class>com.whatsmars.cloud.eureka.EurekaApplication</start-class>
+        <start-class>org.hongxi.whatsmars.cloud.eureka.EurekaApplication</start-class>
     </properties>
 
     <dependencies>

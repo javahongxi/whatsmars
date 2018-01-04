@@ -15,7 +15,7 @@
     <name>${project.artifactId}</name>
 
     <properties>
-        <start-class>com.whatsmars.cloud.consumer.ConsumerApplication</start-class>
+        <start-class>org.hongxi.whatsmars.cloud.consumer.ConsumerApplication</start-class>
     </properties>
 
     <dependencies>

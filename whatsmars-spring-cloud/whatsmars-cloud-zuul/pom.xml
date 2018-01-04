@@ -13,7 +13,7 @@
     <name>${project.artifactId}</name>
 
     <properties>
-        <start-class>com.whatsmars.cloud.zuul.ZuulApplication</start-class>
+        <start-class>org.hongxi.whatsmars.cloud.zuul.ZuulApplication</start-class>
     </properties>
 
     <dependencies>
