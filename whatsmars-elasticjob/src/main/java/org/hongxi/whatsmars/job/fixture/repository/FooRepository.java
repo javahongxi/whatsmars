@@ -15,9 +15,9 @@
  * </p>
  */
 
-package com.whatsmars.job.fixture.repository;
+package org.hongxi.whatsmars.job.fixture.repository;
 
-import com.whatsmars.job.fixture.entity.Foo;
+import org.hongxi.whatsmars.job.fixture.entity.Foo;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

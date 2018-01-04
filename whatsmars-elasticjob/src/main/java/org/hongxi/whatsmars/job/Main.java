@@ -1,4 +1,4 @@
-package com.whatsmars.job;
+package org.hongxi.whatsmars.job;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

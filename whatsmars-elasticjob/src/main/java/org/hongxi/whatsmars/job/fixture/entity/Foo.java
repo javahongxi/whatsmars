@@ -15,7 +15,7 @@
  * </p>
  */
 
-package com.whatsmars.job.fixture.entity;
+package org.hongxi.whatsmars.job.fixture.entity;
 
 import java.io.Serializable;
 
