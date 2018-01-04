@@ -15,7 +15,7 @@
     <url>http://toutiao.im</url>
 
     <properties>
-        <start-class>com.whatsmars.shardingjdbc.Application</start-class>
+        <start-class>org.hongxi.whatsmars.shardingjdbc.Application</start-class>
         <sharding-jdbc.version>2.0.1</sharding-jdbc.version>
     </properties>
 
