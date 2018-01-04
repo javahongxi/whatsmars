@@ -20,6 +20,6 @@
     </tool>
     <tool>
         <key>numberFormatUtils</key>
-        <class>com.whatsmars.common.util.NumberFormatUtils</class>
+        <class>org.hongxi.whatsmars.common.util.NumberFormatUtils</class>
     </tool>
 </toolbox>

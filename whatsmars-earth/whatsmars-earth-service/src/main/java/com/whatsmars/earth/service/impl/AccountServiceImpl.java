@@ -1,6 +1,6 @@
 package com.whatsmars.earth.service.impl;
 
-import com.whatsmars.common.pojo.Result;
+import org.hongxi.whatsmars.common.pojo.Result;
 import com.whatsmars.earth.dao.AccountDao;
 import com.whatsmars.earth.service.AccountService;
 import org.springframework.stereotype.Service;

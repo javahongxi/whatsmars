@@ -1,10 +1,10 @@
 package com.whatsmars.fs.web.controller;
 
-import com.whatsmars.common.CommonConstants;
-import com.whatsmars.common.pojo.Result;
-import com.whatsmars.common.pojo.ResultCode;
-import com.whatsmars.common.util.DESUtils;
-import com.whatsmars.common.util.ResultHelper;
+import org.hongxi.whatsmars.common.CommonConstants;
+import org.hongxi.whatsmars.common.pojo.Result;
+import org.hongxi.whatsmars.common.pojo.ResultCode;
+import org.hongxi.whatsmars.common.util.DESUtils;
+import org.hongxi.whatsmars.common.util.ResultHelper;
 import com.whatsmars.fs.web.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

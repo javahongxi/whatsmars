@@ -1,6 +1,6 @@
 package com.whatsmars.earth.web.converter;
 
-import com.whatsmars.common.util.DateUtils;
+import org.hongxi.whatsmars.common.util.DateUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.core.convert.converter.Converter;
 

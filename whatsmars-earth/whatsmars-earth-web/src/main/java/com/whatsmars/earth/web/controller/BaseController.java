@@ -1,6 +1,6 @@
 package com.whatsmars.earth.web.controller;
 
-import com.whatsmars.common.util.DESUtils;
+import org.hongxi.whatsmars.common.util.DESUtils;
 import com.whatsmars.earth.domain.constants.Constants;
 import com.whatsmars.earth.domain.misc.SystemConfig;
 import org.apache.commons.lang.RandomStringUtils;

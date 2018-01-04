@@ -1,7 +1,7 @@
 package com.whatsmars.fs.web.service;
 
 
-import com.whatsmars.common.pojo.Result;
+import org.hongxi.whatsmars.common.pojo.Result;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

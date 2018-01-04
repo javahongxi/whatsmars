@@ -1,7 +1,7 @@
 package com.whatsmars.earth.web.controller;
 
-import com.whatsmars.common.pojo.Result;
-import com.whatsmars.common.util.ResultHelper;
+import org.hongxi.whatsmars.common.pojo.Result;
+import org.hongxi.whatsmars.common.util.ResultHelper;
 import com.whatsmars.earth.service.AccountService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

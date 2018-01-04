@@ -1,9 +1,9 @@
 package com.whatsmars.fs.web.service.impl;
 
-import com.whatsmars.common.ImageSizeEnum;
-import com.whatsmars.common.mongo.GridFSClient;
-import com.whatsmars.common.pojo.Result;
-import com.whatsmars.common.pojo.ResultCode;
+import org.hongxi.whatsmars.common.ImageSizeEnum;
+import org.hongxi.whatsmars.common.mongo.GridFSClient;
+import org.hongxi.whatsmars.common.pojo.Result;
+import org.hongxi.whatsmars.common.pojo.ResultCode;
 import com.whatsmars.fs.web.service.FileService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

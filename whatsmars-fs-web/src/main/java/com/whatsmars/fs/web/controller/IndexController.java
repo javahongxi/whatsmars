@@ -1,7 +1,7 @@
 package com.whatsmars.fs.web.controller;
 
-import com.whatsmars.common.pojo.ResultCode;
-import com.whatsmars.common.util.ResultHelper;
+import org.hongxi.whatsmars.common.pojo.ResultCode;
+import org.hongxi.whatsmars.common.util.ResultHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

@@ -1,6 +1,6 @@
 package com.whatsmars.earth.service;
 
-import com.whatsmars.common.pojo.Result;
+import org.hongxi.whatsmars.common.pojo.Result;
 import com.whatsmars.earth.domain.query.OrganizationQuery;
 
 /**
