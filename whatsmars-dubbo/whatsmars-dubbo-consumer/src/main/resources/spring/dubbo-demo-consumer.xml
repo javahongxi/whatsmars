@@ -6,11 +6,12 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
+    <!-- 这里的配置将覆盖properties里的配置 -->
 	<!--&lt;!&ndash; 提供方应用信息，用于计算依赖关系 &ndash;&gt;-->
 	<!--<dubbo:application name="whatsmars_consumer" />-->
 	<!--&lt;!&ndash; 使用zookeeper注册中心暴露服务地址 &ndash;&gt;-->
 	<!--<dubbo:registry address="zookeeper://127.0.0.1:2181" />-->
 
-	<dubbo:reference id="demoService" interface="com.whatsmars.dubbo.demo.api.DemoService" />
+	<dubbo:reference id="demoService" interface="com.whatsmars.dubbo.demo.api.DemoService" retries="2" />
 
 </beans>
