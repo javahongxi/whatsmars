@@ -17,6 +17,6 @@
         <property name="writeConcern" value="SAFE" />
     </bean>
 
-    <mongo:repositories base-package="com.whatsmars.spring.data.mongodb" />
+    <mongo:repositories base-package="org.hongxi.whatsmars.spring.data.mongodb" />
 
 </beans>

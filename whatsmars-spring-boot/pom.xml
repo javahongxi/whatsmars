@@ -18,7 +18,7 @@
 
     <properties>
         <!-- The main class to start by executing java -jar -->
-        <start-class>com.whatsmars.spring.boot.App</start-class>
+        <start-class>org.hongxi.whatsmars.spring.boot.App</start-class>
         <springfox.swagger2.version>2.5.0</springfox.swagger2.version>
     </properties>
 
