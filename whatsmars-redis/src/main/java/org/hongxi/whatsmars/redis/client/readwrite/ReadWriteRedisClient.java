@@ -1,4 +1,4 @@
-package com.whatsmars.redis.client.readwrite;
+package org.hongxi.whatsmars.redis.client.readwrite;
 
 import org.springframework.beans.factory.InitializingBean;
 import redis.clients.jedis.Jedis;

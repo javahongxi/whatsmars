@@ -1,6 +1,6 @@
-package com.whatsmars.redis.client.service.impl;
+package org.hongxi.whatsmars.redis.client.service.impl;
 
-import com.whatsmars.redis.client.service.RedisListService;
+import org.hongxi.whatsmars.redis.client.service.RedisListService;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;

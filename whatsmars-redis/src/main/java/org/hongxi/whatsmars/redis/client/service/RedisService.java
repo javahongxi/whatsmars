@@ -1,4 +1,4 @@
-package com.whatsmars.redis.client.service;
+package org.hongxi.whatsmars.redis.client.service;
 
 import java.util.Collection;
 import java.util.Set;

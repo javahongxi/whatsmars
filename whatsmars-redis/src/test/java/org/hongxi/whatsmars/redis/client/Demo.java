@@ -1,6 +1,6 @@
-package com.whatsmars.redis.client;
+package org.hongxi.whatsmars.redis.client;
 
-import com.whatsmars.redis.client.readwrite.ReadWriteRedisClient;
+import org.hongxi.whatsmars.redis.client.readwrite.ReadWriteRedisClient;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.whatsmars.redis.client.singleton;
+package org.hongxi.whatsmars.redis.client.singleton;
 
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;

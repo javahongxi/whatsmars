@@ -1,4 +1,4 @@
-package com.whatsmars.redis.client.service;
+package org.hongxi.whatsmars.redis.client.service;
 
 import org.springframework.data.redis.connection.RedisZSetCommands.Tuple;
 

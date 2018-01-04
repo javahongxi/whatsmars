@@ -1,11 +1,11 @@
-package com.whatsmars.redis.client.service.impl;
+package org.hongxi.whatsmars.redis.client.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.whatsmars.redis.client.service.RedisService;
+import org.hongxi.whatsmars.redis.client.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;

@@ -1,6 +1,6 @@
-package com.whatsmars.redis.client;
+package org.hongxi.whatsmars.redis.client;
 
-import com.whatsmars.redis.client.service.RedisService;
+import org.hongxi.whatsmars.redis.client.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

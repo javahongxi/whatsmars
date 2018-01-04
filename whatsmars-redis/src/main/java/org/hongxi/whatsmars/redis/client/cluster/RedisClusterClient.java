@@ -1,4 +1,4 @@
-package com.whatsmars.redis.client.cluster;
+package org.hongxi.whatsmars.redis.client.cluster;
 
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
