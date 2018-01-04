@@ -3,6 +3,7 @@
 - dubbo请求调用过程分析 http://wely.iteye.com/blog/2378164
 
 ### User Guide
+- http://dubbo.io/books/dubbo-user-book
 - 配置覆盖策略：java -D > xml > properties，properties适合全局配置
 - 配置覆盖策略：reference method > service method > reference > service > consumer > provider
 - 启动时检查：dubbo:reference check="true" Dubbo 缺省会在启动时检查依赖的服务是否可用，不可用时会抛出异常，阻止 Spring 初始化完成
@@ -59,3 +60,25 @@ EchoService echoService = (EchoService) memberService; // 强制转型为EchoSer
 String status = echoService.$echo("OK");
 assert(status.equals("OK"));
 ```
+- 上下文信息
+<br>RpcContext 是一个 ThreadLocal 的临时状态记录器，当接收到 RPC 请求，或发起 RPC 请求时，
+RpcContext 的状态都会变化。比如：A 调 B，B 再调 C，则 B 机器上，在 B 调 C 之前，RpcContext
+记录的是 A 调 B 的信息，在 B 调 C 之后，RpcContext 记录的是 B 调 C 的信息。
+- 隐式参数
+```java
+RpcContext.getContext().setAttachment("index", "1"); // 隐式传参，后面的远程调用都会隐式将这些参数发送到服务器端，类似cookie，用于框架集成，不建议常规业务使用
+xxxService.xxx(); // 远程调用
+```
+- 异步调用：略
+- 本地调用：略
+- 参数回调：略
+- 事件通知：略
+- 本地伪装：<dubbo:service interface="com.foo.BarService" mock="com.foo.BarServiceMock" />
+- 延迟暴露
+```xml
+<!-- 延迟 5 秒暴露服务 -->
+<dubbo:service delay="5000" />
+<!-- 延迟到 Spring 初始化完成后，再暴露服务 -->
+<dubbo:service delay="-1" />
+```
+- 并发控制 ...
