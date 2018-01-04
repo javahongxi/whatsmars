@@ -7,4 +7,4 @@ spring:
     protocol:
       name: dubbo
       port: 20881
-    scan: com.whatsmars.dubbo.demo.provider.resource
+    scan: org.hongxi.whatsmars.dubbo.demo.provider.resource

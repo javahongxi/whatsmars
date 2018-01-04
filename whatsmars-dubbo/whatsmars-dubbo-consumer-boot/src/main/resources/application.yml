@@ -4,4 +4,4 @@ spring:
       name: demo-consumer
     registry:
       address: zookeeper://127.0.0.1:2181
-    scan: com.whatsmars.dubbo.demo.consumer.rpc
+    scan: org.hongxi.whatsmars.dubbo.demo.consumer.rpc

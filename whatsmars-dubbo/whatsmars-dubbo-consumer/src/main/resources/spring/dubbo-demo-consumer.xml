@@ -12,6 +12,6 @@
 	<!--&lt;!&ndash; 使用zookeeper注册中心暴露服务地址 &ndash;&gt;-->
 	<!--<dubbo:registry address="zookeeper://127.0.0.1:2181" />-->
 
-	<dubbo:reference id="demoService" interface="com.whatsmars.dubbo.demo.api.DemoService" retries="2" />
+	<dubbo:reference id="demoService" interface="org.hongxi.whatsmars.dubbo.demo.api.DemoService" retries="2" />
 
 </beans>

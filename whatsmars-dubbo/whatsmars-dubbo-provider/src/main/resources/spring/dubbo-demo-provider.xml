@@ -17,9 +17,9 @@
 	<!--&lt;!&ndash; 用dubbo协议在20880端口暴露服务 &ndash;&gt;-->
 	<!--<dubbo:protocol name="dubbo" port="20880" />-->
 
-	<context:component-scan base-package="com.whatsmars.dubbo"/>
+	<context:component-scan base-package="org.hongxi.whatsmars.dubbo"/>
 	
-	<dubbo:service interface="com.whatsmars.dubbo.demo.api.DemoService" ref="demoService"
-	timeout="1000" />
+	<dubbo:service interface="org.hongxi.whatsmars.dubbo.demo.api.DemoService" ref="demoService"
+                   timeout="1000" />
 
 </beans>

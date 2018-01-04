@@ -19,7 +19,7 @@ public class DbRouteInterceptor {
   
     public DbRouteInterceptor() {}
   
-    @Pointcut("@annotation(com.whatsmars.dbrouter.DbRoute)")
+    @Pointcut("@annotation(org.hongxi.whatsmars.dbrouter.DbRoute)")
     public void aopPoint() {}
   
     @Before("aopPoint()")

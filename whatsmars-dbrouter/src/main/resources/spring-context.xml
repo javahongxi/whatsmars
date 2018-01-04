@@ -11,7 +11,7 @@
                         http://www.springframework.org/schema/aop/spring-aop-3.2.xsd"
 	   default-autowire="byName">
 
-	<context:component-scan base-package="com.whatsmars.dbrouter"/>
+	<context:component-scan base-package="org.hongxi.whatsmars.dbrouter"/>
 
 	<aop:aspectj-autoproxy/>
 
