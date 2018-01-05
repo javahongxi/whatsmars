@@ -2,6 +2,13 @@
 - https://github.com/alibaba/dubbo
 - dubbo请求调用过程分析 http://wely.iteye.com/blog/2378164
 
+### Test
+- mvn clean package
+- cd whatsmars-dubbo-provider/target
+- java -jar -Ddubbo.registry.address=multicast://224.5.6.7:1234 whatsmars-dubbo-provider.jar
+- cd whatsmars-dubbo-consumer/target
+- java -jar -Ddubbo.registry.address=multicast://224.5.6.7:1234 whatsmars-dubbo-consumer.jar
+
 ### User Guide
 - http://dubbo.io/books/dubbo-user-book
 - 配置覆盖策略：java -D > xml > properties，properties适合全局配置
@@ -19,7 +26,8 @@
 <dubbo:protocol name="dubbo" port="20880" />
 <dubbo:protocol name="hessian" port="8080" />
 <!-- 使用多个协议暴露服务 -->
-<dubbo:service id="helloService" interface="com.alibaba.hello.api.HelloService" version="1.0.0" protocol="dubbo,hessian" />
+<dubbo:service id="helloService" interface="com.alibaba.hello.api.HelloService" version="1.0.0"
+ protocol="dubbo,hessian" />
 ```
 - 多注册中心：略
 - 服务分组，同一接口不通实现
@@ -66,13 +74,10 @@ RpcContext 的状态都会变化。比如：A 调 B，B 再调 C，则 B 机器�
 记录的是 A 调 B 的信息，在 B 调 C 之后，RpcContext 记录的是 B 调 C 的信息。
 - 隐式参数
 ```java
-RpcContext.getContext().setAttachment("index", "1"); // 隐式传参，后面的远程调用都会隐式将这些参数发送到服务器端，类似cookie，用于框架集成，不建议常规业务使用
+// 隐式传参，后面的远程调用都会隐式将这些参数发送到服务器端，类似cookie，用于框架集成，不建议常规业务使用
+RpcContext.getContext().setAttachment("index", "1");
 xxxService.xxx(); // 远程调用
 ```
-- 异步调用：略
-- 本地调用：略
-- 参数回调：略
-- 事件通知：略
 - 本地伪装：<dubbo:service interface="com.foo.BarService" mock="com.foo.BarServiceMock" />
 - 延迟暴露
 ```xml
@@ -81,4 +86,4 @@ xxxService.xxx(); // 远程调用
 <!-- 延迟到 Spring 初始化完成后，再暴露服务 -->
 <dubbo:service delay="-1" />
 ```
-- 并发控制 ...
+- 并发控制，异步调用，本地调用，参数回调，事件通知 ...

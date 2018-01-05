@@ -47,7 +47,6 @@
 
     <build>
         <finalName>${project.artifactId}</finalName>
-        <!--<outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>-->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -55,6 +54,7 @@
             </resource>
         </resources>
         <plugins>
+            <!-- 生成可执行jar和lib文件夹 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>

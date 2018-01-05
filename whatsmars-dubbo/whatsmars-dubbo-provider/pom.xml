@@ -60,6 +60,7 @@
             </resource>
         </resources>
         <plugins>
+            <!-- 生成可执行jar和lib文件夹 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
