@@ -54,6 +54,12 @@
             <artifactId>jetty</artifactId>
         </dependency>
 
+        <!-- netty4 -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.hongxi</groupId>
             <artifactId>whatsmars-dubbo-service</artifactId>
