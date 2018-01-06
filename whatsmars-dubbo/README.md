@@ -35,7 +35,7 @@
  protocol="dubbo,hessian" />
 ```
 - 多注册中心：略
-- 服务分组，同一接口不通实现
+- 服务分组，同一接口不同实现
 ```xml
 <dubbo:service group="index1" interface="com.xxx.IndexService" ref="indexService1" />
 <dubbo:service group="index2" interface="com.xxx.IndexService" ref="indexService2" />

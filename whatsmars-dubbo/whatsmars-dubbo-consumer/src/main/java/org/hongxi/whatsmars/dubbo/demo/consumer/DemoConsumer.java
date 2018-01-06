@@ -3,6 +3,7 @@
  */
 package org.hongxi.whatsmars.dubbo.demo.consumer;
 
+import com.alibaba.dubbo.rpc.service.EchoService;
 import org.hongxi.whatsmars.dubbo.demo.api.DemoService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -32,6 +33,11 @@ public class DemoConsumer {
 		DemoService demoService4 = (DemoService) context.getBean("demoService4");
 		String hello4 = demoService4.sayHello("group:new");
 		System.out.println(hello4);
+
+		// 回声测试可用性
+        EchoService echoService = (EchoService) demoService;
+        Object status = echoService.$echo("OK");
+        System.out.println("回声测试：" + status.equals("OK"));
 
 	}
 
