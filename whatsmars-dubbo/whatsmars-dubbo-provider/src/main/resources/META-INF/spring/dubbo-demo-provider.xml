@@ -29,7 +29,8 @@
 	<!-- 类似group的还有version="2.0.0" -->
 	<dubbo:service group="new" interface="org.hongxi.whatsmars.dubbo.demo.api.DemoService" ref="demoService2" />
 
+	<!-- 通过loadbalance="leastactive"也可实现并发控制，此 Loadbalance 会调用并发数最小的 Provider(Consumer端并发数) -->
 	<dubbo:service interface="org.hongxi.whatsmars.dubbo.demo.api.BarService" ref="barService"
-	mock="org.hongxi.whatsmars.dubbo.demo.provider.BarServiceMock" />
+	mock="true" executes="10" />
 
 </beans>
