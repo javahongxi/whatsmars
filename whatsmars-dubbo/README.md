@@ -3,11 +3,12 @@
 - dubbo请求调用过程分析 http://wely.iteye.com/blog/2378164
 
 ### Test
+- startup zookeeper
 - mvn clean package
 - cd whatsmars-dubbo-provider/target
-- java -jar -Ddubbo.registry.address=multicast://224.5.6.7:1234 whatsmars-dubbo-provider.jar
+- java -jar -Ddubbo.registry.address=zookeeper://127.0.0.1:2181 whatsmars-dubbo-provider.jar
 - cd whatsmars-dubbo-consumer/target
-- java -jar -Ddubbo.registry.address=multicast://224.5.6.7:1234 whatsmars-dubbo-consumer.jar
+- java -jar -Ddubbo.registry.address=zookeeper://127.0.0.1:2181 whatsmars-dubbo-consumer.jar
 
 ### User Guide
 - http://dubbo.io/books/dubbo-user-book
