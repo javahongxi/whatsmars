@@ -26,5 +26,7 @@
 	<dubbo:service interface="org.hongxi.whatsmars.dubbo.demo.api.DemoService" ref="demoService"
                    timeout="500" /> <!-- 默认配了 protocol="dubbo,hessian" -->
 
+	<!-- 类似group的还有version="2.0.0" -->
+	<dubbo:service group="new" interface="org.hongxi.whatsmars.dubbo.demo.api.DemoService" ref="demoService2" />
 
 </beans>

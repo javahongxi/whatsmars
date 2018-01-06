@@ -20,4 +20,6 @@
 
 	<dubbo:reference id="demoService3" interface="org.hongxi.whatsmars.dubbo.demo.api.DemoService" protocol="hessian" />
 
+	<dubbo:reference id="demoService4" group="new" interface="org.hongxi.whatsmars.dubbo.demo.api.DemoService" />
+
 </beans>
