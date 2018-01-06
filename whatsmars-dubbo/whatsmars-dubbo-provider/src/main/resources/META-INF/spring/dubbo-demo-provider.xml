@@ -29,4 +29,6 @@
 	<!-- 类似group的还有version="2.0.0" -->
 	<dubbo:service group="new" interface="org.hongxi.whatsmars.dubbo.demo.api.DemoService" ref="demoService2" />
 
+	<dubbo:service interface="org.hongxi.whatsmars.dubbo.demo.api.BarService" ref="barService" />
+
 </beans>
