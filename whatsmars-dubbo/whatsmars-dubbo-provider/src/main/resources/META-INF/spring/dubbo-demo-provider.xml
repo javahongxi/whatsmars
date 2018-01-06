@@ -31,6 +31,6 @@
 
 	<!-- 通过loadbalance="leastactive"也可实现并发控制，此 Loadbalance 会调用并发数最小的 Provider(Consumer端并发数) -->
 	<dubbo:service interface="org.hongxi.whatsmars.dubbo.demo.api.BarService" ref="barService"
-	mock="true" executes="10" />
+	mock="org.hongxi.whatsmars.dubbo.demo.provider.BarServiceMock" executes="10" />
 
 </beans>
