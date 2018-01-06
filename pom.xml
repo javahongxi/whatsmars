@@ -57,6 +57,8 @@
         <httpcomponents.version>4.5.3</httpcomponents.version>
         <gson.version>2.8.2</gson.version>
         <guava.version>20.0</guava.version>
+        <jetty.version>6.1.26</jetty.version>
+        <hessian.version>4.0.7</hessian.version>
         <junit.version>4.12</junit.version>
 
         <!-- for maven compiler&resources plugin -->
@@ -102,6 +104,20 @@
                 <artifactId>javax.servlet-api</artifactId>
                 <version>${servlet.version}</version>
                 <scope>provided</scope>
+            </dependency>
+
+            <!-- jetty -->
+            <dependency>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+
+            <!-- hessian -->
+            <dependency>
+                <groupId>com.caucho</groupId>
+                <artifactId>hessian</artifactId>
+                <version>${hessian.version}</version>
             </dependency>
 
             <!-- mybatis -->

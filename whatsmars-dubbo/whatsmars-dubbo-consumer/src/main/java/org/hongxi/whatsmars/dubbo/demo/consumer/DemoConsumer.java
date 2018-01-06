@@ -14,9 +14,16 @@ public class DemoConsumer {
 		context.start();
 
 		DemoService demoService = (DemoService) context.getBean("demoService"); // 获取远程服务代理
-		String hello = demoService.sayHello("world"); // 执行远程方法
-
+		String hello = demoService.sayHello("dubbo"); // 执行远程方法
 		System.out.println(hello); // 显示调用结果
+
+		DemoService demoService2 = (DemoService) context.getBean("demoService2"); // 获取远程服务代理
+		String hello2 = demoService2.sayHello("hessian直连"); // 执行远程方法
+		System.out.println(hello2); // 显示调用结果
+
+		DemoService demoService3 = (DemoService) context.getBean("demoService3"); // 获取远程服务代理
+		String hello3 = demoService3.sayHello("hessian"); // 执行远程方法
+		System.out.println(hello3); // 显示调用结果
 
 	}
 

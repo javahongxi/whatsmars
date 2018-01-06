@@ -17,6 +17,8 @@
 - 集群容错模式：默认 cluster="failover"，其他 failfast,failsafe,failback,forking,broadcast
 - 负载均衡：默认 loadbalance="random"，其他 roundrobin,leastactive,consistenthash
 - 线程模型：<dubbo:protocol name="dubbo" dispatcher="all" threadpool="fixed" threads="100" />
+如果事件处理的逻辑能迅速完成，并且不会发起新的 IO 请求，比如只是在内存中记个标识，则直接在 IO 线程上处理更快，因为减少了线程池调度。
+但如果事件处理逻辑较慢，或者需要发起新的 IO 请求，比如需要查询数据库，则必须派发到线程池，否则 IO 线程阻塞，将导致不能接收其它请求。
 - 直连提供者：<dubbo:reference id="xxxService" interface="com.alibaba.xxx.XxxService" url="dubbo://localhost:20890" />
 - 只订阅(禁用注册)：<dubbo:registry address="10.20.153.10:9090" register="false" />
 - 人工管理服务上下线：<dubbo:registry address="10.20.141.150:9090" dynamic="false" />

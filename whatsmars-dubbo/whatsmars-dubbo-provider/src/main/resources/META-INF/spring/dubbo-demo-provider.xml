@@ -14,12 +14,14 @@
 	<!--<dubbo:application name="whatsmars_provider" />-->
 	<!--&lt;!&ndash; 使用zookeeper注册中心暴露服务地址 &ndash;&gt;-->
 	<!--<dubbo:registry address="zookeeper://127.0.0.1:2181" />-->
-	<!--&lt;!&ndash; 用dubbo协议在20880端口暴露服务 &ndash;&gt;-->
-	<!--<dubbo:protocol name="dubbo" port="20880" />-->
+    <!-- 多协议配置 -->
+    <dubbo:protocol name="dubbo" port="20880" />
+	<dubbo:protocol name="hessian" port="8080" server="jetty" />
 
 	<context:component-scan base-package="org.hongxi.whatsmars.dubbo"/>
 	
 	<dubbo:service interface="org.hongxi.whatsmars.dubbo.demo.api.DemoService" ref="demoService"
-                   timeout="1000" />
+                   timeout="1000" /> <!-- 默认配了 protocol="dubbo,hessian" -->
+
 
 </beans>
