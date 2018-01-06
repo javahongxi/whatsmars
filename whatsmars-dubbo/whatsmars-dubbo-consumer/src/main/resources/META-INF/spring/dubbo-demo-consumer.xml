@@ -14,8 +14,9 @@
 
 	<dubbo:reference id="demoService" interface="org.hongxi.whatsmars.dubbo.demo.api.DemoService" retries="2" />
 
+	<!-- url="hessian://127.0.0.1:8080/org.hongxi.whatsmars.dubbo.demo.api.DemoService" -->
 	<dubbo:reference id="demoService2" interface="org.hongxi.whatsmars.dubbo.demo.api.DemoService"
-					 url="hessian://127.0.0.1:8080/org.hongxi.whatsmars.dubbo.demo.api.DemoService" />
+					 url="hessian://127.0.0.1:8080" />
 
 	<dubbo:reference id="demoService3" interface="org.hongxi.whatsmars.dubbo.demo.api.DemoService" protocol="hessian" />
 

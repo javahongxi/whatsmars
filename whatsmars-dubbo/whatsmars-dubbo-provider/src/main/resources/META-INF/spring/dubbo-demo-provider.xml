@@ -19,9 +19,12 @@
 	<dubbo:protocol name="hessian" port="8080" server="jetty" />
 
 	<context:component-scan base-package="org.hongxi.whatsmars.dubbo"/>
+
+	<!-- provider用于统一配置全部service，优先级service > provider -->
+	<dubbo:provider timeout="3000" />
 	
 	<dubbo:service interface="org.hongxi.whatsmars.dubbo.demo.api.DemoService" ref="demoService"
-                   timeout="1000" /> <!-- 默认配了 protocol="dubbo,hessian" -->
+                   timeout="500" /> <!-- 默认配了 protocol="dubbo,hessian" -->
 
 
 </beans>
