@@ -13,10 +13,7 @@
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
     <description>The demo module of dubbo project</description>
-    <properties>
-        <skip_maven_deploy>true</skip_maven_deploy>
-        <dubbo.version>2.5.8</dubbo.version>
-    </properties>
+
     <modules>
         <module>whatsmars-dubbo-api</module>
         <module>whatsmars-dubbo-consumer</module>

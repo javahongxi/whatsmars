@@ -12,7 +12,7 @@
     <artifactId>whatsmars-earth</artifactId>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
-    <description>springmvc + velocity demo</description>
+    <description>springmvc + velocity 实战</description>
 
     <modules>
         <module>whatsmars-earth-domain</module>
