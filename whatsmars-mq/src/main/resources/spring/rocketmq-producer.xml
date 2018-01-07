@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+       default-autowire="byName">
+
+    <bean id="defaultMQProducer" class="org.hongxi.whatsmars.mq.rocketmq.spring.ProducerFactoryBean">
+        <property name="producerGroup" value="quick_start_producer_group" />
+        <property name="namesrvAddr" value="127.0.0.1:9876" />
+    </bean>
+</beans>
