@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+	   default-autowire="byName">
+
+    <bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="tcp://127.0.0.1:61616"></property>
+    </bean>
+
+    <bean id="demoQueueDestination" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg index="0" value="TEST.QUEUE"></constructor-arg>
+    </bean>
+
+    <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="connectionFactory"></property>
+        <property name="destination" ref="demoQueueDestination"></property>
+        <property name="messageListener" ref="demoMessageListener"></property>
+        <property name="concurrentConsumers" value="1"></property>
+        <property name="autoStartup" value="true"/>
+        <property name="sessionAcknowledgeMode" value="2"/>
+    </bean>
+
+    <bean id="demoMessageListener" class="org.hongxi.whatsmars.mq.activemq.spring.DemoMessageListener"/>
+
+</beans>
