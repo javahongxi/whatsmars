@@ -35,10 +35,10 @@ public class KafkaConsumer {
         StringDecoder keyDecoder = new StringDecoder(new VerifiableProperties());
         StringDecoder valueDecoder = new StringDecoder(new VerifiableProperties());
 
-        Map<String, List<KafkaStream<String, String>>> consumerMap =
+        Map<String, List<KafkaStream<Object, Object>>> consumerMap =
                 consumer.createMessageStreams(topicCountMap, keyDecoder, valueDecoder);
-        KafkaStream<String, String> stream = consumerMap.get("TestTopic").get(0);
-        ConsumerIterator<String, String> it = stream.iterator();
+        KafkaStream<Object, Object> stream = consumerMap.get("TestTopic").get(0);
+        ConsumerIterator<Object, Object> it = stream.iterator();
         while (it.hasNext()) {
             System.out.println(it.next().message());
         }
