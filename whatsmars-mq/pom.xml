@@ -67,12 +67,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.zeromq</groupId>
-            <artifactId>jeromq</artifactId>
-            <version>0.4.2</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka_2.8.2</artifactId>
         </dependency>
