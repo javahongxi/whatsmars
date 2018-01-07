@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.mq.rocketmq.spring;
+package org.hongxi.whatsmars.mq.rocketmq.spring.demo;
 
 import org.apache.xbean.spring.context.ClassPathXmlApplicationContext;
 

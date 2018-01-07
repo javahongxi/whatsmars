@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.mq.rocketmq.spring;
+package org.hongxi.whatsmars.mq.rocketmq.spring.demo;
 
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;

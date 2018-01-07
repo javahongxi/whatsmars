@@ -13,5 +13,5 @@
         <property name="messageListener" ref="demoMessageListener" />
     </bean>
 
-    <bean id="demoMessageListener" class="org.hongxi.whatsmars.mq.rocketmq.spring.DemoMessageListener" />
+    <bean id="demoMessageListener" class="org.hongxi.whatsmars.mq.rocketmq.spring.demo.DemoMessageListener" />
 </beans>
