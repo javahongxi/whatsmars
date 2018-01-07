@@ -5,7 +5,7 @@
 - 管理后台：https://github.com/apache/rocketmq-externals
 
 ### User Guide
-- rocketmq原理与实践 http://wely.iteye.com/blog/2392089
+- [RocketMQ原理与实践](RocketMQ.md)
 - 每个主题可设置队列个数，默认4个，需要顺序消费的消息发往同一队列，比如同一订单号相关的几条需要顺序消费的消息发往同一队列，
 顺序消费的特点的是，不会有两个消费者共同消费任一队列，且当消费者数量小于队列数时，消费者会消费多个队列。至于消息重复，在消
 费端处理。事务消息可参考rocketmq的做法，也可直接用本地事务。
