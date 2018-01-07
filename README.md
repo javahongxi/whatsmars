@@ -41,8 +41,6 @@ whatsmars-motan | 微博分布式RPC框架
 - [*A fast, light-weight proxy for memcached and redis*](https://github.com/twitter/twemproxy)
 - [*mybatis通用分页插件*](https://github.com/pagehelper/Mybatis-PageHelper)
 - [*elasticsearch - Distributed, RESTful Search Engine*](https://github.com/elastic/elasticsearch)
-- [*经典的SSH+JSP项目*](https://github.com/javahongxi/youcai)
-- [*新生态探索(Gradle,spring-cloud,jdk8+,jvm-lang,spring5...)*](https://github.com/javahongxi/solar)
 
 ### Friendship links
 - [*阿里巴巴Java开发手册*](https://github.com/alibaba/Alibaba-Java-Coding-Guidelines)
