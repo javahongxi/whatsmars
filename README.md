@@ -53,6 +53,6 @@ whatsmars-motan | 微博分布式RPC框架
 ### Warm tips
 - 带着问题去看源代码，没必要把源代码看完
 - 看源代码最大的技巧是看英文注释，另一个技巧是日志+DEBUG
-- 要有所侧重，你没有那么多时间什么都深入
+- 要有所侧重，你没有那么多时间什么都深入，要有全局和轴的思想
 
 &copy; hongxi.org | [**toutiao.im**](http://toutiao.im) | [typora.io](https://typora.io)
