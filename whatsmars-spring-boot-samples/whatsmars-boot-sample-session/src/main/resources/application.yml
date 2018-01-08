@@ -1,0 +1,10 @@
+---
+spring:
+  security:
+    user:
+      password: password
+      name: user
+management:
+  endpoints:
+    web:
+      expose: *
