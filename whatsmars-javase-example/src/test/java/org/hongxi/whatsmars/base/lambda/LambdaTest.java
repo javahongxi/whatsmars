@@ -9,6 +9,6 @@ public class LambdaTest {
 
     @Test
     public void t1() {
-//        new Thread(() -> System.out.println("hi,lambda!")).start();
+        new Thread(() -> System.out.println("hi,lambda!")).start();
     }
 }
