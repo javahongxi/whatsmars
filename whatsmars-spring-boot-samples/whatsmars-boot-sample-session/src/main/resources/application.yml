@@ -1,10 +1,17 @@
----
 spring:
-  security:
-    user:
-      password: password
-      name: user
-management:
-  endpoints:
-    web:
-      expose: *
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 0
+    pool:
+      max-idle: 8
+      min-idle: 1
+      max-active: 8
+      max-wait: -1
+  session:
+    store-type: redis
+
+server:
+  session:
+    timeout: 1800

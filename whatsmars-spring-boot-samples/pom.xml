@@ -18,9 +18,9 @@
         <module>whatsmars-boot-sample-session</module>
     </modules>
 
-    <properties>
+    <!--<properties>
         <spring-boot.version>2.0.0.M7</spring-boot.version>
-    </properties>
+    </properties>-->
 
     <dependencyManagement>
         <dependencies>
@@ -43,7 +43,7 @@
         </plugins>
     </build>
 
-    <repositories>
+    <!--<repositories>
         <repository>
             <id>spring-repo</id>
             <name>Spring Repo</name>
@@ -68,7 +68,7 @@
                 <enabled>false</enabled>
             </snapshots>
         </pluginRepository>
-    </pluginRepositories>
+    </pluginRepositories>-->
 
 
 </project>
