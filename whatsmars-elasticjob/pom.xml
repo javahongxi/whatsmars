@@ -12,11 +12,9 @@
     <artifactId>whatsmars-elasticjob</artifactId>
 
     <properties>
-        <java.version>1.7</java.version>
         <elastic-job.version>2.1.5</elastic-job.version>
         <curator.version>2.10.0</curator.version>
         <h2.version>1.4.184</h2.version>
-        <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
     </properties>
 
     <dependencies>

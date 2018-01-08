@@ -79,6 +79,11 @@
         <java-source.version>1.8</java-source.version>
         <java-target.version>1.8</java-target.version>
         <file-encoding>UTF-8</file-encoding>
+        <compiler-plugin.version>3.7.0</compiler-plugin.version>
+        <resources-plugin.version>3.0.2</resources-plugin.version>
+        <release-plugin.version>2.5.3</release-plugin.version>
+        <dependency-plugin.version>3.0.2</dependency-plugin.version>
+        <springloaded.version>1.2.6.RELEASE</springloaded.version>
 
         <rootdir>${basedir}</rootdir>
     </properties>
@@ -444,7 +449,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>${compiler-plugin.version}</version>
                 <configuration>
                     <source>${java-source.version}</source>
                     <target>${java-target.version}</target>
@@ -453,7 +458,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>2.6</version>
+                <version>${resources-plugin.version}</version>
                 <configuration>
                     <encoding>${file-encoding}</encoding>
                 </configuration>
@@ -461,7 +466,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.1</version>
+                <version>${release-plugin.version}</version>
             </plugin>
         </plugins>
     </build>

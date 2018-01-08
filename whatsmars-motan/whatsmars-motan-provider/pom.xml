@@ -89,7 +89,7 @@
                     <dependency>
                         <groupId>org.springframework</groupId>
                         <artifactId>springloaded</artifactId>
-                        <version>1.2.6.RELEASE</version>
+                        <version>${springloaded.version}</version>
                     </dependency>
                 </dependencies>
                 <!-- POM不是继承spring-boot-starter-parent的话，需要下面的指定 -->
