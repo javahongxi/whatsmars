@@ -9,6 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Producer {
     public static void main(String[] args) throws InterruptedException {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring/rocketmq-producer.xml");
+        context.registerShutdownHook();
         DefaultMQProducer producer = (DefaultMQProducer) context.getBean("defaultMQProducer");
         for (int i = 0; i < 1000; i++) {
             try {
