@@ -62,14 +62,15 @@
         <netty.version>3.2.5.Final</netty.version>
         <netty4.version>4.0.35.Final</netty4.version>
         <mina.version>1.1.7</mina.version>
-        <rocketmq.version>4.1.0-incubating</rocketmq.version>
+        <netty-tcnative.version>2.0.7.Final</netty-tcnative.version>
+        <rocketmq.version>4.2.0</rocketmq.version>
         <activemq.version>5.15.0</activemq.version>
         <rabbitmq.version>4.2.0</rabbitmq.version>
         <kafka.version>0.8.0</kafka.version>
         <scala.version>2.8.2</scala.version>
         <metrics.version>2.2.0</metrics.version>
         <zkclient.version>0.9</zkclient.version>
-        <dubbo.version>2.5.8</dubbo.version>
+        <dubbo.version>2.6.0</dubbo.version>
 
         <junit.version>4.12</junit.version>
 
@@ -341,6 +342,17 @@
                 <groupId>org.apache.rocketmq</groupId>
                 <artifactId>rocketmq-broker</artifactId>
                 <version>${rocketmq.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>io.netty</groupId>
+                        <artifactId>netty-tcnative</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-tcnative</artifactId>
+                <version>${netty-tcnative.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.rocketmq</groupId>

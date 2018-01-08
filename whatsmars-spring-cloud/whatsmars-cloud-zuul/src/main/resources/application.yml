@@ -32,6 +32,7 @@ zuul:
       path: /demo/**
       serviceId: demo-consumer
       stripPrefix: true
+      sensitiveHeaders: // 表示不过滤Headers，如Cookie
     demo2:
       path: /demo2/**
       serviceId: demo2-consumer
