@@ -71,6 +71,8 @@
         <scala.version>2.8.2</scala.version>
         <metrics.version>2.2.0</metrics.version>
         <zkclient.version>0.9</zkclient.version>
+        <curator.version>2.12.0</curator.version>
+
         <dubbo.version>2.6.0</dubbo.version>
 
         <junit.version>4.12</junit.version>
@@ -423,6 +425,14 @@
                 <artifactId>zkclient</artifactId>
                 <version>${zkclient.version}</version>
             </dependency>
+
+            <!-- curator -->
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-framework</artifactId>
+                <version>${curator.version}</version>
+            </dependency>
+
 
             <!-- test -->
             <dependency>
