@@ -20,7 +20,7 @@ public class DemoConsumer {
 		context.start();
 
 		// 异步调用
-		async(context);
+//		async(context);
 
 		// dubbo protocol
 		DemoService demoService = (DemoService) context.getBean("demoService"); // 获取远程服务代理
