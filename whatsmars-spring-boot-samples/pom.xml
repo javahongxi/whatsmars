@@ -16,6 +16,7 @@
     <modules>
         <module>whatsmars-boot-sample-aop</module>
         <module>whatsmars-boot-sample-session</module>
+        <module>whatsmars-boot-sample-logback</module>
     </modules>
 
     <!--<properties>
@@ -33,6 +34,15 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <dependencies>
+        <!-- Test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
