@@ -5,12 +5,16 @@
 whatsmars-*/.settings
 whatsmars-*/target
 whatsmars-*/bin
+whatsmars-*/logs
 whatsmars-*/whatsmars-*/.settings
 whatsmars-*/whatsmars-*/target
 whatsmars-*/whatsmars-*/bin
+whatsmars-*/whatsmars-*/logs
 .settings
 *.iws
 *.iml
 *.ipr
 .idea/*
 activemq-data/*
+logs/*
+
