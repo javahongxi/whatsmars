@@ -1,8 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <include resource="org/springframework/boot/logging/logback/base.xml" />
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/spring.log}"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
     <logger name="org.hongxi.whatsmars.boot.sample.logback" level="DEBUG" />
     <springProfile name="staging">
         <logger name="org.hongxi.whatsmars.boot.sample.logback" level="TRACE" />
     </springProfile>
+
+    <springProperty name="LOG_FILE_ROLLING" source="logging.file-rolling" defaultValue="${LOG_FILE}"/>
+    <springProperty name="LOG_MAX_FILE_SIZE" source="logging.max-file-size" defaultValue="10MB"/>
+    <springProperty name="LOG_MAX_HISTORY" source="logging.max-history" defaultValue="7"/>
+    <springProperty name="LOG_TOTAL_SIZE_CAP" source="logging.total-size-cap" defaultValue="50MB"/>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_FILE}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_FILE_ROLLING}-%d{yyyy-MM-dd}.%i.gz</fileNamePattern>
+            <maxFileSize>${LOG_MAX_FILE_SIZE}</maxFileSize>
+            <maxHistory>${LOG_MAX_HISTORY}</maxHistory>
+            <totalSizeCap>${LOG_TOTAL_SIZE_CAP}</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+    </root>
 </configuration>
