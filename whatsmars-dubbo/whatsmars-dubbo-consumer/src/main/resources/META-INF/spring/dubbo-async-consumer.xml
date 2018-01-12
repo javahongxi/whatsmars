@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<dubbo:reference id="demoService5" interface="org.hongxi.whatsmars.dubbo.demo.api.DemoService">
+		<dubbo:method name="sayHello" async="true" />
+	</dubbo:reference>
+
+	<dubbo:reference id="barService" interface="org.hongxi.whatsmars.dubbo.demo.api.BarService">
+		<dubbo:method name="findBar" async="true" />
+	</dubbo:reference>
+
+</beans>

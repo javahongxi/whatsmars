@@ -22,9 +22,6 @@ public class DemoConsumer {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"META-INF/spring/dubbo-demo-consumer.xml"});
 		context.start();
 
-		// 异步调用
-//		async(context);
-
 		// dubbo protocol
 		DemoService demoService = (DemoService) context.getBean("demoService"); // 获取远程服务代理
 		String hello = demoService.sayHello("dubbo"); // 执行远程方法
@@ -53,21 +50,5 @@ public class DemoConsumer {
         System.out.println("#######################ALL SUCCESSFUL##########################");
 
 	}
-
-	private static void async(ClassPathXmlApplicationContext context) throws Exception {
-        // 异步调用
-        DemoService demoService5 = (DemoService) context.getBean("demoService5");
-        demoService5.sayHello("aysc");
-        Future<String> helloFuture = RpcContext.getContext().getFuture();
-
-        BarService barService = (BarService) context.getBean("barService");
-        barService.findBar("m123456");
-        Future<Bar> barFuture = RpcContext.getContext().getFuture();
-
-        String hello5 = helloFuture.get();
-        Bar bar = barFuture.get();
-        System.out.println(hello5);
-        System.out.println(bar);
-    }
 
 }
