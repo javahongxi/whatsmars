@@ -72,6 +72,7 @@
         <metrics.version>2.2.0</metrics.version>
         <zkclient.version>0.9</zkclient.version>
         <curator.version>2.12.0</curator.version>
+        <swagger2.version>2.5.0</swagger2.version>
 
         <dubbo.version>2.6.0</dubbo.version>
 
