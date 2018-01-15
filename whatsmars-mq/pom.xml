@@ -37,19 +37,9 @@
             <artifactId>netty-tcnative</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.rocketmq</groupId>
-            <artifactId>rocketmq-client</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.qianmi</groupId>
             <artifactId>spring-boot-starter-rocketmq</artifactId>
-            <version>1.0.2-RELEASE</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.rocketmq</groupId>
-                    <artifactId>rocketmq-client</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>1.1.0-RELEASE</version>
         </dependency>
 
         <dependency>
