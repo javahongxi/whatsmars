@@ -4,4 +4,6 @@ spring:
       name: demo-consumer
     registry:
       address: zookeeper://127.0.0.1:2181
+    module:
+      name: demo
     scan: org.hongxi.whatsmars.dubbo.demo.consumer.rpc

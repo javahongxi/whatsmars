@@ -9,8 +9,8 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @ComponentScan(value = {"org.hongxi.whatsmars.dubbo"})
-public class App {
+public class ProviderApplication {
     public static void main(String[] args) {
-        SpringApplication.run(App.class, args);
+        SpringApplication.run(ProviderApplication.class, args);
     }
 }

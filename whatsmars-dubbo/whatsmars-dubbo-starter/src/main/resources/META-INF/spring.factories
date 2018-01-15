@@ -1,0 +1,6 @@
+org.springframework.context.ApplicationContextInitializer=\
+org.hongxi.whatsmars.dubbo.starter.DubboConfigurationApplicationContextInitializer
+org.springframework.context.ApplicationListener=\
+org.hongxi.whatsmars.dubbo.starter.DubboHolderListener
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.hongxi.whatsmars.dubbo.starter.DubboAutoConfiguration

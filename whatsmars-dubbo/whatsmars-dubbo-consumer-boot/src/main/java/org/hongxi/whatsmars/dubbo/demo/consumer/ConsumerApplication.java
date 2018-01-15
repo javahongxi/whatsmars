@@ -9,9 +9,9 @@ import org.springframework.context.ConfigurableApplicationContext;
  * Created by javahongxi on 2017/12/4.
  */
 @SpringBootApplication
-public class App {
+public class ConsumerApplication {
     public static void main(String[] args) {
-        ConfigurableApplicationContext context = SpringApplication.run(App.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(ConsumerApplication.class, args);
         DemoRpc demoRpc = context.getBean(DemoRpc.class);
         System.out.println(demoRpc.sayHello("Lily"));
     }
