@@ -27,9 +27,9 @@ limitations under the License.
 
     <dubbo:protocol name="dubbo" port="20882"/>
 
-    <bean id="versionService" class="com.alibaba.dubbo.examples.version.impl.VersionServiceImpl2"/>
+    <bean id="versionService" class="org.hongxi.whatsmars.dubbo.example.version.impl.VersionServiceImpl2"/>
 
-    <dubbo:service interface="com.alibaba.dubbo.examples.version.api.VersionService" version="2.0.0"
+    <dubbo:service interface="org.hongxi.whatsmars.dubbo.example.version.api.VersionService" version="2.0.0"
                    ref="versionService"/>
 
 </beans>

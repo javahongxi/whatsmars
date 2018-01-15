@@ -25,6 +25,6 @@ limitations under the License.
 
     <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
 
-    <dubbo:reference id="versionService" interface="com.alibaba.dubbo.examples.version.api.VersionService" version="*"/>
+    <dubbo:reference id="versionService" interface="org.hongxi.whatsmars.dubbo.example.version.api.VersionService" version="*"/>
 
 </beans>

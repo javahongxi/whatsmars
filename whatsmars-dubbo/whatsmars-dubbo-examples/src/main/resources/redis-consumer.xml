@@ -23,6 +23,6 @@ limitations under the License.
 
     <dubbo:application name="memcached-consumer"/>
 
-    <dubbo:reference id="cache" interface="java.util.Map" url="redis://10.20.153.10:6379"/>
+    <dubbo:reference id="cache" interface="java.util.Map" url="redis://127.0.0.1:6379"/>
 
 </beans>
