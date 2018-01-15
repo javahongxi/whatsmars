@@ -24,8 +24,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class MergeProvider2 {
 
     public static void main(String[] args) throws Exception {
-        String config = MergeProvider2.class.getPackage().getName().replace('.', '/') + "/merge-provider2.xml";
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(config);
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("merge-provider2.xml");
         context.start();
         System.in.read();
     }

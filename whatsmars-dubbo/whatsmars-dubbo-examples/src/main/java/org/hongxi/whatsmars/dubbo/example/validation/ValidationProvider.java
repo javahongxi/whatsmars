@@ -24,8 +24,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class ValidationProvider {
 
     public static void main(String[] args) throws Exception {
-        String config = ValidationProvider.class.getPackage().getName().replace('.', '/') + "/validation-provider.xml";
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(config);
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("validation-provider.xml");
         context.start();
         System.in.read();
     }

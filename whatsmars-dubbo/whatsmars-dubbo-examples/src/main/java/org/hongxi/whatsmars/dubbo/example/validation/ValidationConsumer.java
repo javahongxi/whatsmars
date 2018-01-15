@@ -32,8 +32,7 @@ import java.util.Set;
 public class ValidationConsumer {
 
     public static void main(String[] args) throws Exception {
-        String config = ValidationConsumer.class.getPackage().getName().replace('.', '/') + "/validation-consumer.xml";
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(config);
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("validation-consumer.xml");
         context.start();
 
         ValidationService validationService = (ValidationService) context.getBean("validationService");

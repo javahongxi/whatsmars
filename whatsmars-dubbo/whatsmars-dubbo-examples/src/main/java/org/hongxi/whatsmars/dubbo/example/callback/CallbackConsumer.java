@@ -26,8 +26,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class CallbackConsumer {
 
     public static void main(String[] args) throws Exception {
-        String config = CallbackConsumer.class.getPackage().getName().replace('.', '/') + "/callback-consumer.xml";
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(config);
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("callback-consumer.xml");
         context.start();
         CallbackService callbackService = (CallbackService) context.getBean("callbackService");
         callbackService.addListener("foo.bar", new CallbackListener() {

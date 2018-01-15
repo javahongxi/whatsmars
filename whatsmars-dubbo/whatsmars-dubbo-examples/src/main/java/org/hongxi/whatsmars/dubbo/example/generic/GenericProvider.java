@@ -24,8 +24,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class GenericProvider {
 
     public static void main(String[] args) throws Exception {
-        String config = GenericProvider.class.getPackage().getName().replace('.', '/') + "/generic-provider.xml";
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(config);
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("generic-provider.xml");
         context.start();
         System.in.read();
     }

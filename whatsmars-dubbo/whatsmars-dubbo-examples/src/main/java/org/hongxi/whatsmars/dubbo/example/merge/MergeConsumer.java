@@ -27,8 +27,7 @@ import java.util.List;
 public class MergeConsumer {
 
     public static void main(String[] args) throws Exception {
-        String config = MergeConsumer.class.getPackage().getName().replace('.', '/') + "/merge-consumer.xml";
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(config);
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("merge-consumer.xml");
         context.start();
         MergeService mergeService = (MergeService) context.getBean("mergeService");
         for (int i = 0; i < Integer.MAX_VALUE; i++) {

@@ -27,8 +27,7 @@ public class RedisConsumer {
 
     @SuppressWarnings("unchecked")
     public static void main(String[] args) throws Exception {
-        String config = RedisConsumer.class.getPackage().getName().replace('.', '/') + "/redis-consumer.xml";
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(config);
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("redis-consumer.xml");
         context.start();
         Map<String, Object> cache = (Map<String, Object>) context.getBean("cache");
         cache.remove("hello");

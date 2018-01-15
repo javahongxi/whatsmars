@@ -24,8 +24,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class VersionProvider {
 
     public static void main(String[] args) throws Exception {
-        String config = VersionProvider.class.getPackage().getName().replace('.', '/') + "/version-provider.xml";
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(config);
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("version-provider.xml");
         context.start();
         System.in.read();
     }

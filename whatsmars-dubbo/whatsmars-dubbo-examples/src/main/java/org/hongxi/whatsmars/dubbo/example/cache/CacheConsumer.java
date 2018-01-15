@@ -25,8 +25,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class CacheConsumer {
 
     public static void main(String[] args) throws Exception {
-        String config = CacheConsumer.class.getPackage().getName().replace('.', '/') + "/cache-consumer.xml";
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(config);
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("cache-consumer.xml");
         context.start();
 
         CacheService cacheService = (CacheService) context.getBean("cacheService");

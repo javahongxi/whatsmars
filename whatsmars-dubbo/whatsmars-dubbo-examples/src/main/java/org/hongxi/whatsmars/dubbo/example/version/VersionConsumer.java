@@ -25,8 +25,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class VersionConsumer {
 
     public static void main(String[] args) throws Exception {
-        String config = VersionConsumer.class.getPackage().getName().replace('.', '/') + "/version-consumer.xml";
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(config);
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("version-consumer.xml");
         context.start();
         VersionService versionService = (VersionService) context.getBean("versionService");
         for (int i = 0; i < 10000; i++) {

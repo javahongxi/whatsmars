@@ -25,8 +25,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class GenericConsumer {
 
     public static void main(String[] args) throws Exception {
-        String config = GenericConsumer.class.getPackage().getName().replace('.', '/') + "/generic-consumer.xml";
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(config);
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("generic-consumer.xml");
         context.start();
         UserService userservice = (UserService) context.getBean("userservice");
         UserService.User user = userservice.get(new UserService.Params("a=b"));
