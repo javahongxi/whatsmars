@@ -9,4 +9,4 @@ spring:
       port: 20881
     module:
       name: demo
-    scan: org.hongxi.whatsmars.dubbo.demo.provider.resource
+#    scan:
