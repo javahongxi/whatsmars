@@ -73,6 +73,7 @@
         <zkclient.version>0.9</zkclient.version>
         <curator.version>2.12.0</curator.version>
         <swagger2.version>2.5.0</swagger2.version>
+        <jedis.version>2.9.0</jedis.version>
 
         <dubbo.version>2.6.0</dubbo.version>
 
@@ -444,6 +445,13 @@
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${swagger2.version}</version>
+            </dependency>
+
+            <!-- jedis -->
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>${jedis.version}</version>
             </dependency>
 
             <!-- test -->

@@ -22,6 +22,7 @@
         <module>whatsmars-dubbo-consumer-boot</module>
         <module>whatsmars-dubbo-service</module>
         <module>whatsmars-dubbo-starter</module>
+        <module>whatsmars-dubbo-examples</module>
     </modules>
 
 
