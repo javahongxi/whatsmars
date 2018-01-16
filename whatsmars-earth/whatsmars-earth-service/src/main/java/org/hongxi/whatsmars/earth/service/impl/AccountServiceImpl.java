@@ -4,6 +4,9 @@ import org.hongxi.whatsmars.common.pojo.Result;
 import org.hongxi.whatsmars.earth.dao.AccountDao;
 import org.hongxi.whatsmars.earth.service.AccountService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.TransactionCallback;
+import org.springframework.transaction.support.TransactionTemplate;
 
 /**
  * Created by shenhongxi on 2016/4/1.
@@ -14,7 +17,7 @@ public class AccountServiceImpl implements AccountService {
     private AccountDao accountDao;
 
     //@Autowired
-    //private TransactionTemplate transactionTemplate;
+//    private TransactionTemplate transactionTemplate;
 
     public Result hello(String name) {
         Result result = new Result();
@@ -26,7 +29,12 @@ public class AccountServiceImpl implements AccountService {
 //        boolean isSuccess = transactionTemplate.execute(new TransactionCallback<Boolean>() {
 //            @Override
 //            public Boolean doInTransaction(TransactionStatus transactionStatus) {
-//
+//                try {
+//                    // ...
+//                    return true;
+//                } catch (Exception e) {
+//                    transactionStatus.setRollbackOnly();
+//                }
 //                return false;
 //            }
 //        });

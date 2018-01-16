@@ -1,24 +1,35 @@
-public class YibaoCityManagerImpl implements YibaoCityManager{
+package org.hongxi.whatsmars.earth.service;
 
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
+import org.hongxi.whatsmars.earth.dao.CityDao;
+import org.hongxi.whatsmars.earth.domain.pojo.City;
 
-    private YibaoCityDao yibaoCityDao;
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
 
-    private static Cache<String,List<YibaoCityDO>> cache = CacheBuilder.newBuilder().maximumSize(2048).expireAfterAccess(15, TimeUnit.MINUTES).build();
+/**
+ * Created by shenhongxi on 2018/1/16.
+ */
+public class CityService {
 
-    public void setYibaoCityDao(YibaoCityDao yibaoCityDao) {
-        this.yibaoCityDao = yibaoCityDao;
+    private CityDao cityDao;
+
+    private static Cache<String,List<City>> cache = CacheBuilder.newBuilder().maximumSize(2048).expireAfterAccess(15, TimeUnit.MINUTES).build();
+
+    public void setCityDao(CityDao cityDao) {
+        this.cityDao = cityDao;
     }
 
-
-
-    @Override
-    public List<YibaoCityDO> getByPid(final String pid) {
+    public List<City> getByPid(final String pid) {
         try {
             //cache.get方法首先从Cache中查询key是否存在，如果存在则返回对应的value。
             //如果不存在，则调用Callable.call方法。并把call方法返回的结果保存在cache中。
-            return cache.get(pid, new Callable<List<YibaoCityDO>>() {
+            return cache.get(pid, new Callable<List<City>>() {
                 @Override
-                public List<YibaoCityDO> call() throws Exception {
+                public List<City> call() throws Exception {
                     return load(pid);
                 }
             });
@@ -37,12 +48,11 @@ public class YibaoCityManagerImpl implements YibaoCityManager{
      * @return
      * @throws Exception
      */
-    protected List<YibaoCityDO> load(final String pid) throws Exception{
-        List<YibaoCityDO> result = this.yibaoCityDao.getByPid(pid);
+    protected List<City> load(final String pid) throws Exception{
+        List<City> result = this.cityDao.getByPid(pid);
         if(result == null) {
             throw new NullPointerException("pid not existed");
         }
         return result;
     }
-
 }
