@@ -1,6 +1,5 @@
 package org.hongxi.whatsmars.mq.activemq.spring;
 
-import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.stereotype.Service;
 
 import javax.jms.*;

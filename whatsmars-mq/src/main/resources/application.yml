@@ -3,3 +3,5 @@ spring:
     name-server: 127.0.0.1:9876
     producer:
       group: boot_producer_group
+  activemq:
+    brokerUrl: tcp://127.0.0.1:61616
