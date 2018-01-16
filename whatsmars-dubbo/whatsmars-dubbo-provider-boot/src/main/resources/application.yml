@@ -10,3 +10,11 @@ spring:
     module:
       name: demo
 #    scan:
+
+#    protocol:
+#      dubbo:
+#        name: dubbo
+#        port: 20881
+#      hessian:
+#        name: hessian
+#        port: 8080
