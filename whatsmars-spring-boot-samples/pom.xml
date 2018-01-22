@@ -17,6 +17,7 @@
         <module>whatsmars-boot-sample-aop</module>
         <module>whatsmars-boot-sample-session</module>
         <module>whatsmars-boot-sample-logback</module>
+        <module>whatsmars-boot-sample-cache</module>
     </modules>
 
     <!--<properties>
