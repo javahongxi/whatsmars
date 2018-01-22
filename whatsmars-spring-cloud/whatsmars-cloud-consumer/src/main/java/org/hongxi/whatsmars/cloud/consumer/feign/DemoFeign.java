@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * Created by shenhongxi on 2017/9/14.
  */
-@FeignClient(value = "demo-provider", fallback = DemoHystrix.class)
+@FeignClient(value = "${provider.name}", fallback = DemoHystrix.class)
 public interface DemoFeign {
     @RequestMapping("/hello")
     String hello(@RequestParam(name = "name") String name); // 此处必须有RequestParam
