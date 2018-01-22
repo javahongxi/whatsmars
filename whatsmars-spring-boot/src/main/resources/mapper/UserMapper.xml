@@ -14,8 +14,12 @@
     <insert id="insertBatch" parameterType="list">
         insert into user(username, nickname, gender, age, create_date, update_date) values
         <foreach collection="list" item="item" separator=",">
-            (#{username}, #{nickname}, #{gender}, #{age}, NOW(), NOW())
+            (#{username}, #{nickname}, #{gender}, #{age}, #{createDate}, #{updateDate})
         </foreach>
     </insert>
+
+    <select id="query" resultType="User">
+        select * from user
+    </select>
 
 </mapper>

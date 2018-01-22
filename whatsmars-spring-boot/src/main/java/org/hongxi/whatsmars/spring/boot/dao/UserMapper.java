@@ -16,4 +16,6 @@ public interface UserMapper {
     void insert(User user);
 
     void insertBatch(List<User> users);
+
+    List<User> query();
 }
