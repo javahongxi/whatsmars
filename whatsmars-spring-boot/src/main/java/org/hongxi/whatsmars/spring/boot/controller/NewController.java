@@ -1,14 +1,13 @@
 package org.hongxi.whatsmars.spring.boot.controller;
 
+import com.github.pagehelper.Page;
+import org.hongxi.whatsmars.spring.boot.common.pojo.ReturnItems;
 import org.hongxi.whatsmars.spring.boot.exception.AppException;
 import org.hongxi.whatsmars.spring.boot.model.User;
 import org.hongxi.whatsmars.spring.boot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -62,5 +61,16 @@ public class NewController {
     public HttpStatus e(@RequestParam(required = false) String error) {
         if (error != null) throw AppException.build(error);
         return HttpStatus.OK;
+    }
+
+    @GetMapping("/query")
+    public ReturnItems<User> query(@RequestParam(value = "offset", defaultValue = "0") Integer offset,
+                                   @RequestParam(value = "limit", defaultValue = "30") Integer limit) {
+        ReturnItems<User> returnItems = new ReturnItems<>();
+        Page<User> page = userService.query(offset, limit);
+        returnItems.setItems(page.getResult());
+        returnItems.setTotal(page.getTotal());
+        returnItems.setStatus(200);
+        return returnItems;
     }
 }
