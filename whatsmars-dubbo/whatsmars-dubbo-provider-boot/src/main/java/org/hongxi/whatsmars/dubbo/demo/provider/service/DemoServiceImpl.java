@@ -1,7 +1,7 @@
 /**
  * Created by shenhongxi on 2017/12/4.
  */
-package org.hongxi.whatsmars.dubbo.demo.provider.resource;
+package org.hongxi.whatsmars.dubbo.demo.provider.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.dubbo.rpc.RpcContext;
@@ -12,7 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@Service(version = "1.0.0")
+@Service(
+        version = "1.0.0",
+        application = "${dubbo.application.id}",
+        protocol = "${dubbo.protocol.id}",
+        registry = "${dubbo.registry.id}"
+)
 public class DemoServiceImpl implements DemoService {
 
     @Autowired

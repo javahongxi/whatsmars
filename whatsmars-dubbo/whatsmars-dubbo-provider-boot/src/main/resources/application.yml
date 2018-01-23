@@ -1,20 +1,17 @@
 spring:
-  dubbo:
-    application:
-      name: demo-provider
-    registry:
-      address: zookeeper://127.0.0.1:2181
-    protocol:
-      name: dubbo
-      port: 20881
-    module:
-      name: demo
-#    scan:
+  application:
+    name: demo-provider
 
-#    protocol:
-#      dubbo:
-#        name: dubbo
-#        port: 20881
-#      hessian:
-#        name: hessian
-#        port: 8080
+dubbo:
+  registry:
+    address: zookeeper://127.0.0.1:2181
+    id: my-registry
+  protocol:
+    port: 20882
+    name: dubbo
+    id: dubbo
+  application:
+    name: demo-provider
+    id: demo-provider
+  scan:
+    basePackages: org.hongxi.whatsmars.dubbo.demo.provider.service
