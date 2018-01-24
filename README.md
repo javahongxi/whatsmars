@@ -23,8 +23,6 @@ whatsmars-spring-cloud | springcloud demo
 whatsmars-redis | redis客户端简单封装
 whatsmars-motan | 微博分布式RPC框架
 
-*[motan](https://github.com/weibocom/motan)属于轻量级[dubbo](https://github.com/alibaba/dubbo)，易入手，建议学习dubbo先从motan开始*
-
 ### More projects
 - [*阿里巴巴开源分布式RPC框架Dubbo*](https://github.com/alibaba/dubbo)
 - [*阿里巴巴贡献给Apache的消息中间件RocketMQ*](https://github.com/apache/rocketmq)
@@ -44,8 +42,8 @@ whatsmars-motan | 微博分布式RPC框架
 
 ### Friendship links
 - [*阿里巴巴Java开发手册*](https://github.com/alibaba/Alibaba-Java-Coding-Guidelines)
-- *技术博客* [blog.toutiao.im](http://blog.toutiao.im)
-- *深入一点* [laoda.toutiao.im](http://laoda.toutiao.im)
+- *技术博客* [blog.toutiao.im](http://blog.toutiao.im)🔥
+- *深入一点* [laoda.toutiao.im](http://laoda.toutiao.im)🔥
 - *开涛* [kaitao.toutiao.im](http://kaitao.toutiao.im)
 - *各种编程入门* [start.toutiao.im](http://start.toutiao.im)
 - *阿里云开发者中心* [dev.toutiao.im](http://dev.toutiao.im)
