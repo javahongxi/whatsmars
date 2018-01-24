@@ -22,4 +22,16 @@
         select * from user
     </select>
 
+    <update id="update" parameterType="User">
+        update user set update_date = NOW
+        <if test="username != null">, username = #{username}</if>
+        <if test="nickname != null">, nickname = #{nickname}</if>
+        <if test="age != null">, age = #{age}</if>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from user where id = #{id}
+    </delete>
+
 </mapper>

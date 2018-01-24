@@ -33,6 +33,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void update(User user) {
+        userMapper.update(user);
+    }
+
+    @Override
+    public void delete(Long id) {
+        userMapper.delete(id);
+    }
+
+    @Override
     public Page<User> query(int offset, int limit) {
         return PageHelper.offsetPage(offset, limit).doSelectPage(() -> userMapper.query());
     }

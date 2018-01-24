@@ -22,14 +22,14 @@ public class NewController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/t", method = RequestMethod.GET)
+    @GetMapping("/t")
     public Map<String, Object> query() {
         Map<String, Object> m = new HashMap<String, Object>();
         m.put("domain", "toutiao.im");
         return m;
     }
 
-    @RequestMapping(value = "/t", method = RequestMethod.POST)
+    @PostMapping("/t")
     public HttpStatus add(@RequestParam(name = "name") String username,
                           @RequestParam(required = false) String nickname,
                           @RequestParam(required = false, defaultValue = "1") Integer gender,
@@ -43,18 +43,16 @@ public class NewController {
         return HttpStatus.OK;
     }
 
-    @RequestMapping(value = "/t", method = RequestMethod.PUT)
-    public Map<String, Object> update() {
-        Map<String, Object> m = new HashMap<String, Object>();
-        m.put("domain", "toutiao.im");
-        return m;
+    @PutMapping("/t")
+    public HttpStatus update(@RequestBody User user) { // 以json格式接收参数
+        userService.update(user);
+        return HttpStatus.OK;
     }
 
-    @RequestMapping(value = "/t", method = RequestMethod.DELETE)
-    public Map<String, Object> delete() {
-        Map<String, Object> m = new HashMap<String, Object>();
-        m.put("domain", "toutiao.im");
-        return m;
+    @DeleteMapping("/t")
+    public HttpStatus delete(Long id) {
+        userService.delete(id);
+        return HttpStatus.OK;
     }
 
     @RequestMapping(value = "/e", method = RequestMethod.GET)

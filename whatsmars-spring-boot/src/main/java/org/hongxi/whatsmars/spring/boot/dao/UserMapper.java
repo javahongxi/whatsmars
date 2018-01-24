@@ -18,4 +18,8 @@ public interface UserMapper {
     void insertBatch(List<User> users);
 
     List<User> query();
+
+    void update(User user);
+
+    void delete(Long id);
 }

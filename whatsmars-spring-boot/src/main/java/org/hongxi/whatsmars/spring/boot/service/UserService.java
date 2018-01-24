@@ -12,5 +12,10 @@ public interface UserService {
 
     void add(User user);
 
+    void update(User user);
+
+    void delete(Long id);
+
     Page<User> query(int offset, int limit);
+
 }
