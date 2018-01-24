@@ -44,13 +44,13 @@ public class NewController {
     }
 
     @PutMapping("/t")
-    public HttpStatus update(@RequestBody User user) { // 以json格式接收参数
+    public HttpStatus update(@RequestBody User user) { // 以json格式接收参数, RequestBody也可省略
         userService.update(user);
         return HttpStatus.OK;
     }
 
     @DeleteMapping("/t")
-    public HttpStatus delete(Long id) {
+    public HttpStatus delete(@RequestParam Long id) {
         userService.delete(id);
         return HttpStatus.OK;
     }
