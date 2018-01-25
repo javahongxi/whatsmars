@@ -13,5 +13,6 @@ dubbo:
   application:
     name: demo-consumer
     id: demo-consumer
-  qos:
-    port: 22223
+    qos:
+      port: 33333
+      enable: false

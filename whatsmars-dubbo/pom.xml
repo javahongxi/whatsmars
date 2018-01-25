@@ -23,6 +23,7 @@
         <module>whatsmars-dubbo-service</module>
         <module>whatsmars-dubbo-starter</module>
         <module>whatsmars-dubbo-examples</module>
+        <module>whatsmars-dubbo-actuator</module>
     </modules>
 
 

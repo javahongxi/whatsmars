@@ -32,8 +32,21 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.hongxi</groupId>
             <artifactId>spring-boot-starter-dubbo</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hongxi</groupId>
+            <artifactId>spring-boot-actuator-dubbo</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

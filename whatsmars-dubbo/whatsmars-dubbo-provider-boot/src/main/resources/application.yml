@@ -13,5 +13,16 @@ dubbo:
   application:
     name: demo-provider
     id: demo-provider
+    qos:
+      port: 22222
+      enable: true
   scan:
     basePackages: org.hongxi.whatsmars.dubbo.demo.provider.service
+
+endpoints:
+  dubbo:
+    enabled: true
+management:
+  port: 9091
+  security:
+    enabled: false
