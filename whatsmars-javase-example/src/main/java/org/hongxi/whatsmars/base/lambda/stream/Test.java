@@ -32,6 +32,8 @@ public class Test {
 
         Map<Status, List<Task>> map = tasks.stream().collect(Collectors.groupingBy(Task::getStatus));
         System.out.println(map);
+        Map<Status, Long> map2 = tasks.stream().collect(Collectors.groupingBy(Task::getStatus, Collectors.counting()));
+        System.out.println(map2);
 
         Collection<String> result = tasks
                 .stream()
