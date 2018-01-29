@@ -42,10 +42,10 @@ public class SampleController {
     @Bean
     public LocaleResolver localeResolver() {
         AbstractLocaleResolver localeResolver = new SessionLocaleResolver();
-        //localeResolver.setDefaultLocale(Locale.US);
+        //localeResolver.setDefaultLocale(Locale.US); // Locale.getDefault()
 //        CookieLocaleResolver localeResolver = new CookieLocaleResolver();
 //        localeResolver.setCookieName("language");
-//        localeResolver.setCookieMaxAge(3600);
+//        localeResolver.setCookieMaxAge(3600); // Integer.MAX_VALUE
         return localeResolver;
     }
 
