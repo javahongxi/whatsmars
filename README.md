@@ -7,21 +7,21 @@
 Module | Intro
 ------ | ------
 whatsmars-common | mail,HttpUtils,AES,DES加解密
-whatsmars-earth | springmvc+velocity实战
-whatmars-fs-web | 用mongodb存储图片和文件
-whatsmars-javase-example | Java基础学习
-whatsmars-spring | spring原理、集成及新特性
-whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 whatsmars-dbrouter | 分库分表实现
-whatsmars-sharding-jdbc | 开源分布式数据库中间件
-whatsmars-elasticjob | 分布式调度
 whatsmars-dubbo | 阿里分布式RPC(服务化)框架
+whatsmars-earth | springmvc+velocity实战
+whatsmars-elasticjob | 分布式调度
+whatmars-fs-web | 用mongodb存储图片和文件
+whatsmars-javase-example | Java基础 & 新特性
 whatsmars-mq | 消息中间件rocketmq,activemq
 whatsmars-redis | redis客户端简单封装
 whatsmars-rpc | RPC & Protocol
+whatsmars-sharding-jdbc | 开源分布式数据库中间件
+whatsmars-spring | spring原理、集成及新特性
 whatsmars-spring-boot | springboot实战
-whatsmars-spring-cloud | springcloud demo
 whatsmars-spring-boot-samples | 常用spring-boot-starters演示
+whatsmars-spring-cloud | springcloud demo
+whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 
 ### More projects
 - [*阿里巴巴开源分布式RPC框架Dubbo*](https://github.com/alibaba/dubbo)
