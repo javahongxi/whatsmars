@@ -21,7 +21,6 @@
         <module>whatsmars-dubbo</module>
         <module>whatsmars-mq</module>
         <module>whatsmars-redis</module>
-        <module>whatsmars-motan</module>
         <module>whatsmars-spring-cloud</module>
         <module>whatsmars-sharding-jdbc</module>
         <module>whatsmars-earth</module>
