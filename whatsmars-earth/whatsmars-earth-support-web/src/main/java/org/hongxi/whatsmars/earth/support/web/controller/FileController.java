@@ -1,11 +1,11 @@
-package org.hongxi.whatsmars.fs.web.controller;
+package org.hongxi.whatsmars.earth.support.web.controller;
 
 import org.hongxi.whatsmars.common.CommonConstants;
 import org.hongxi.whatsmars.common.pojo.Result;
 import org.hongxi.whatsmars.common.pojo.ResultCode;
 import org.hongxi.whatsmars.common.util.DESUtils;
 import org.hongxi.whatsmars.common.util.ResultHelper;
-import org.hongxi.whatsmars.fs.web.service.FileService;
+import org.hongxi.whatsmars.earth.support.web.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +19,7 @@ import java.io.*;
 
 /**
  * Created by liuguanqing on 15/4/15.
+ * MongoDB存储文件、图片
  */
 @Controller
 public class FileController {

@@ -10,7 +10,6 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>whatsmars-common</module>
-        <module>whatsmars-fs-web</module>
         <module>whatsmars-tomcat</module>
         <module>whatsmars-javase-example</module>
         <module>whatsmars-spring</module>

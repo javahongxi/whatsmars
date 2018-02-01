@@ -22,13 +22,13 @@
         <property name="properties" ref="mongodbProperties"/>
         <property name="configuration">
             <bean class="org.hongxi.whatsmars.common.mongo.object.MongoDBConfig">
-                <property name="addresses" value="${whatsmars.mongodb.common.addresses}"/>
+                <property name="addresses" value="${whatsmars.mongodb.filesystem.addresses}"/>
                 <property name="credentials">
                     <list>
                         <bean class="org.hongxi.whatsmars.common.mongo.object.MongoDBCredential">
-                            <property name="databaseName" value="${whatsmars.mongodb.common.dbname}"/>
-                            <property name="username" value="${whatsmars.mongodb.common.username}"/>
-                            <property name="password" value="${whatsmars.mongodb.common.password}"/>
+                            <property name="databaseName" value="${whatsmars.mongodb.filesystem.dbname}"/>
+                            <property name="username" value="${whatsmars.mongodb.filesystem.username}"/>
+                            <property name="password" value="${whatsmars.mongodb.filesystem.password}"/>
                         </bean>
                     </list>
                 </property>
@@ -36,6 +36,11 @@
             </bean>
 
         </property>
+    </bean>
+
+    <bean id="gridFSClient" class="org.hongxi.whatsmars.common.mongo.GridFSClient">
+        <property name="mongoDBDriver" ref="mongodbDriver"/>
+        <property name="databaseName" value="${whatsmars.mongodb.admin.dbname}"/>
     </bean>
 
     <bean id="mongoClient" class="org.hongxi.whatsmars.common.mongo.MongoDBClient">
