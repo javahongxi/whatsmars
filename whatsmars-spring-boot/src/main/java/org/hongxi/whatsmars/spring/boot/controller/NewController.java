@@ -22,8 +22,8 @@ public class NewController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/t")
-    public Map<String, Object> query() {
+    @GetMapping("/t/{userId}")
+    public Map<String, Object> query(@PathVariable("userId") Integer userId) {
         Map<String, Object> m = new HashMap<String, Object>();
         m.put("domain", "toutiao.im");
         return m;
