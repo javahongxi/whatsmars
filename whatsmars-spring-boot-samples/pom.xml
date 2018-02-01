@@ -18,6 +18,7 @@
         <module>whatsmars-boot-sample-session</module>
         <module>whatsmars-boot-sample-logback</module>
         <module>whatsmars-boot-sample-cache</module>
+        <module>whatsmars-boot-sample-mongodb</module>
     </modules>
 
     <!--<properties>
