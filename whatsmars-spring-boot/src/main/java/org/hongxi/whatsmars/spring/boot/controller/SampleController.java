@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.AbstractLocaleResolver;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
@@ -40,11 +41,10 @@ public class SampleController {
      */
     @Bean
     public LocaleResolver localeResolver() {
-        AbstractLocaleResolver localeResolver = new SessionLocaleResolver();
-        //localeResolver.setDefaultLocale(Locale.US); // Locale.getDefault()
-//        CookieLocaleResolver localeResolver = new CookieLocaleResolver();
-//        localeResolver.setCookieName("language");
-//        localeResolver.setCookieMaxAge(3600); // Integer.MAX_VALUE
+        CookieLocaleResolver localeResolver = new CookieLocaleResolver();
+        localeResolver.setCookieName("language");
+        localeResolver.setCookieMaxAge(Integer.MAX_VALUE);
+        localeResolver.setDefaultLocale(LocaleService.DEFAULT_LOCALE); // Locale.getDefault()
         return localeResolver;
     }
 
@@ -53,10 +53,8 @@ public class SampleController {
     public String changeLang(HttpServletRequest request, HttpServletResponse response, @RequestParam String lang){
         LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);
         if ("zh".equals(lang)) {
-            // request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, new Locale("zh", "CN"));
             localeResolver.setLocale(request, response, Locale.SIMPLIFIED_CHINESE);
         } else if("en".equals(lang)){
-            // request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, new Locale("en", "US"));
             localeResolver.setLocale(request, response, Locale.US);
         }
         return "lang:" + LocaleContextHolder.getLocale().getLanguage();
