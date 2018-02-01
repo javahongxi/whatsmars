@@ -1,7 +1,10 @@
 package org.hongxi.whatsmars.boot.cache;
 
-public class Book {
+import java.io.Serializable;
 
+public class Book implements Serializable {
+
+    private static final long serialVersionUID = 3383972798607883427L;
     private String isbn;
     private String title;
 
