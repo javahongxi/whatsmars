@@ -1,6 +1,5 @@
 package org.hongxi.whatsmars.spring.boot.controller;
 
-import org.hongxi.whatsmars.spring.boot.common.LocaleUtils;
 import org.hongxi.whatsmars.spring.boot.config.UserConfig;
 import org.hongxi.whatsmars.spring.boot.common.LocaleService;
 import io.swagger.annotations.Api;
@@ -55,17 +54,17 @@ public class SampleController {
         LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);
         if ("zh".equals(lang)) {
             // request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, new Locale("zh", "CN"));
-            localeResolver.setLocale(request, response, new Locale("zh", "CN"));
+            localeResolver.setLocale(request, response, Locale.SIMPLIFIED_CHINESE);
         } else if("en".equals(lang)){
             // request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, new Locale("en", "US"));
-            localeResolver.setLocale(request, response, new Locale("en", "US"));
+            localeResolver.setLocale(request, response, Locale.US);
         }
         return "lang:" + LocaleContextHolder.getLocale().getLanguage();
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Map<String,Object> map) {
-        System.out.println(LocaleUtils.isEnLocale());
+        System.out.println(LocaleService.isUSLocale());
         map.put("hello", "Hi, boy!");
         map.put("country", localeService.getMessage("country"));
         return "index";

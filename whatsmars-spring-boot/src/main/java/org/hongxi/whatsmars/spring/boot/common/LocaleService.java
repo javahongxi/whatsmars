@@ -13,6 +13,8 @@ import java.util.Locale;
 @Component
 public class LocaleService {
 
+    public static final Locale DEFAULT_LOCALE = Locale.SIMPLIFIED_CHINESE;
+
     @Autowired
     private MessageSource messageSource;
 
@@ -21,7 +23,13 @@ public class LocaleService {
         return messageSource.getMessage(key, null, locale);
     }
 
-    public boolean isEnLocale() {
-        return LocaleContextHolder.getLocale().getLanguage().equals("en");
+    public static boolean isUSLocale() {
+        return LocaleContextHolder.getLocale().equals(Locale.US);
+    }
+
+    public static Locale resetLocale(Locale locale) {
+        Locale origin = LocaleContextHolder.getLocale();
+        LocaleContextHolder.setLocale(locale);
+        return origin;
     }
 }
