@@ -18,6 +18,6 @@ public class SpringTest {
 
     @Test
     public void hi() {
-        System.out.println(mars.getAge());
+        assert mars.getAge() == 45;
     }
 }
