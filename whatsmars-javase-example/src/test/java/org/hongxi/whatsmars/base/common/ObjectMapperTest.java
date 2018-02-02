@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Created by shenhongxi on 2017/8/21.
  */
-public class CommonTest {
+public class ObjectMapperTest {
 
     @Test
     public void t() throws Exception {

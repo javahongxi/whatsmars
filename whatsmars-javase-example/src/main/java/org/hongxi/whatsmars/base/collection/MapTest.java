@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.base;
+package org.hongxi.whatsmars.base.collection;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;

@@ -4,11 +4,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.partitioningBy;
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.*;
 
 /**
  * Created by shenhongxi on 2018/1/11.
@@ -36,7 +33,7 @@ public class Test {
 
         Map<Status, List<Task>> map = tasks.stream().collect(groupingBy(Task::getStatus));
         System.out.println(map);
-        Map<Status, Long> map2 = tasks.stream().collect(groupingBy(Task::getStatus, Collectors.counting()));
+        Map<Status, Long> map2 = tasks.stream().collect(groupingBy(Task::getStatus, counting()));
         System.out.println(map2);
         Map<Boolean, List<Task>> map3 = tasks.stream().collect(partitioningBy(e -> e.getPoint() > 7));
         System.out.println(map3);
