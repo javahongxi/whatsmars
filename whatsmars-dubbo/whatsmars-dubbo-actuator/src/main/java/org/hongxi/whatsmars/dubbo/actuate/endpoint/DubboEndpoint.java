@@ -2,7 +2,7 @@
 package org.hongxi.whatsmars.dubbo.actuate.endpoint;
 
 import com.alibaba.dubbo.common.Version;
-import org.hongxi.whatsmars.dubbo.starter.util.DubboUtils;
+import org.hongxi.whatsmars.dubbo.autoconfigure.util.DubboUtils;
 import org.springframework.boot.actuate.endpoint.AbstractEndpoint;
 import org.springframework.boot.actuate.endpoint.Endpoint;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -10,7 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static org.hongxi.whatsmars.dubbo.starter.util.DubboUtils.*;
+import static org.hongxi.whatsmars.dubbo.autoconfigure.util.DubboUtils.*;
 
 /**
  * Actuator {@link Endpoint} to expose Dubbo Meta Data

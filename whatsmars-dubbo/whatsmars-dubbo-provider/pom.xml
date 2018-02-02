@@ -20,7 +20,7 @@
         <dependency>
             <groupId>org.hongxi</groupId>
             <artifactId>whatsmars-dubbo-api</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -72,7 +72,7 @@
         <dependency>
             <groupId>org.hongxi</groupId>
             <artifactId>whatsmars-dubbo-service</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

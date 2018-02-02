@@ -1,0 +1,7 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.hongxi.whatsmars.dubbo.autoconfigure.DubboAutoConfiguration
+
+
+org.springframework.context.ApplicationListener=\
+org.hongxi.whatsmars.dubbo.autoconfigure.context.event.OverrideDubboConfigApplicationListener,\
+org.hongxi.whatsmars.dubbo.autoconfigure.context.event.WelcomeLogoApplicationListener

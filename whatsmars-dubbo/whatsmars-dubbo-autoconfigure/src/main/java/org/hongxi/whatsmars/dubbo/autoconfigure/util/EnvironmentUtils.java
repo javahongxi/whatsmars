@@ -1,5 +1,5 @@
 
-package org.hongxi.whatsmars.dubbo.starter.util;
+package org.hongxi.whatsmars.dubbo.autoconfigure.util;
 
 import org.springframework.core.env.*;
 import org.springframework.util.ObjectUtils;

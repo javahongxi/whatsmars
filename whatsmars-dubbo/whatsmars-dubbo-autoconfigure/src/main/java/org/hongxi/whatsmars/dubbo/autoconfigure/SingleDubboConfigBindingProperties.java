@@ -1,12 +1,12 @@
 
-package org.hongxi.whatsmars.dubbo.starter.autoconfigure;
+package org.hongxi.whatsmars.dubbo.autoconfigure;
 
 import com.alibaba.dubbo.config.*;
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubboConfigBinding;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
-import static org.hongxi.whatsmars.dubbo.starter.util.DubboUtils.DUBBO_PREFIX;
+import static org.hongxi.whatsmars.dubbo.autoconfigure.util.DubboUtils.DUBBO_PREFIX;
 
 
 /**

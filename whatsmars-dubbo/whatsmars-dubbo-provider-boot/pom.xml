@@ -18,27 +18,10 @@
         <start-class>org.hongxi.whatsmars.dubbo.demo.provider.ProviderApplication</start-class>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.hongxi</groupId>
-            <artifactId>spring-boot-starter-dubbo</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -46,18 +29,18 @@
         </dependency>
         <dependency>
             <groupId>org.hongxi</groupId>
-            <artifactId>spring-boot-actuator-dubbo</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <artifactId>spring-boot-starter-dubbo</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.hongxi</groupId>
             <artifactId>whatsmars-dubbo-api</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.hongxi</groupId>
             <artifactId>whatsmars-dubbo-service</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

@@ -1,5 +1,5 @@
 
-package org.hongxi.whatsmars.dubbo.starter.autoconfigure;
+package org.hongxi.whatsmars.dubbo.autoconfigure;
 
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import static org.hongxi.whatsmars.dubbo.starter.util.DubboUtils.DUBBO_SCAN_PREFIX;
+import static org.hongxi.whatsmars.dubbo.autoconfigure.util.DubboUtils.DUBBO_SCAN_PREFIX;
 
 
 /**

@@ -1,5 +1,5 @@
 
-package org.hongxi.whatsmars.dubbo.starter.context.event;
+package org.hongxi.whatsmars.dubbo.autoconfigure.context.event;
 
 import com.alibaba.dubbo.common.Version;
 import org.slf4j.Logger;
@@ -9,8 +9,8 @@ import org.springframework.boot.logging.LoggingApplicationListener;
 import org.springframework.context.ApplicationListener;
 import org.springframework.core.annotation.Order;
 
-import static org.hongxi.whatsmars.dubbo.starter.util.DubboUtils.*;
 import static com.alibaba.dubbo.qos.server.DubboLogo.dubbo;
+import static org.hongxi.whatsmars.dubbo.autoconfigure.util.DubboUtils.*;
 
 /**
  * Dubbo Welcome Logo {@link ApplicationListener}

@@ -1,5 +1,5 @@
 
-package org.hongxi.whatsmars.dubbo.starter.context.event;
+package org.hongxi.whatsmars.dubbo.autoconfigure.context.event;
 
 import com.alibaba.dubbo.common.utils.ConfigUtils;
 import org.slf4j.Logger;
@@ -12,7 +12,7 @@ import org.springframework.core.env.Environment;
 
 import java.util.SortedMap;
 
-import static org.hongxi.whatsmars.dubbo.starter.util.DubboUtils.*;
+import static org.hongxi.whatsmars.dubbo.autoconfigure.util.DubboUtils.*;
 
 /**
  * {@link ApplicationListener} to override the dubbo properties from {@link Environment}into

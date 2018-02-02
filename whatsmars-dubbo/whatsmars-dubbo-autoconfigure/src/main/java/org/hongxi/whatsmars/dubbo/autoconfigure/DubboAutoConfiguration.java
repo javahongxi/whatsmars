@@ -1,5 +1,5 @@
 
-package org.hongxi.whatsmars.dubbo.starter.autoconfigure;
+package org.hongxi.whatsmars.dubbo.autoconfigure;
 
 import com.alibaba.dubbo.config.AbstractConfig;
 import com.alibaba.dubbo.config.ApplicationConfig;
@@ -23,8 +23,8 @@ import org.springframework.core.env.Environment;
 
 import java.util.Set;
 
-import static org.hongxi.whatsmars.dubbo.starter.util.DubboUtils.*;
 import static java.util.Collections.emptySet;
+import static org.hongxi.whatsmars.dubbo.autoconfigure.util.DubboUtils.*;
 
 /**
  * Dubbo Auto {@link Configuration}

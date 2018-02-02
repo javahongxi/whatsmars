@@ -1,1 +1,1 @@
-provides: spring-boot-starter-dubbo
+provides: spring-boot-autoconfigure-dubbo,dubbo

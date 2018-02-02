@@ -40,7 +40,7 @@ import java.util.concurrent.ConcurrentMap;
 import static com.alibaba.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor.BEAN_NAME;
 import static com.alibaba.dubbo.registry.support.AbstractRegistryFactory.getRegistries;
 import static org.hongxi.whatsmars.dubbo.actuate.endpoint.DubboEndpoint.*;
-import static org.hongxi.whatsmars.dubbo.starter.util.DubboUtils.filterDubboProperties;
+import static org.hongxi.whatsmars.dubbo.autoconfigure.util.DubboUtils.filterDubboProperties;
 import static org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors;
 import static org.springframework.util.ClassUtils.isPrimitiveOrWrapper;
 
