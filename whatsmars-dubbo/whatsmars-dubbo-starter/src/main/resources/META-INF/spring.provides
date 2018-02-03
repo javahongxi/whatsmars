@@ -1,1 +1,1 @@
-provides: spring-boot-autoconfigure-dubbo,dubbo
+provides: dubbo,spring-boot-autoconfigure-dubbo,spring-boot-actuator-dubbo
