@@ -3,20 +3,20 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>whatsmars-parent</artifactId>
+        <artifactId>whatsmars-mq</artifactId>
         <groupId>org.hongxi</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>whatsmars-mq</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>whatsmars-mq-rocketmq</module>
-        <module>whatsmars-mq-activemq</module>
-        <module>whatsmars-mq-rabbitmq</module>
-        <module>whatsmars-mq-kafka</module>
-        <module>whatsmars-mq-activemq-broker</module>
-    </modules>
+    <artifactId>whatsmars-mq-activemq-broker</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-all</artifactId>
+        </dependency>
+    </dependencies>
+
 
 </project>

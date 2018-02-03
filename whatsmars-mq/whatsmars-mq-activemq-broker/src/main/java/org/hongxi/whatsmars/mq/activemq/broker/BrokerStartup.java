@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.mq.activemq;
+package org.hongxi.whatsmars.mq.activemq.broker;
 
 import org.apache.activemq.broker.BrokerService;
 
