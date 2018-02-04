@@ -25,6 +25,7 @@
         <module>whatsmars-dubbo-examples</module>
         <module>whatsmars-dubbo-actuator</module>
         <module>whatsmars-dubbo-autoconfigure</module>
+        <module>whatsmars-dubbo-zk</module>
     </modules>
 
     <properties>
