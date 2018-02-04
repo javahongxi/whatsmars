@@ -18,5 +18,6 @@ whatsmars-*/whatsmars-*/logs
 activemq-data/*
 logs/*
 target/*
+classes/*
 dump.rdb
 
