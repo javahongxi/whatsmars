@@ -17,4 +17,6 @@ whatsmars-*/whatsmars-*/logs
 .idea/*
 activemq-data/*
 logs/*
+target/*
+dump.rdb
 
