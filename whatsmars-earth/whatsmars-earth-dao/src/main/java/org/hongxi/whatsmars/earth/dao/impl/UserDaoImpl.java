@@ -8,6 +8,11 @@ import org.hongxi.whatsmars.earth.domain.pojo.User;
  */
 public class UserDaoImpl extends BaseDao implements UserDao {
     @Override
+    public void createIfNotExistsTable() {
+        this.sqlSession.update("User.createIfNotExistsTable");
+    }
+
+    @Override
     public User findByUsername(String username) {
         return this.sqlSession.selectOne("User.findByUsername", username);
     }

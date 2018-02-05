@@ -7,6 +7,8 @@ import org.hongxi.whatsmars.earth.domain.pojo.User;
  */
 public interface UserDao {
 
+    void createIfNotExistsTable();
+
     User findByUsername(String username);
 
     void insert(User user);

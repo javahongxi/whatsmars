@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="User">
 
+    <update id="createIfNotExistsTable">
+        CREATE TABLE IF NOT EXISTS user (id BIGINT AUTO_INCREMENT, username VARCHAR(20) NOT NULL, nickname VARCHAR(20), gender TINYINT, age INT, create_date DATETIME, update_date DATETIME, PRIMARY KEY (id));
+    </update>
+
     <select id="findByUsername" parameterType="string" resultType="User">
         select * from user where username = #username#
     </select>
