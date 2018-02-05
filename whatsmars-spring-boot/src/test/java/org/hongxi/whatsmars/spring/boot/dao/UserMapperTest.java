@@ -21,6 +21,7 @@ public class UserMapperTest {
     @Test
     public void insert() {
         assert userMapper != null;
+        userMapper.createIfNotExistsTable();
         User user = new User();
         user.setUsername("javahongxi");
         user.setNickname("hongxi");

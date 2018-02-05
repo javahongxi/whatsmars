@@ -11,6 +11,8 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
+    void createIfNotExistsTable();
+
     User findByUsername(String username);
 
     void insert(User user);
