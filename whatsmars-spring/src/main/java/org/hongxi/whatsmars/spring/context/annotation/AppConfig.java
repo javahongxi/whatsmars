@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Created by javahongxi on 2017/10/31.
  */
-@Configuration
+//@Configuration
 @ComponentScan //("org.hongxi.whatsmars.spring.context.annotation.service")
 public class AppConfig {
     @Autowired
