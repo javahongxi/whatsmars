@@ -1,10 +1,20 @@
 package org.hongxi.whatsmars.spring.context.annotation;
 
 import org.hongxi.whatsmars.spring.model.Mars;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ConfigurationClassPostProcessor;
+import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
+import org.springframework.context.annotation.CommonAnnotationBeanPostProcessor;
+import org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor;
 
 /**
  * Created by javahongxi on 2017/10/31.
+ * @see ConfigurationClassPostProcessor#postProcessBeanDefinitionRegistry(BeanDefinitionRegistry)
+ * @see AutowiredAnnotationBeanPostProcessor
+ * @see CommonAnnotationBeanPostProcessor
+ * @see RequiredAnnotationBeanPostProcessor
+ * @see AnnotationConfigApplicationContext#scan(String...)
  */
 public class TestSpring {
 
