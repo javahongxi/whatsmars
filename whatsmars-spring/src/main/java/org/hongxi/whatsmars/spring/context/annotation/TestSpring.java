@@ -8,10 +8,11 @@ import org.springframework.context.annotation.ConfigurationClassPostProcessor;
 import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
 import org.springframework.context.annotation.CommonAnnotationBeanPostProcessor;
 import org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * Created by javahongxi on 2017/10/31.
- * @Configuration is just a @Component
+ * @see Configuration is just a @Component
  * @see ConfigurationClassPostProcessor#postProcessBeanDefinitionRegistry(BeanDefinitionRegistry)
  * @see AutowiredAnnotationBeanPostProcessor
  * @see CommonAnnotationBeanPostProcessor
