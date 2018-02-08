@@ -1,5 +1,6 @@
 package org.hongxi.whatsmars.spring.boot.dao;
 
+import org.apache.ibatis.annotations.Param;
 import org.hongxi.whatsmars.spring.boot.model.User;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -24,4 +25,7 @@ public interface UserMapper {
     void update(User user);
 
     void delete(Long id);
+
+    List<User> findByNicknameAndGender(@Param("nickname") String nickname, @Param("gender") Integer gender);
+
 }

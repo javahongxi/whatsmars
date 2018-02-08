@@ -9,8 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by shenhongxi on 2017/11/16.
@@ -70,5 +69,41 @@ public class NewController {
         returnItems.setTotal(page.getTotal());
         returnItems.setStatus(200);
         return returnItems;
+    }
+
+    @GetMapping("/findByNicknameAndGender")
+    public ReturnItems<User> findByNicknameAndGender(@RequestParam String nickname,
+                                                     @RequestParam Integer gender) {
+        ReturnItems<User> returnItems = new ReturnItems<>();
+        List<User> users = userService.findByNicknameAndGender(nickname, gender);
+        returnItems.setItems(users);
+        returnItems.setTotal(users == null ? 0 : users.size());
+        returnItems.setStatus(200);
+        return returnItems;
+    }
+
+    @PostMapping("/addUsers")
+    public HttpStatus addUsers() {
+        List<User> users = new ArrayList<>();
+        Date now = new Date();
+        long t = now.getTime();
+        User user = new User();
+        user.setUsername("tb" + t++);
+        user.setNickname("hongxi");
+        user.setGender(1);
+        user.setAge(28);
+        user.setCreateDate(now);
+        user.setUpdateDate(now);
+        users.add(user);
+        user = new User();
+        user.setUsername("tb" + t++);
+        user.setNickname("lilei");
+        user.setGender(1);
+        user.setAge(27);
+        user.setCreateDate(now);
+        user.setUpdateDate(now);
+        users.add(user);
+        userService.insertBatch(users);
+        return HttpStatus.OK;
     }
 }

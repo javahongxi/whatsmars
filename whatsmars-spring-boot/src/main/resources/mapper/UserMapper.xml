@@ -18,7 +18,7 @@
     <insert id="insertBatch" parameterType="list">
         insert into user(username, nickname, gender, age, create_date, update_date) values
         <foreach collection="list" item="item" separator=",">
-            (#{username}, #{nickname}, #{gender}, #{age}, #{createDate}, #{updateDate})
+            (#{item.username}, #{item.nickname}, #{item.gender}, #{item.age}, #{item.createDate}, #{item.updateDate})
         </foreach>
     </insert>
 
@@ -37,5 +37,9 @@
     <delete id="delete">
         delete from user where id = #{id}
     </delete>
+
+    <select id="findByNicknameAndGender" resultType="User">
+        select * from user where nickname = #{nickname} and gender = #{gender}
+    </select>
 
 </mapper>

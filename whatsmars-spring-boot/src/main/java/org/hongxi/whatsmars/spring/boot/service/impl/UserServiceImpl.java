@@ -62,4 +62,9 @@ public class UserServiceImpl implements UserService {
             userMapper.insert(user);
         }
     }
+
+    @Override
+    public List<User> findByNicknameAndGender(String nickname, Integer gender) {
+        return userMapper.findByNicknameAndGender(nickname, gender);
+    }
 }

@@ -32,7 +32,6 @@
         <spring.version>4.3.10.RELEASE</spring.version>
         <mybatis-spring.version>1.3.1</mybatis-spring.version>
         <mybatis.version>3.4.5</mybatis.version>
-        <pagehelper.version>4.1.6</pagehelper.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <mysql-connector-java.version>5.1.32</mysql-connector-java.version>
 
@@ -162,11 +161,6 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql-connector-java.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper</artifactId>
-                <version>${pagehelper.version}</version>
             </dependency>
 
             <!-- commons -->

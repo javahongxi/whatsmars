@@ -31,6 +31,12 @@ user:
   welcome: Hello, World!
   noFilterUrl: /,/login
 
+logging.level.tk.mybatis.pagehelper.mapper: WARN
+pagehelper:
+  closeConn: true
+  offset-as-page-num: false
+  autoDialect: true
+
 ---
 spring:
   profiles: dev

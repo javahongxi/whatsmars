@@ -24,4 +24,6 @@ public interface UserService {
 
     void add(List<User> users);
 
+    List<User> findByNicknameAndGender(String nickname, Integer gender);
+
 }
