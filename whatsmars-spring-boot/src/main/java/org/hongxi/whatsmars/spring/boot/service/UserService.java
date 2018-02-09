@@ -20,7 +20,7 @@ public interface UserService {
 
     Page<User> query(int offset, int limit);
 
-    void insertBatch(List<User> users);
+    void addBatch(List<User> users);
 
     void add(List<User> users);
 

@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void insertBatch(List<User> users) {
+    public void addBatch(List<User> users) {
         userMapper.insertBatch(users);
     }
 

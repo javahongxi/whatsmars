@@ -15,18 +15,18 @@ import java.util.*;
  * Created by shenhongxi on 2017/11/16.
  */
 @RestController
-@RequestMapping("/new")
-public class NewController {
+@RequestMapping("/user")
+public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @GetMapping("/t/{username}")
-    public User query(@PathVariable("username") String username) {
+    @GetMapping("/find/{username}")
+    public User find(@PathVariable("username") String username) {
         return userService.findByUsername(username);
     }
 
-    @PostMapping("/t")
+    @PostMapping("/add")
     public HttpStatus add(@RequestParam(name = "name") String username,
                           @RequestParam(required = false) String nickname,
                           @RequestParam(required = false, defaultValue = "1") Integer gender,
@@ -40,13 +40,13 @@ public class NewController {
         return HttpStatus.OK;
     }
 
-    @PutMapping("/t")
+    @PutMapping("/update")
     public HttpStatus update(@RequestBody User user) { // 以json格式接收参数, RequestBody也可省略
         userService.update(user);
         return HttpStatus.OK;
     }
 
-    @DeleteMapping("/t")
+    @DeleteMapping("/delete")
     public HttpStatus delete(@RequestParam Long id) {
         userService.delete(id);
         return HttpStatus.OK;
@@ -80,8 +80,8 @@ public class NewController {
         return returnItems;
     }
 
-    @PostMapping("/addUsers")
-    public HttpStatus addUsers() {
+    @PostMapping("/addBatch")
+    public HttpStatus addBatch() {
         List<User> users = new ArrayList<>();
         Date now = new Date();
         long t = now.getTime();
@@ -101,7 +101,7 @@ public class NewController {
         user.setCreateDate(now);
         user.setUpdateDate(now);
         users.add(user);
-        userService.insertBatch(users);
+        userService.addBatch(users);
         return HttpStatus.OK;
     }
 }
