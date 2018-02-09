@@ -69,9 +69,9 @@ public class SampleController {
     }
 
     @Profile("test,dev")
-    @RequestMapping(value = "/do", method = RequestMethod.GET)
+    @RequestMapping(value = "/welcome", method = RequestMethod.GET)
     @ResponseBody
-    public String motan() {
+    public String welcome() {
         return userConfig.getWelcome();
     }
 
