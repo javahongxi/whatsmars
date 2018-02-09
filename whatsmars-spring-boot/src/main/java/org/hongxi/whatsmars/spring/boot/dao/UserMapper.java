@@ -1,6 +1,7 @@
 package org.hongxi.whatsmars.spring.boot.dao;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.hongxi.whatsmars.spring.boot.model.User;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -14,6 +15,7 @@ public interface UserMapper {
 
     void createIfNotExistsTable();
 
+    @Select("select * from user where username = #{username}")
     User findByUsername(String username);
 
     void insert(User user);

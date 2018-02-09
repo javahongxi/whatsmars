@@ -6,9 +6,9 @@
         CREATE TABLE IF NOT EXISTS user (id BIGINT AUTO_INCREMENT, username VARCHAR(20) NOT NULL, nickname VARCHAR(20), gender TINYINT, age INT, create_date DATETIME, update_date DATETIME, PRIMARY KEY (id));
     </update>
 
-    <select id="findByUsername" parameterType="string" resultType="User">
+    <!--<select id="findByUsername" parameterType="string" resultType="User">
         select * from user where username = #username#
-    </select>
+    </select>-->
     
     <insert id="insert" parameterType="User">
         insert into user(username, nickname, gender, age, create_date, update_date)
