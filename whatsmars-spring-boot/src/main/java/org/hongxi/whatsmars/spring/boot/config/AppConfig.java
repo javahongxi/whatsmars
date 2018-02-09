@@ -1,9 +1,8 @@
 package org.hongxi.whatsmars.spring.boot.config;
 
 import org.hongxi.whatsmars.spring.boot.interceptor.ApiAuthInterceptor;
-import org.hongxi.whatsmars.spring.boot.interceptor.ApiAuthInterceptor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,10 +19,8 @@ import javax.servlet.DispatcherType;
  * Created by javahongxi on 2017/11/16.
  */
 @Configuration
+@EnableConfigurationProperties(UserConfig.class)
 public class AppConfig {
-
-    @Autowired
-    private UserConfig userConfig;
 
     @ConditionalOnProperty(value = "api.auth.enabled")
     @Profile({"dev", "prod"})
