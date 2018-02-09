@@ -4,7 +4,6 @@ import java.util.*;
 
 /**
  * Created by shenhongxi on 2015/11/9.
- * javahongxi
  */
 public class T {
     public static void main(String[] args) throws Exception {
