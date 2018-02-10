@@ -13,6 +13,5 @@ public class WrapTest {
         System.out.println(1 << 30);
         System.out.println(Integer.MAX_VALUE);
 
-
     }
 }
