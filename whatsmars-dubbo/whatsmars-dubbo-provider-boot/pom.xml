@@ -29,7 +29,7 @@
         </dependency>
         <dependency>
             <groupId>org.hongxi</groupId>
-            <artifactId>spring-boot-starter-dubbo</artifactId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>spring-boot-starter-dubbo</artifactId>
+    <artifactId>dubbo-spring-boot-starter</artifactId>
 
     <dependencies>
         <!-- Spring Boot dependencies -->
@@ -42,13 +42,13 @@
 
         <dependency>
             <groupId>org.hongxi</groupId>
-            <artifactId>spring-boot-autoconfigure-dubbo</artifactId>
+            <artifactId>dubbo-spring-boot-autoconfigure</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.hongxi</groupId>
-            <artifactId>spring-boot-actuator-dubbo</artifactId>
+            <artifactId>dubbo-spring-boot-actuator</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
