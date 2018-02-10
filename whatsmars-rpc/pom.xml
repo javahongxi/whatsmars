@@ -19,6 +19,8 @@
     </properties>
 
     <dependencies>
+        <!-- rpc -->
+
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-netty</artifactId>
@@ -34,6 +36,14 @@
             <artifactId>grpc-stub</artifactId>
             <version>${grpc.version}</version>
         </dependency>
+
+        <!-- remoting -->
+
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.apache.mina</groupId>
             <artifactId>mina-core</artifactId>
@@ -50,6 +60,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
     </dependencies>
 
     <build>
