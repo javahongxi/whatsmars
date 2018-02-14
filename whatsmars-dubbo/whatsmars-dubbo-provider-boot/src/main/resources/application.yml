@@ -9,6 +9,7 @@ dubbo:
   protocol:
     port: 20882
     name: dubbo
+    status: server
     id: dubbo
   application:
     name: demo-provider
