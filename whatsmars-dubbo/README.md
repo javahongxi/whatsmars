@@ -95,3 +95,4 @@ xxxService.xxx(); // 远程调用
 - 并发控制，异步调用，本地调用，参数回调，事件通知 ...
 - 最佳实践 https://github.com/javahongxi/docs/blob/master/dubbo/best-practice.md
 - 推荐用法 https://github.com/javahongxi/docs/blob/master/dubbo/recommend.md
+- 框架设计 https://github.com/javahongxi/docs/blob/master/dubbo/design.md
