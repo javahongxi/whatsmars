@@ -41,16 +41,13 @@ whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 
 ### Friendship links
 - [*阿里巴巴Java开发手册*](https://github.com/alibaba/Alibaba-Java-Coding-Guidelines)
-- *技术博客* [blog.toutiao.im](http://blog.toutiao.im)🔥
-- *深入一点* [laoda.toutiao.im](http://laoda.toutiao.im)🔥
-- *好书推荐* [book.toutiao.im](http://book.toutiao.im)🔥
-- *开涛* [kaitao.toutiao.im](http://kaitao.toutiao.im)
-- *各种编程入门* [start.toutiao.im](http://start.toutiao.im)
-- *阿里云开发者中心* [dev.toutiao.im](http://dev.toutiao.im)
+- *技术博客* [blog.hongxi.org](http://blog.hongxi.org)🔥
+- *深入一点* [deep.hongxi.org](http://deep.hongxi.org)🔥
+- *好书推荐* [book.hongxi.org](http://book.hongxi.org)🔥
+- *开涛* [kaitao.hongxi.org](http://kaitao.hongxi.org)
 
 ### Warm tips
 - 带着问题去看源代码，没必要把源代码看完
 - 看源代码最大的技巧是看英文注释，另一个技巧是日志+DEBUG
-- 网上总能找到资料解决你的疑惑
 
-&copy; hongxi.org | [**toutiao.im**](http://toutiao.im) | [typora.io](https://typora.io)
+&copy; hongxi.org | [typora.io](https://typora.io)
