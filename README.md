@@ -43,8 +43,8 @@ whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 - [*阿里巴巴Java开发手册*](https://github.com/alibaba/Alibaba-Java-Coding-Guidelines)
 - *技术博客* [blog.hongxi.org](http://blog.hongxi.org)🔥
 - *深入一点* [deep.hongxi.org](http://deep.hongxi.org)🔥
-- *好书推荐* [book.hongxi.org](http://book.hongxi.org)🔥
-- *开涛* [kaitao.hongxi.org](http://kaitao.hongxi.org)
+- *开涛* [kaitao.hongxi.org](http://kaitao.hongxi.org)🔥
+- *MORE* [doc.hongxi.org](http://doc.hongxi.org)
 
 ### Warm tips
 - 带着问题去看源代码，没必要把源代码看完
