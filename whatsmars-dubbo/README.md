@@ -96,3 +96,5 @@ xxxService.xxx(); // 远程调用
 - 最佳实践 https://github.com/javahongxi/docs/blob/master/dubbo/best-practice.md
 - 推荐用法 https://github.com/javahongxi/docs/blob/master/dubbo/recommend.md
 - 框架设计 https://github.com/javahongxi/docs/blob/master/dubbo/design.md
+
+- 分布式事务服务 http://www.cloud.alipay.com/products/DTS
