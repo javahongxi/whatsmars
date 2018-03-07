@@ -47,10 +47,8 @@ whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 - *MORE* [doc.hongxi.org](http://doc.hongxi.org)
 
 ### Warm tips
+- JDK is the most important.
 - 带着问题去看源代码，没必要把源代码看完
 - 看源代码最大的技巧是看英文注释，另一个技巧是日志+DEBUG
-
-### Base
-`JVM` `类加载` `容器` `线程(池)` `锁与CAS` `反射` `异常` `单例` `代理` `CAP与分布式事务` `HTTP`
 
 &copy; hongxi.org | [ding.hongxi.org](https://h5.dingtalk.com/invite-page/index.html?code=dd994bd67e) | [typora.io](https://typora.io)
