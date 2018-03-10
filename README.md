@@ -1,7 +1,7 @@
 # whatsmars
 *`mvn clean package -Dmaven.test.skip`* `jdk8+` `maven3.3.1+`
 <br>Java生态研究(Spring Boot🔥 + Redis🔥 + Dubbo🔥 + RocketMQ🔥)
-<br>Spring Boot 系列(Servlet, Tomcat, Spring, SpringMVC, Spring Boot)
+<br>Spring Boot 系列(Servlet, Tomcat, Spring, SpringMVC, Spring Boot, MyBatis)
 
 ### Modules intro
 Module | Intro
