@@ -45,7 +45,7 @@ whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 - *技术博客* [blog.hongxi.org](http://blog.hongxi.org)🔥
 - *深入一点* [deep.hongxi.org](http://deep.hongxi.org)🔥
 - *开涛* [kaitao.hongxi.org](http://kaitao.hongxi.org)🔥
-- *MORE* [doc.hongxi.org](http://doc.hongxi.org)
+- *MORE* [java.hongxi.org](http://java.hongxi.org)
 
 ### Warm tips
 - JDK is the most important.
