@@ -4,6 +4,7 @@
 - Spring
 - SpringMVC
 - Spring Boot
+- MyBatis
 
 https://github.com/spring-projects/spring-boot
 
