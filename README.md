@@ -53,4 +53,4 @@ whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 - 看源代码最大的技巧是看英文注释，另一个技巧是日志+DEBUG
 - 如果没有时间去深入研究一款软件，那么从宏观层面理解它的设计思想是重要的
 
-&copy; hongxi.org | [ding.hongxi.org](https://h5.dingtalk.com/invite-page/index.html?code=dd994bd67e) | [typora.io](https://typora.io)
+&copy; [hongxi.org](http://hongxi.org) | [ding.hongxi.org](https://h5.dingtalk.com/invite-page/index.html?code=dd994bd67e) | [typora.io](https://typora.io)
