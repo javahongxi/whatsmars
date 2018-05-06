@@ -8,3 +8,6 @@ spring:
       max-idle: 8
       max-wait: -1
       min-idle: 0
+#    cluster:
+#      max-redirects: 5
+#      nodes: 127.0.0.1:6380,127.0.0.1:6381
