@@ -1,12 +1,14 @@
 package org.hongxi.whatsmars.spring.boot.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 
 /**
  * Created by shenhongxi on 2017/6/26.
  */
 public class User {
-
+    @JsonProperty("user_id") // 有时候前端定义的字段名与后段不一致时采用此法处理
     private Long id;
 
     private String username;
