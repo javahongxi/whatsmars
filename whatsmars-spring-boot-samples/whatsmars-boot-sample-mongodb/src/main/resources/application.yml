@@ -1,5 +1,5 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://mongo:731152a162a708c6@10.143.184.150:7974/admin
-      database: dp_visual
+      uri: mongodb://127.0.0.1:27017/admin
+      database: test

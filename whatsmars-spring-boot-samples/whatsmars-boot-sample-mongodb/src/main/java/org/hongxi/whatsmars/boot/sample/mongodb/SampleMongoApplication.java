@@ -4,12 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.mongodb.core.MongoTemplate;
 
 @SpringBootApplication
 public class SampleMongoApplication implements CommandLineRunner {
 
 	@Autowired
 	private CustomerRepository repository;
+	@Autowired
+	private MongoTemplate mongoTemplate;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -35,6 +38,12 @@ public class SampleMongoApplication implements CommandLineRunner {
 		System.out.println("Customers found with findByLastName('Smith'):");
 		System.out.println("--------------------------------");
 		for (Customer customer : this.repository.findByLastName("Smith")) {
+			System.out.println(customer);
+		}
+
+		System.out.println("--------------------------------");
+		System.out.println("mongoTemplate operations...");
+		for (Customer customer : mongoTemplate.findAll(Customer.class)) {
 			System.out.println(customer);
 		}
 	}
