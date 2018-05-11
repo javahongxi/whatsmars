@@ -1,6 +1,7 @@
 package org.hongxi.whatsmars.redis.client.service;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 public interface RedisService<T> {
@@ -110,4 +111,8 @@ public interface RedisService<T> {
     void pubMsg(String channel, Object obj);
 
     Set<String> getSet(String key);
+
+    long addSet(String key, String... values);
+
+    List<T> multiGet(Collection keys);
 }

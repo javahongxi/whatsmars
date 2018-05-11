@@ -9,12 +9,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 @Service("redisMapService")
 public class RedisMapServiceImpl implements RedisMapService {
+
+	private static final String CHARSET = "UTF8";
 
 	@Resource
 	private RedisTemplate<String, Map<byte[], byte[]>> redisTemplate;
@@ -110,6 +113,17 @@ public class RedisMapServiceImpl implements RedisMapService {
 				return connection.hSet(redisKey.getBytes(), mapKey.getBytes(), mapValue.getBytes());
 			}
 		});
+	}
+
+	@Override
+	public String hGetString(String redisKey, String mapKey) {
+		byte[] value = hGet(redisKey, mapKey);
+		try {
+			return value == null ? null : new String(value, CHARSET);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override

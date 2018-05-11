@@ -15,12 +15,14 @@ public interface RedisMapService {
 	List<byte[]> hMGet(String redisKey, List<String> mapKeys);
 	
 	byte[] hGet(String redisKey, String mapKey);
-	
+
 	long hDel(String redisKey, List<String> mapKeys);
-	
+
 	long hDel(String redisKey, byte[] mapKey);
-	
+
 	boolean hSet(String redisKey, String mapKey, String mapValue);
-	
+
+	String hGetString(String redisKey, String mapKey);
+
 	String hGet(String redisKey, byte[] mapKey);
 }

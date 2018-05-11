@@ -20,6 +20,7 @@ import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 @Service("redisService")
@@ -60,15 +61,16 @@ public class RedisServiceImpl<T> implements RedisService<T> {
 	public boolean set(byte[] key, byte[] value) {
 		return this.set(key, value, 0L);
 	}
-	
+
+	@Override
 	public boolean set(byte[] key, T value, long activeTime){
 		ObjectMapper objectMapper = new ObjectMapper();
 		byte[] b = null;
 		try {
 			b = objectMapper.writeValueAsBytes(value);
 		} catch (JsonProcessingException e) {
-
 			e.printStackTrace();
+			return false;
 		}
 		return this.set(key, b, activeTime);
 	}
@@ -79,11 +81,11 @@ public class RedisServiceImpl<T> implements RedisService<T> {
 			public String doInRedis(RedisConnection connection) throws DataAccessException {
 				try {
 					byte[] value = connection.get(key.getBytes());
-					return value == null ? "" : new String(value, CHARSET);
+					return value == null ? null : new String(value, CHARSET);
 				} catch (UnsupportedEncodingException e) {
 					e.printStackTrace();
 				}
-				return "";
+				return null;
 			}
 		});
 	}
@@ -100,13 +102,10 @@ public class RedisServiceImpl<T> implements RedisService<T> {
 				try {
 					return objectMapper.readValue(value, c);
 				} catch (JsonParseException e) {
-
 					e.printStackTrace();
 				} catch (JsonMappingException e) {
-
 					e.printStackTrace();
 				} catch (IOException e) {
-
 					e.printStackTrace();
 				}
 				return null;
@@ -117,7 +116,6 @@ public class RedisServiceImpl<T> implements RedisService<T> {
 	@Override
 	public Set<String> matchKeys(String pattern) {
 		return redisTemplate.keys(pattern);
-
 	}
 
 	@Override
@@ -145,7 +143,7 @@ public class RedisServiceImpl<T> implements RedisService<T> {
 			public Long doInRedis(RedisConnection connection) throws DataAccessException {
 				long result = 0;
 				for (String key : keys) {
-					result = connection.del(key.getBytes());
+					result += connection.del(key.getBytes());
 				}
 				return result;
 			}
@@ -180,6 +178,16 @@ public class RedisServiceImpl<T> implements RedisService<T> {
 	@Override
 	public Set<String> getSet(String key) {
 		return stringRedisTemplate.opsForSet().members(key);
+	}
+
+	@Override
+	public long addSet(String key, String... values) {
+		return stringRedisTemplate.opsForSet().add(key, values);
+	}
+
+	@Override
+	public List<T> multiGet(Collection keys) {
+		return redisTemplate.opsForValue().multiGet(keys);
 	}
 
 }

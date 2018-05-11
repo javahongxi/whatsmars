@@ -17,9 +17,8 @@ public class RedisListServiceImpl implements RedisListService {
 	private RedisTemplate<String, List<Object>> redisTemplate;
 	
 	@Override
-	public long rpush(final byte[] key, final byte[]...values) {
+	public long rpush(final byte[] key, final byte[]... values) {
 		return redisTemplate.execute(new RedisCallback<Long>() {
-
 			@Override
 			public Long doInRedis(RedisConnection connection) throws DataAccessException {
 				return connection.rPush(key, values);
@@ -38,7 +37,6 @@ public class RedisListServiceImpl implements RedisListService {
 	@Override
 	public List<byte[]> lrange(final byte[] key, final long begin, final long end) {
 		return redisTemplate.execute(new RedisCallback<List<byte[]>>() {
-
 			@Override
 			public List<byte[]> doInRedis(RedisConnection connection) throws DataAccessException {
 				return connection.lRange(key, begin, end);
@@ -59,7 +57,6 @@ public class RedisListServiceImpl implements RedisListService {
 	@Override
 	public long del(final byte[] key) {
 		return redisTemplate.execute(new RedisCallback<Long>() {
-
 			@Override
 			public Long doInRedis(RedisConnection connection) throws DataAccessException {
 				return connection.del(key);
