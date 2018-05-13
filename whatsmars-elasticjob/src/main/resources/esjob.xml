@@ -13,9 +13,7 @@
                         http://www.dangdang.com/schema/ddframe/job 
                         http://www.dangdang.com/schema/ddframe/job/job.xsd 
                         ">
-    <context:component-scan base-package="org.hongxi.whatsmars.job" />
-    <context:property-placeholder location="classpath:conf/*.properties" />
-    
+
     <bean id="elasticJobLog" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="${event.rdb.driver}"/>
         <property name="url" value="${event.rdb.url}"/>
