@@ -26,4 +26,6 @@ public interface UserService {
 
     List<User> findByNicknameAndGender(String nickname, Integer gender);
 
+    void testTransaction(List<User> users);
+
 }
