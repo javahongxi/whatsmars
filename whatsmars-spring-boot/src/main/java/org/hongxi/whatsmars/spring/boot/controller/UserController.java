@@ -3,8 +3,9 @@ package org.hongxi.whatsmars.spring.boot.controller;
 import com.github.pagehelper.Page;
 import org.apache.logging.log4j.LogManager;
 import org.hongxi.whatsmars.spring.boot.common.ReturnItemUtils;
-import org.hongxi.whatsmars.spring.boot.common.pojo.ReturnItem;
 import org.hongxi.whatsmars.spring.boot.common.pojo.ReturnItems;
+import org.hongxi.whatsmars.spring.boot.common.result.Result;
+import org.hongxi.whatsmars.spring.boot.common.result.ResultHelper;
 import org.hongxi.whatsmars.spring.boot.exception.AppException;
 import org.hongxi.whatsmars.spring.boot.model.User;
 import org.hongxi.whatsmars.spring.boot.service.UserService;
@@ -28,13 +29,13 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/find/{username}")
-    public ReturnItem<User> find(@PathVariable("username") String username) {
+    public Result<User> find(@PathVariable("username") String username) {
         User user = userService.findByUsername(username);
-        return ReturnItemUtils.newSuccessReturnItem(user);
+        return ResultHelper.newSuccessResult(user);
     }
 
     @PostMapping("/add")
-    public ReturnItem<String> add(@RequestParam(name = "name") String username,
+    public Result add(@RequestParam(name = "name") String username,
                           @RequestParam(required = false) String nickname,
                           @RequestParam(required = false, defaultValue = "1") Integer gender,
                           @RequestParam Integer age) {
@@ -44,19 +45,19 @@ public class UserController {
         user.setGender(gender);
         user.setAge(age);
         userService.add(user);
-        return ReturnItemUtils.newSuccessReturnItem();
+        return ResultHelper.newSuccessResult();
     }
 
     @PutMapping("/update")
-    public ReturnItem<String> update(@RequestBody User user) { // 以json格式接收参数, RequestBody也可省略
+    public Result update(@RequestBody User user) { // 以json格式接收参数, RequestBody也可省略
         userService.update(user);
-        return ReturnItemUtils.newSuccessReturnItem();
+        return ResultHelper.newSuccessResult();
     }
 
     @DeleteMapping("/delete")
-    public ReturnItem<String> delete(@RequestParam Long id) {
+    public Result delete(@RequestParam Long id) {
         userService.delete(id);
-        return ReturnItemUtils.newSuccessReturnItem();
+        return ResultHelper.newSuccessResult();
     }
 
     @RequestMapping(value = "/e", method = RequestMethod.GET)
@@ -82,15 +83,15 @@ public class UserController {
     }
 
     @PostMapping("/addBatch")
-    public ReturnItem<String> addBatch() {
+    public Result addBatch() {
         try {
             userService.testTransaction(buildUsers());
         } catch (Exception e) {
             logger.error("#########user addBatch error", e);
-            return ReturnItemUtils.newErrorReturnItem();
+            return ResultHelper.newErrorResult();
         }
 
-        return ReturnItemUtils.newSuccessReturnItem();
+        return ResultHelper.newSuccessResult();
     }
 
     private List<User> buildUsers() {

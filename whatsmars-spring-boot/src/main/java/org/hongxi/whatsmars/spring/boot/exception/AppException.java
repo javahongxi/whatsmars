@@ -1,6 +1,6 @@
 package org.hongxi.whatsmars.spring.boot.exception;
 
-import org.hongxi.whatsmars.spring.boot.common.pojo.ReturnItem;
+import org.hongxi.whatsmars.spring.boot.common.result.Result;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 
@@ -55,13 +55,13 @@ public class AppException extends RuntimeException {
         return this;
     }
 
-    public ReturnItem<String> toResultItem() {
-        return new ReturnItem<String>(getErrorCode().value, getErrorMsg());
+    public Result toResult() {
+        return new Result(getErrorCode().value, getErrorMsg());
     }
 
     public enum Code {
         SUCCESS(200),
-        ERROR(400);
+        ERROR(500);
         private int value;
 
         Code(int code) {

@@ -3,8 +3,7 @@ package org.hongxi.whatsmars.spring.boot.exception;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Maps;
 import org.hongxi.whatsmars.spring.boot.common.ProfileUtils;
-import org.hongxi.whatsmars.spring.boot.common.pojo.ReturnItem;
-import org.hongxi.whatsmars.spring.boot.common.pojo.ReturnMessage;
+import org.hongxi.whatsmars.spring.boot.common.result.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.logging.LogLevel;
@@ -31,18 +30,18 @@ public class AppExceptionHandler {
      * 业务异常处理，直接返回异常信息提示
      */
     @ExceptionHandler(AppException.class)
-    public ResponseEntity<ReturnItem> businessExceptionHandle(AppException exception, HttpServletRequest request) {
+    public ResponseEntity<Result> businessExceptionHandle(AppException exception, HttpServletRequest request) {
         logError(exception, request, LogLevel.WARN);
-        return new ResponseEntity<ReturnItem>(exception.toResultItem(), HttpStatus.OK);
+        return new ResponseEntity<Result>(exception.toResult(), HttpStatus.OK);
     }
 
     /**
      * 其他为定义异常，统一返回默认错误信息，避免打印出异常堆栈
      */
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ReturnItem> defaultExceptionHandle(Exception exception, HttpServletRequest request) {
+    public ResponseEntity<Result> defaultExceptionHandle(Exception exception, HttpServletRequest request) {
         logError(exception, request, LogLevel.ERROR);
-        return new ResponseEntity<ReturnItem>(new ReturnItem(AppException.Code.ERROR.getValue(), ProfileUtils.isDev() ? exception.getMessage() : ReturnMessage.Message.OPERATION_ERROR.getValue()), HttpStatus.OK);
+        return new ResponseEntity<Result>(new Result(AppException.Code.ERROR.getValue(), ProfileUtils.isDev() ? exception.getMessage() : "操作失败"), HttpStatus.OK);
     }
 
 
