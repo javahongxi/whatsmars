@@ -11,12 +11,13 @@ public class ExTest {
 
     private static int t(int i) {
         try {
+            System.out.println("try lock");
             try {
                 if (i < 0) throw new RuntimeException("i<0");
                 if (i > 100) return -2;
                 i++;
             } finally {
-                System.out.println("inner finally");
+                System.out.println("release lock");
             }
             return i;
         } catch (Exception e) {
