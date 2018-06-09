@@ -12,7 +12,8 @@
 
 ### User Guide
 - http://dubbo.io/books/dubbo-user-book
-- 配置覆盖策略：java -D > xml > properties，properties适合全局配置
+- 配置覆盖策略：java -D > xml > properties，properties适合全局配置。本地调试时，可利用此特性在
+IDEA VM options 设置 -Ddubbo.registry.register=false (有id时为-Ddubbo.registry.xx.register=false)
 - 配置覆盖策略：reference method > service method > reference > service > consumer > provider
 - 启动时检查：dubbo:reference check="true" Dubbo 缺省会在启动时检查依赖的服务是否可用，不可用时会抛出异常，阻止 Spring 初始化完成
 - 集群容错模式：默认 cluster="failover"，其他 failfast,failsafe,failback,forking,broadcast
