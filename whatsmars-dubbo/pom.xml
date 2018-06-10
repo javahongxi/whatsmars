@@ -30,8 +30,9 @@
     </modules>
 
     <properties>
-        <dubbo.version>2.5.9</dubbo.version>
+        <dubbo.version>2.6.2</dubbo.version>
         <zookeeper.version>3.4.9</zookeeper.version>
+        <fst.version>2.48-jdk-6</fst.version>
     </properties>
 
     <dependencyManagement>
@@ -99,6 +100,12 @@
                 <groupId>org.apache.curator</groupId>
                 <artifactId>curator-framework</artifactId>
                 <version>${curator.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.ruedigermoeller</groupId>
+                <artifactId>fst</artifactId>
+                <version>${fst.version}</version>
             </dependency>
 
         </dependencies>
