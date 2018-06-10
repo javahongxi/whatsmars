@@ -74,6 +74,11 @@
             <artifactId>whatsmars-dubbo-service</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>de.ruedigermoeller</groupId>
+            <artifactId>fst</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

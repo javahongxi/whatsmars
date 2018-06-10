@@ -15,7 +15,7 @@
 	<!--&lt;!&ndash; 使用zookeeper注册中心暴露服务地址 &ndash;&gt;-->
 	<!--<dubbo:registry address="zookeeper://127.0.0.1:2181" />-->
     <!-- 多协议配置 -->
-    <dubbo:protocol name="dubbo" port="20880" server="netty4" />
+    <dubbo:protocol name="dubbo" port="20880" server="netty4" serialization="fst" />
 	<dubbo:protocol name="hessian" port="8080" server="jetty" />
 
 	<context:component-scan base-package="org.hongxi.whatsmars.dubbo"/>

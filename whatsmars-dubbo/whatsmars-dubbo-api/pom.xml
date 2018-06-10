@@ -14,5 +14,12 @@
     <name>${project.artifactId}</name>
     <description>The demo module of dubbo project</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>de.ruedigermoeller</groupId>
+            <artifactId>fst</artifactId>
+        </dependency>
+    </dependencies>
+
 
 </project>
