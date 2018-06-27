@@ -6,7 +6,7 @@
 离”的样板，尚未对所有的redis方法进行重写和封装，请开发者后续继续补充即可。此外，slave节点如果异常，我们
 应该支持failover，这一部分特性后续再扩展。
 
-Jedis连接方式
+### Jedis连接方式
 ![jedis](jedis.png)
 
 https://github.com/antirez/redis
