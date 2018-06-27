@@ -7,6 +7,6 @@
 应该支持failover，这一部分特性后续再扩展。
 
 Jedis连接方式
-[jedis](jedis.png)
+![jedis](jedis.png)
 
 https://github.com/antirez/redis
