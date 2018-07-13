@@ -10,3 +10,5 @@
 ![jedis](jedis.png)
 
 https://github.com/antirez/redis
+
+[如何根据key前缀统计内存占用](https://segmentfault.com/q/1010000010575235)
