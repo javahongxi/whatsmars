@@ -24,7 +24,8 @@ whatsmars-spring-cloud | springcloud demo
 whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 
 ### More projects
-- [*阿里巴巴开源分布式RPC框架Dubbo*](https://github.com/alibaba/dubbo)
+- [*阿里巴巴贡献给Apache的分布式RPC框架Dubbo*](https://github.com/alibaba/dubbo)
+- [*阿里巴巴开源服务发现、配置及治理平台Nacos*](https://github.com/alibaba/nacos)
 - [*阿里巴巴贡献给Apache的消息中间件RocketMQ*](https://github.com/apache/rocketmq)
 - [*RocketMQ扩展，包括console,docker,multi-language等*](https://github.com/apache/rocketmq-externals)
 - [*JMS的标准实现ActiveMQ*](https://github.com/apache/activemq)
@@ -53,4 +54,4 @@ whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 - 看源代码最大的技巧是看英文注释，另一个技巧是日志+DEBUG
 - 如果没有时间去深入研究一款软件，那么从宏观层面理解它的设计思想是重要的
 
-&copy; [hongxi.org](http://hongxi.org) | [ding.hongxi.org](https://h5.dingtalk.com/invite-page/index.html?code=dd994bd67e) | [typora.io](https://typora.io)
+&copy; [hongxi.org](http://hongxi.org) | [toutiao.im](http://toutiao.im) | [typora.io](https://typora.io)
