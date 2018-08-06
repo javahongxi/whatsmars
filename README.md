@@ -3,8 +3,8 @@
 <br>Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketMQ**🔥)
 <br>双核驱动：**Spring Boot**, **Dubbo**
 <br>![dk](DoubleKernel.png)
-<br><br>Spring Boot 系列(Servlet, Tomcat, Spring, SpringMVC, Spring Boot, MyBatis)
-<br>Alternative (Spring Data Redis, Spring Cloud, ActiveMQ)
+<br>Spring Boot 系列(Servlet, Tomcat, Spring, SpringMVC, Spring Boot, MyBatis)
+<br>Dubbo 系列(Dubbo, Zookeeper, Nacos, Sentinel ...)
 
 ### Modules intro
 Module | Intro
@@ -28,6 +28,7 @@ whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 ### More projects
 - [*阿里巴巴贡献给Apache的分布式RPC框架Dubbo*](https://github.com/alibaba/dubbo)
 - [*阿里巴巴开源服务发现、配置及治理平台Nacos*](https://github.com/alibaba/nacos)
+- [*阿里巴巴开源分布式系统的流量防卫兵Sentinel*](https://github.com/alibaba/Sentinel)
 - [*阿里巴巴贡献给Apache的消息中间件RocketMQ*](https://github.com/apache/rocketmq)
 - [*RocketMQ扩展，包括console,docker,multi-language等*](https://github.com/apache/rocketmq-externals)
 - [*JMS的标准实现ActiveMQ*](https://github.com/apache/activemq)
