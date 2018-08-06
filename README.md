@@ -1,8 +1,9 @@
 # whatsmars [![star](https://gitee.com/javahongxi/whatsmars/badge/star.svg?theme=dark)](https://gitee.com/javahongxi/whatsmars/stargazers)
 *`mvn clean package -Dmaven.test.skip`* `jdk8+` `maven3.3.1+`
 <br>Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketMQ**🔥)
-<br>**建立以Dubbo为核心的技术生态**
-<br>Spring Boot 系列(Servlet, Tomcat, Spring, SpringMVC, Spring Boot, MyBatis)
+<br>双核驱动：**Spring Boot**, **Dubbo**
+<br>![dk](DoubleKernel.png)
+<br><br>Spring Boot 系列(Servlet, Tomcat, Spring, SpringMVC, Spring Boot, MyBatis)
 <br>Alternative (Spring Data Redis, Spring Cloud, ActiveMQ)
 
 ### Modules intro
