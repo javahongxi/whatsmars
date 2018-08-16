@@ -44,6 +44,7 @@ whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 - [*A fast, light-weight proxy for memcached and redis*](https://github.com/twitter/twemproxy)
 - [*mybatis通用分页插件*](https://github.com/pagehelper/Mybatis-PageHelper)
 - [*elasticsearch - Distributed, RESTful Search Engine*](https://github.com/elastic/elasticsearch)
+- [**各种解决方案**](https://github.com/javahongxi/whatsmars/wiki/%E5%90%84%E7%A7%8D%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88)
 
 ### Friendship links
 - [*阿里巴巴Java开发手册*](https://github.com/alibaba/Alibaba-Java-Coding-Guidelines)
