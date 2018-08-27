@@ -36,6 +36,7 @@ whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 - [*spring-framework*](https://github.com/spring-projects/spring-framework)
 - [*spring-boot*](https://github.com/spring-projects/spring-boot)
 - [*spring-cloud*](https://github.com/spring-cloud/spring-cloud-netflix)
+- [*spring-data-redis*](https://github.com/spring-projects/spring-data-redis)
 - [*Redis作者的redis*](https://github.com/antirez/redis)
 - [*当当网开源的分布式任务调度框架elastic-job*](https://github.com/elasticjob/elastic-job)
 - [*当当网的sharding-jdbc*](https://github.com/shardingjdbc/sharding-jdbc)
