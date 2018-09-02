@@ -48,9 +48,9 @@ whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 - [**各种解决方案**](https://github.com/javahongxi/whatsmars/wiki/%E5%90%84%E7%A7%8D%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88)
 
 ### Friendship links
-- [*阿里巴巴Java开发手册*](https://github.com/alibaba/Alibaba-Java-Coding-Guidelines) ✏️
-- *技术博客* [blog.hongxi.org](http://blog.hongxi.org) 📚
-- *深入一点* [deep.hongxi.org](http://deep.hongxi.org) 📚
+- [*阿里巴巴Java开发手册*](https://github.com/alibaba/Alibaba-Java-Coding-Guidelines) 📚
+- *技术博客* [blog.hongxi.org](http://blog.hongxi.org) ✏️
+- *深入一点* [deep.hongxi.org](http://deep.hongxi.org) ✏️
 
 ### Warm tips
 - JDK is the most important.
