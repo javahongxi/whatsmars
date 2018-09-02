@@ -2,10 +2,10 @@ package org.hongxi.whatsmars.spring.boot.controller;
 
 import com.github.pagehelper.Page;
 import org.apache.logging.log4j.LogManager;
+import org.hongxi.whatsmars.common.result.Result;
+import org.hongxi.whatsmars.common.result.ResultHelper;
 import org.hongxi.whatsmars.spring.boot.common.ReturnItemUtils;
 import org.hongxi.whatsmars.spring.boot.common.pojo.ReturnItems;
-import org.hongxi.whatsmars.spring.boot.common.result.Result;
-import org.hongxi.whatsmars.spring.boot.common.result.ResultHelper;
 import org.hongxi.whatsmars.spring.boot.exception.AppException;
 import org.hongxi.whatsmars.spring.boot.model.User;
 import org.hongxi.whatsmars.spring.boot.service.UserService;

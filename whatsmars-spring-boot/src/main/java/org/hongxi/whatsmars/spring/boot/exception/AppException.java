@@ -1,6 +1,6 @@
 package org.hongxi.whatsmars.spring.boot.exception;
 
-import org.hongxi.whatsmars.spring.boot.common.result.Result;
+import org.hongxi.whatsmars.common.result.Result;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 

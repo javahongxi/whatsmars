@@ -1,6 +1,6 @@
 package org.hongxi.whatsmars.spring.boot.converter;
 
-import org.hongxi.whatsmars.spring.boot.common.DateUtils;
+import org.hongxi.whatsmars.common.util.DateUtils;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
