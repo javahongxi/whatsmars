@@ -26,7 +26,6 @@
         <module>dubbo-spring-boot-autoconfigure</module>
         <module>dubbo-spring-boot-actuator</module>
         <module>dubbo-spring-boot-starter</module>
-        <module>whatsmars-dubbo-transaction</module>
     </modules>
 
     <properties>
