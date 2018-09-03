@@ -6,7 +6,7 @@
 - Spring Boot
 - MyBatis
 
-https://github.com/spring-projects/spring-boot
+👻 [start.spring.io](https://start.spring.io)
 
 启动后访问 localhost:8081/ <br />
 swagger localhost:8081/swagger-ui.html
