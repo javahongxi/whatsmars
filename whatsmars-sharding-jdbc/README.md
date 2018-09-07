@@ -1,1 +1,1 @@
-http://shardingsphere.io
+https://github.com/sharding-sphere
