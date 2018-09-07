@@ -1,1 +1,1 @@
-http://shardingjdbc.io
+http://shardingsphere.io
