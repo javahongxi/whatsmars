@@ -15,7 +15,8 @@ Hashes, HyperLogLogs, Bitmaps. https://redis.io http://redis.net.cn
 
 ### Spring Data Redis
 SDR对Redis对标准模式和Cluster模式进行了充分封装，但并未对sharding模式进行良好封装，需要开发者自己实现，
-这也是SDR和Jedis相比，唯一缺少的特性。
+这也是SDR和Jedis相比，唯一缺少的特性。另外，Redis官网给出了一个Redis的Java客户端列表，SDR支持Jedis,
+Lettuce，Spring Boot 2.x默认使用Lettuce。
 
 ### MORE
 - [如何根据key前缀统计内存占用](https://segmentfault.com/q/1010000010575235)
