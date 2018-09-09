@@ -14,7 +14,7 @@ Hashes, HyperLogLogs, Bitmaps. https://redis.io http://redis.net.cn
 应该支持failover，这一部分特性后续再扩展。
 
 ### Spring Data Redis
-SDR对Redis对标准模式和Cluster模式进行了充分封装，但并未对sharding模式进行良好封装，需要开发者自己实现，
+SDR对Redis的标准模式和Cluster模式进行了充分封装，但并未对sharding模式进行良好封装，需要开发者自己实现，
 这也是SDR和Jedis相比，唯一缺少的特性。另外，Redis官网给出了一个Redis的Java客户端列表，SDR支持Jedis,
 Lettuce，Spring Boot 2.x默认使用Lettuce。(早期Redis还没有Cluster特性，所以较早出现的Redis的Java
 客户端大都自己实现了分片和集群功能，相比分片，SDR显然更提倡Cluster)
