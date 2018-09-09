@@ -18,7 +18,7 @@ Hashes, HyperLogLogs, Bitmaps. https://redis.io http://redis.net.cn
 for data access while still retaining the special traits of the underlying data store.
 - SDR对Redis的标准模式和Cluster模式进行了充分封装，但并未对客户端sharding进行良好封装，需要开发者自己实现，
 这也是SDR和Jedis相比，唯一缺少的特性。另外，Redis官网给出了一个Redis的Java客户端列表，SDR支持Jedis,
-Lettuce，Spring Boot 2.x默认使用Lettuce。
+Lettuce ['lɛtɪs]，Spring Boot 2.x默认使用Lettuce。
 - 早期Redis还没有Cluster特性，所以较早出现的Redis的Java客户端或Proxy大都自己实现了分片和集群功能，相比客户端分片，
 SDR显然更提倡Cluster模式
 - Jedis实例是线程不安全的，在多线程的环境下，需要使用连接池，每个线程都使用自己的Jedis实例，当连接数增多时，
