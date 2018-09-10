@@ -33,4 +33,5 @@ MySQL的主要任务是把数据组织成树表，在磁盘和内存之间进行
 主要是Redis的数据目标是存储到内存，而且没有大密度查找排序这种计算，所以Redis的计算很快，也就不存在io问题。
 
 ### MORE
+- [Connection and Thread Safety](https://blog.csdn.net/javahongxi/article/details/50559829)
 - [如何根据key前缀统计内存占用](https://segmentfault.com/q/1010000010575235)
