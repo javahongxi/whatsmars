@@ -11,6 +11,6 @@
 费端处理。事务消息可参考rocketmq的做法，也可直接用本地事务。
 - Broker上存Topic信息，Topic由多个队列组成，队列会平均分散在多个Broker上，而Producer的发送机制保证消息尽量平均分布到
 所有队列中，最终效果就是所有消息都平均落在每个Broker上。
-- ConsumerQueue相当于CommitLog的索引文件，消费者消费时会先从ConsumerQueue中查找消息的在commitLog中的offset，再去
+- ConsumerQueue相当于CommitLog的索引文件，消费者消费时会先从ConsumerQueue中查找消息在commitLog中的offset，再去
 CommitLog中找元数据。如果某个消息只在CommitLog中有数据，没在ConsumerQueue中， 则消费者无法消费，RocketMQ的事务消息就
 是这个原理。
