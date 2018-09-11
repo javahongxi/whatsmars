@@ -24,7 +24,7 @@ Spring Boot 2.x默认使用Lettuce。
 SDR显然更提倡Cluster模式
 - Jedis实例是线程不安全的，在多线程的环境下，需要使用连接池，每个线程都使用自己的Jedis实例，当连接数增多时，
 会消耗较多的物理资源。而Lettuce基于Netty，是一个可伸缩的线程安全的Redis客户端，支持同步、异步和响应式模式。
-- Jedis相比Lettuce和Redission，最大的特点是简单易集成，这从源代码量就可感受到。
+- Jedis相比Lettuce和[Redission](https://github.com/redisson/redisson)，最大的特点是简单易集成，这从源代码量就可感受到。
 
 ### Thread or epoll
 MySQL为什么使用线程的模型而不是epoll之类的技术？
