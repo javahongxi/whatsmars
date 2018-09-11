@@ -18,7 +18,7 @@ IDEA VM options 设置 -Ddubbo.registry.register=false (有id时为-Ddubbo.regis
 - 启动时检查：dubbo:reference check="true" Dubbo 缺省会在启动时检查依赖的服务是否可用，不可用时会抛出异常，阻止 Spring 初始化完成
 - 集群容错模式：默认 cluster="failover"，其他 failfast,failsafe,failback,forking,broadcast
 - 负载均衡：默认 loadbalance="random"，其他 roundrobin,leastactive,consistenthash
-- 线程模型：默认 <dubbo:protocol name="dubbo" dispatcher="all" threadpool="fixed" threads="100" />
+- 线程模型：默认 <dubbo:protocol name="dubbo" dispatcher="all" threadpool="fixed" threads="200" />
 1. 如果事件处理的逻辑能迅速完成，并且不会发起新的 IO 请求，比如只是在内存中记个标识，则直接在 IO 线程上处理更快，因为减少了线程池调度。
 2. 但如果事件处理逻辑较慢，或者需要发起新的 IO 请求，比如需要查询数据库，则必须派发到线程池，否则 IO 线程阻塞，将导致不能接收其它请求。
 3. 如果用 IO 线程处理事件，又在事件处理过程中发起新的 IO 请求，比如在连接事件中发起登录请求，会报“可能引发死锁”异常，但不会真死锁。
