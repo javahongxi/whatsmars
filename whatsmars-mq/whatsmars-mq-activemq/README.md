@@ -1,4 +1,6 @@
-[**ActiveMQ**](https://github.com/apache/activemq):<br>
+# [Apache ActiveMQ](https://github.com/apache/activemq)
+JMS标准实现，消息中间件领域的AK47
+
 win:下载activemq，解压执行win64/activemq.bat即启动了broker和console<br>
 Mac OS X:<br>
 下载 apache-activemq-5.11.1-bin.tar<br>

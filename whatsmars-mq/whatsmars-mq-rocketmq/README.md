@@ -1,4 +1,5 @@
-# [RocketMQ](https://github.com/apache/rocketmq)
+# [Apache RocketMQ](https://github.com/apache/rocketmq)
+分布式消息中间件
 
 ### Test
 - .properties指定rocketmqHome,namesrvAddr等，依次启动NamesrvStartup,BrokerStartup,Consumer,Producer
