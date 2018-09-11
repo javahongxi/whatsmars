@@ -14,3 +14,6 @@
 - ConsumerQueue相当于CommitLog的索引文件，消费者消费时会先从ConsumerQueue中查找消息在commitLog中的offset，再去
 CommitLog中找元数据。如果某个消息只在CommitLog中有数据，没在ConsumerQueue中， 则消费者无法消费，RocketMQ的事务消息就
 是这个原理。
+
+### More
+[RocketMQ架构模块解析](https://blog.csdn.net/javahongxi/article/details/72956608)
