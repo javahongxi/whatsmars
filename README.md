@@ -1,6 +1,6 @@
 # whatsmars [![star](https://gitee.com/javahongxi/whatsmars/badge/star.svg?theme=dark)](https://gitee.com/javahongxi/whatsmars/stargazers)
 *`mvn clean package -Dmaven.test.skip`* `jdk8+` `maven3.3.1+`
-<br><font face="STCAIYUN">What's Mars?</font>
+<br><font color=#FF0000>What's Mars?</font>
 <br>Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketMQ**🔥)
 <br>双核驱动：**Spring Boot**, **Dubbo**
 <br>![dk](DoubleKernel.png)
