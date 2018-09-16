@@ -12,6 +12,7 @@
 - java -jar -Ddubbo.registry.address=zookeeper://127.0.0.1:2181 whatsmars-dubbo-consumer.jar
 
 ### User Guide
+- https://github.com/javahongxi/dubbo-samples
 - [Dubbo框架设计](https://github.com/javahongxi/whatsmars/wiki/Dubbo%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1)
 - 配置覆盖策略：java -D > xml > properties，properties适合全局配置。本地调试时，可利用此特性在
 IDEA VM options 设置 -Ddubbo.registry.register=false (有id时为-Ddubbo.registry.xx.register=false)
