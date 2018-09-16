@@ -1,5 +1,5 @@
 # whatsmars [![star](https://gitee.com/javahongxi/whatsmars/badge/star.svg?theme=dark)](https://gitee.com/javahongxi/whatsmars)
-*`mvn clean package -Dmaven.test.skip`* [![java](https://img.shields.io/badge/java-8+-4c7e9f.svg)](http://www.oracle.com/technetwork/java/javase/downloads) [maven 3.3.1+](http://maven.apache.org/download.cgi)
+*`mvn clean package -Dmaven.test.skip`* [`maven 3.3.1+`](http://maven.apache.org/download.cgi) [![java](https://img.shields.io/badge/java-8+-4c7e9f.svg)](http://www.oracle.com/technetwork/java/javase/downloads)
 <br>*What's Mars?*
 <br>Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketMQ**🔥) `双核驱动`
 <br>![dk](DoubleKernel.png)
