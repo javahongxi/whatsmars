@@ -11,7 +11,7 @@
     <modules>
         <module>whatsmars-common</module>
         <module>whatsmars-tomcat</module>
-        <module>whatsmars-javase-example</module>
+        <module>whatsmars-javase</module>
         <module>whatsmars-spring</module>
         <module>whatsmars-spring-boot</module>
         <module>whatsmars-dbrouter</module>
