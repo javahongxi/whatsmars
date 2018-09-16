@@ -1,4 +1,4 @@
-package org.hongxi.zk;
+package org.hongxi.whatsmars.dubbo.zk;
 
 import org.apache.zookeeper.ZooKeeperMain;
 
