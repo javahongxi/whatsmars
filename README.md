@@ -1,4 +1,4 @@
-# whatsmars [![star](https://gitee.com/javahongxi/whatsmars/badge/star.svg?theme=dark)](https://gitee.com/javahongxi/whatsmars/stargazers)
+# whatsmars [![star](https://gitee.com/javahongxi/whatsmars/badge/star.svg?theme=dark)](https://gitee.com/javahongxi/whatsmars)
 *`mvn clean package -Dmaven.test.skip`* `java 8+` `maven 3.3.1+`
 <br>*What's Mars?*
 <br>Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketMQ**🔥) `双核驱动`
