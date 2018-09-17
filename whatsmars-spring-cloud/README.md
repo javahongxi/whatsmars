@@ -10,4 +10,4 @@ API网关(zuul)
 2. 均通过 API 网关 进行调用，享受 API 网关带来的统一鉴权，统一监控等好处。
 3. 通过 API 网关，控制对外暴露的 API，减轻安全隐患。
 
-Gradle版 https://github.com/javahongxi/solar
+https://github.com/spring-cloud-samples
