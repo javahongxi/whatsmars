@@ -1,1 +1,1 @@
-新事物探索 https://github.com/javahongxi/solar
+Java SE
