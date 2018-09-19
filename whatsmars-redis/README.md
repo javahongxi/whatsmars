@@ -13,15 +13,15 @@ Hashes, HyperLogLogs, Bitmaps. https://redis.io http://redis.net.cn
 离”的样板，尚未对所有的redis方法进行重写和封装，请开发者后续继续补充即可。此外，slave节点如果异常，我们
 应该支持failover，这一部分特性后续再扩展。
 
-### Spring Data Redis
+### Spring Data Redis & Redis集群方案
 - Spring Data’s mission is to provide a familiar and consistent, Spring-based programming model
 for data access while still retaining the special traits of the underlying data store.
 - SDR对Redis的标准模式和Cluster模式进行了充分封装，但并未对客户端sharding进行良好封装，需要开发者自己实现，
 这也是SDR和[Jedis](https://github.com/xetorthio/jedis)相比，唯一缺少的特性。另外，Redis官网给出了一个
 Redis的Java客户端列表，SDR支持Jedis, [Lettuce](https://github.com/lettuce-io/lettuce-core) ['lɛtɪs]，
 Spring Boot 2.x默认使用Lettuce。
-- 早期Redis还没有Cluster特性，实践中广泛采用的集群方案是客户端分片与Twemproxy/Codis代理，事实上目前官方
-Cluster方案还有一些未解决或无法避免的问题。
+- 早期Redis还没有Cluster特性，实践中广泛采用的集群方案是客户端分片与[Twemproxy](https://github.com/twitter/twemproxy)
+/[Codis](https://github.com/CodisLabs/codis)代理，事实上目前官方Cluster方案还有一些未解决或无法避免的问题。
 - Jedis实例是线程不安全的，在多线程的环境下，需要使用连接池，每个线程都使用自己的Jedis实例，当连接数增多时，
 会消耗较多的物理资源。而Lettuce基于Netty，是一个可伸缩的线程安全的Redis客户端，支持同步、异步和响应式模式。
 - Jedis相比Lettuce和[Redission](https://github.com/redisson/redisson)，最大的特点是简单易集成，这从源代码量就可感受到。
