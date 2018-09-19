@@ -22,7 +22,7 @@ whatsmars-rpc | RPC & Protocol
 whatsmars-sharding-jdbc | 开源分布式数据库中间件
 whatsmars-spring | spring原理、集成及新特性
 whatsmars-spring-boot | springboot实战
-whatsmars-spring-boot-samples | starters & Spring Boot LATEST
+whatsmars-spring-boot-samples | 常用starters样例
 whatsmars-spring-cloud | springcloud demo
 whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 

@@ -21,9 +21,9 @@
         <module>whatsmars-boot-sample-mongodb</module>
     </modules>
 
-    <properties>
+    <!--<properties>
         <spring-boot.version>LATEST</spring-boot.version>
-    </properties>
+    </properties>-->
 
     <dependencyManagement>
         <dependencies>
