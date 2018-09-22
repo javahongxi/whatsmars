@@ -27,6 +27,7 @@ whatsmars-spring-cloud | springcloud demo
 whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 [spring-boot-latest](https://github.com/javahongxi/spring-boot-latest) | Spring 5+, Spring Boot 2+
 [spring-boot-simple](https://github.com/javahongxi/spring-boot-simple) | the simplest boot
+[spring-cloud-simple](https://github.com/javahongxi/spring-cloud-simple) | the simplest cloud
 [sshmall](https://github.com/javahongxi/sshmall) | SSH巅峰之作
 [dubbo-samples](https://github.com/javahongxi/dubbo-samples) | Samples for Apache Dubbo
 
