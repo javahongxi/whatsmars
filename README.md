@@ -25,7 +25,9 @@ whatsmars-spring-boot | springboot实战
 whatsmars-spring-boot-samples | 常用starters样例
 whatsmars-spring-cloud | springcloud demo
 whatsmars-tomcat | 模拟tomcat实现，embed tomcat
-More | [spring-boot-latest](https://github.com/javahongxi/spring-boot-latest)
+[spring-boot-latest](https://github.com/javahongxi/spring-boot-latest) | Spring 5+, Spring Boot 2+
+[spring-boot-simple](https://github.com/javahongxi/spring-boot-simple) | the simplest boot
+[sshmall](https://github.com/javahongxi/sshmall) | SSH巅峰之作
 
 ### More projects
 - [*阿里巴巴贡献给Apache的分布式RPC框架Dubbo*](https://github.com/alibaba/dubbo)
