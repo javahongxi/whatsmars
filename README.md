@@ -4,7 +4,7 @@
 <br>Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketMQ**🔥) `双核驱动`
 <br>![dk](DoubleKernel.png)
 <br>Spring Boot 系列(Servlet, Tomcat, Spring, SpringMVC, Spring Data, Spring Boot, Spring WebFlux)
-<br>Dubbo 系列(Dubbo, Zookeeper, Nacos, Sentinel ...)
+<br>Dubbo 系列(Netty, Dubbo, Zookeeper, Nacos, Sentinel ...)
 <br>👻 [start.spring.io](https://start.spring.io) 👻 [start.dubbo.io](http://start.dubbo.io)
 
 ### Modules intro
