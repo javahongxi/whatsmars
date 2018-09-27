@@ -21,3 +21,4 @@ CommitLog中找元数据。如果某个消息只在CommitLog中有数据，没�
 
 ### More
 - [RocketMQ架构模块解析](https://blog.csdn.net/javahongxi/article/details/72956608)
+- [书籍：《RocketMQ实战与原理解析》](https://read.douban.com/ebook/53219535/)
