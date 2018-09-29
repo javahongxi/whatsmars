@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.*;
 
 /**
@@ -37,6 +38,7 @@ public class Test {
         System.out.println(map2);
         Map<Boolean, List<Task>> map3 = tasks.stream().collect(partitioningBy(e -> e.getPoint() > 7));
         System.out.println(map3);
+//        Map<String, Product> productMap = products.stream().collect(toMap(Product::getSku, identity(), (key1, key2) -> key2));
 
         Collection<String> result = tasks
                 .stream()
