@@ -98,4 +98,4 @@ xxxService.xxx(); // 远程调用
 - 并发控制，异步调用，本地调用，参数回调，事件通知 ...
 
 ### More
-- [书籍：《亿级流量网站架构核心技术》](https://book.douban.com/subject/26999243/)
+- [《亿级流量网站架构核心技术》](https://book.douban.com/subject/26999243/) `douban.com`

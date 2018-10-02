@@ -1,4 +1,4 @@
 ### Tomcat
 https://github.com/apache/tomcat
 
-[书籍：《Tomcat内核设计剖析》](https://book.douban.com/subject/27053924/)
+[《Tomcat内核设计剖析》](http://e.jd.com/30402466.html) `e.jd.com`

@@ -1,3 +1,3 @@
 Java SE
 
-[书籍：《深入理解Java虚拟机》](https://book.douban.com/subject/6522893/)
+[《深入理解Java虚拟机》](http://e.jd.com/30189426.html) `e.jd.com`

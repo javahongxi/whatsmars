@@ -36,4 +36,4 @@ MySQL的主要任务是把数据组织成树表，在磁盘和内存之间进行
 - [知乎技术分享：从单机到2000万QPS并发的Redis高性能缓存实践之路](https://blog.csdn.net/javahongxi/article/details/82766742)
 - [Connection and Thread Safety](https://blog.csdn.net/javahongxi/article/details/50559829)
 - [如何根据key前缀统计内存占用](https://segmentfault.com/q/1010000010575235)
-- [书籍：《Redis设计与实现》](https://book.douban.com/subject/25900156/)
+- [《Redis设计与实现》](https://e.jd.com/30189715.html) `e.jd.com`

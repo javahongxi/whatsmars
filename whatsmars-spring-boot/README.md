@@ -9,4 +9,4 @@ Most Spring Boot applications need very little Spring configuration.
 启动后访问 localhost:8081/ <br />
 swagger localhost:8081/swagger-ui.html
 
-[书籍：《SpringBoot揭秘》](https://book.douban.com/subject/26808298/)
+[《SpringBoot揭秘》](http://e.jd.com/30229176.html) `e.jd.com`
