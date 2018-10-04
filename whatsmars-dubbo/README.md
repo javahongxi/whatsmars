@@ -99,3 +99,4 @@ xxxService.xxx(); // 远程调用
 
 ### More
 - [《亿级流量网站架构核心技术》](https://book.douban.com/subject/26999243/) `douban.com`
+- [《从Paxos到Zookeeper》](https://book.douban.com/subject/26292004/) `douban.com`
