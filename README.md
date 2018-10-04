@@ -2,10 +2,10 @@
 *`./mvnw clean package -Dmaven.test.skip`* [`java 8+`](http://www.oracle.com/technetwork/java/javase/downloads) [`mvnrepository`](http://mvn.hongxi.org)
 <br>*What's Mars?*
 <br>Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketMQ**🔥)
-<br>Spring Boot Series(Servlet, Tomcat, Spring, SpringMVC, Spring Data, Spring Boot, Spring WebFlux, Spring Cloud)
-<br>Dubbo Series(Netty, Dubbo, Zookeeper, Nacos, Sentinel ...)
-<br>[《Redis设计与实现》](https://e.jd.com/30189715.html) `e.jd.com`
-<br>[《RocketMQ实战与原理解析》](http://e.jd.com/30414640.html) `e.jd.com`
+- [Spring Boot](https://spring.io/projects/spring-boot) Series(Servlet, Tomcat, Spring, SpringMVC, Spring Data, Spring Boot, Spring WebFlux, Spring Cloud)
+- [Dubbo](http://dubbo.apache.org/en-us/) Series(Netty, Dubbo, Zookeeper, Nacos, Sentinel ...)
+- [《Redis设计与实现》](https://e.jd.com/30189715.html) `e.jd.com`
+- [《RocketMQ实战与原理解析》](http://e.jd.com/30414640.html) `e.jd.com`
 <br>👻 [start.spring.io](https://start.spring.io) 👻 [start.dubbo.io](http://start.dubbo.io)
 
 ### Modules intro
