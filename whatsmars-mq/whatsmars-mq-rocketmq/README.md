@@ -21,6 +21,8 @@ CommitLog中找元数据。如果某个消息只在CommitLog中有数据，没�
   发现新Broker，立即跟该Broker直连，收发消息。
 - MQClientInstance是客户端各种类型的Consumer和Producer的底层类，由它与NameServer和Broker打交道。如果创建Consumer或Producer
 类型的时候不手动指定InstanceName，进程中只会有一个MQClientInstance对象，即当一个Java程序需要连接多个MQ集群时，必须手动指定不同的InstanceName。
+- NameServer地址可以设定多个，用“;”分隔，多个NameServer之间彼此独立没有联系。为何不用ZooKeeper？ZooKeeper的功能很强大，包括自动
+Master选举等，RocketMQ的架构设计决定了它不需要进行Master选举，用不到这些复杂的功能，只需要一个轻量级的元数据服务器就足够了。
 
 ### More
 - [RocketMQ架构模块解析](https://blog.csdn.net/javahongxi/article/details/72956608)
