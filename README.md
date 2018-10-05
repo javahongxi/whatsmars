@@ -20,7 +20,8 @@ whatsmars-elasticjob | 分布式调度
 whatsmars-javase | Java基础 & 新特性
 whatsmars-mq | 消息中间件rocketmq,activemq
 whatsmars-redis | redis客户端简单封装
-whatsmars-rpc | RPC & Protocol
+whatsmars-remoting | netty,mina,http
+whatsmars-rpc | grpc,thrift,http,hessian
 whatsmars-sharding-jdbc | 开源分布式数据库中间件
 whatsmars-spring | spring原理、集成及新特性
 whatsmars-spring-boot | springboot实战
