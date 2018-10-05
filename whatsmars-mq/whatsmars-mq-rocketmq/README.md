@@ -18,6 +18,8 @@ CommitLog中找元数据。如果某个消息只在CommitLog中有数据，没�
   + Topic维度：假如一个Topic的消息量特别大，但集群水位压力还是很低，就可以扩大该Topic的队列数，Topic的队列数跟发送、消费速度成正比。
   + Broker维度：如果集群水位很高了，需要扩容，直接加机器部署Broker就可以。Broker起来后向Namesrv注册，Producer、Consumer通过Namesrv
   发现新Broker，立即跟该Broker直连，收发消息。
+- MQClientInstance是客户端各种类型的Consumer和Producer的底层类，由它与NameServer和Broker打交道。如果创建Consumer或Producer
+类型的时候不手动指定InstanceName，进程中只会有一个MQClientInstance对象，即当一个Java程序需要连接多个MQ集群时，必须手动指定不同的InstanceName。
 
 ### More
 - [RocketMQ架构模块解析](https://blog.csdn.net/javahongxi/article/details/72956608)
