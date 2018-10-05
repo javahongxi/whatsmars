@@ -3,7 +3,8 @@
 
 ### Test
 - .properties指定rocketmqHome,namesrvAddr等，依次启动NamesrvStartup,BrokerStartup,Consumer,Producer
-- 管理后台：https://github.com/apache/rocketmq-externals
+- 管理后台：https://github.com/apache/rocketmq-externals/tree/master/rocketmq-console
+- 命令行管理工具MQAdmin: bin/mqadmin
 
 ### User Guide
 - 每个主题可设置队列个数，默认4个，需要顺序消费的消息发往同一队列，比如同一订单号相关的几条需要顺序消费的消息发往同一队列，
