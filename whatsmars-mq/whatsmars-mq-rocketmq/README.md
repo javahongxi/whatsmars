@@ -7,6 +7,11 @@
 - 命令行管理工具MQAdmin: bin/mqadmin
 
 ### User Guide
+- NameServer可以部署多个，相互之间独立，其他角色同时向多个NameServer机器上报状态信息，从而达到热备份的目的。
+NameServer本身是无状态的，也就是说NameServer中的Broker、Topic等状态信息不会持久存储，都是由各个角色定时上报并
+存储到内存中的(NameServer支持配置参数的持久化，一般用不到)。
+为何不用ZooKeeper？ZooKeeper的功能很强大，包括自动Master选举等，RocketMQ的架构设计决定了它不需要进行Master选举，
+用不到这些复杂的功能，只需要一个轻量级的元数据服务器就足够了。
 - 每个主题可设置队列个数，默认4个，需要顺序消费的消息发往同一队列，比如同一订单号相关的几条需要顺序消费的消息发往同一队列，
 顺序消费的特点的是，不会有两个消费者共同消费任一队列，且当消费者数量小于队列数时，消费者会消费多个队列。至于消息重复，在消
 费端处理。事务消息功能已在4.x版本去除，不过一些上层Class都还在，用户可以根据实际需求实现自己定事务功能。
@@ -21,8 +26,6 @@ CommitLog中找元数据。如果某个消息只在CommitLog中有数据，没�
   发现新Broker，立即跟该Broker直连，收发消息。
 - MQClientInstance是客户端各种类型的Consumer和Producer的底层类，由它与NameServer和Broker打交道。如果创建Consumer或Producer
 类型的时候不手动指定InstanceName，进程中只会有一个MQClientInstance对象，即当一个Java程序需要连接多个MQ集群时，必须手动指定不同的InstanceName。
-- NameServer地址可以设定多个，用“;”分隔，多个NameServer之间彼此独立没有联系。为何不用ZooKeeper？ZooKeeper的功能很强大，包括自动
-Master选举等，RocketMQ的架构设计决定了它不需要进行Master选举，用不到这些复杂的功能，只需要一个轻量级的元数据服务器就足够了。
 
 ### More
 - [RocketMQ架构模块解析](https://blog.csdn.net/javahongxi/article/details/72956608)
