@@ -16,15 +16,14 @@
         <module>whatsmars-spring-boot</module>
         <module>whatsmars-dbrouter</module>
         <module>whatsmars-elasticjob</module>
-        <module>whatsmars-rpc</module>
         <module>whatsmars-dubbo</module>
+        <module>whatsmars-lightrpc</module>
         <module>whatsmars-mq</module>
         <module>whatsmars-redis</module>
         <module>whatsmars-spring-cloud</module>
         <module>whatsmars-sharding-jdbc</module>
         <module>whatsmars-earth</module>
         <module>whatsmars-spring-boot-samples</module>
-        <module>whatsmars-remoting</module>
     </modules>
 
     <properties>
