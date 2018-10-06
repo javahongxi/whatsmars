@@ -59,7 +59,7 @@
         <jetty.version>6.1.26</jetty.version>
         <hessian.version>4.0.7</hessian.version>
         <netty.version>3.2.5.Final</netty.version>
-        <netty4.version>4.0.35.Final</netty4.version>
+        <netty4.version>4.1.30.Final</netty4.version>
         <mina.version>1.1.7</mina.version>
         <netty-tcnative.version>2.0.7.Final</netty-tcnative.version>
 
