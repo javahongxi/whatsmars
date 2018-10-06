@@ -15,7 +15,7 @@
     <url>http://maven.apache.org</url>
 
     <properties>
-        <grpc.version>1.0.0</grpc.version>
+        <grpc.version>1.15.1</grpc.version>
     </properties>
 
     <dependencies>
