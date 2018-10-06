@@ -12,7 +12,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 /**
  * Created by shenhongxi on 2018/10/5.
  */
-public class TimeServer {
+public class HelloServer {
 
     public void bind(int port) throws Exception {
         // 配置服务端的NIO线程组
@@ -41,11 +41,11 @@ public class TimeServer {
 
         @Override
         protected void initChannel(SocketChannel socketChannel) throws Exception {
-            socketChannel.pipeline().addLast(new TimeServerHandler());
+            socketChannel.pipeline().addLast(new HelloServerHandler());
         }
     }
 
     public static void main(String[] args) throws Exception {
-        new TimeServer().bind(8080);
+        new HelloServer().bind(8080);
     }
 }

@@ -12,7 +12,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 /**
  * Created by shenhongxi on 2018/10/5.
  */
-public class TimeClient {
+public class HelloClient {
 
     public void connect(int port, String host) throws Exception {
         // 配置客户端NIO线程组
@@ -24,7 +24,7 @@ public class TimeClient {
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
-                            socketChannel.pipeline().addLast(new TimeClientHandler());
+                            socketChannel.pipeline().addLast(new HelloClientHandler());
                         }
                     });
 
@@ -40,6 +40,6 @@ public class TimeClient {
     }
 
     public static void main(String[] args) throws Exception {
-        new TimeClient().connect(8080, "127.0.0.1");
+        new HelloClient().connect(8080, "127.0.0.1");
     }
 }
