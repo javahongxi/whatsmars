@@ -1,8 +1,8 @@
-package org.hongxi.lightrpc.serialization;
+package org.hongxi.whatsmars.serialization;
 
 import com.caucho.hessian.io.Hessian2Input;
 import com.caucho.hessian.io.Hessian2Output;
-import org.hongxi.lightrpc.codec.Serialization;
+import org.hongxi.whatsmars.codec.Serialization;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

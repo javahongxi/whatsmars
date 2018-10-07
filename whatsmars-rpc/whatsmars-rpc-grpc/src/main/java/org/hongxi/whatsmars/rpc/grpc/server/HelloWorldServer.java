@@ -1,4 +1,4 @@
-package org.hongxi.lightrpc.rpc.grpc.server;
+package org.hongxi.whatsmars.rpc.grpc.server;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;

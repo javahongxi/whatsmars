@@ -1,4 +1,4 @@
-package org.hongxi.lightrpc.rpc.grpc.client;
+package org.hongxi.whatsmars.rpc.grpc.client;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;

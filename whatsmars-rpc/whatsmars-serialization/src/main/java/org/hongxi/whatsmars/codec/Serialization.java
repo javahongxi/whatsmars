@@ -1,4 +1,4 @@
-package org.hongxi.lightrpc.codec;
+package org.hongxi.whatsmars.codec;
 
 import java.io.IOException;
 

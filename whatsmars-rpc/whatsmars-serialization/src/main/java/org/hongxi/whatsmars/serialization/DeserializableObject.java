@@ -1,6 +1,6 @@
-package org.hongxi.lightrpc.serialization;
+package org.hongxi.whatsmars.serialization;
 
-import org.hongxi.lightrpc.codec.Serialization;
+import org.hongxi.whatsmars.codec.Serialization;
 
 import java.io.IOException;
 

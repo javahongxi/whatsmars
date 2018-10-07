@@ -1,4 +1,4 @@
-package org.hongxi.lightrpc.remoting.netty4.support.http;
+package org.hongxi.whatsmars.remoting.netty4.support.http;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
