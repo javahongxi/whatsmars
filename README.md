@@ -18,7 +18,7 @@ whatsmars-dubbo | 阿里分布式RPC(服务化)框架
 whatsmars-earth | springmvc+velocity实战
 whatsmars-elasticjob | 分布式调度
 whatsmars-javase | Java基础 & 新特性
-whatsmars-lightrpc | 轻量级RPC
+whatsmars-rpc | RPC
 whatsmars-mq | 消息中间件rocketmq,activemq
 whatsmars-redis | redis客户端简单封装
 whatsmars-sharding-jdbc | 开源分布式数据库中间件
