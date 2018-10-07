@@ -3,9 +3,9 @@ package org.hongxi.lightrpc.rpc.grpc.server;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
-import org.hongxi.lightrpc.rpc.grpc.service.HelloServiceGrpc;
-import org.hongxi.lightrpc.rpc.grpc.service.HelloRequest;
-import org.hongxi.lightrpc.rpc.grpc.service.HelloResponse;
+import org.hongxi.whatsmars.rpc.grpc.service.HelloServiceGrpc;
+import org.hongxi.whatsmars.rpc.grpc.service.HelloRequest;
+import org.hongxi.whatsmars.rpc.grpc.service.HelloResponse;
 
 import java.io.IOException;
 

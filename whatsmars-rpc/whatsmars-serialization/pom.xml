@@ -3,22 +3,22 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>lightrpc</artifactId>
+        <artifactId>whatsmars-rpc</artifactId>
         <groupId>org.hongxi</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>lightrpc-remoting</artifactId>
+    <artifactId>whatsmars-serialization</artifactId>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
     <url>http://maven.apache.org</url>
 
     <dependencies>
-        <!-- netty4 -->
         <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
+            <groupId>com.caucho</groupId>
+            <artifactId>hessian</artifactId>
+            <version>4.0.38</version>
         </dependency>
     </dependencies>
 

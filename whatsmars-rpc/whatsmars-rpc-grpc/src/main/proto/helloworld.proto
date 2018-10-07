@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "org.hongxi.lightrpc.rpc.grpc.service";
+option java_package = "org.hongxi.whatsmars.rpc.grpc.service";
 option java_outer_classname = "HelloWorldProto";
 option objc_class_prefix = "HLW";
 

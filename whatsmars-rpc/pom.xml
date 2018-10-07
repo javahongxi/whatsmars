@@ -3,24 +3,20 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>lightrpc</artifactId>
+        <artifactId>whatsmars-parent</artifactId>
         <groupId>org.hongxi</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>lightrpc-serialization</artifactId>
-    <packaging>jar</packaging>
-    <name>${project.artifactId}</name>
-    <url>http://maven.apache.org</url>
+    <artifactId>whatsmars-rpc</artifactId>
+    <packaging>pom</packaging>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.caucho</groupId>
-            <artifactId>hessian</artifactId>
-            <version>4.0.38</version>
-        </dependency>
-    </dependencies>
+    <modules>
+        <module>whatsmars-remoting</module>
+        <module>whatsmars-serialization</module>
+        <module>whatsmars-rpc-grpc</module>
+    </modules>
 
 
 </project>

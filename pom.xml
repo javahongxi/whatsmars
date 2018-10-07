@@ -17,7 +17,7 @@
         <module>whatsmars-dbrouter</module>
         <module>whatsmars-elasticjob</module>
         <module>whatsmars-dubbo</module>
-        <module>whatsmars-lightrpc</module>
+        <module>whatsmars-rpc</module>
         <module>whatsmars-mq</module>
         <module>whatsmars-redis</module>
         <module>whatsmars-spring-cloud</module>
