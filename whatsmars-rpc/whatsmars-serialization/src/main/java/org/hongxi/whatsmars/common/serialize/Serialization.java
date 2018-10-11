@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.codec;
+package org.hongxi.whatsmars.common.serialize;
 
 import java.io.IOException;
 

@@ -1,6 +1,6 @@
-package org.hongxi.whatsmars.serialization;
+package org.hongxi.whatsmars.common.serialize.hessian2;
 
-import org.hongxi.whatsmars.codec.Serialization;
+import org.hongxi.whatsmars.common.serialize.Serialization;
 
 import java.io.IOException;
 
