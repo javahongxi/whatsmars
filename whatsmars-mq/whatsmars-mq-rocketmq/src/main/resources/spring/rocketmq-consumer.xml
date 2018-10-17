@@ -6,6 +6,7 @@
        default-autowire="byName">
 
     <bean class="org.hongxi.whatsmars.mq.rocketmq.spring.ConsumerFactoryBean">
+        <property name="instanceName" value="DEFAULT" />
         <property name="consumerGroup" value="quick_start_consumer_group" />
         <property name="namesrvAddr" value="127.0.0.1:9876" />
         <property name="topic" value="TopicTest" />

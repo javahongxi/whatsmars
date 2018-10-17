@@ -11,6 +11,8 @@ public class ConsumerFactoryBean implements FactoryBean<DefaultMQPushConsumer>,I
 
     private DefaultMQPushConsumer consumer;
 
+    private String instanceName; // 不同集群不同值
+
     private String consumerGroup;
 
     private String namesrvAddr;
@@ -20,6 +22,10 @@ public class ConsumerFactoryBean implements FactoryBean<DefaultMQPushConsumer>,I
     private String tags;
 
     private MessageListenerConcurrently messageListener;
+
+    public void setInstanceName(String instanceName) {
+        this.instanceName = instanceName;
+    }
 
     public void setConsumerGroup(String consumerGroup) {
         this.consumerGroup = consumerGroup;
@@ -59,6 +65,7 @@ public class ConsumerFactoryBean implements FactoryBean<DefaultMQPushConsumer>,I
     @Override
     public void afterPropertiesSet() throws Exception {
         consumer = new DefaultMQPushConsumer(consumerGroup);
+        consumer.setInstanceName(instanceName);
         consumer.setNamesrvAddr(namesrvAddr);
         consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
         consumer.subscribe(topic, tags);

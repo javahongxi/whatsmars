@@ -9,9 +9,15 @@ public class ProducerFactoryBean implements FactoryBean<DefaultMQProducer>,Initi
 
     private DefaultMQProducer producer;
 
+    private String instanceName; // 不同集群不同值
+
     private String producerGroup;
 
     private String namesrvAddr;
+
+    public void setInstanceName(String instanceName) {
+        this.instanceName = instanceName;
+    }
 
     public void setProducerGroup(String producerGroup) {
         this.producerGroup = producerGroup;
@@ -39,6 +45,7 @@ public class ProducerFactoryBean implements FactoryBean<DefaultMQProducer>,Initi
     @Override
     public void afterPropertiesSet() throws Exception {
         producer = new DefaultMQProducer(producerGroup);
+        producer.setInstanceName(instanceName);
         producer.setNamesrvAddr(namesrvAddr);
         producer.start();
     }
