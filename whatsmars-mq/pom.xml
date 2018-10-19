@@ -23,7 +23,7 @@
     </modules>
 
     <properties>
-        <rocketmq.version>4.3.0</rocketmq.version>
+        <rocketmq.version>4.3.1</rocketmq.version>
     </properties>
 
     <dependencyManagement>
