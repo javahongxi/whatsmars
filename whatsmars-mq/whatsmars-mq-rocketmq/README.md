@@ -2,7 +2,9 @@
 分布式消息中间件
 
 ### Test
-- .properties指定rocketmqHome,namesrvAddr等，依次启动NamesrvStartup,BrokerStartup,Consumer,Producer
+- .properties指定rocketmqHome,namesrvAddr等，依次启动NamesrvStartup,BrokerStartup
+(whatsmars-mq-rocketmq-namesrv, whatsmars-mq-rocketmq-broker)
+- 依次启动Consumer,Producer
 - 管理后台：https://github.com/apache/rocketmq-externals/tree/master/rocketmq-console
 - 命令行管理工具MQAdmin: bin/mqadmin
 
