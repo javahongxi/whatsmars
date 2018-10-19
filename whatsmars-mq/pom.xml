@@ -17,6 +17,25 @@
         <module>whatsmars-mq-rabbitmq</module>
         <module>whatsmars-mq-kafka</module>
         <module>whatsmars-mq-activemq-broker</module>
+        <module>rocketmq-spring-boot-starter</module>
+        <module>whatsmars-mq-rocketmq-namesrv</module>
+        <module>whatsmars-mq-rocketmq-broker</module>
     </modules>
+
+    <properties>
+        <rocketmq.version>4.3.0</rocketmq.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>

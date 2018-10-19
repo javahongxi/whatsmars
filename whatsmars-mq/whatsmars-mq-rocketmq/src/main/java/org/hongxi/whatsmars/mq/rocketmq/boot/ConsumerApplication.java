@@ -1,7 +1,7 @@
 package org.hongxi.whatsmars.mq.rocketmq.boot;
 
-import com.qianmi.ms.starter.rocketmq.annotation.RocketMQMessageListener;
-import com.qianmi.ms.starter.rocketmq.core.RocketMQListener;
+import org.apache.rocketmq.spring.starter.annotation.RocketMQMessageListener;
+import org.apache.rocketmq.spring.starter.core.RocketMQListener;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Service;

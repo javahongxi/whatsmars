@@ -9,12 +9,20 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>whatsmars-mq-activemq</artifactId>
+    <artifactId>whatsmars-mq-rocketmq-namesrv</artifactId>
 
     <dependencies>
         <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-namesrv</artifactId>
+            <version>${rocketmq.version}</version>
+        </dependency>
+
+        <!--JUST FOR LOG-->
+        <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-activemq</artifactId>
+            <artifactId>spring-boot-starter</artifactId>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 

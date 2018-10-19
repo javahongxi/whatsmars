@@ -1,6 +1,6 @@
 package org.hongxi.whatsmars.mq.rocketmq.boot;
 
-import com.qianmi.ms.starter.rocketmq.core.RocketMQTemplate;
+import org.apache.rocketmq.spring.starter.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
