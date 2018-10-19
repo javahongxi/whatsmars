@@ -25,7 +25,7 @@ whatsmars-sharding-jdbc | 开源分布式数据库中间件
 whatsmars-spring | spring原理、集成及新特性
 whatsmars-spring-boot | springboot实战
 whatsmars-spring-boot-samples | 常用starters样例
-whatsmars-spring-cloud | springcloud demo
+whatsmars-spring-cloud | Edgware
 whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 [spring-boot-latest](https://github.com/javahongxi/spring-boot-latest) | Spring 5+, Spring Boot 2+
 [spring-boot-simple](https://github.com/javahongxi/spring-boot-simple) | the simplest boot
