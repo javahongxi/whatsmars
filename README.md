@@ -3,7 +3,7 @@
 <br>*What's Mars?*
 <br>Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketMQ**🔥)
 - [Spring Boot](https://spring.io/projects/spring-boot) Series(Servlet, Tomcat, Spring, SpringMVC, Spring Data, Spring Boot, Spring WebFlux, Spring Cloud)
-- [Dubbo](http://dubbo.apache.org/en-us/) [*github.com/dubbo*](https://github.com/dubbo)
+- [Dubbo](http://dubbo.apache.org/en-us/)
 - [《Redis设计与实现》](https://e.jd.com/30189715.html) `e.jd.com`
 - [《RocketMQ实战与原理解析》](https://book.douban.com/subject/30246992/) `douban.com`
 
