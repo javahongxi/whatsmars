@@ -12,10 +12,6 @@
     <artifactId>whatsmars-cloud-eureka</artifactId>
     <name>${project.artifactId}</name>
 
-    <properties>
-        <start-class>org.hongxi.whatsmars.cloud.eureka.EurekaApplication</start-class>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
