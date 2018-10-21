@@ -11,7 +11,7 @@ public class ConsumerFactoryBean implements FactoryBean<DefaultMQPushConsumer>,I
 
     private DefaultMQPushConsumer consumer;
 
-    private String instanceName; // 不同集群不同值
+    private String instanceName = System.getProperty("rocketmq.client.name", "DEFAULT");
 
     private String consumerGroup;
 

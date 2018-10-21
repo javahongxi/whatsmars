@@ -9,7 +9,7 @@ public class ProducerFactoryBean implements FactoryBean<DefaultMQProducer>,Initi
 
     private DefaultMQProducer producer;
 
-    private String instanceName; // 不同集群不同值
+    private String instanceName = System.getProperty("rocketmq.client.name", "DEFAULT");
 
     private String producerGroup;
 

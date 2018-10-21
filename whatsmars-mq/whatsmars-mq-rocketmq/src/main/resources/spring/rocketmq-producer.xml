@@ -6,7 +6,6 @@
        default-autowire="byName">
 
     <bean id="defaultMQProducer" class="org.hongxi.whatsmars.mq.rocketmq.spring.ProducerFactoryBean">
-        <property name="instanceName" value="DEFAULT" />
         <property name="producerGroup" value="quick_start_producer_group" />
         <property name="namesrvAddr" value="127.0.0.1:9876" />
     </bean>
