@@ -1,11 +1,15 @@
 package org.hongxi.whatsmars.mq.rocketmq.spring;
 
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
 
 public class ProducerFactoryBean extends ClientConfig implements FactoryBean<DefaultMQProducer>,InitializingBean,DisposableBean {
+
+    private static final Logger logger = LoggerFactory.getLogger(ProducerFactoryBean.class);
 
     private DefaultMQProducer producer;
 
@@ -53,10 +57,11 @@ public class ProducerFactoryBean extends ClientConfig implements FactoryBean<Def
         producer = new DefaultMQProducer(producerGroup);
         producer.setInstanceName(instanceName);
         producer.setNamesrvAddr(namesrvAddr);
-//        producer.setDefaultTopicQueueNums(defaultTopicQueueNums);
-//        producer.setSendMsgTimeout(sendMsgTimeout);
-//        producer.setRetryTimesWhenSendFailed(retryTimesWhenSendFailed);
+        producer.setDefaultTopicQueueNums(defaultTopicQueueNums);
+        producer.setSendMsgTimeout(sendMsgTimeout);
+        producer.setRetryTimesWhenSendFailed(retryTimesWhenSendFailed);
         producer.start();
+        logger.info("Producer Group {} started!", producerGroup);
     }
 
     @Override

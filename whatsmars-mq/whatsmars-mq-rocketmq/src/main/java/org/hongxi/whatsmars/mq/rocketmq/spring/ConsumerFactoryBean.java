@@ -4,11 +4,15 @@ import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
 import org.apache.rocketmq.common.consumer.ConsumeFromWhere;
 import org.apache.rocketmq.common.protocol.heartbeat.MessageModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
 
 public class ConsumerFactoryBean extends ClientConfig implements FactoryBean<DefaultMQPushConsumer>,InitializingBean,DisposableBean {
+
+    private static final Logger logger = LoggerFactory.getLogger(ConsumerFactoryBean.class);
 
     private DefaultMQPushConsumer consumer;
 
@@ -123,6 +127,7 @@ public class ConsumerFactoryBean extends ClientConfig implements FactoryBean<Def
         consumer.subscribe(topic, tags);
         consumer.registerMessageListener(messageListener);
         consumer.start();
+        logger.info("Consumer Group {} started!", consumerGroup);
     }
 
     @Override
