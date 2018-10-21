@@ -20,6 +20,7 @@
         <module>rocketmq-spring-boot-starter</module>
         <module>whatsmars-mq-rocketmq-namesrv</module>
         <module>whatsmars-mq-rocketmq-broker</module>
+        <module>whatsmars-mq-rocketmq-tools</module>
     </modules>
 
     <properties>
