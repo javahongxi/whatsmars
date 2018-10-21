@@ -12,10 +12,6 @@
     <artifactId>whatsmars-cloud-provider</artifactId>
     <name>${project.artifactId}</name>
 
-    <properties>
-        <start-class>org.hongxi.whatsmars.cloud.provider.ProviderApplication</start-class>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
