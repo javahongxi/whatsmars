@@ -15,5 +15,7 @@ public class MQAdminStartup {
         ConfigurableApplicationContext ctx = SpringApplication.run(MQAdminStartup.class, args);
         System.setProperty(MixAll.ROCKETMQ_HOME_PROPERTY, ctx.getEnvironment().getProperty("rocketmqHome"));
         org.apache.rocketmq.tools.command.MQAdminStartup.main(args);
+        args = new String[] {"help", "brokerStatus"};
+        org.apache.rocketmq.tools.command.MQAdminStartup.main(args);
     }
 }
