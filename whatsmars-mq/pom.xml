@@ -24,7 +24,7 @@
 
     <properties>
         <rocketmq.version>4.3.1</rocketmq.version>
-        <rocketmq-client.version>4.2.0</rocketmq-client.version>
+        <rocketmq-client.version>4.3.0</rocketmq-client.version>
     </properties>
 
     <dependencyManagement>
