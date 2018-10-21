@@ -3,19 +3,34 @@ package org.hongxi.whatsmars.mq.rocketmq.spring;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
 import org.apache.rocketmq.common.consumer.ConsumeFromWhere;
+import org.apache.rocketmq.common.protocol.heartbeat.MessageModel;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
 
-public class ConsumerFactoryBean implements FactoryBean<DefaultMQPushConsumer>,InitializingBean,DisposableBean {
+public class ConsumerFactoryBean extends ClientConfig implements FactoryBean<DefaultMQPushConsumer>,InitializingBean,DisposableBean {
 
     private DefaultMQPushConsumer consumer;
 
-    private String instanceName; // 不同集群不同值
-
     private String consumerGroup;
 
-    private String namesrvAddr;
+    private MessageModel messageModel = MessageModel.CLUSTERING;
+
+    private int consumeThreadMin = 20;
+
+    private int consumeThreadMax = 64;
+
+    private int pullThresholdForQueue = 1000;
+
+    private int pullThresholdSizeForQueue = 100;
+
+    private int consumeMessageBatchMaxSize = 1;
+
+    private int pullBatchSize = 32;
+
+    private int maxReconsumeTimes = -1;
+
+    private long consumeTimeout = 15;
 
     private String topic;
 
@@ -23,16 +38,44 @@ public class ConsumerFactoryBean implements FactoryBean<DefaultMQPushConsumer>,I
 
     private MessageListenerConcurrently messageListener;
 
-    public void setInstanceName(String instanceName) {
-        this.instanceName = instanceName;
-    }
-
     public void setConsumerGroup(String consumerGroup) {
         this.consumerGroup = consumerGroup;
     }
 
-    public void setNamesrvAddr(String namesrvAddr) {
-        this.namesrvAddr = namesrvAddr;
+    public void setMessageModel(String messageModel) {
+        this.messageModel = MessageModel.valueOf(messageModel);
+    }
+
+    public void setConsumeThreadMin(int consumeThreadMin) {
+        this.consumeThreadMin = consumeThreadMin;
+    }
+
+    public void setConsumeThreadMax(int consumeThreadMax) {
+        this.consumeThreadMax = consumeThreadMax;
+    }
+
+    public void setPullThresholdForQueue(int pullThresholdForQueue) {
+        this.pullThresholdForQueue = pullThresholdForQueue;
+    }
+
+    public void setPullThresholdSizeForQueue(int pullThresholdSizeForQueue) {
+        this.pullThresholdSizeForQueue = pullThresholdSizeForQueue;
+    }
+
+    public void setConsumeMessageBatchMaxSize(int consumeMessageBatchMaxSize) {
+        this.consumeMessageBatchMaxSize = consumeMessageBatchMaxSize;
+    }
+
+    public void setPullBatchSize(int pullBatchSize) {
+        this.pullBatchSize = pullBatchSize;
+    }
+
+    public void setMaxReconsumeTimes(int maxReconsumeTimes) {
+        this.maxReconsumeTimes = maxReconsumeTimes;
+    }
+
+    public void setConsumeTimeout(long consumeTimeout) {
+        this.consumeTimeout = consumeTimeout;
     }
 
     public void setTopic(String topic) {
@@ -68,6 +111,15 @@ public class ConsumerFactoryBean implements FactoryBean<DefaultMQPushConsumer>,I
         consumer.setInstanceName(instanceName);
         consumer.setNamesrvAddr(namesrvAddr);
         consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
+        consumer.setMessageModel(messageModel);
+        consumer.setConsumeThreadMin(consumeThreadMin);
+        consumer.setConsumeThreadMax(consumeThreadMax);
+        consumer.setPullThresholdForQueue(pullThresholdForQueue);
+        consumer.setPullThresholdSizeForQueue(pullThresholdSizeForQueue);
+        consumer.setConsumeMessageBatchMaxSize(consumeMessageBatchMaxSize);
+        consumer.setPullBatchSize(pullBatchSize);
+        consumer.setMaxReconsumeTimes(maxReconsumeTimes);
+        consumer.setConsumeTimeout(consumeTimeout);
         consumer.subscribe(topic, tags);
         consumer.registerMessageListener(messageListener);
         consumer.start();
@@ -75,6 +127,8 @@ public class ConsumerFactoryBean implements FactoryBean<DefaultMQPushConsumer>,I
 
     @Override
     public void destroy() throws Exception {
-        consumer.shutdown();
+        if (consumer != null) {
+            consumer.shutdown();
+        }
     }
 }

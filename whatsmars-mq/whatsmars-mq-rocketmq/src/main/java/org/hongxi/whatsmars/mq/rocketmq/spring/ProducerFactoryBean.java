@@ -5,26 +5,32 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
 
-public class ProducerFactoryBean implements FactoryBean<DefaultMQProducer>,InitializingBean,DisposableBean {
+public class ProducerFactoryBean extends ClientConfig implements FactoryBean<DefaultMQProducer>,InitializingBean,DisposableBean {
 
     private DefaultMQProducer producer;
 
-    private String instanceName; // 不同集群不同值
-
     private String producerGroup;
 
-    private String namesrvAddr;
+    private volatile int defaultTopicQueueNums = 4;
 
-    public void setInstanceName(String instanceName) {
-        this.instanceName = instanceName;
-    }
+    private int sendMsgTimeout = 3000;
+
+    private int retryTimesWhenSendFailed = 2;
 
     public void setProducerGroup(String producerGroup) {
         this.producerGroup = producerGroup;
     }
 
-    public void setNamesrvAddr(String namesrvAddr) {
-        this.namesrvAddr = namesrvAddr;
+    public void setDefaultTopicQueueNums(int defaultTopicQueueNums) {
+        this.defaultTopicQueueNums = defaultTopicQueueNums;
+    }
+
+    public void setSendMsgTimeout(int sendMsgTimeout) {
+        this.sendMsgTimeout = sendMsgTimeout;
+    }
+
+    public void setRetryTimesWhenSendFailed(int retryTimesWhenSendFailed) {
+        this.retryTimesWhenSendFailed = retryTimesWhenSendFailed;
     }
 
     @Override
@@ -47,11 +53,16 @@ public class ProducerFactoryBean implements FactoryBean<DefaultMQProducer>,Initi
         producer = new DefaultMQProducer(producerGroup);
         producer.setInstanceName(instanceName);
         producer.setNamesrvAddr(namesrvAddr);
+//        producer.setDefaultTopicQueueNums(defaultTopicQueueNums);
+//        producer.setSendMsgTimeout(sendMsgTimeout);
+//        producer.setRetryTimesWhenSendFailed(retryTimesWhenSendFailed);
         producer.start();
     }
 
     @Override
     public void destroy() throws Exception {
-        producer.shutdown();
+        if (producer != null) {
+            producer.shutdown();
+        }
     }
 }
