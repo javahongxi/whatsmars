@@ -98,5 +98,7 @@ xxxService.xxx(); // 远程调用
 - 并发控制，异步调用，本地调用，参数回调，事件通知 ...
 
 ### More
+- [《企业IT架构转型之道：阿里巴巴中台战略思想与架构实战》](https://book.douban.com/subject/27039508/)
 - [《亿级流量网站架构核心技术》](https://book.douban.com/subject/26999243/) `douban.com`
 - [《从Paxos到Zookeeper》](https://book.douban.com/subject/26292004/) `douban.com`
+- [《Netty权威指南》](http://e.jd.com/30186249.html) `e.jd.com`
