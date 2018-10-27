@@ -19,6 +19,8 @@ public class CuratorTest {
         String path1 = "/test";
         Stat stat = client.checkExists().forPath(path1);
         if (stat == null) {
+            // client.create()...
+            // client.setData()...
             client.inTransaction()
                     .create().forPath(path1, "hongxi.org".getBytes())
                     .and().setData().forPath(path1, "org.hongxi".getBytes())
