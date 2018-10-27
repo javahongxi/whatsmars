@@ -21,7 +21,7 @@
         <module>whatsmars-dubbo-provider-boot</module>
         <module>whatsmars-dubbo-consumer-boot</module>
         <module>whatsmars-dubbo-service</module>
-        <module>whatsmars-dubbo-zk</module>
+        <module>whatsmars-zk</module>
         <module>dubbo-spring-boot-autoconfigure</module>
         <module>dubbo-spring-boot-actuator</module>
         <module>dubbo-spring-boot-starter</module>

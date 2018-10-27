@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.dubbo.zk;
+package org.hongxi.whatsmars.zk;
 
 import org.apache.zookeeper.server.ServerConfig;
 import org.apache.zookeeper.server.ZooKeeperServerMain;

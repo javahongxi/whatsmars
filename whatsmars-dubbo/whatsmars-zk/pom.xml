@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>whatsmars-dubbo-zk</artifactId>
+    <artifactId>whatsmars-zk</artifactId>
 
     <dependencies>
         <dependency>
@@ -23,6 +23,10 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-framework</artifactId>
         </dependency>
     </dependencies>
 
