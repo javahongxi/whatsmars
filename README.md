@@ -1,4 +1,4 @@
-# whatsmars [![star](https://gitee.com/javahongxi/whatsmars/badge/star.svg?theme=dark)](https://gitee.com/javahongxi/whatsmars)
+# whatsmars
 *`./mvnw clean package -Dmaven.test.skip`* [`java 8+`](http://www.oracle.com/technetwork/java/javase/downloads) [`mvnrepository`](http://mvn.hongxi.org)
 <br>*What's Mars?*
 <br>Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketMQ**🔥)
