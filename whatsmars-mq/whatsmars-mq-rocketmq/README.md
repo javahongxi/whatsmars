@@ -30,7 +30,7 @@ NameServer本身是无状态的，也就是说NameServer中的Broker、Topic等�
 网络传输失败，心跳失败，导致Namesrv误认为Broker心跳失败。
 - 每个主题可设置队列个数，默认4个，需要顺序消费的消息发往同一队列，比如同一订单号相关的几条需要顺序消费的消息发往同一队列，
 顺序消费的特点的是，不会有两个消费者共同消费任一队列，且当消费者数量小于队列数时，消费者会消费多个队列。至于消息重复，在消
-费端处理。事务消息功能已在4.x版本去除，不过一些上层Class都还在，用户可以根据实际需求实现自己定事务功能。
+费端处理。RocketMQ 4.3+支持事务消息，可用于分布式事务场景。
 - Broker上存Topic信息，Topic由多个队列组成，队列会平均分散在多个Broker上。Producer的发送机制保证消息尽量平均分布到
 所有队列中，最终效果就是所有消息都平均落在每个Broker上。Consumer的个数应不大于队列数。
 - CommitLog是存储消息元数据的文件，所有topic的消息统一保存，达到上限后新建，会定期清理。ConsumerQueue相当于CommitLog的索引文件，
@@ -46,6 +46,8 @@ NameServer本身是无状态的，也就是说NameServer中的Broker、Topic等�
   + Topic维度：假如一个Topic的消息量特别大，但集群水位压力还是很低，就可以扩大该Topic的队列数，Topic的队列数跟发送、消费速度成正比。
   + Broker维度：如果集群水位很高了，需要扩容，直接加机器部署Broker就可以。Broker起来后向Namesrv注册，Producer、Consumer通过Namesrv
   发现新Broker，立即跟该Broker直连，收发消息。
+- Producer: 失败默认重试2次，sync/async
+- Consumer: DefaultPushConsumer/DefaultPullConsumer，push也是用pull实现的，如用纯push实现，broker无法知道消费端的消费能力是个问题
 - MQClientInstance是客户端各种类型的Consumer和Producer的底层类，由它与NameServer和Broker打交道。如果创建Consumer或Producer
 类型的时候不手动指定InstanceName，进程中只会有一个MQClientInstance对象，即当一个Java程序需要连接多个MQ集群时，必须手动指定不同的InstanceName。
 
