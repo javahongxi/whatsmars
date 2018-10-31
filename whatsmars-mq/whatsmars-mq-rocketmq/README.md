@@ -8,6 +8,9 @@
 - 管理后台：https://github.com/apache/rocketmq-externals/tree/master/rocketmq-console
 - 命令行管理工具MQAdmin: bin/mqadmin
 
+### 架构
+![RMQ](RMQ.png)
+
 ### User Guide
 - NameServer可以部署多个，相互之间独立，其他角色同时向多个NameServer机器上报状态信息，从而达到热备份的目的。
 NameServer本身是无状态的，也就是说NameServer中的Broker、Topic等状态信息不会持久存储，都是由各个角色定时上报并
