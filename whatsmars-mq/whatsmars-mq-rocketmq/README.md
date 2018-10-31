@@ -36,8 +36,10 @@ NameServer本身是无状态的，也就是说NameServer中的Broker、Topic等�
 - CommitLog是存储消息元数据的文件，所有topic的消息统一保存，达到上限后新建，会定期清理。ConsumerQueue相当于CommitLog的索引文件，
 消费者消费时会先从ConsumerQueue中查找消息在commitLog中的offset，再去CommitLog中找元数据。如果某个消息只在CommitLog中有数据，
 没在ConsumerQueue中，则消费者无法消费，RocketMQ的事务消息实现就利用了这一点。
-- RocketMQ的高性能在于顺序写(CommitLog)、零拷贝和随机读(尽量命中PageCache)，高可靠性在于刷盘和Master/Slave，另外NameServer
+- RocketMQ的高性能在于顺序写盘(CommitLog)、零拷贝和跳跃读(尽量命中PageCache)，高可靠性在于刷盘和Master/Slave，另外NameServer
 全部挂掉不影响已经运行的Broker,Producer,Consumer。
+- 发送消息负载均衡，且发送消息线程安全(可满足多个实例死循环发消息)，集群消费模式下消费者端负载均衡，这些特性加上上述的高性能读写，
+共同造就了RocketMQ的高并发读写能力。
 - 刷盘和主从同步均为异步(默认)时，broker进程挂掉(例如重启)，消息依然不会丢失，应该是 shutdown hook之类的机制促发刷盘。
 当物理机器宕机时，才有消息丢失的风险。另外，master挂掉后，消费者从slave消费消息，但slave不能写消息。
 - RocketMQ具有很好动态伸缩能力(非顺序消息)，伸缩性体现在Topic和Broker两个维度。
@@ -49,4 +51,5 @@ NameServer本身是无状态的，也就是说NameServer中的Broker、Topic等�
 
 ### More
 - [RocketMQ架构模块解析](https://blog.csdn.net/javahongxi/article/details/72956608)
+- [RocketMQ高并发读写](https://blog.csdn.net/javahongxi/article/details/72956619)
 - [《RocketMQ实战与原理解析》](https://book.douban.com/subject/30246992/) `douban.com`
