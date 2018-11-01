@@ -14,7 +14,10 @@
 	<!--<dubbo:application name="whatsmars_provider" />-->
 	<!--&lt;!&ndash; 使用zookeeper注册中心暴露服务地址 &ndash;&gt;-->
 	<!--<dubbo:registry address="zookeeper://127.0.0.1:2181" />-->
-    <!-- 多协议配置，一种协议只能对应一种序列化方式，建议用hessian2序列化（也是官方推荐，处于稳定性和性能的折中考虑）-->
+
+    <!-- 多协议配置，一种协议只能对应一种序列化方式，建议用hessian2序列化
+    （也是官方推荐，处于稳定性和性能的折中考虑）
+     序列化方式由provider决定，所以团队要决定改序列化方式时，只需修改provider配置 -->
     <dubbo:protocol name="dubbo" port="20880" server="netty4" serialization="fst" />
 	<dubbo:protocol name="hessian" port="8080" server="jetty" />
 

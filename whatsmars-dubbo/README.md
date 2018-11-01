@@ -31,7 +31,9 @@ IDEA VM options 设置 -Ddubbo.registry.register=false (有id时为-Ddubbo.regis
 - 人工管理服务上下线：<dubbo:registry address="10.20.141.150:9090" dynamic="false" />
 - 多协议：
 ```xml
-<!-- 多协议配置 -->
+<!-- 多协议配置，一种协议只能对应一种序列化方式，建议用hessian2序列化
+    （也是官方推荐，处于稳定性和性能的折中考虑）
+     序列化方式由provider决定，所以团队要决定改序列化方式时，只需修改provider配置 -->
 <dubbo:protocol name="dubbo" port="20880" />
 <dubbo:protocol name="hessian" port="8080" />
 <!-- 使用多个协议暴露服务 -->
