@@ -12,12 +12,13 @@
 	<!--&lt;!&ndash; 使用zookeeper注册中心暴露服务地址 &ndash;&gt;-->
 	<!--<dubbo:registry address="zookeeper://127.0.0.1:2181" />-->
 
-	<dubbo:reference id="demoService" interface="org.hongxi.whatsmars.dubbo.demo.api.DemoService" />
+	<dubbo:reference id="demoService" interface="org.hongxi.whatsmars.dubbo.demo.api.DemoService" mock="return null" />
 
 	<!-- url="hessian://127.0.0.1:8080/org.hongxi.whatsmars.dubbo.demo.api.DemoService" -->
 	<dubbo:reference id="demoService2" interface="org.hongxi.whatsmars.dubbo.demo.api.DemoService"
 					 url="hessian://127.0.0.1:8080" />
 
+	<!--protocol默认dubbo，可指定，如果provider没有以该protocol发布，consumer启动会报 No provider-->
 	<dubbo:reference id="demoService3" interface="org.hongxi.whatsmars.dubbo.demo.api.DemoService" protocol="hessian" />
 
 	<dubbo:reference id="demoService4" group="new" interface="org.hongxi.whatsmars.dubbo.demo.api.DemoService" />

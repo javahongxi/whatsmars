@@ -87,7 +87,16 @@ RpcContext 的状态都会变化。比如：A 调 B，B 再调 C，则 B 机器�
 RpcContext.getContext().setAttachment("index", "1");
 xxxService.xxx(); // 远程调用
 ```
-- 本地伪装：<dubbo:service interface="com.foo.BarService" mock="com.foo.BarServiceMock" />
+- 本地伪装，通常用于降级：<dubbo:service interface="com.foo.BarService" mock="com.foo.BarServiceMock" />
+<br>如果服务的消费方经常需要 try-catch 捕获异常，请考虑改为 Mock 实现，并在 Mock 实现中 return null。
+如果只是想简单的忽略异常，用mock="return null"即可
+- 服务降级，向注册中心写入动态配置覆盖规则：
+```java
+RegistryFactory registryFactory = ExtensionLoader.getExtensionLoader(RegistryFactory.class).getAdaptiveExtension();
+Registry registry = registryFactory.getRegistry(URL.valueOf("zookeeper://10.20.153.10:2181"));
+// mock=force:return+null mock=fail:return+null
+registry.register(URL.valueOf("override://0.0.0.0/com.foo.BarService?category=configurators&dynamic=false&application=foo&mock=fail:return+null"));
+```
 - 延迟暴露
 ```xml
 <!-- 延迟 5 秒暴露服务 -->
