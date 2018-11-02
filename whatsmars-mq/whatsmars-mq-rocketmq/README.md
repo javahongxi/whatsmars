@@ -48,7 +48,7 @@ NameServer本身是无状态的，也就是说NameServer中的Broker、Topic等�
   发现新Broker，立即跟该Broker直连，收发消息。
 - Producer: 失败默认重试2次，sync/async
 - Consumer: DefaultPushConsumer/DefaultPullConsumer，push也是用pull实现的，如用纯push实现，broker无法知道消费端的消费能力是个问题;
-CLUSTERING/BROADCASTING
+CLUSTERING/BROADCASTING，一条消息只会被一个ConsumerGroup里的一个实例消费，但可以被多个ConsumerGroup消费(广播模式)
 - MQClientInstance是客户端各种类型的Consumer和Producer的底层类，由它与NameServer和Broker打交道。如果创建Consumer或Producer
 类型的时候不手动指定InstanceName，进程中只会有一个MQClientInstance对象，即当一个Java程序需要连接多个MQ集群时，必须手动指定不同的InstanceName。
 
