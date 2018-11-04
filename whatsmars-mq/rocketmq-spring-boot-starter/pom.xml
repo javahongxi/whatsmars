@@ -19,7 +19,7 @@
         <dependency>
             <groupId>org.apache.rocketmq</groupId>
             <artifactId>rocketmq-client</artifactId>
-            <version>${rocketmq-client.version}</version>
+            <version>${rocketmq.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
