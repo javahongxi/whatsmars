@@ -78,6 +78,6 @@ public class Consumer {
          */
         consumer.start();
 
-        System.out.printf("Consumer Started.%n");
+        System.out.println(String.format("Consumer %s Started.", consumer.getConsumerGroup()));
     }
 }
