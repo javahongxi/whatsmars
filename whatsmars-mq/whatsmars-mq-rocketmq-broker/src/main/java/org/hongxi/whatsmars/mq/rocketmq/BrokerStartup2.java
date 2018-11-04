@@ -9,6 +9,5 @@ public class BrokerStartup2 {
         String classpath = BrokerStartup2.class.getResource("/").getPath();
         args = new String[] {"-c", classpath + "broker2.properties"};
         org.apache.rocketmq.broker.BrokerStartup.main(args);
-        System.out.println("Broker started. name: " + org.apache.rocketmq.broker.BrokerStartup.properties.getProperty("brokerName"));
     }
 }
