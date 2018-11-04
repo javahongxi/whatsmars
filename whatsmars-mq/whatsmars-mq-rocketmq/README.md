@@ -7,6 +7,7 @@
 - 依次启动Consumer,Producer
 - 管理后台：https://github.com/apache/rocketmq-externals/tree/master/rocketmq-console
 - 命令行管理工具MQAdmin: bin/mqadmin
+- 脚本启动 https://github.com/apache/rocketmq/blob/master/distribution/bin/README.md
 
 ### 架构
 ![RMQ](RMQ.png)
