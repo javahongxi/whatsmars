@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.remoting.netty4;
+package org.hongxi.whatsmars.remoting.netty;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

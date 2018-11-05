@@ -15,7 +15,6 @@
     <url>http://maven.apache.org</url>
 
     <dependencies>
-        <!-- netty4 -->
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>

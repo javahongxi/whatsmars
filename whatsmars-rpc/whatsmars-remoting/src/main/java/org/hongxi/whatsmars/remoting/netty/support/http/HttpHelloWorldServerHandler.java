@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.remoting.netty4.support.http;
+package org.hongxi.whatsmars.remoting.netty.support.http;
 
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
