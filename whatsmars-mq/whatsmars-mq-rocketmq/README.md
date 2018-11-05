@@ -8,7 +8,7 @@
 - 管理后台：https://github.com/apache/rocketmq-externals/tree/master/rocketmq-console
 - 命令行管理工具MQAdmin: bin/mqadmin
 - 脚本启动 https://github.com/apache/rocketmq/blob/master/distribution/bin/README.md
-download [rocketmq-all-4.3.1-bin-release.zip](http://rocketmq.apache.org/release_notes/release-notes-4.3.1)
+<br>download [rocketmq-all-4.3.1-bin-release.zip](http://rocketmq.apache.org/release_notes/release-notes-4.3.1)
 ```
 > nohup sh bin/mqnamesrv &
 > tail -f ~/logs/rocketmqlogs/namesrv.log
