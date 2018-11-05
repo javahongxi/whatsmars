@@ -1,18 +1,35 @@
-# [Apache RocketMQ](https://github.com/apache/rocketmq)
+# [Apache RocketMQ](http://rocketmq.apache.org)
 分布式消息中间件
 
-### Test
-- .properties指定rocketmqHome,namesrvAddr等，依次启动NamesrvStartup,BrokerStartup
-(whatsmars-mq-rocketmq-namesrv, whatsmars-mq-rocketmq-broker)
-- 依次启动Consumer,Producer
+### Quick Start
+- .properties指定rocketmqHome,listenPort，启动NamesrvStartup (whatsmars-mq-rocketmq-namesrv)
+- .properties指定rocketmqHome,namesrvAddr等，启动BrokerStartup (whatsmars-mq-rocketmq-broker)
+- 依次启动Consumer,Producer (whatsmars-mq-rocketmq)
 - 管理后台：https://github.com/apache/rocketmq-externals/tree/master/rocketmq-console
 - 命令行管理工具MQAdmin: bin/mqadmin
 - 脚本启动 https://github.com/apache/rocketmq/blob/master/distribution/bin/README.md
+download [rocketmq-all-4.3.1-bin-release.zip](http://rocketmq.apache.org/release_notes/release-notes-4.3.1)
+```
+> nohup sh bin/mqnamesrv &
+> tail -f ~/logs/rocketmqlogs/namesrv.log
+> nohup sh bin/mqbroker -c broker.properties -n localhost:9876 &
+> tail -f ~/logs/rocketmqlogs/broker.log
+> export NAMESRV_ADDR=localhost:9876
+> sh bin/tools.sh org.apache.rocketmq.example.quickstart.Producer
+SendResult [sendStatus=SEND_OK, msgId= ...
+> sh bin/tools.sh org.apache.rocketmq.example.quickstart.Consumer
+ConsumeMessageThread_%d Receive New Messages: [MessageExt...
+```
 
 ### 架构
 ![RMQ](RMQ.png)
 
 ### User Guide
+- RocketMQ是一款分布式消息中间件，最初是由阿里巴巴消息中间件团队研发并大规模应用于生产系统，满足线上海量消息堆积的需求，
+在2016年底捐赠给Apache开源基金会成为孵化项目，经过不到一年时间正式成为了Apache顶级项目；早期阿里曾经基于ActiveMQ研发消息系统，
+随着业务消息的规模增大，瓶颈逐渐显现，后来也考虑过Kafka，但因为在低延迟和高可靠性方面没有选择，最后才自主研发了RocketMQ，
+各方面的性能都比目前已有的消息队列要好，RocketMQ和Kafka在概念和原理上都非常相似，所以也经常被拿来对比；RocketMQ默认采用长轮询的拉模式，
+单机支持千万级别的消息堆积，可以非常好的应用在海量消息系统中。
 - NameServer可以部署多个，相互之间独立，其他角色同时向多个NameServer机器上报状态信息，从而达到热备份的目的。
 NameServer本身是无状态的，也就是说NameServer中的Broker、Topic等状态信息不会持久存储，都是由各个角色定时上报并
 存储到内存中的(NameServer支持配置参数的持久化，一般用不到)。
