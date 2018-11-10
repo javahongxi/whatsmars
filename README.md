@@ -33,15 +33,15 @@ whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 - [ ] [*Nacos*](https://github.com/alibaba/nacos)
 - [ ] [*Sentinel*](https://github.com/alibaba/Sentinel)
 - [x] [*RocketMQ*](https://github.com/apache/rocketmq)
-- [x] [*spring-framework*](https://github.com/spring-projects/spring-framework)
-- [x] [*spring-boot*](https://github.com/spring-projects/spring-boot)
-- [x] [*spring-cloud*](https://github.com/spring-cloud/spring-cloud-netflix)
+- [x] [*Spring Framework*](https://github.com/spring-projects/spring-framework)
+- [x] [*Spring Boot*](https://github.com/spring-projects/spring-boot)
+- [x] [*Spring Cloud*](https://github.com/spring-cloud/spring-cloud-netflix)
 - [x] [*Redis*](https://github.com/antirez/redis)
 - [x] [*ZooKeeper*](https://github.com/apache/zookeeper)
 - [ ] [*Otter*](https://github.com/alibaba/otter)
 - [ ] [*Druid*](https://github.com/alibaba/druid)
 - [ ] [*Twemproxy*](https://github.com/twitter/twemproxy)
-- [ ] [*Elasticsearch - Distributed, RESTful Search Engine*](https://github.com/elastic/elasticsearch)
+- [ ] [*Elasticsearch*](https://github.com/elastic/elasticsearch)
 
 ### Friendship links
 - [*阿里巴巴Java开发手册*](https://github.com/alibaba/Alibaba-Java-Coding-Guidelines) 📚
