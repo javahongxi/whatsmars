@@ -30,17 +30,16 @@ whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 
 ### Mars Plan
 - [x] [*Dubbo*](https://github.com/alibaba/dubbo)
-- [ ] [*Nacos*](https://github.com/alibaba/nacos)
 - [ ] [*Sentinel*](https://github.com/alibaba/Sentinel)
+- [ ] [*Nacos*](https://github.com/alibaba/nacos)
+- [x] [*ZooKeeper*](https://github.com/apache/zookeeper)
 - [x] [*RocketMQ*](https://github.com/apache/rocketmq)
 - [x] [*Spring Framework*](https://github.com/spring-projects/spring-framework)
 - [x] [*Spring Boot*](https://github.com/spring-projects/spring-boot)
 - [x] [*Spring Cloud*](https://github.com/spring-cloud/spring-cloud-netflix)
 - [x] [*Redis*](https://github.com/antirez/redis)
-- [x] [*ZooKeeper*](https://github.com/apache/zookeeper)
-- [ ] [*Otter*](https://github.com/alibaba/otter)
-- [ ] [*Druid*](https://github.com/alibaba/druid)
 - [ ] [*Twemproxy*](https://github.com/twitter/twemproxy)
+- [ ] [*Otter*](https://github.com/alibaba/otter)
 - [ ] [*Elasticsearch*](https://github.com/elastic/elasticsearch)
 
 ### Friendship links
