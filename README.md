@@ -33,21 +33,15 @@ whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 - [*阿里巴巴开源服务发现、配置及治理平台Nacos*](https://github.com/alibaba/nacos)
 - [*阿里巴巴开源分布式系统的流量防卫兵Sentinel*](https://github.com/alibaba/Sentinel)
 - [*阿里巴巴贡献给Apache的消息中间件RocketMQ*](https://github.com/apache/rocketmq)
-- [*RocketMQ扩展，包括console,docker,multi-language等*](https://github.com/apache/rocketmq-externals)
-- [*JMS的标准实现ActiveMQ*](https://github.com/apache/activemq)
 - [*spring-framework*](https://github.com/spring-projects/spring-framework)
 - [*spring-boot*](https://github.com/spring-projects/spring-boot)
 - [*spring-cloud*](https://github.com/spring-cloud/spring-cloud-netflix)
-- [*spring-data-redis*](https://github.com/spring-projects/spring-data-redis)
 - [*Redis作者的redis*](https://github.com/antirez/redis)
-- [*当当网开源的分布式任务调度框架elastic-job*](https://github.com/elasticjob/elastic-job)
-- [*当当网的sharding-jdbc*](https://github.com/shardingjdbc/sharding-jdbc)
 - [*阿里巴巴mysql数据库binlog的增量订阅&消费组件canal*](https://github.com/alibaba/canal)
 - [*阿里巴巴开源的为监控而生的数据库连接池druid*](https://github.com/alibaba/druid)
 - [*A fast, light-weight proxy for memcached and redis*](https://github.com/twitter/twemproxy)
 - [*mybatis通用分页插件*](https://github.com/pagehelper/Mybatis-PageHelper)
 - [*elasticsearch - Distributed, RESTful Search Engine*](https://github.com/elastic/elasticsearch)
-- [*各种解决方案*](https://github.com/javahongxi/whatsmars/wiki/%E5%90%84%E7%A7%8D%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88) 🐾 *`wiki.hongxi.org`*
 
 ### Friendship links
 - [*阿里巴巴Java开发手册*](https://github.com/alibaba/Alibaba-Java-Coding-Guidelines) 📚
