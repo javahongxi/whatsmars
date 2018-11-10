@@ -29,20 +29,19 @@ whatsmars-spring-cloud | Finchley
 whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 
 ### Mars Plan
-- [x] [*阿里巴巴贡献给Apache的分布式RPC框架Dubbo*](https://github.com/alibaba/dubbo)
-- [ ] [*阿里巴巴开源服务发现、配置及治理平台Nacos*](https://github.com/alibaba/nacos)
-- [ ] [*阿里巴巴开源分布式系统的流量防卫兵Sentinel*](https://github.com/alibaba/Sentinel)
-- [x] [*阿里巴巴贡献给Apache的消息中间件RocketMQ*](https://github.com/apache/rocketmq)
+- [x] [*Dubbo*](https://github.com/alibaba/dubbo)
+- [ ] [*Nacos*](https://github.com/alibaba/nacos)
+- [ ] [*Sentinel*](https://github.com/alibaba/Sentinel)
+- [x] [*RocketMQ*](https://github.com/apache/rocketmq)
 - [x] [*spring-framework*](https://github.com/spring-projects/spring-framework)
 - [x] [*spring-boot*](https://github.com/spring-projects/spring-boot)
 - [x] [*spring-cloud*](https://github.com/spring-cloud/spring-cloud-netflix)
-- [x] [*Redis作者的redis*](https://github.com/antirez/redis)
-- [x] [*zookeeper*](https://github.com/apache/zookeeper)
-- [ ] [*阿里巴巴mysql数据库binlog的增量订阅&消费组件canal*](https://github.com/alibaba/canal)
-- [ ] [*阿里巴巴开源的为监控而生的数据库连接池druid*](https://github.com/alibaba/druid)
-- [ ] [*A fast, light-weight proxy for memcached and redis*](https://github.com/twitter/twemproxy)
-- [x] [*mybatis通用分页插件*](https://github.com/pagehelper/Mybatis-PageHelper)
-- [ ] [*elasticsearch - Distributed, RESTful Search Engine*](https://github.com/elastic/elasticsearch)
+- [x] [*Redis*](https://github.com/antirez/redis)
+- [x] [*ZooKeeper*](https://github.com/apache/zookeeper)
+- [ ] [*Otter*](https://github.com/alibaba/otter)
+- [ ] [*Druid*](https://github.com/alibaba/druid)
+- [ ] [*Twemproxy*](https://github.com/twitter/twemproxy)
+- [ ] [*Elasticsearch - Distributed, RESTful Search Engine*](https://github.com/elastic/elasticsearch)
 
 ### Friendship links
 - [*阿里巴巴Java开发手册*](https://github.com/alibaba/Alibaba-Java-Coding-Guidelines) 📚
