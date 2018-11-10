@@ -37,6 +37,7 @@ whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 - [*spring-boot*](https://github.com/spring-projects/spring-boot)
 - [*spring-cloud*](https://github.com/spring-cloud/spring-cloud-netflix)
 - [*Redis作者的redis*](https://github.com/antirez/redis)
+- [*zookeeper*](https://github.com/apache/zookeeper)
 - [*阿里巴巴mysql数据库binlog的增量订阅&消费组件canal*](https://github.com/alibaba/canal)
 - [*阿里巴巴开源的为监控而生的数据库连接池druid*](https://github.com/alibaba/druid)
 - [*A fast, light-weight proxy for memcached and redis*](https://github.com/twitter/twemproxy)
