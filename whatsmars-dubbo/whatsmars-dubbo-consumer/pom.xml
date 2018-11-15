@@ -73,6 +73,15 @@
             <groupId>de.ruedigermoeller</groupId>
             <artifactId>fst</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-dubbo-adapter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-transport-simple-http</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
