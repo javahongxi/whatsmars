@@ -30,7 +30,7 @@ whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 
 ### Mars Plan
 - [x] [*Dubbo*](https://github.com/alibaba/dubbo)
-- [ ] [*Sentinel*](https://github.com/alibaba/Sentinel)
+- [x] [*Sentinel*](https://github.com/alibaba/Sentinel)
 - [ ] [*Nacos*](https://github.com/alibaba/nacos)
 - [x] [*ZooKeeper*](https://github.com/apache/zookeeper)
 - [x] [*RocketMQ*](https://github.com/apache/rocketmq)
