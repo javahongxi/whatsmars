@@ -34,6 +34,7 @@ public class TransactionListenerImpl implements TransactionListener {
         int value = transactionIndex.getAndIncrement();
         int status = value % 3;
         localTrans.put(msg.getTransactionId(), status);
+        // return UNKOWN is just for test
         return LocalTransactionState.UNKNOW;
     }
 
