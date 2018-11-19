@@ -18,6 +18,7 @@ whatsmars-dbrouter | 分库分表实现
 whatsmars-dubbo | 高性能分布式RPC框架
 whatsmars-earth | springmvc+velocity实战
 whatsmars-elasticjob | 分布式调度
+whatsmars-elasticsearch | Elasticsearch 5.x
 whatsmars-javase | Java基础 & 新特性
 whatsmars-mq | 消息中间件RocketMQ,Kafka等
 whatsmars-redis | jedis & Spring Data Redis
