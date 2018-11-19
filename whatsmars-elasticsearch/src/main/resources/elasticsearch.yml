@@ -1,2 +1,2 @@
-cluster.name: mars
+#cluster.name: mars
 client.transport.sniff: true
