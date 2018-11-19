@@ -36,6 +36,8 @@
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <mysql-connector-java.version>5.1.32</mysql-connector-java.version>
 
+        <spring-boot2.version>2.0.5.RELEASE</spring-boot2.version>
+
         <commons-lang.version>2.6</commons-lang.version>
         <commons-collections.version>3.2.2</commons-collections.version>
         <commons-codec.version>1.11</commons-codec.version>
