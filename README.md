@@ -1,11 +1,12 @@
 # whatsmars
 *`./mvnw clean package -Dmaven.test.skip`* [`java 8+`](http://www.oracle.com/technetwork/java/javase/downloads) [`mvnrepository`](http://mvn.hongxi.org)
 <br>*What's Mars?*
-<br>Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketMQ**🔥)
+<br>Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketMQ**🔥 + **Elasticsearch**🔥)
 - [Spring Boot](https://spring.io/projects/spring-boot) Series(Servlet, Tomcat, Spring, SpringMVC, Spring Data, Spring Boot, Spring WebFlux, Spring Cloud)
 - [Dubbo](http://dubbo.apache.org/en-us/) / [《企业IT架构转型之道：阿里巴巴中台战略思想与架构实战》](https://book.douban.com/subject/27039508/)
 - [《Redis设计与实现》](https://e.jd.com/30189715.html) `e.jd.com`
 - [《RocketMQ实战与原理解析》](https://book.douban.com/subject/30246992/) `douban.com`
+- [《Elasticsearch技术解析与实战》](https://e.jd.com/30318357.html) `e.jd.com`
 
 👻 [start.spring.io](https://start.spring.io) 👻 [start.dubbo.io](http://start.dubbo.io)
 
@@ -40,7 +41,7 @@ whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 - [x] [*Redis*](https://github.com/antirez/redis)
 - [ ] [*Twemproxy*](https://github.com/twitter/twemproxy)
 - [ ] [*Otter*](https://github.com/alibaba/otter)
-- [ ] [*Elasticsearch*](https://github.com/elastic/elasticsearch)
+- [x] [*Elasticsearch*](https://github.com/elastic/elasticsearch)
 
 ### Friendship links
 - [*阿里巴巴Java开发手册*](https://github.com/alibaba/Alibaba-Java-Coding-Guidelines) 📚

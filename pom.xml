@@ -24,6 +24,7 @@
         <module>whatsmars-sharding-jdbc</module>
         <module>whatsmars-earth</module>
         <module>whatsmars-spring-boot-samples</module>
+        <module>whatsmars-elasticsearch</module>
     </modules>
 
     <properties>
