@@ -42,6 +42,7 @@ whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 - [x] [*Redis*](https://github.com/antirez/redis)
 - [ ] [*Twemproxy*](https://github.com/twitter/twemproxy)
 - [ ] [*Otter*](https://github.com/alibaba/otter)
+- [x] [*MyBatis*](https://github.com/mybatis/mybatis-3)
 - [x] [*Elasticsearch*](https://github.com/elastic/elasticsearch)
 
 ### Friendship links
