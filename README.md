@@ -25,8 +25,8 @@ whatsmars-redis | jedis & Spring Data Redis
 whatsmars-rpc | RPC
 whatsmars-sharding-jdbc | 分布式数据库中间件
 whatsmars-spring | Spring Framework
-whatsmars-spring-boot | Spring Boot 实战
-whatsmars-spring-boot-samples | Spring Boot Samples
+whatsmars-spring-boot | Spring Boot 1.5.x
+whatsmars-spring-boot-samples | Spring Boot 2+
 whatsmars-spring-cloud | Finchley
 whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 

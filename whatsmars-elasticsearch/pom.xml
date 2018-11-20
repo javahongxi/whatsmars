@@ -12,27 +12,10 @@
     <artifactId>whatsmars-elasticsearch</artifactId>
 
     <properties>
-        <elasticsearch.version>5.6.13</elasticsearch.version>
+        <elasticsearch.version>5.6.12</elasticsearch.version>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot2.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
-        </dependency>
-
         <!-- 用于源码阅读 -->
         <dependency>
             <groupId>org.elasticsearch</groupId>
@@ -40,7 +23,6 @@
             <version>${elasticsearch.version}</version>
         </dependency>
 
-        <!-- 用于控制版本及非spring-boot环境测试 -->
         <dependency>
             <groupId>org.elasticsearch.client</groupId>
             <artifactId>transport</artifactId>
@@ -53,6 +35,5 @@
         </dependency>
 
     </dependencies>
-
 
 </project>

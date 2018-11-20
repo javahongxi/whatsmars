@@ -1,5 +1,4 @@
 spring:
   data:
     elasticsearch:
-#      cluster-name: mars
       cluster-nodes: 127.0.0.1:9300
