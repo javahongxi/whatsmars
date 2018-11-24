@@ -38,11 +38,11 @@ whatsmars-tomcat | 模拟tomcat实现，embed tomcat
 - [x] [*RocketMQ*](https://github.com/apache/rocketmq)
 - [x] [*Tomcat*](https://github.com/apache/tomcat)
 - [x] [*Spring Framework*](https://github.com/spring-projects/spring-framework)
+- [x] [*Spring Data*](https://github.com/spring-projects/spring-data-examples)
 - [x] [*Spring Boot*](https://github.com/spring-projects/spring-boot)
 - [x] [*Spring Cloud*](https://github.com/spring-cloud/spring-cloud-netflix)
 - [x] [*Redis*](https://github.com/antirez/redis)
 - [ ] [*Otter*](https://github.com/alibaba/otter)
-- [x] [*MyBatis*](https://github.com/mybatis/mybatis-3)
 - [x] [*Elasticsearch*](https://github.com/elastic/elasticsearch)
 
 ### Friendship links
