@@ -50,7 +50,7 @@ NameServer本身是无状态的，也就是说NameServer中的Broker、Topic等�
 顺序消费的特点的是，不会有两个消费者共同消费任一队列，且当消费者数量小于队列数时，消费者会消费多个队列。至于消息重复，在消
 费端处理。RocketMQ 4.3+支持事务消息，可用于分布式事务场景(最终一致性)。
 - 关于queueNums:
-  + 客户端自动创建，Math.min算法决定最多只会创建8个(BrokerConfig)队列，若要超过8个，可通过控制台创建/修改，Topic配置保存在store/config/topic.json
+  + 客户端自动创建，Math.min算法决定最多只会创建8个(BrokerConfig)队列，若要超过8个，可通过控制台创建/修改，Topic配置保存在store/config/topics.json
   + 读写队列数(writeQueueNums/readQueueNums)仅是逻辑概念，实际队列数以写队列数为准，当读队列数小于写队列数时，部分队列将不会被消费，大于写队列时跟等于一样。
 - Broker上存Topic信息，Topic由多个队列组成，队列会平均分散在多个Broker上。Producer的发送机制保证消息尽量平均分布到
 所有队列中，最终效果就是所有消息都平均落在每个Broker上。Consumer的个数应不大于队列数。
