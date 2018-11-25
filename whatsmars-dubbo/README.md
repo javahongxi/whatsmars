@@ -125,3 +125,4 @@ registry.register(URL.valueOf("override://0.0.0.0/com.foo.BarService?category=co
 - [《亿级流量网站架构核心技术》](https://book.douban.com/subject/26999243/) `douban.com`
 - [《从Paxos到Zookeeper》](https://book.douban.com/subject/26292004/) `douban.com`
 - [《Netty权威指南》](http://e.jd.com/30186249.html) `e.jd.com`
+- [关于分布式事务](https://blog.csdn.net/javahongxi/article/details/54177741)
