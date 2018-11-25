@@ -1,0 +1,1 @@
+参考[rocketmq-externals](https://github.com/apache/rocketmq-externals)
