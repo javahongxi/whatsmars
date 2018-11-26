@@ -59,10 +59,18 @@ NameServer本身是无状态的，也就是说NameServer中的Broker、Topic等�
 费端处理。RocketMQ 4.3+支持事务消息，可用于分布式事务场景(最终一致性)。
 - 关于queueNums:
   + 客户端自动创建，Math.min算法决定最多只会创建8个(BrokerConfig)队列，若要超过8个，可通过控制台创建/修改，Topic配置保存在store/config/topics.json
-  + Consumer的数量应不大于队列数(实际是readQueueNums)
-  + 读写队列数(writeQueueNums/readQueueNums)是RocketMQ特有的概念，可通过console修改。实验后的结果显示，当readQueueNums<writeQueueNums时，
-  将有(writeQueueNums-readQueueNums)个队列不会被消费，当readQueueNums>writeQueueNums时，将基于readQueueNums和Consumer数量进行负载均衡(集群模式)，
-  个人理解前者在顺序消息增加队列时有用
+  + 消费负载均衡的最小粒度是队列，Consumer的数量应不大于队列数
+  + 读写队列数(writeQueueNums/readQueueNums)是RocketMQ特有的概念，可通过console修改。当readQueueNums不等于writeQueueNums时，会有什么影响呢？
+```java
+topicRouteData = this.mQClientAPIImpl.getDefaultTopicRouteInfoFromNameServer(defaultMQProducer.getCreateTopicKey(), 1000 * 3);
+    if (topicRouteData != null) {
+        for (QueueData data : topicRouteData.getQueueDatas()) {
+            int queueNums = Math.min(defaultMQProducer.getDefaultTopicQueueNums(), data.getReadQueueNums());
+            data.setReadQueueNums(queueNums);
+            data.setWriteQueueNums(queueNums);
+        }
+    }
+```
 - Broker上存Topic信息，Topic由多个队列组成，队列会平均分散在多个Broker上。Producer的发送机制保证消息尽量平均分布到
 所有队列中，最终效果就是所有消息都平均落在每个Broker上。
 - RocketMQ的消息的存储是由ConsumeQueue和CommitLog配合来完成的，ConsumeQueue中只存储很少的数据，消息主体都是通过CommitLog来进行读写。
