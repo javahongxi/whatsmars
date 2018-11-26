@@ -24,6 +24,14 @@ ConsumeMessageThread_%d Receive New Messages: [MessageExt...
 ### 架构
 ![RMQ](RMQ.png)
 
+### 概念模型
+最基本的概念模型与扩展后段概念模型
+![img](imgs/conceptual_model_1.png)
+![img](imgs/conceptual_model_2.jpeg)
+
+### 存储模型
+![img](imgs/storage_model.jpeg)
+
 ### User Guide
 - RocketMQ是一款分布式消息中间件，最初是由阿里巴巴消息中间件团队研发并大规模应用于生产系统，满足线上海量消息堆积的需求，
 在2016年底捐赠给Apache开源基金会成为孵化项目，经过不到一年时间正式成为了Apache顶级项目；早期阿里曾经基于ActiveMQ研发消息系统，
@@ -51,12 +59,19 @@ NameServer本身是无状态的，也就是说NameServer中的Broker、Topic等�
 费端处理。RocketMQ 4.3+支持事务消息，可用于分布式事务场景(最终一致性)。
 - 关于queueNums:
   + 客户端自动创建，Math.min算法决定最多只会创建8个(BrokerConfig)队列，若要超过8个，可通过控制台创建/修改，Topic配置保存在store/config/topics.json
-  + 读写队列数(writeQueueNums/readQueueNums)仅是逻辑概念，实际队列数以写队列数为准，当读队列数小于写队列数时，部分队列将不会被消费，大于写队列时跟等于一样。
+  + Consumer的数量应不大于队列数(实际是readQueueNums)
+  + 读写队列数(writeQueueNums/readQueueNums)是RocketMQ特有的概念，可通过console修改。实验后的结果显示，当readQueueNums<writeQueueNums时，
+  将有(writeQueueNums-readQueueNums)个队列不会被消费，当readQueueNums>writeQueueNums时，将基于readQueueNums和Consumer数量进行负载均衡(集群模式)，
+  个人理解前者在顺序消息增加队列时有用
 - Broker上存Topic信息，Topic由多个队列组成，队列会平均分散在多个Broker上。Producer的发送机制保证消息尽量平均分布到
-所有队列中，最终效果就是所有消息都平均落在每个Broker上。Consumer的个数应不大于队列数。
-- CommitLog是存储消息元数据的文件，所有topic的消息统一保存，达到上限后新建，会定期清理。ConsumerQueue相当于CommitLog的索引文件，
-消费者消费时会先从ConsumerQueue中查找消息在commitLog中的offset，再去CommitLog中找元数据。如果某个消息只在CommitLog中有数据，
-没在ConsumerQueue中，则消费者无法消费，RocketMQ的事务消息实现就利用了这一点。
+所有队列中，最终效果就是所有消息都平均落在每个Broker上。
+- RocketMQ的消息的存储是由ConsumeQueue和CommitLog配合来完成的，ConsumeQueue中只存储很少的数据，消息主体都是通过CommitLog来进行读写。
+如果某个消息只在CommitLog中有数据，而ConsumeQueue中没有，则消费者无法消费，RocketMQ的事务消息实现就利用了这一点。
+  + CommitLog：是消息主体以及元数据的存储主体，对CommitLog建立一个ConsumeQueue，每个ConsumeQueue对应一个（概念模型中的）MessageQueue，所以只要有
+  CommitLog在，ConsumeQueue即使数据丢失，仍然可以恢复出来。
+  + ConsumeQueue：是一个消息的逻辑队列，存储了这个Queue在CommitLog中的起始offset，log大小和MessageTag的hashCode。每个Topic下的每个Queue都有一个对应的
+  ConsumeQueue文件，例如Topic中有三个队列，每个队列中的消息索引都会有一个编号，编号从0开始，往上递增。并由此一个位点offset的概念，有了这个概念，就可以对
+  Consumer端的消费情况进行队列定义。
 - RocketMQ的高性能在于顺序写盘(CommitLog)、零拷贝和跳跃读(尽量命中PageCache)，高可靠性在于刷盘和Master/Slave，另外NameServer
 全部挂掉不影响已经运行的Broker,Producer,Consumer。
 - 发送消息负载均衡，且发送消息线程安全(可满足多个实例死循环发消息)，集群消费模式下消费者端负载均衡，这些特性加上上述的高性能读写，
@@ -81,6 +96,29 @@ broker会在一段时间后回查ProducerGroup里的其他实例，确认消息�
 类型的时候不手动指定instanceName，进程中只会有一个MQClientInstance对象，即当一个Java程序需要连接多个MQ集群时，必须手动指定不同的instanceName。
 需要一提的是，当消费者(不同jvm实例)都在同一台物理机上时，若指定instanceName，消费负载均衡将失效(每个实例都将消费所有消息)。
 另外，在一个jvm里模拟集群消费时，必须指定不同的instanceName，否则启动时会提示ConsumerGroup已存在。
+
+### Q&A
+####Q1：分布式消息系统中，如何避免消息重复？
+
+造成消息重复的根本原因是：网络不可靠。只要通过网络交换数据，就无法避免这个问题。所以解决这个问题的办法就是绕过这个问题。
+那么问题就变成了：如果消费端收到两条一样的消息，应该怎样处理？
+
+- 消费端处理消息的业务逻辑保持幂等性;
+- 保证每条消息都有唯一编号且保证消息处理成功与去重表的日志同时出现。
+
+通过幂等性，不管来多少条重复消息，可以实现处理的结果都一样。再利用一张日志表来记录已经处理成功的消息的ID，如果新到的消息ID已经在日志表中，
+那么就可以不再处理这条消息，避免消息的重复处理。
+
+#### Q2：顺序消息扩容的过程中，如何在不停写的情况下保证消息顺序？
+1. 成倍扩容，实现扩容前后，同样的key，hash到原队列，或者hash到新扩容的队列；
+
+1. 扩容前，记录旧队列中的最大位点；
+
+1. 对于每个Consumer Group，保证旧队列中的数据消费完，再消费新队列，也即：先对新队列进行禁读即可；
+
+#### Q3：分布式消息系统中，如何对消息进行重放？
+
+消费位点就是一个数字，把Consumer Offset改一下就可以达到重放的目的了。
 
 ### More
 - [RocketMQ架构模块解析](https://blog.csdn.net/javahongxi/article/details/72956608)
