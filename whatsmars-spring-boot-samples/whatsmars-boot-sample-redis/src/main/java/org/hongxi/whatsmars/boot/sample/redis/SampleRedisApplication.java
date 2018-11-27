@@ -1,27 +1,27 @@
-package org.hongxi.whatsmars.redis.client;
+package org.hongxi.whatsmars.boot.sample.redis;
 
-import org.hongxi.whatsmars.redis.client.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 /**
  * Created by javahongxi on 2017/12/5.
  */
 @SpringBootApplication
-public class App implements CommandLineRunner {
+public class SampleRedisApplication implements CommandLineRunner {
 
     @Autowired
-    private RedisService redisService;
+    private StringRedisTemplate stringRedisTemplate;
 
     public static void main(String[] args) {
-        SpringApplication.run(App.class, args);
+        SpringApplication.run(SampleRedisApplication.class, args);
     }
 
     @Override
     public void run(String... args) throws Exception {
-        redisService.set("count", "1");
-        System.out.println(redisService.get("count"));
+        stringRedisTemplate.opsForValue().set("count", "1");
+        System.out.println(stringRedisTemplate.opsForValue().get("count"));
     }
 }

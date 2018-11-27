@@ -26,6 +26,7 @@
         <module>whatsmars-boot-sample-cache</module>
         <module>whatsmars-boot-sample-mongodb</module>
         <module>whatsmars-boot-sample-elasticsearch</module>
+        <module>whatsmars-boot-sample-redis</module>
     </modules>
 
     <dependencies>

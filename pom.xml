@@ -39,6 +39,8 @@
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <mysql-connector-java.version>5.1.32</mysql-connector-java.version>
 
+        <spring.data.redis.verion>1.8.6.RELEASE</spring.data.redis.verion>
+
         <commons-lang.version>2.6</commons-lang.version>
         <commons-collections.version>3.2.2</commons-collections.version>
         <commons-codec.version>1.11</commons-codec.version>
@@ -427,6 +429,12 @@
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
                 <version>${jedis.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-redis</artifactId>
+                <version>${spring.data.redis.verion}</version>
             </dependency>
 
             <dependency>

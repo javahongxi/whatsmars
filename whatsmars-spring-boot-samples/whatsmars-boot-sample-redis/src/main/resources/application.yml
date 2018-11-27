@@ -2,12 +2,13 @@ spring:
   redis:
     host: 127.0.0.1
     port: 6379
-    timeout: 0
-    pool:
-      max-active: 8
-      max-idle: 8
-      max-wait: -1
-      min-idle: 0
+    timeout: 10000
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1
+        min-idle: 0
 #    cluster:
 #      max-redirects: 5
 #      nodes: 127.0.0.1:6380,127.0.0.1:6381
