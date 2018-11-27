@@ -1,6 +1,7 @@
-package org.hongxi.whatsmars.mq.rocketmq.boot;
+package org.hongxi.whatsmars.mq.rocketmq.boot.producer;
 
 import org.apache.rocketmq.spring.starter.core.RocketMQTemplate;
+import org.hongxi.whatsmars.mq.rocketmq.boot.OrderPaidEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,9 +20,15 @@ public class ProducerApplication implements CommandLineRunner {
     }
     
     public void run(String... args) throws Exception {
-        rocketMQTemplate.convertAndSend("test-topic-1", "Hello, World!");
-        rocketMQTemplate.send("test-topic-1", MessageBuilder.withPayload("Hello, World! I'm from spring message").build());
-        rocketMQTemplate.convertAndSend("test-topic-2", new OrderPaidEvent("T_001", new BigDecimal("88.00")));
+        for (int i = 0; i < 20; i++) {
+            try {
+                rocketMQTemplate.convertAndSend("test-topic-1", "Hello, World!");
+                rocketMQTemplate.send("test-topic-1", MessageBuilder.withPayload("Hello, World! I'm from spring message").build());
+                rocketMQTemplate.convertAndSend("test-topic-2", new OrderPaidEvent("T_001", new BigDecimal("88.00")));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         
 //        rocketMQTemplate.destroy(); // notes:  once rocketMQTemplate be destroyed, you can not send any message again with this rocketMQTemplate
     }
