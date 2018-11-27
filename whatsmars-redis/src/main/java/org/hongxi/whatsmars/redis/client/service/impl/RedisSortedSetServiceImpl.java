@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.Set;
 
-@Service("redisSortedSetService")
+@Service
 public class RedisSortedSetServiceImpl implements RedisSortedSetService {
 
 	@Resource

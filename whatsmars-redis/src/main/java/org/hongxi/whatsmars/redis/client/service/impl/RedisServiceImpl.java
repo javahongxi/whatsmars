@@ -23,7 +23,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-@Service("redisService")
+@Service
 public class RedisServiceImpl<T> implements RedisService<T> {
 
 	private static final String CHARSET = "UTF8";

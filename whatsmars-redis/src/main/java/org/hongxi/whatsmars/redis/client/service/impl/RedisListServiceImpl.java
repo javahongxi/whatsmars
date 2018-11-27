@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 
-@Service("redisListService")
+@Service
 public class RedisListServiceImpl implements RedisListService {
 
 	@Resource

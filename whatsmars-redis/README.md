@@ -37,3 +37,5 @@ MySQL的主要任务是把数据组织成树表，在磁盘和内存之间进行
 - [Connection and Thread Safety](https://blog.csdn.net/javahongxi/article/details/50559829)
 - [如何根据key前缀统计内存占用](https://segmentfault.com/q/1010000010575235)
 - [《Redis设计与实现》](https://e.jd.com/30189715.html) `e.jd.com`
+
+[whatsmars-boot-sample-redis](https://github.com/javahongxi/whatsmars/tree/master/whatsmars-spring-boot-samples/whatsmars-boot-sample-redis)

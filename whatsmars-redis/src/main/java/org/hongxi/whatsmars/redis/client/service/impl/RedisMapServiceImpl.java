@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-@Service("redisMapService")
+@Service
 public class RedisMapServiceImpl implements RedisMapService {
 
 	private static final String CHARSET = "UTF8";
