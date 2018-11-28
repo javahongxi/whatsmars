@@ -20,6 +20,7 @@
         <module>whatsmars-earth-service</module>
         <module>whatsmars-earth-web</module>
         <module>whatsmars-earth-support-web</module>
+        <module>whatsmars-earth-manager</module>
     </modules>
 
 
