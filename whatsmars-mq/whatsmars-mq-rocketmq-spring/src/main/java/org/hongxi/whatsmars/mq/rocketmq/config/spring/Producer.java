@@ -1,5 +1,6 @@
-package org.hongxi.whatsmars.mq.rocketmq.spring;
+package org.hongxi.whatsmars.mq.rocketmq.config.spring;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,9 +8,8 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
 
-public class ProducerFactoryBean extends ClientConfig implements FactoryBean<DefaultMQProducer>,InitializingBean,DisposableBean {
-
-    private static final Logger logger = LoggerFactory.getLogger(ProducerFactoryBean.class);
+@Slf4j
+public class Producer extends ClientConfig implements FactoryBean<DefaultMQProducer>,InitializingBean,DisposableBean {
 
     private DefaultMQProducer producer;
 
@@ -61,7 +61,7 @@ public class ProducerFactoryBean extends ClientConfig implements FactoryBean<Def
         producer.setSendMsgTimeout(sendMsgTimeout);
         producer.setRetryTimesWhenSendFailed(retryTimesWhenSendFailed);
         producer.start();
-        logger.info("Producer Group {} started!", producerGroup);
+        log.info("Producer Group {} started!", producerGroup);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.mq.rocketmq.spring;
+package org.hongxi.whatsmars.mq.rocketmq.config.spring;
 
 import org.apache.rocketmq.common.MixAll;
 
