@@ -5,7 +5,7 @@
                            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
        default-autowire="byName">
 
-    <bean class="org.hongxi.whatsmars.mq.rocketmq.config.spring.Consumer">
+    <bean class="org.hongxi.whatsmars.rocketmq.config.spring.Consumer">
         <property name="consumerGroup" value="quick_start_consumer_group" />
         <property name="namesrvAddr" value="127.0.0.1:9876" />
         <property name="topic" value="TopicTest" />
@@ -13,5 +13,5 @@
         <property name="messageListener" ref="demoMessageListener" />
     </bean>
 
-    <bean id="demoMessageListener" class="org.hongxi.whatsmars.mq.rocketmq.spring.demo.DemoMessageListener" />
+    <bean id="demoMessageListener" class="org.hongxi.whatsmars.rocketmq.spring.demo.DemoMessageListener" />
 </beans>

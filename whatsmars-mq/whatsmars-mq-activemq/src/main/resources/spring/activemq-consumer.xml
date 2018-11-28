@@ -22,6 +22,6 @@
         <property name="sessionAcknowledgeMode" value="2"/>
     </bean>
 
-    <bean id="demoMessageListener" class="org.hongxi.whatsmars.mq.activemq.spring.DemoMessageListener"/>
+    <bean id="demoMessageListener" class="org.hongxi.whatsmars.activemq.spring.DemoMessageListener"/>
 
 </beans>
