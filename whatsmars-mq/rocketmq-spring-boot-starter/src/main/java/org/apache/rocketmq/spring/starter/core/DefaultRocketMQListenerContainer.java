@@ -42,6 +42,7 @@ import org.apache.rocketmq.common.protocol.heartbeat.MessageModel;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 
 @SuppressWarnings("WeakerAccess")
 @Slf4j
@@ -66,6 +67,10 @@ public class DefaultRocketMQListenerContainer implements InitializingBean, Rocke
     @Setter
     @Getter
     private String nameServer;
+
+    @Setter
+    @Getter
+    private String instanceName;
 
     @Setter
     @Getter
@@ -226,15 +231,19 @@ public class DefaultRocketMQListenerContainer implements InitializingBean, Rocke
     private Class getMessageType() {
         Type[] interfaces = AopUtils.getTargetClass(rocketMQListener).getGenericInterfaces();
         if (Objects.nonNull(interfaces)) {
-            for (Type type : interfaces) {
-                if (type instanceof ParameterizedType) {
-                    ParameterizedType parameterizedType = (ParameterizedType) type;
-                    if (Objects.equals(parameterizedType.getRawType(), RocketMQListener.class)) {
-                        Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
-                        if (Objects.nonNull(actualTypeArguments) && actualTypeArguments.length > 0) {
-                            return (Class) actualTypeArguments[0];
-                        } else {
-                            return Object.class;
+            if (interfaces.length == 0) interfaces = AopUtils.getTargetClass(rocketMQListener)
+                    .getSuperclass().getGenericInterfaces();
+            if (Objects.nonNull(interfaces)) {
+                for (Type type : interfaces) {
+                    if (type instanceof ParameterizedType) {
+                        ParameterizedType parameterizedType = (ParameterizedType) type;
+                        if (Objects.equals(parameterizedType.getRawType(), RocketMQListener.class)) {
+                            Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
+                            if (Objects.nonNull(actualTypeArguments) && actualTypeArguments.length > 0) {
+                                return (Class) actualTypeArguments[0];
+                            } else {
+                                return Object.class;
+                            }
                         }
                     }
                 }
@@ -255,6 +264,9 @@ public class DefaultRocketMQListenerContainer implements InitializingBean, Rocke
 
         consumer = new DefaultMQPushConsumer(consumerGroup);
         consumer.setNamesrvAddr(nameServer);
+        if (!StringUtils.isEmpty(instanceName)) {
+            consumer.setInstanceName(instanceName);
+        }
         consumer.setConsumeThreadMax(consumeThreadMax);
         if (consumeThreadMax < consumer.getConsumeThreadMin()) {
             consumer.setConsumeThreadMin(consumeThreadMax);

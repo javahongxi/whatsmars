@@ -21,6 +21,7 @@ package org.apache.rocketmq.spring.starter.core;
  * Constants Created by aqlu on 2017/11/16.
  */
 public final class DefaultRocketMQListenerContainerConstants {
+    public static final String PROP_INSTANCE_NAME = "instanceName";
     public static final String PROP_NAMESERVER = "nameServer";
     public static final String PROP_TOPIC = "topic";
     public static final String PROP_CONSUMER_GROUP = "consumerGroup";

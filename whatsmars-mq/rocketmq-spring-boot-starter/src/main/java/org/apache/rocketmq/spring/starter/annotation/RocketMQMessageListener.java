@@ -33,6 +33,13 @@ import org.apache.rocketmq.common.protocol.heartbeat.MessageModel;
 public @interface RocketMQMessageListener {
 
     /**
+     * used for connecting different MQ cluster.
+     */
+    String nameServer() default "";
+
+    String instanceName() default "";
+
+    /**
      * Consumers of the same role is required to have exactly same subscriptions and consumerGroup to correctly achieve
      * load balance. It's required and needs to be globally unique.
      * </p>

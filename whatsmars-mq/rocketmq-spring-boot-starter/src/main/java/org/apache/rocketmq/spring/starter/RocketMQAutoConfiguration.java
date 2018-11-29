@@ -55,18 +55,9 @@ import org.springframework.context.annotation.Role;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.env.StandardEnvironment;
 import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 
-import static org.apache.rocketmq.spring.starter.core.DefaultRocketMQListenerContainerConstants.PROP_NAMESERVER;
-import static org.apache.rocketmq.spring.starter.core.DefaultRocketMQListenerContainerConstants.PROP_TOPIC;
-import static org.apache.rocketmq.spring.starter.core.DefaultRocketMQListenerContainerConstants.PROP_CONSUMER_GROUP;
-import static org.apache.rocketmq.spring.starter.core.DefaultRocketMQListenerContainerConstants.PROP_CONSUME_MODE;
-import static org.apache.rocketmq.spring.starter.core.DefaultRocketMQListenerContainerConstants.PROP_CONSUME_THREAD_MAX;
-import static org.apache.rocketmq.spring.starter.core.DefaultRocketMQListenerContainerConstants.PROP_MESSAGE_MODEL;
-import static org.apache.rocketmq.spring.starter.core.DefaultRocketMQListenerContainerConstants.PROP_SELECTOR_EXPRESS;
-import static org.apache.rocketmq.spring.starter.core.DefaultRocketMQListenerContainerConstants.PROP_SELECTOR_TYPE;
-import static org.apache.rocketmq.spring.starter.core.DefaultRocketMQListenerContainerConstants.PROP_ROCKETMQ_LISTENER;
-import static org.apache.rocketmq.spring.starter.core.DefaultRocketMQListenerContainerConstants.PROP_OBJECT_MAPPER;
-import static org.apache.rocketmq.spring.starter.core.DefaultRocketMQListenerContainerConstants.METHOD_DESTROY;
+import static org.apache.rocketmq.spring.starter.core.DefaultRocketMQListenerContainerConstants.*;
 
 @Configuration
 @EnableConfigurationProperties(RocketMQProperties.class)
@@ -173,7 +164,15 @@ public class RocketMQAutoConfiguration {
             RocketMQMessageListener annotation = clazz.getAnnotation(RocketMQMessageListener.class);
             validate(annotation);
             BeanDefinitionBuilder beanBuilder = BeanDefinitionBuilder.rootBeanDefinition(DefaultRocketMQListenerContainer.class);
-            beanBuilder.addPropertyValue(PROP_NAMESERVER, rocketMQProperties.getNameServer());
+            String nameServer = rocketMQProperties.getNameServer();
+            String annotationNameServer = environment.resolvePlaceholders(annotation.nameServer());
+            if (!StringUtils.isEmpty(annotationNameServer)) {
+                nameServer = annotationNameServer;
+                String instanceName = environment.resolvePlaceholders(annotation.instanceName());
+                if (StringUtils.isEmpty(instanceName)) instanceName = nameServer;
+                beanBuilder.addPropertyValue(PROP_INSTANCE_NAME, instanceName);
+            }
+            beanBuilder.addPropertyValue(PROP_NAMESERVER, nameServer);
             beanBuilder.addPropertyValue(PROP_TOPIC, environment.resolvePlaceholders(annotation.topic()));
 
             beanBuilder.addPropertyValue(PROP_CONSUMER_GROUP, environment.resolvePlaceholders(annotation.consumerGroup()));
