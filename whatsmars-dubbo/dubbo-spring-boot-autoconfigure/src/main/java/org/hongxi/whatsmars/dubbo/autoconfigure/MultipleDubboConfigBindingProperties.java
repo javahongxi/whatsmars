@@ -15,6 +15,12 @@ import static org.hongxi.whatsmars.dubbo.autoconfigure.util.DubboUtils.DUBBO_PRE
 /**
  * Multiple Dubbo Config Binding{@link ConfigurationProperties Properties} with prefix "dubbo."
  *
+ *     registries:
+ *       - address: zookeeper://127.0.0.1:2181
+ *         id: r1
+ *       - address: zookeeper://127.0.0.1:2182
+ *         id: r2
+ *
  * @see ConfigurationProperties
  * @see EnableDubboConfigBinding
  * @see EnableDubboConfig#multiple()
