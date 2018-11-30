@@ -2,6 +2,7 @@ package org.hongxi.whatsmars.dubbo.demo.consumer.rpc;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import org.hongxi.whatsmars.dubbo.demo.api.DemoService;
+import org.hongxi.whatsmars.dubbo.demo.api.OtherService;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,10 +15,24 @@ public class DemoRpc {
     @Reference(version = "1.0.0")
     private DemoService demoService;
 
+    @Reference(version = "1.0.0", registry = "otherZK")
+    private OtherService otherService;
+
     public String sayHello(String name) {
         String result = null;
         try {
             result = demoService.sayHello(name);
+        } catch (Exception e) {
+            // log
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public String sayHello2(String name) {
+        String result = null;
+        try {
+            result = otherService.sayHello(name);
         } catch (Exception e) {
             // log
             e.printStackTrace();

@@ -14,9 +14,8 @@ dubbo:
   application:
     name: demo-provider
     id: demo-provider
-    qos:
-      port: 22222
-      enable: true
+    qosEnable: true
+    qosPort: 22223
   scan:
     basePackages: org.hongxi.whatsmars.dubbo.demo.provider.service
 
@@ -27,3 +26,7 @@ management:
   port: 9091
   security:
     enabled: false
+
+registry:
+  zk:
+    other: zookeeper://10.2.4.73:2181

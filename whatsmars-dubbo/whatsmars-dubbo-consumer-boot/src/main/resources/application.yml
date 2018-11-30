@@ -13,6 +13,9 @@ dubbo:
   application:
     name: demo-consumer
     id: demo-consumer
-    qos:
-      port: 33333
-      enable: false
+    qosEnable: true
+    qosPort: 22224
+
+registry:
+  zk:
+    other: zookeeper://127.0.0.1:2181
