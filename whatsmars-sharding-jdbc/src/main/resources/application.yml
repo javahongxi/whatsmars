@@ -14,15 +14,15 @@ sharding:
       ds_0:
         type: org.apache.commons.dbcp.BasicDataSource
         driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/demo_ds_0
+        url: jdbc:mysql://db.hongxi.org:3306/demo_ds_0
         username: root
-        password: root
+        password: n36bxXMnHina
       ds_1:
         type: org.apache.commons.dbcp.BasicDataSource
         driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/demo_ds_1
+        url: jdbc:mysql://db.hongxi.org:3306/demo_ds_1
         username: root
-        password: root
+        password: n36bxXMnHina
     config:
       sharding:
         default-database-strategy:

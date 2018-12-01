@@ -41,9 +41,9 @@ pagehelper:
 spring:
   profiles: dev
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    url: jdbc:mysql://db.hongxi.org:3306/test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
     username: root
-    password: root
+    password: n36bxXMnHina
     driver-class-name: com.mysql.jdbc.Driver
     tomcat:
       min-idle: 10
@@ -76,9 +76,9 @@ server:
 spring:
   profiles: test
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/wely?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    url: jdbc:mysql://db.hongxi.org:3306/test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
     username: root
-    password: root
+    password: n36bxXMnHina
     driver-class-name: com.mysql.jdbc.Driver
     tomcat:
       min-idle: 10
@@ -107,9 +107,9 @@ server:
 spring:
   profiles: prod
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/wely?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    url: jdbc:mysql://db.hongxi.org:3306/test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
     username: root
-    password: root
+    password: n36bxXMnHina
     driver-class-name: com.mysql.jdbc.Driver
     tomcat:
       min-idle: 10
