@@ -3,3 +3,8 @@ spring:
     mongodb:
       uri: mongodb://127.0.0.1:27017/admin
       database: test
+
+#  data:
+#    mongodb:
+#      uri: mongodb://mongo:123456@127.0.0.1:7980/admin
+#      database: test
