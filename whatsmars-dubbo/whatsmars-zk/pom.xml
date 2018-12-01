@@ -11,18 +11,15 @@
 
     <artifactId>whatsmars-zk</artifactId>
 
+    <properties>
+        <zookeeper.version>3.4.13</zookeeper.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
+            <version>${zookeeper.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.curator</groupId>

@@ -4,7 +4,6 @@
 package org.hongxi.whatsmars.dubbo.demo.consumer;
 
 import com.alibaba.dubbo.rpc.RpcContext;
-import com.alibaba.dubbo.rpc.service.EchoService;
 import org.hongxi.whatsmars.dubbo.demo.api.BarService;
 import org.hongxi.whatsmars.dubbo.demo.api.DemoService;
 import org.hongxi.whatsmars.dubbo.demo.api.vo.Bar;
