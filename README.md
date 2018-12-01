@@ -27,7 +27,7 @@ whatsmars-sharding-jdbc | 分布式数据库中间件
 whatsmars-spring | Spring Framework
 whatsmars-spring-boot | Spring Boot 实战
 whatsmars-spring-boot-samples | Spring Boot 2+
-whatsmars-spring-cloud | Finchley
+whatsmars-spring-cloud | Spring Cloud 微服务生态
 whatsmars-tomcat | 模拟tomcat实现
 
 ### Mars Plan
