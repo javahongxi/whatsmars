@@ -13,22 +13,9 @@
 
     <properties>
         <elastic-job.version>2.1.5</elastic-job.version>
-        <curator.version>2.10.0</curator.version>
         <h2.version>1.4.184</h2.version>
         <start-class>org.hongxi.whatsmars.job.Application</start-class>
     </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -59,7 +46,6 @@
         <dependency>
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-test</artifactId>
-            <version>${curator.version}</version>
         </dependency>
 
         <dependency>
