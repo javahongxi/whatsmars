@@ -18,17 +18,17 @@ whatsmars-dbrouter | 分库分表实现
 whatsmars-dubbo | 高性能分布式RPC框架
 whatsmars-earth | springmvc+velocity实战
 whatsmars-elasticjob | 分布式调度
-whatsmars-elasticsearch | Elasticsearch 5.x
+whatsmars-elasticsearch | Elasticsearch
 whatsmars-javase | Java基础 & 新特性
 whatsmars-mq | 消息中间件RocketMQ,Kafka等
-whatsmars-redis | jedis & Spring Data Redis
+whatsmars-redis | Redis客户端简单封装
 whatsmars-rpc | RPC
 whatsmars-sharding-jdbc | 分布式数据库中间件
 whatsmars-spring | Spring Framework
-whatsmars-spring-boot | Spring Boot 1.5.x
+whatsmars-spring-boot | Spring Boot 实战
 whatsmars-spring-boot-samples | Spring Boot 2+
 whatsmars-spring-cloud | Finchley
-whatsmars-tomcat | 模拟tomcat实现，embed tomcat
+whatsmars-tomcat | 模拟tomcat实现
 
 ### Mars Plan
 - [x] [*Dubbo*](https://github.com/alibaba/dubbo)
