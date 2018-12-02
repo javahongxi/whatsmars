@@ -29,6 +29,27 @@
         <module>whatsmars-boot-sample-redis</module>
     </modules>
 
+    <properties>
+        <guava.version>20.0</guava.version>
+        <commons-pool2.version>2.6.0</commons-pool2.version>
+        <fastjson.version>1.2.44</fastjson.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-pool2</artifactId>
+                <version>${commons-pool2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <!-- Test -->
         <dependency>
