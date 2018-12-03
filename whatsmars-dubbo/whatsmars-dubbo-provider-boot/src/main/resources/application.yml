@@ -28,5 +28,6 @@ management:
     enabled: false
 
 registry:
-  zk:
-    other: zookeeper://127.0.0.1:2181
+  other:
+    address: zookeeper://127.0.0.1:2181
+    id: other

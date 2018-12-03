@@ -13,14 +13,13 @@ public class DubboConfig {
 
     /**
      * 配置文件里配置默认的，这里配置其他需要的
-     * @param otherZK
-     * @return
      */
-    @Bean("otherZK")
-    public RegistryConfig registryConfig(@Value("${registry.zk.other}") String otherZK) {
+    @Bean("otherRegistry")
+    public RegistryConfig otherRegistry(@Value("${registry.other.address}") String address,
+                                      @Value("${registry.other.id}") String id) {
         RegistryConfig registry = new RegistryConfig();
-        registry.setId("otherZK");
-        registry.setAddress(otherZK);
+        registry.setAddress(address);
+        registry.setId(id);
         return registry;
     }
 }

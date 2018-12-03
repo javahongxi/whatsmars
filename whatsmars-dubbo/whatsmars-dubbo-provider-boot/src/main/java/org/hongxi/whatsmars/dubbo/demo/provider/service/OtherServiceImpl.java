@@ -16,7 +16,7 @@ import java.util.Date;
         version = "1.0.0",
         application = "${dubbo.application.id}",
         protocol = "${dubbo.protocol.id}",
-        registry = "otherZK"
+        registry = "otherRegistry"
 )
 public class OtherServiceImpl implements OtherService {
 

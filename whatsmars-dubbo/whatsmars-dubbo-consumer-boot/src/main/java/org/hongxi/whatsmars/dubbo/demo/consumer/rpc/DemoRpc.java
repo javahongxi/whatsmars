@@ -15,7 +15,7 @@ public class DemoRpc {
     @Reference(version = "1.0.0")
     private DemoService demoService;
 
-    @Reference(version = "1.0.0", registry = "otherZK")
+    @Reference(version = "1.0.0", registry = "otherRegistry")
     private OtherService otherService;
 
     public String sayHello(String name) {
