@@ -23,6 +23,10 @@
         <module>whatsmars-earth-manager</module>
     </modules>
 
+    <properties>
+        <rootdir>${basedir}</rootdir>
+    </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>

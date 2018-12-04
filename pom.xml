@@ -57,7 +57,6 @@
         <curator.version>2.12.0</curator.version>
         <json-lib.version>2.4</json-lib.version>
 
-        <rootdir>${basedir}</rootdir>
     </properties>
 
     <!--mvn dependency:tree -Dverbose-->
