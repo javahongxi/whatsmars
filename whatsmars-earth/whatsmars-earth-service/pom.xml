@@ -13,9 +13,6 @@
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
     <url>http://maven.apache.org</url>
-    <build>
-        <finalName>${project.artifactId}</finalName>
-    </build>
 
     <dependencies>
         <dependency>

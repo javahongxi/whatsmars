@@ -94,7 +94,6 @@
     </dependencies>
 
     <build>
-        <finalName>${project.artifactId}</finalName>
         <outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
         <resources>
             <resource>
