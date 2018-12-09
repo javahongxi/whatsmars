@@ -1,0 +1,25 @@
+user:
+  datasource:
+    jdbc-url: jdbc:mysql://db.hongxi.org:3306/user?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: n36bxXMnHina
+    connectionTimeout: 30000
+    idleTimeout: 60000
+    maxLifetime: 1800000
+    minimumIdle: 5
+    maximumPoolSize: 10
+    connection-test-query: SELECT 1
+
+trade:
+  datasource:
+    jdbc-url: jdbc:mysql://db.hongxi.org:3306/trade?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: n36bxXMnHina
+    connectionTimeout: 30000
+    idleTimeout: 60000
+    maxLifetime: 1800000
+    minimumIdle: 5
+    maximumPoolSize: 10
+    connection-test-query: SELECT 1
