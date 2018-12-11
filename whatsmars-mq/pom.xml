@@ -22,7 +22,7 @@
         <module>whatsmars-mq-rocketmq-broker</module>
         <module>whatsmars-mq-rocketmq-tools</module>
         <module>whatsmars-mq-rocketmq-spring</module>
-        <module>whatsmars-mq-otter</module>
+        <module>whatsmars-otter-extend</module>
         <module>whatsmars-mq-sdk</module>
     </modules>
 

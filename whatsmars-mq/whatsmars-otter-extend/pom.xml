@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>whatsmars-mq-otter</artifactId>
+    <artifactId>whatsmars-otter-extend</artifactId>
 
     <properties>
         <otter.version>4.2.16</otter.version>
