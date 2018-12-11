@@ -60,7 +60,7 @@ public class RocketMQTemplate {
             getProducer(producerGroup).send(new Message(topic, tags, keys, body.getBytes(RemotingHelper.DEFAULT_CHARSET)));
         } catch (Exception e) {
             log.error("send error, producerGroup:{}, topic:{}, tags:{}, keys:{}, body:{}",
-                    producerGroup, topic, tags, keys, body);
+                    producerGroup, topic, tags, keys, body, e);
         }
     }
 
