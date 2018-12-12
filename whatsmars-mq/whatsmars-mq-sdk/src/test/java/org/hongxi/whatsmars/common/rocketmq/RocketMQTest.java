@@ -21,7 +21,7 @@ public class RocketMQTest {
         int count = 0;
         for (int i = 0; i < 20; i++) {
             try {
-                RocketTemplate.send(TEST_TOPIC, "hello" + i);
+                RocketMQTemplate.send(TEST_TOPIC, "hello" + i);
                 count++;
             } catch (Exception e) {
                 e.printStackTrace();

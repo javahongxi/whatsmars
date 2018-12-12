@@ -5,7 +5,7 @@ import com.alibaba.otter.node.extend.processor.AbstractEventProcessor;
 import com.alibaba.otter.shared.etl.model.EventColumn;
 import com.alibaba.otter.shared.etl.model.EventData;
 import com.alibaba.otter.shared.etl.model.EventType;
-import org.hongxi.whatsmars.common.rocketmq.RocketTemplate;
+import org.hongxi.whatsmars.common.rocketmq.RocketMQTemplate;
 import org.hongxi.whatsmars.otter.extend.support.Column;
 import org.hongxi.whatsmars.otter.extend.support.OtterData;
 import org.springframework.util.StringUtils;
@@ -77,7 +77,7 @@ public class MQEventProcessor extends AbstractEventProcessor {
             tags = tags.substring(0, tags.length() - suffix.length());
         }
 
-        RocketTemplate.sendOrderly("otter-producer", topic, tags, msgKey, JSON.toJSONString(otterData));
+        RocketMQTemplate.sendOrderly("otter-producer", topic, tags, msgKey, JSON.toJSONString(otterData));
 
         return false;
     }

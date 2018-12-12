@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * Created by shenhongxi on 2018/12/11.
  */
-public class RocketTemplate {
+public class RocketMQTemplate {
 
     private static final InternalLogger log = ClientLogger.getLog();
 
@@ -59,22 +59,16 @@ public class RocketTemplate {
     }
 
     public static void send(String producerGroup, String topic, String body) {
-        try {
-            getProducer(producerGroup).send(new Message(topic, body.getBytes(RemotingHelper.DEFAULT_CHARSET)));
-        } catch (Exception e) {
-            log.error("send error, producerGroup:{}, topic:{}, body:{}",
-                    producerGroup, topic, body, e);
-            throw new MessagingException(e.getMessage(), e);
-        }
+        send(producerGroup, topic, "", body);
     }
 
-    public static void send(String topic, String tags, String keys, String body) {
-        send(DEFAULT_PRODUCER_GROUP, topic, tags, keys, body);
+    public static void send(String producerGroup, String topic, String tags, String body) {
+        send(producerGroup, topic, tags, "", body);
     }
 
     public static void send(String producerGroup, String topic, String tags, String keys, String body) {
         try {
-            getProducer(producerGroup).send(new Message(topic, tags, keys, body.getBytes(RemotingHelper.DEFAULT_CHARSET)));
+            send(producerGroup, new Message(topic, tags, keys, body.getBytes(RemotingHelper.DEFAULT_CHARSET)));
         } catch (Exception e) {
             log.error("send error, producerGroup:{}, topic:{}, tags:{}, keys:{}, body:{}",
                     producerGroup, topic, tags, keys, body, e);
@@ -82,21 +76,34 @@ public class RocketTemplate {
         }
     }
 
+    private static void send(String producerGroup, Message message) throws Exception {
+        getProducer(producerGroup).send(message);
+    }
+
+    public static void sendOrderly(String producerGroup, String topic, String keys, String body) {
+        sendOrderly(producerGroup, topic, keys, body);
+    }
+
     public static void sendOrderly(String producerGroup, String topic, String tags, String keys, String body) {
         try {
-            getProducer(producerGroup).send(new Message(topic, tags, keys, body.getBytes(RemotingHelper.DEFAULT_CHARSET)),
-                    new MessageQueueSelector() {
-                        @Override
-                        public MessageQueue select(List<MessageQueue> mqs, Message msg, Object arg) {
-                            long id = NumberUtils.toLong(String.valueOf(arg));
-                            int index = (int) (id % mqs.size());
-                            return mqs.get(index);
-                        }
-                    }, keys);
+            sendOrderly(producerGroup, new Message(topic, tags, keys, body.getBytes(RemotingHelper.DEFAULT_CHARSET)));
         } catch (Exception e) {
             log.error("send error, producerGroup:{}, topic:{}, tags:{}, keys:{}, body:{}",
                     producerGroup, topic, tags, keys, body, e);
             throw new MessagingException(e.getMessage(), e);
         }
     }
+
+    private static void sendOrderly(String producerGroup, Message message) throws Exception {
+        getProducer(producerGroup).send(message,
+                new MessageQueueSelector() {
+                    @Override
+                    public MessageQueue select(List<MessageQueue> mqs, Message msg, Object arg) {
+                        long id = NumberUtils.toLong(String.valueOf(arg));
+                        int index = (int) (id % mqs.size());
+                        return mqs.get(index);
+                    }
+                }, message.getKeys());
+    }
+
 }
