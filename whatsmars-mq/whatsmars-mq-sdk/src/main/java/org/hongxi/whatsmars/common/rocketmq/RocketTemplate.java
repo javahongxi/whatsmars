@@ -2,7 +2,6 @@ package org.hongxi.whatsmars.common.rocketmq;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
-import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.log.ClientLogger;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.MessageQueueSelector;
@@ -18,7 +17,7 @@ import java.util.Map;
 /**
  * Created by shenhongxi on 2018/12/11.
  */
-public class RocketMQTemplate {
+public class RocketTemplate {
 
     private static final InternalLogger log = ClientLogger.getLog();
 
@@ -26,19 +25,19 @@ public class RocketMQTemplate {
 
     private static Map<String, DefaultMQProducer> producerMap = new HashMap<>();
 
-    public static DefaultMQProducer getProducer() throws MQClientException {
+    public static DefaultMQProducer getProducer() throws Exception {
         return getProducer(4, DEFAULT_PRODUCER_GROUP);
     }
 
-    public static DefaultMQProducer getProducer(int queueNum) throws MQClientException {
+    public static DefaultMQProducer getProducer(int queueNum) throws Exception {
         return getProducer(queueNum, DEFAULT_PRODUCER_GROUP);
     }
 
-    public static DefaultMQProducer getProducer(String producerGroup) throws MQClientException {
+    public static DefaultMQProducer getProducer(String producerGroup) throws Exception {
         return getProducer(4, producerGroup);
     }
 
-    public static DefaultMQProducer getProducer(int queueNum, String producerGroup) throws MQClientException {
+    public static DefaultMQProducer getProducer(int queueNum, String producerGroup) throws Exception {
         if (queueNum < 1) throw new IllegalArgumentException("queueNum must >= 1");
         if (StringUtils.isBlank(producerGroup)) throw new IllegalArgumentException("producerGroup cannot be null");
         String producerKey = producerGroup + queueNum;
@@ -55,12 +54,31 @@ public class RocketMQTemplate {
         return producerMap.get(producerKey);
     }
 
+    public static void send(String topic, String body) {
+        send(DEFAULT_PRODUCER_GROUP, topic, body);
+    }
+
+    public static void send(String producerGroup, String topic, String body) {
+        try {
+            getProducer(producerGroup).send(new Message(topic, body.getBytes(RemotingHelper.DEFAULT_CHARSET)));
+        } catch (Exception e) {
+            log.error("send error, producerGroup:{}, topic:{}, body:{}",
+                    producerGroup, topic, body, e);
+            throw new MessagingException(e.getMessage(), e);
+        }
+    }
+
+    public static void send(String topic, String tags, String keys, String body) {
+        send(DEFAULT_PRODUCER_GROUP, topic, tags, keys, body);
+    }
+
     public static void send(String producerGroup, String topic, String tags, String keys, String body) {
         try {
             getProducer(producerGroup).send(new Message(topic, tags, keys, body.getBytes(RemotingHelper.DEFAULT_CHARSET)));
         } catch (Exception e) {
             log.error("send error, producerGroup:{}, topic:{}, tags:{}, keys:{}, body:{}",
                     producerGroup, topic, tags, keys, body, e);
+            throw new MessagingException(e.getMessage(), e);
         }
     }
 
@@ -78,6 +96,7 @@ public class RocketMQTemplate {
         } catch (Exception e) {
             log.error("send error, producerGroup:{}, topic:{}, tags:{}, keys:{}, body:{}",
                     producerGroup, topic, tags, keys, body, e);
+            throw new MessagingException(e.getMessage(), e);
         }
     }
 }

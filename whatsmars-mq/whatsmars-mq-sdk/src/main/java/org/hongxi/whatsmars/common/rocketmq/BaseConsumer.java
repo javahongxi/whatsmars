@@ -20,6 +20,10 @@ public abstract class BaseConsumer {
 
     protected DefaultMQPushConsumer consumer;
 
+    protected void startConsume(String consumerGroup, String topic) throws MQClientException {
+        startConsume(consumerGroup, topic, "*");
+    }
+
     protected void startConsume(String consumerGroup, String topic, String tags) throws MQClientException {
         consumer = new DefaultMQPushConsumer(consumerGroup);
         consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
