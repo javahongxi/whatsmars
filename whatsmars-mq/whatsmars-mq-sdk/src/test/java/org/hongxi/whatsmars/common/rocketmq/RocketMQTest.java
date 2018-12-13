@@ -1,5 +1,6 @@
 package org.hongxi.whatsmars.common.rocketmq;
 
+import org.apache.rocketmq.client.producer.SendResult;
 import org.junit.Test;
 
 /**
@@ -16,13 +17,13 @@ public class RocketMQTest {
         int count = 0;
         for (int i = 0; i < 20; i++) {
             try {
-                RocketMQTemplate.send(TEST_TOPIC, "hello" + i, 1000);
+                SendResult sendResult = RocketMQTemplate.send(TEST_TOPIC, "hello" + i, 1000);
+                System.out.println(sendResult);
                 count++;
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        System.out.println("send successful: " + count);
     }
 
     @Test

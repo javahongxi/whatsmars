@@ -1,5 +1,6 @@
 package org.hongxi.whatsmars.rocketmq.spring.demo;
 
+import org.apache.rocketmq.client.producer.SendResult;
 import org.hongxi.whatsmars.rocketmq.config.spring.RocketMQTemplate;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -10,7 +11,8 @@ public class Producer {
         RocketMQTemplate rocketMQTemplate = (RocketMQTemplate) context.getBean("rocketMQTemplate");
         for (int i = 0; i < 20; i++) {
             try {
-                rocketMQTemplate.send("sdk-test", "rocketMQTemplate");
+                SendResult sendResult = rocketMQTemplate.send("sdk-test", "rocketMQTemplate");
+                System.out.println(sendResult);
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -5,6 +5,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.rocketmq.client.log.ClientLogger;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.MessageQueueSelector;
+import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.common.message.MessageQueue;
 import org.apache.rocketmq.logging.InternalLogger;
@@ -59,25 +60,25 @@ public class RocketMQTemplate {
         return producerMap.get(producerKey);
     }
 
-    public static void send(String topic, String body) {
-        send(DEFAULT_PRODUCER_GROUP, topic, body, DEFAULT_SEND_MSG_TIMEOUT);
+    public static SendResult send(String topic, String body) {
+        return send(DEFAULT_PRODUCER_GROUP, topic, body, DEFAULT_SEND_MSG_TIMEOUT);
     }
 
-    public static void send(String topic, String body, int sendMsgTimeout) {
-        send(DEFAULT_PRODUCER_GROUP, topic, body, sendMsgTimeout);
+    public static SendResult send(String topic, String body, int sendMsgTimeout) {
+        return send(DEFAULT_PRODUCER_GROUP, topic, body, sendMsgTimeout);
     }
 
-    public static void send(String producerGroup, String topic, String body, int sendMsgTimeout) {
-        send(producerGroup, topic, "", body, sendMsgTimeout);
+    public static SendResult send(String producerGroup, String topic, String body, int sendMsgTimeout) {
+        return send(producerGroup, topic, "", body, sendMsgTimeout);
     }
 
-    public static void send(String producerGroup, String topic, String tags, String body, int sendMsgTimeout) {
-        send(producerGroup, topic, tags, "", body, sendMsgTimeout);
+    public static SendResult send(String producerGroup, String topic, String tags, String body, int sendMsgTimeout) {
+        return send(producerGroup, topic, tags, "", body, sendMsgTimeout);
     }
 
-    public static void send(String producerGroup, String topic, String tags, String keys, String body, int sendMsgTimeout) {
+    public static SendResult send(String producerGroup, String topic, String tags, String keys, String body, int sendMsgTimeout) {
         try {
-            send(producerGroup, new Message(topic, tags, keys, body.getBytes(RemotingHelper.DEFAULT_CHARSET)), sendMsgTimeout);
+            return send(producerGroup, new Message(topic, tags, keys, body.getBytes(RemotingHelper.DEFAULT_CHARSET)), sendMsgTimeout);
         } catch (Exception e) {
             log.error("send error, producerGroup:{}, topic:{}, tags:{}, keys:{}, body:{}",
                     producerGroup, topic, tags, keys, body, e);
@@ -85,21 +86,21 @@ public class RocketMQTemplate {
         }
     }
 
-    private static void send(String producerGroup, Message message, int sendMsgTimeout) throws Exception {
-        getProducer(producerGroup, sendMsgTimeout).send(message);
+    private static SendResult send(String producerGroup, Message message, int sendMsgTimeout) throws Exception {
+        return getProducer(producerGroup, sendMsgTimeout).send(message);
     }
 
-    public static void sendOrderly(String producerGroup, String topic, String keys, String body) {
-        sendOrderly(producerGroup, topic, keys, body, DEFAULT_SEND_MSG_TIMEOUT);
+    public static SendResult sendOrderly(String producerGroup, String topic, String keys, String body) {
+        return sendOrderly(producerGroup, topic, keys, body, DEFAULT_SEND_MSG_TIMEOUT);
     }
 
-    public static void sendOrderly(String producerGroup, String topic, String keys, String body, int sendMsgTimeout) {
-        sendOrderly(producerGroup, topic, keys, body, sendMsgTimeout);
+    public static SendResult sendOrderly(String producerGroup, String topic, String keys, String body, int sendMsgTimeout) {
+        return sendOrderly(producerGroup, topic, keys, body, sendMsgTimeout);
     }
 
-    public static void sendOrderly(String producerGroup, String topic, String tags, String keys, String body, int sendMsgTimeout) {
+    public static SendResult sendOrderly(String producerGroup, String topic, String tags, String keys, String body, int sendMsgTimeout) {
         try {
-            sendOrderly(producerGroup, new Message(topic, tags, keys, body.getBytes(RemotingHelper.DEFAULT_CHARSET)), sendMsgTimeout);
+            return sendOrderly(producerGroup, new Message(topic, tags, keys, body.getBytes(RemotingHelper.DEFAULT_CHARSET)), sendMsgTimeout);
         } catch (Exception e) {
             log.error("send error, producerGroup:{}, topic:{}, tags:{}, keys:{}, body:{}",
                     producerGroup, topic, tags, keys, body, e);
@@ -107,8 +108,8 @@ public class RocketMQTemplate {
         }
     }
 
-    private static void sendOrderly(String producerGroup, Message message, int sendMsgTimeout) throws Exception {
-        getProducer(producerGroup, sendMsgTimeout).send(message,
+    private static SendResult sendOrderly(String producerGroup, Message message, int sendMsgTimeout) throws Exception {
+        return getProducer(producerGroup, sendMsgTimeout).send(message,
                 new MessageQueueSelector() {
                     @Override
                     public MessageQueue select(List<MessageQueue> mqs, Message msg, Object arg) {

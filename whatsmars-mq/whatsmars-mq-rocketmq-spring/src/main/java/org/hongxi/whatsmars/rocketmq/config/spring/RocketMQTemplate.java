@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.MessageQueueSelector;
+import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.common.message.MessageQueue;
 import org.apache.rocketmq.remoting.common.RemotingHelper;
@@ -22,17 +23,17 @@ public class RocketMQTemplate {
         this.defaultMQProducer = producer;
     }
 
-    public void send(String topic, String body) {
-        send(topic, "", body);
+    public SendResult send(String topic, String body) {
+        return send(topic, "", body);
     }
 
-    public void send(String topic, String tags, String body) {
-        send(topic, tags, "", body);
+    public SendResult send(String topic, String tags, String body) {
+        return send(topic, tags, "", body);
     }
 
-    public void send(String topic, String tags, String keys, String body) {
+    public SendResult send(String topic, String tags, String keys, String body) {
         try {
-            send(new Message(topic, tags, keys, body.getBytes(RemotingHelper.DEFAULT_CHARSET)));
+            return send(new Message(topic, tags, keys, body.getBytes(RemotingHelper.DEFAULT_CHARSET)));
         } catch (Exception e) {
             log.error("send error, topic:{}, tags:{}, keys:{}, body:{}",
                     topic, tags, keys, body, e);
@@ -40,18 +41,19 @@ public class RocketMQTemplate {
         }
     }
 
-    private void send(Message message) throws Exception {
-        this.defaultMQProducer.send(message);
-        log.info("send successful:{}", message);
+    private SendResult send(Message message) throws Exception {
+        SendResult sendResult = this.defaultMQProducer.send(message);
+        log.debug("send result: {}", sendResult);
+        return sendResult;
     }
 
-    public void sendOrderly(String topic, String keys, String body) {
-        sendOrderly(topic, "", keys, body);
+    public SendResult sendOrderly(String topic, String keys, String body) {
+        return sendOrderly(topic, "", keys, body);
     }
 
-    public void sendOrderly(String topic, String tags, String keys, String body) {
+    public SendResult sendOrderly(String topic, String tags, String keys, String body) {
         try {
-            sendOrderly(new Message(topic, tags, keys, body.getBytes(RemotingHelper.DEFAULT_CHARSET)));
+            return sendOrderly(new Message(topic, tags, keys, body.getBytes(RemotingHelper.DEFAULT_CHARSET)));
         } catch (Exception e) {
             log.error("send error, topic:{}, tags:{}, keys:{}, body:{}",
                     topic, tags, keys, body, e);
@@ -59,8 +61,8 @@ public class RocketMQTemplate {
         }
     }
 
-    private void sendOrderly(Message message) throws Exception {
-        this.defaultMQProducer.send(message,
+    private SendResult sendOrderly(Message message) throws Exception {
+        SendResult sendResult = this.defaultMQProducer.send(message,
                 new MessageQueueSelector() {
                     @Override
                     public MessageQueue select(List<MessageQueue> mqs, Message msg, Object arg) {
@@ -69,7 +71,8 @@ public class RocketMQTemplate {
                         return mqs.get(index);
                     }
                 }, message.getKeys());
-        log.info("send successful:{}", message);
+        log.debug("send result: {}", sendResult);
+        return sendResult;
     }
 
 }
