@@ -28,7 +28,7 @@
         </dependency>
         <dependency>
             <groupId>org.hongxi</groupId>
-            <artifactId>whatsmars-mq-sdk</artifactId>
+            <artifactId>whatsmars-mq-pure</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
