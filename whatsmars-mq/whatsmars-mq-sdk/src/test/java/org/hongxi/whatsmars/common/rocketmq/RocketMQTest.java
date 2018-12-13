@@ -24,6 +24,7 @@ public class RocketMQTest {
                 e.printStackTrace();
             }
         }
+        System.out.println("successful: " + count);
     }
 
     @Test
