@@ -112,7 +112,6 @@ public class Consumer extends ClientConfig implements FactoryBean<DefaultMQPushC
         consumer = new DefaultMQPushConsumer(consumerGroup);
         consumer.setInstanceName(instanceName);
         consumer.setNamesrvAddr(namesrvAddr);
-        consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
         consumer.setMessageModel(messageModel);
         consumer.setConsumeThreadMin(consumeThreadMin);
         consumer.setConsumeThreadMax(consumeThreadMax);

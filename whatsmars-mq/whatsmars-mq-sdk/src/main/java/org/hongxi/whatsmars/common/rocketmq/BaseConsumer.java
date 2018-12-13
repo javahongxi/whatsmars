@@ -26,7 +26,6 @@ public abstract class BaseConsumer {
 
     protected void startConsume(String consumerGroup, String topic, String tags) throws MQClientException {
         consumer = new DefaultMQPushConsumer(consumerGroup);
-        consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
         consumer.subscribe(topic, tags);
         consumer.registerMessageListener(new MessageListenerConcurrently() {
             @Override
@@ -46,7 +45,6 @@ public abstract class BaseConsumer {
 
     protected void startConsumeOrderly(String consumerGroup, String topic, String tags) throws MQClientException {
         consumer = new DefaultMQPushConsumer(consumerGroup);
-        consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
         consumer.subscribe(topic, tags);
         consumer.registerMessageListener(new MessageListenerOrderly() {
             @Override
