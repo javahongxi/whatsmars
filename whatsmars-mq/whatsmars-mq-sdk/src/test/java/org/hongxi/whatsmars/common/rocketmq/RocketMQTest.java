@@ -1,7 +1,5 @@
 package org.hongxi.whatsmars.common.rocketmq;
 
-import org.apache.rocketmq.common.MixAll;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -11,17 +9,14 @@ public class RocketMQTest {
 
     private static final String TEST_TOPIC = "sdk-test";
 
-    @Before
-    public void namesrv() {
-        System.setProperty(MixAll.NAMESRV_ADDR_PROPERTY, "127.0.0.1:9876");
-    }
+//    -Drocketmq.namesrv.addr=127.0.0.1:9876
 
     @Test
     public void send() {
         int count = 0;
         for (int i = 0; i < 20; i++) {
             try {
-                RocketMQTemplate.send(TEST_TOPIC, "hello" + i);
+                RocketMQTemplate.send(TEST_TOPIC, "hello" + i, 1000);
                 count++;
             } catch (Exception e) {
                 e.printStackTrace();

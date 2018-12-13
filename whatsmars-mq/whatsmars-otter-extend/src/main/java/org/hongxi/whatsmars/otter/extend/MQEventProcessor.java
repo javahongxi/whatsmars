@@ -77,7 +77,7 @@ public class MQEventProcessor extends AbstractEventProcessor {
             tags = tags.substring(0, tags.length() - suffix.length());
         }
 
-        RocketMQTemplate.sendOrderly("otter-producer", topic, tags, msgKey, JSON.toJSONString(otterData));
+        RocketMQTemplate.sendOrderly("otter-producer", topic, tags, msgKey, JSON.toJSONString(otterData), 3000);
 
         return false;
     }
