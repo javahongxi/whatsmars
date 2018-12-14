@@ -1,6 +1,7 @@
 package org.hongxi.whatsmars.rocketmq.boot.producer;
 
 import org.apache.rocketmq.spring.starter.core.RocketMQTemplate;
+import org.apache.rocketmq.spring.starter.enums.MessageDelayLevel;
 import org.hongxi.whatsmars.rocketmq.boot.OrderPaidEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -25,7 +26,7 @@ public class ProducerApplication implements CommandLineRunner {
                 rocketMQTemplate.convertAndSend("test-topic-1", "Hello, World!");
                 rocketMQTemplate.send("test-topic-1", MessageBuilder.withPayload("Hello, World! I'm from spring message").build());
                 rocketMQTemplate.convertAndSend("test-topic-2", new OrderPaidEvent("T_001", new BigDecimal("88.00")));
-                rocketMQTemplate.sendDelayed("test-topic-1", MessageBuilder.withPayload("Hello, World! I'm from spring message").build(), 2);
+                rocketMQTemplate.sendDelayed("test-topic-1", MessageBuilder.withPayload("I'm delayed message").build(), MessageDelayLevel.TIME_1M.level);
             } catch (Exception e) {
                 e.printStackTrace();
             }

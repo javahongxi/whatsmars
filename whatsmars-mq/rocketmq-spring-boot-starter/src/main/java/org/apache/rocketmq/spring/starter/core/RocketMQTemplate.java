@@ -32,6 +32,7 @@ import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.client.producer.selector.SelectMessageQueueByHash;
 import org.apache.rocketmq.common.message.MessageConst;
+import org.apache.rocketmq.spring.starter.enums.MessageDelayLevel;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.messaging.Message;
@@ -120,7 +121,7 @@ public class RocketMQTemplate extends AbstractMessageSendingTemplate<String> imp
         return syncSend(destination, payload, producer.getSendMsgTimeout());
     }
 
-    public SendResult sendDelayed(String destination, Message<?> message, int delayLevel) {
+    public SendResult sendDelayed(String destination, Message<?> message, MessageDelayLevel delayLevel) {
         return sendDelayed(destination, message, producer.getSendMsgTimeout(), delayLevel);
     }
 
@@ -130,27 +131,27 @@ public class RocketMQTemplate extends AbstractMessageSendingTemplate<String> imp
      * @param destination formats: `topicName:tags`
      * @param message     {@link org.springframework.messaging.Message}
      * @param timeout     send timeout with millis
-     * @param delayLevel  level for the delay message
+     * @param delayLevel  level for the delay message {@link MessageDelayLevel}
      * @return {@link SendResult}
      */
-    public SendResult sendDelayed(String destination, Message<?> message, long timeout, int delayLevel) {
+    public SendResult sendDelayed(String destination, Message<?> message, long timeout, MessageDelayLevel delayLevel) {
         if (Objects.isNull(message) || Objects.isNull(message.getPayload())) {
-            log.error("syncSend failed. destination:{}, message is null ", destination);
+            log.error("sendDelayed failed. destination:{}, message is null ", destination);
             throw new IllegalArgumentException("`message` and `message.payload` cannot be null");
         }
 
         try {
             long now = System.currentTimeMillis();
             org.apache.rocketmq.common.message.Message rocketMsg = convertToRocketMsg(destination, message);
-            if (delayLevel > 0) {
-                rocketMsg.setDelayTimeLevel(delayLevel);
+            if (delayLevel.level > 0) {
+                rocketMsg.setDelayTimeLevel(delayLevel.level);
             }
             SendResult sendResult = producer.send(rocketMsg, timeout);
             long costTime = System.currentTimeMillis() - now;
             log.debug("send message cost: {} ms, msgId:{}", costTime, sendResult.getMsgId());
             return sendResult;
         } catch (Exception e) {
-            log.error("syncSend failed. destination:{}, message:{} ", destination, message);
+            log.error("sendDelayed failed. destination:{}, message:{} ", destination, message);
             throw new MessagingException(e.getMessage(), e);
         }
     }
