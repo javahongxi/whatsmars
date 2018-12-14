@@ -16,13 +16,6 @@
             <groupId>org.apache.rocketmq</groupId>
             <artifactId>rocketmq-broker</artifactId>
         </dependency>
-
-        <!--JUST FOR LOG-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-            <scope>runtime</scope>
-        </dependency>
     </dependencies>
 
 
