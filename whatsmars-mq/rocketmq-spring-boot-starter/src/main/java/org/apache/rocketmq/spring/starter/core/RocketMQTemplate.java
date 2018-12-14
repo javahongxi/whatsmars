@@ -121,6 +121,37 @@ public class RocketMQTemplate extends AbstractMessageSendingTemplate<String> imp
     }
 
     /**
+     * Same to {@link #syncSend(String, Message)} with send timeout specified in addition.
+     *
+     * @param destination formats: `topicName:tags`
+     * @param message     {@link org.springframework.messaging.Message}
+     * @param timeout     send timeout with millis
+     * @param delayLevel  level for the delay message
+     * @return {@link SendResult}
+     */
+    public SendResult syncSend(String destination, Message<?> message, long timeout, int delayLevel) {
+        if (Objects.isNull(message) || Objects.isNull(message.getPayload())) {
+            log.error("syncSend failed. destination:{}, message is null ", destination);
+            throw new IllegalArgumentException("`message` and `message.payload` cannot be null");
+        }
+
+        try {
+            long now = System.currentTimeMillis();
+            org.apache.rocketmq.common.message.Message rocketMsg = convertToRocketMsg(destination, message);
+            if (delayLevel > 0) {
+                rocketMsg.setDelayTimeLevel(delayLevel);
+            }
+            SendResult sendResult = producer.send(rocketMsg, timeout);
+            long costTime = System.currentTimeMillis() - now;
+            log.debug("send message cost: {} ms, msgId:{}", costTime, sendResult.getMsgId());
+            return sendResult;
+        } catch (Exception e) {
+            log.error("syncSend failed. destination:{}, message:{} ", destination, message);
+            throw new MessagingException(e.getMessage(), e);
+        }
+    }
+
+    /**
      * Same to {@link #syncSend(String, Object)} with send timeout specified in addition.
      *
      * @param destination formats: `topicName:tags`
