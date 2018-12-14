@@ -5,7 +5,7 @@
 - [Spring Boot](https://spring.io/projects/spring-boot) Series(Servlet, Tomcat, Spring, SpringMVC, Spring Data, Spring Boot, Spring WebFlux, Spring Cloud)
 - [Dubbo](http://dubbo.apache.org/en-us/) / [《企业IT架构转型之道：阿里巴巴中台战略思想与架构实战》](https://book.douban.com/subject/27039508/)
 - [《Redis设计与实现》](https://e.jd.com/30189715.html) `e.jd.com`
-- [《RocketMQ实战与原理解析》](https://book.douban.com/subject/30246992/) `douban.com`
+- [《RocketMQ实战与原理解析》](https://e.jd.com/30414640.html) / [《Kafka权威指南》](https://e.jd.com/30442811.html)
 - [《Elasticsearch技术解析与实战》](https://e.jd.com/30318357.html)
 
 👻 [start.spring.io](https://start.spring.io) 👻 [start.dubbo.io](http://start.dubbo.io)
@@ -22,13 +22,14 @@ whatsmars-elasticsearch | Elasticsearch
 whatsmars-javase | Java基础 & 新特性
 whatsmars-mq | 消息中间件RocketMQ,Kafka等
 whatsmars-redis | Redis客户端简单封装
-whatsmars-rpc | RPC
+whatsmars-rpc | Transport & RPC & Serialization
 whatsmars-sharding-jdbc | 分布式数据库中间件
 whatsmars-spring | Spring Framework
 whatsmars-spring-boot | Spring Boot 实战
 whatsmars-spring-boot-samples | Spring Boot 2+
 whatsmars-spring-cloud | Spring Cloud 微服务生态
 whatsmars-tomcat | 模拟tomcat实现
+whatsmars-zk | zookeeper
 
 ### Mars Plan
 - [x] [*Dubbo*](https://github.com/alibaba/dubbo)

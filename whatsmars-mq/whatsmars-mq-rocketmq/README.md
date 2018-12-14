@@ -131,4 +131,4 @@ broker会在一段时间后回查ProducerGroup里的其他实例，确认消息�
 ### More
 - [RocketMQ架构模块解析](https://blog.csdn.net/javahongxi/article/details/72956608)
 - [RocketMQ高并发读写](https://blog.csdn.net/javahongxi/article/details/72956619)
-- [《RocketMQ实战与原理解析》](https://book.douban.com/subject/30246992/) `douban.com`
+- [《RocketMQ实战与原理解析》](https://e.jd.com/30414640.html) `e.jd.com`
