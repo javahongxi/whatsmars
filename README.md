@@ -34,9 +34,9 @@ whatsmars-zk | zookeeper
 ### Mars Plan
 - [x] [*Dubbo*](https://github.com/alibaba/dubbo)
 - [x] [*Sentinel*](https://github.com/alibaba/Sentinel)
-- [ ] [*Nacos*](https://github.com/alibaba/nacos)
 - [x] [*ZooKeeper*](https://github.com/apache/zookeeper)
 - [x] [*RocketMQ*](https://github.com/apache/rocketmq)
+- [x] [*Kafka*](https://github.com/apache/kafka)
 - [x] [*Tomcat*](https://github.com/apache/tomcat)
 - [x] [*Spring Framework*](https://github.com/spring-projects/spring-framework)
 - [x] [*Spring Data*](https://github.com/spring-projects/spring-data-examples)
