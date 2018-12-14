@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>whatsmars-otter-extend</artifactId>
+    <artifactId>whatsmars-otter-mq</artifactId>
 
     <properties>
         <otter.version>4.2.16</otter.version>
@@ -27,9 +27,10 @@
             <version>${otter.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.hongxi</groupId>
-            <artifactId>whatsmars-mq-pure</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-client</artifactId>
+            <version>${rocketmq.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

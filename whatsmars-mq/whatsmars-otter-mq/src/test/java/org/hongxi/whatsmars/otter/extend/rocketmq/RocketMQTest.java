@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.common.rocketmq;
+package org.hongxi.whatsmars.otter.extend.rocketmq;
 
 import org.apache.rocketmq.client.producer.SendResult;
 import org.junit.Test;

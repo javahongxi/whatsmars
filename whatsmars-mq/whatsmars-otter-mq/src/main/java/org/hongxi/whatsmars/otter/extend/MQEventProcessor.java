@@ -5,7 +5,7 @@ import com.alibaba.otter.node.extend.processor.AbstractEventProcessor;
 import com.alibaba.otter.shared.etl.model.EventColumn;
 import com.alibaba.otter.shared.etl.model.EventData;
 import com.alibaba.otter.shared.etl.model.EventType;
-import org.hongxi.whatsmars.common.rocketmq.RocketMQTemplate;
+import org.hongxi.whatsmars.otter.extend.rocketmq.RocketMQTemplate;
 import org.hongxi.whatsmars.otter.extend.support.Column;
 import org.hongxi.whatsmars.otter.extend.support.OtterData;
 import org.springframework.util.StringUtils;
