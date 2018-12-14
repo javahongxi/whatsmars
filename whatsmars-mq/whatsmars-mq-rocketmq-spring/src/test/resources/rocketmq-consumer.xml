@@ -7,6 +7,7 @@
 
     <bean class="org.hongxi.whatsmars.rocketmq.config.spring.Consumer">
         <property name="consumerGroup" value="quick_start_consumer_group" />
+        <!--<property name="namesrvAddr" value="127.0.0.1:9876" />-->
         <property name="topic" value="sdk-test" />
         <property name="tags" value="*" />
         <property name="messageListener" ref="demoMessageListener" />
