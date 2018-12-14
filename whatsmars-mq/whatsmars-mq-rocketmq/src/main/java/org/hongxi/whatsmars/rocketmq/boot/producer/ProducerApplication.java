@@ -26,7 +26,7 @@ public class ProducerApplication implements CommandLineRunner {
                 rocketMQTemplate.convertAndSend("test-topic-1", "Hello, World!");
                 rocketMQTemplate.send("test-topic-1", MessageBuilder.withPayload("Hello, World! I'm from spring message").build());
                 rocketMQTemplate.convertAndSend("test-topic-2", new OrderPaidEvent("T_001", new BigDecimal("88.00")));
-                rocketMQTemplate.sendDelayed("test-topic-1", MessageBuilder.withPayload("I'm delayed message").build(), MessageDelayLevel.TIME_1M.level);
+                rocketMQTemplate.sendDelayed("test-topic-1", MessageBuilder.withPayload("I'm delayed message").build(), MessageDelayLevel.TIME_1M);
             } catch (Exception e) {
                 e.printStackTrace();
             }
