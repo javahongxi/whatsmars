@@ -7,7 +7,7 @@
 
     <bean id="defaultMQProducer" class="org.hongxi.whatsmars.rocketmq.config.spring.Producer">
         <property name="producerGroup" value="quick_start_producer_group" />
-        <property name="namesrvAddr" value="10.2.4.63:9876" />
+        <property name="namesrvAddr" value="127.0.0.1:9876" />
     </bean>
 
     <bean id="rocketMQTemplate" class="org.hongxi.whatsmars.rocketmq.config.spring.RocketMQTemplate">
