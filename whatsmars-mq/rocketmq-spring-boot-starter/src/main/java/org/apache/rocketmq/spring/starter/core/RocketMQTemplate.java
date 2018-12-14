@@ -120,6 +120,10 @@ public class RocketMQTemplate extends AbstractMessageSendingTemplate<String> imp
         return syncSend(destination, payload, producer.getSendMsgTimeout());
     }
 
+    public SendResult sendDelayed(String destination, Message<?> message, int delayLevel) {
+        return sendDelayed(destination, message, producer.getSendMsgTimeout(), delayLevel);
+    }
+
     /**
      * Same to {@link #syncSend(String, Message)} with send timeout specified in addition.
      *
@@ -129,7 +133,7 @@ public class RocketMQTemplate extends AbstractMessageSendingTemplate<String> imp
      * @param delayLevel  level for the delay message
      * @return {@link SendResult}
      */
-    public SendResult syncSend(String destination, Message<?> message, long timeout, int delayLevel) {
+    public SendResult sendDelayed(String destination, Message<?> message, long timeout, int delayLevel) {
         if (Objects.isNull(message) || Objects.isNull(message.getPayload())) {
             log.error("syncSend failed. destination:{}, message is null ", destination);
             throw new IllegalArgumentException("`message` and `message.payload` cannot be null");
