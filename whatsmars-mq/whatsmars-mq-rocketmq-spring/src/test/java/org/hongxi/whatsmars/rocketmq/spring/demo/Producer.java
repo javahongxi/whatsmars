@@ -4,6 +4,9 @@ import org.apache.rocketmq.client.producer.SendResult;
 import org.hongxi.whatsmars.rocketmq.config.spring.RocketMQTemplate;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+/**
+ * -Drocketmq.namesrv.addr=127.0.0.1:9876
+ */
 public class Producer {
 
     public static void main(String[] args) {
