@@ -7,7 +7,6 @@ import org.hongxi.whatsmars.earth.domain.misc.SystemConfig;
 import org.hongxi.whatsmars.earth.domain.pojo.User;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,8 +21,6 @@ import java.util.Date;
  * 用于控制接口是否为需要“登陆”，如果需要登陆，则检测登陆信息是否完备。
  */
 public class LoginInterceptor implements HandlerInterceptor{
-
-    protected static final Logger logger = Logger.getLogger(LoginInterceptor.class);
 
     private SystemConfig systemConfig;
 

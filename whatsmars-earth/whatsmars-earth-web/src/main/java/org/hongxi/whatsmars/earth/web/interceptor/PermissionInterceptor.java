@@ -6,7 +6,6 @@ import org.hongxi.whatsmars.earth.domain.permission.Permission;
 import org.hongxi.whatsmars.earth.domain.pojo.User;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -23,8 +22,6 @@ import java.util.Set;
  * 检查用户权限
  */
 public class PermissionInterceptor implements HandlerInterceptor {
-
-    protected static final Logger logger = Logger.getLogger(PermissionInterceptor.class);
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

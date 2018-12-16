@@ -1,6 +1,7 @@
 package org.hongxi.whatsmars.earth.web.controller;
 
-import org.apache.log4j.Logger;
+import com.itextpdf.text.log.Logger;
+import com.itextpdf.text.log.LoggerFactory;
 import org.hongxi.whatsmars.common.result.Result;
 import org.hongxi.whatsmars.common.result.ResultHelper;
 import org.hongxi.whatsmars.earth.service.UserService;
@@ -19,7 +20,7 @@ import org.hongxi.whatsmars.earth.domain.pojo.User;
 @RequestMapping("/test")
 public class NewController {
 
-    private final Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private UserService userService;

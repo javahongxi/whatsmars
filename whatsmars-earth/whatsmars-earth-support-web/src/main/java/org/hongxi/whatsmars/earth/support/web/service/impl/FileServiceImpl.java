@@ -1,11 +1,12 @@
 package org.hongxi.whatsmars.earth.support.web.service.impl;
 
-import org.apache.log4j.Logger;
 import org.hongxi.whatsmars.common.ImageSizeEnum;
 import org.hongxi.whatsmars.common.mongo.GridFSClient;
 import org.hongxi.whatsmars.common.pojo.Result;
 import org.hongxi.whatsmars.common.pojo.ResultCode;
 import org.hongxi.whatsmars.earth.support.web.service.FileService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ import java.io.InputStream;
 @Service("fileService")
 public class FileServiceImpl implements FileService {
 
-    protected static final Logger logger = Logger.getLogger(FileService.class);
+    protected static final Logger logger = LoggerFactory.getLogger(FileService.class);
 
     @Autowired
     private GridFSClient gridFSClient;

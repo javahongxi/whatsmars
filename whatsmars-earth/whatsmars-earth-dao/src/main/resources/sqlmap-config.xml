@@ -4,7 +4,7 @@
 <configuration>
 	<settings>
 		<setting name="lazyLoadingEnabled" value="false" />
-		<setting name="logImpl" value="LOG4J"/>
+		<!--<setting name="logImpl" value="SLF4J"/>-->
 	</settings>
 	<typeAliases>
 

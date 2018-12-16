@@ -1,9 +1,10 @@
 package org.hongxi.whatsmars.earth.web.controller;
 
+import com.itextpdf.text.log.Logger;
+import com.itextpdf.text.log.LoggerFactory;
 import org.hongxi.whatsmars.common.pojo.Result;
 import org.hongxi.whatsmars.common.util.ResultHelper;
 import org.hongxi.whatsmars.earth.service.AccountService;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/account")
 public class MarsController extends BaseController {
 
-    private Logger accountLogger = Logger.getLogger("account-logger");
+    private Logger accountLogger = LoggerFactory.getLogger("account-logger");
 
     @Autowired
     private AccountService accountService;
