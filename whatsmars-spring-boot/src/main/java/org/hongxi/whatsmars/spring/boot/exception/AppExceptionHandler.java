@@ -24,7 +24,7 @@ import java.util.Map;
 @ControllerAdvice(annotations = { RestController.class, Controller.class})
 public class AppExceptionHandler {
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
      * 业务异常处理，直接返回异常信息提示

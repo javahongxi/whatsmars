@@ -1,7 +1,6 @@
 package org.hongxi.whatsmars.spring.boot.controller;
 
 import com.github.pagehelper.Page;
-import org.apache.logging.log4j.LogManager;
 import org.hongxi.whatsmars.common.result.Result;
 import org.hongxi.whatsmars.common.result.ResultHelper;
 import org.hongxi.whatsmars.spring.boot.common.ReturnItemUtils;
@@ -9,6 +8,8 @@ import org.hongxi.whatsmars.spring.boot.common.pojo.ReturnItems;
 import org.hongxi.whatsmars.spring.boot.exception.AppException;
 import org.hongxi.whatsmars.spring.boot.model.User;
 import org.hongxi.whatsmars.spring.boot.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ import java.util.*;
 @RequestMapping("/user")
 public class UserController {
 
-    private final org.apache.logging.log4j.Logger logger = LogManager.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private UserService userService;

@@ -5,8 +5,8 @@ import com.github.pagehelper.PageHelper;
 import org.hongxi.whatsmars.spring.boot.dao.UserMapper;
 import org.hongxi.whatsmars.spring.boot.model.User;
 import org.hongxi.whatsmars.spring.boot.service.UserService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +19,7 @@ import java.util.List;
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
-    private final Logger logger = LogManager.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private UserMapper userMapper;
