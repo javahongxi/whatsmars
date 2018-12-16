@@ -15,8 +15,8 @@
         <property name="cnName" value="火星" />
     </bean>
 
-    <!-- MQ发消息线程池 -->
-    <bean id="taskMqExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor" >
+    <!-- 线程池 -->
+    <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor" >
         <!-- 核心线程数  -->
         <property name="corePoolSize" value="10" />
         <!-- 最大线程数 -->

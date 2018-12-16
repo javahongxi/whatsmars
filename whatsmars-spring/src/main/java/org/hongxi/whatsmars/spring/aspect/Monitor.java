@@ -11,12 +11,10 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.CONSTRUCTOR})
 public @interface Monitor {
-    String DEFAULT_TAG_NAME = "@@USE_METHOD_NAME";
 
-    String tag() default "@@USE_METHOD_NAME";
-
-    String message() default "";
-
-    boolean heart() default false;
+    /**
+     * 标识每一个方法，全局唯一
+     */
+    String tag();
 
 }
