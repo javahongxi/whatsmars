@@ -1,5 +1,7 @@
 # [Kafka](https://github.com/apache/kafka):
 
+Please walk to `whatsmars-boot-sample-kafka`
+
 linux:<br>
 启动zk ./zookeeper-server-start.sh ../config/zookeeper.properties<br>
 启动server ./kafka-server-start.sh ../config/server.properties<br>
@@ -9,3 +11,5 @@ win:<br>
 server.properties port=9092<br>
 启动zk zookeeper-server-start.bat ../../config/zookeeper.properties<br>
 启动server kafka-server-start.bat ../../config/server.properties<br>
+
+[kafka原理与特性](https://shift-alt-ctrl.iteye.com/blog/1930345)
