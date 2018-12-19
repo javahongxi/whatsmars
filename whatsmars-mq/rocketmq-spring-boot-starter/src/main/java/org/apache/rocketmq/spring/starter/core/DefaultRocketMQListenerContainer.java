@@ -96,6 +96,10 @@ public class DefaultRocketMQListenerContainer implements InitializingBean, Rocke
     @Getter
     private int consumeThreadMax = 64;
 
+    @Setter
+    @Getter
+    private int reconsumeTimes = 0;
+
     @Getter
     @Setter
     private String charset = "UTF-8";
@@ -180,9 +184,14 @@ public class DefaultRocketMQListenerContainer implements InitializingBean, Rocke
                     long costTime = System.currentTimeMillis() - now;
                     log.info("consume {} cost: {} ms", messageExt.getMsgId(), costTime);
                 } catch (Exception e) {
-                    log.warn("consume message failed. messageExt:{}", messageExt, e);
-                    context.setSuspendCurrentQueueTimeMillis(suspendCurrentQueueTimeMillis);
-                    return ConsumeOrderlyStatus.SUSPEND_CURRENT_QUEUE_A_MOMENT;
+                    if (reconsumeTimes == 0) {
+                        log.warn("consume message failed, and will not retry. messageExt:{}", messageExt, e);
+                    } else if (reconsumeTimes <= -1 || messageExt.getReconsumeTimes() < reconsumeTimes) {
+                        log.warn("consume message failed, reconsumeTimes:{}. messageExt:{}",
+                                messageExt.getReconsumeTimes(), messageExt, e);
+                        context.setSuspendCurrentQueueTimeMillis(suspendCurrentQueueTimeMillis);
+                        return ConsumeOrderlyStatus.SUSPEND_CURRENT_QUEUE_A_MOMENT;
+                    }
                 }
             }
 
@@ -273,6 +282,9 @@ public class DefaultRocketMQListenerContainer implements InitializingBean, Rocke
         }
 
         consumer.setMessageModel(messageModel);
+        if (reconsumeTimes > 0) {
+            consumer.setMaxReconsumeTimes(reconsumeTimes);
+        }
 
         switch (selectorType) {
             case TAG:

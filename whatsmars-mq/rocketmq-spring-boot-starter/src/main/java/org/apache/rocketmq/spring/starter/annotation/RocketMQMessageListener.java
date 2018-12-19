@@ -80,4 +80,9 @@ public @interface RocketMQMessageListener {
      */
     int consumeThreadMax() default 64;
 
+    /**
+     * Re-consume times for concurrent/orderly message
+     */
+    int reconsumeTimes() default 0;
+
 }

@@ -21,16 +21,18 @@ public class ProducerApplication implements CommandLineRunner {
     }
     
     public void run(String... args) throws Exception {
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 5; i++) {
             try {
                 rocketMQTemplate.convertAndSend("test-topic-1", "Hello, World!");
-                rocketMQTemplate.send("test-topic-1", MessageBuilder.withPayload("Hello, World! I'm from spring message").build());
-                rocketMQTemplate.convertAndSend("test-topic-2", new OrderPaidEvent("T_001", new BigDecimal("88.00")));
-                rocketMQTemplate.sendDelayed("test-topic-1", MessageBuilder.withPayload("I'm delayed message").build(), MessageDelayLevel.TIME_1M);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+        rocketMQTemplate.send("test-topic-1", MessageBuilder.withPayload("Hello, World! I'm from spring message").build());
+        rocketMQTemplate.convertAndSend("test-topic-2", new OrderPaidEvent("T_001", new BigDecimal("88.00")));
+        rocketMQTemplate.sendDelayed("test-topic-1", MessageBuilder.withPayload("I'm delayed message").build(), MessageDelayLevel.TIME_1M);
+        rocketMQTemplate.syncSendOrderly("test-topic-4", MessageBuilder.withPayload("I'm order message").build(), "1234");
+        System.out.println("send finished!");
         
 //        rocketMQTemplate.destroy(); // notes:  once rocketMQTemplate be destroyed, you can not send any message again with this rocketMQTemplate
     }

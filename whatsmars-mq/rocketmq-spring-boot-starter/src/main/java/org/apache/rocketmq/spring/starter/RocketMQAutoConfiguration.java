@@ -176,6 +176,7 @@ public class RocketMQAutoConfiguration {
             beanBuilder.addPropertyValue(PROP_CONSUMER_GROUP, environment.resolvePlaceholders(annotation.consumerGroup()));
             beanBuilder.addPropertyValue(PROP_CONSUME_MODE, annotation.consumeMode());
             beanBuilder.addPropertyValue(PROP_CONSUME_THREAD_MAX, annotation.consumeThreadMax());
+            beanBuilder.addPropertyValue(PROP_RECONSUME_TIMES, annotation.reconsumeTimes());
             beanBuilder.addPropertyValue(PROP_MESSAGE_MODEL, annotation.messageModel());
             beanBuilder.addPropertyValue(PROP_SELECTOR_EXPRESS, environment.resolvePlaceholders(annotation.selectorExpress()));
             beanBuilder.addPropertyValue(PROP_SELECTOR_TYPE, annotation.selectorType());
