@@ -6,6 +6,9 @@ import org.apache.rocketmq.spring.starter.core.RocketMQListener;
 import org.apache.rocketmq.spring.starter.enums.ConsumeMode;
 import org.springframework.stereotype.Service;
 
+/**
+ * 顺序消息消费失败，默认不重试(本人修改点)
+ */
 @Slf4j
 @Service
 @RocketMQMessageListener(topic = "test-topic-4", consumerGroup = "my-consumer_test-topic-4",

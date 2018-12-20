@@ -15,7 +15,7 @@
         <property name="cnName" value="火星" />
     </bean>
 
-    <!-- 线程池 -->
+    <!-- 线程池建议用这个，不建议用Executes (队列长度或线程数不可控) -->
     <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor" >
         <!-- 核心线程数  -->
         <property name="corePoolSize" value="10" />

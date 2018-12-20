@@ -7,6 +7,9 @@ import org.apache.rocketmq.spring.starter.core.RocketMQListener;
 import org.apache.rocketmq.spring.starter.enums.ConsumeMode;
 import org.springframework.stereotype.Service;
 
+/**
+ * 配置重试次数(本人修改点) reconsumeTimes
+ */
 @Slf4j
 @Service
 @RocketMQMessageListener(topic = "test-topic-4", consumerGroup = "my-consumer_test-topic-5",
