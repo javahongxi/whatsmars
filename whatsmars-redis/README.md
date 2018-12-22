@@ -13,9 +13,9 @@ Spring Boot 2.x默认使用Lettuce。
 - Jedis相比Lettuce和[Redission](https://github.com/redisson/redisson)，最大的特点是简单易集成，这从源代码量就可感受到。
 
 ### Redis集群方案
-早期Redis没有Cluster特性，而目前官方Cluster方案还有一些未解决或无法避免的问题，实践中广泛采用的集群方案仍然是客户端分片与
-[Twemproxy](https://github.com/twitter/twemproxy)/[Codis](https://github.com/CodisLabs/codis)代理或云厂商方案，
-少数公司还有一些自研内存存储方案，如京东的JIMDB。
+- 客户端分片: 操作简单，无法动态扩缩容 `现实方案`
+- [Twemproxy](https://github.com/twitter/twemproxy)/[Codis](https://github.com/CodisLabs/codis): `多余方案`
+- Redis Cluster: 官方集群方案，无中心结构，动态扩缩容，最大支撑1000个节点，`理想方案`
 
 ### 主从读写分离
 通常情况下，Slave只是作为数据备份，不提供read操作，这种考虑是为了避免slave提供stale数据而导致一些问题。
