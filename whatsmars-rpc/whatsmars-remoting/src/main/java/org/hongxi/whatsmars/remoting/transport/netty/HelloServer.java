@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.remoting.netty;
+package org.hongxi.whatsmars.remoting.transport.netty;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
