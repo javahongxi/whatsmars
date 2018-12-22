@@ -38,9 +38,11 @@ public class Demo {
         try {
             cacheContent = jedis.get("hello_world");
         } finally {
-            singletonRedisClient.close();
+            if (jedis != null) {
+                jedis.close();
+            }
         }
-        // 获取redis数据之后，立即释放连接，然后开始进行业务处理
+        // 获取redis数据之后，立即归还连接，然后开始进行业务处理
         if(cacheContent == null) {
             // DB operation
         }
@@ -83,9 +85,11 @@ public class Demo {
             cacheContent = jedis.get("hello_world");
             System.out.println(cacheContent);
         } finally {
-            shardedRedisClient.close();
+            if (jedis != null) {
+                jedis.close();
+            }
         }
-        // 获取redis数据之后，立即释放连接，然后开始进行业务处理
+        // 获取redis数据之后，立即归还连接，然后开始进行业务处理
         if(cacheContent == null) {
             // DB operation
         }

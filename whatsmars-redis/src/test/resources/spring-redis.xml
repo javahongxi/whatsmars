@@ -7,35 +7,26 @@
 
     <!-- 单个实例 -->
     <bean id="singletonRedisClient" class="org.hongxi.whatsmars.redis.client.singleton.SingletonRedisClient">
-        <property name="host" value="127.0.0.1"/>
+        <property name="host" value="127.0.0.1" />
         <property name="port" value="6379" />
-        <property name="maxTotal" value="256"/>
-        <property name="maxIdle" value="8" />
-        <property name="maxWait" value="3000" />
         <property name="timeout" value="3000" />
-        <property name="minIdle" value="2" />
+        <property name="jedisPoolConfig" ref="commonJedisPoolConfig" />
     </bean>
     <!-- M-S读写分离 -->
     <bean id="readWriteRedisClient" class="org.hongxi.whatsmars.redis.client.readwrite.ReadWriteRedisClient">
-        <property name="hosts" value="127.0.0.1:6379,127.0.0.1:7379"/>
-        <property name="maxTotal" value="256"/>
-        <property name="maxIdle" value="8" />
-        <property name="maxWait" value="3000" />
+        <property name="address" value="127.0.0.1:6379,127.0.0.1:6379" />
         <property name="timeout" value="3000" />
-        <property name="minIdle" value="2" />
+        <property name="jedisPoolConfig" ref="commonJedisPoolConfig" />
     </bean>
     <!-- Cluster模式 (请搭建redis集群哦，不要client是cluster模式，server还是单点)-->
     <!--<bean id="redisClusterClient" class="org.hongxi.whatsmars.redis.client.cluster.RedisClusterClient">
-        <property name="addresses" value="127.0.0.1:6379,127.0.01:7379,127.0.0.1:8379"/>
-        <property name="maxTotal" value="256"/>
-        <property name="maxIdle" value="8" />
-        <property name="maxWait" value="3000" />
+        <property name="address" value="127.0.0.1:6379,127.0.01:7379,127.0.0.1:8379" />
         <property name="timeout" value="3000" />
-        <property name="minIdle" value="2" />
+        <property name="jedisPoolConfig" ref="commonJedisPoolConfig" />
     </bean>-->
     <!-- 客户端sharding模式 -->
     <bean id="shardedRedisClient" class="org.hongxi.whatsmars.redis.client.sharded.ShardedRedisClient">
-        <property name="address" value="test1:127.0.0.1:6379,test2:127.0.0.1:7379"/>
+        <property name="address" value="test1:127.0.0.1:6379,test2:127.0.0.1:6379" />
         <property name="timeout" value="3000" />
         <property name="jedisPoolConfig" ref="commonJedisPoolConfig" />
     </bean>

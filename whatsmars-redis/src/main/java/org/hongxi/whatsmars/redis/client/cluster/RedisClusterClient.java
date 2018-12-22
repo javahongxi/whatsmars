@@ -1,5 +1,6 @@
 package org.hongxi.whatsmars.redis.client.cluster;
 
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
 import redis.clients.jedis.HostAndPort;
@@ -12,90 +13,16 @@ import java.util.Set;
 /**
  * Created by javahongxi on 2017/6/22.
  */
-public class RedisClusterClient implements FactoryBean<JedisCluster>,InitializingBean {
+public class RedisClusterClient implements FactoryBean<JedisCluster>, InitializingBean, DisposableBean {
+
     private JedisCluster jedisCluster;
 
-    private int maxTotal = 128;
+    private JedisPoolConfig jedisPoolConfig;
 
-    //最大空闲连接数
-    private int maxIdle = 6;
+    // ip:port,ip:port
+    private String address;
 
-    //最小空闲连接数
-    private int minIdle = 1;
-    //如果连接池耗尽，最大阻塞的时间，默认为3秒
-    private long maxWait = 3000;//单位毫秒
-
-    private int timeout = 3000;//connectionTimeout，soTimeout，默认为3秒
-
-    private boolean testOnBorrow = true;
-    private boolean testOnReturn = true;
-
-    private String addresses;//ip:port,ip:port
-
-    public void setMaxTotal(int maxTotal) {
-        this.maxTotal = maxTotal;
-    }
-
-    public void setMaxIdle(int maxIdle) {
-        this.maxIdle = maxIdle;
-    }
-
-    public void setMinIdle(int minIdle) {
-        this.minIdle = minIdle;
-    }
-
-    public void setMaxWait(long maxWait) {
-        this.maxWait = maxWait;
-    }
-
-    public void setTimeout(int timeout) {
-        this.timeout = timeout;
-    }
-
-    public void setTestOnBorrow(boolean testOnBorrow) {
-        this.testOnBorrow = testOnBorrow;
-    }
-
-    public void setTestOnReturn(boolean testOnReturn) {
-        this.testOnReturn = testOnReturn;
-    }
-
-    public void setAddresses(String addresses) {
-        this.addresses = addresses;
-    }
-
-    protected JedisPoolConfig buildConfig() {
-        JedisPoolConfig config = new JedisPoolConfig();
-
-        config.setMinIdle(minIdle);
-        config.setMaxIdle(maxIdle);
-        config.setMaxTotal(maxTotal);
-        config.setTestOnBorrow(testOnBorrow);
-        config.setTestOnReturn(testOnReturn);
-        config.setBlockWhenExhausted(true);
-        config.setMaxWaitMillis(maxWait);
-        config.setFairness(false);
-
-        return config;
-    }
-
-    private Set<HostAndPort> buildHostAndPorts() {
-        String[] hostPorts = addresses.split(",");
-        Set<HostAndPort> hostAndPorts = new HashSet<HostAndPort>();
-        for(String item : hostPorts) {
-            String[] hostPort = item.split(":");
-            HostAndPort hostAndPort = new HostAndPort(hostPort[0],Integer.valueOf(hostPort[1]));
-            hostAndPorts.add(hostAndPort);
-        }
-        return hostAndPorts;
-    }
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        JedisPoolConfig config = buildConfig();
-        Set<HostAndPort> hostAndPorts = buildHostAndPorts();
-        jedisCluster = new JedisCluster(hostAndPorts,timeout,config);
-    }
+    private int timeout = 3000;
 
     @Override
     public JedisCluster getObject() throws Exception {
@@ -110,5 +37,41 @@ public class RedisClusterClient implements FactoryBean<JedisCluster>,Initializin
     @Override
     public boolean isSingleton() {
         return true;
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        Set<HostAndPort> hostAndPorts = buildHostAndPorts();
+        jedisCluster = new JedisCluster(hostAndPorts, timeout, jedisPoolConfig);
+    }
+
+    private Set<HostAndPort> buildHostAndPorts() {
+        String[] hostPorts = address.split(",");
+        Set<HostAndPort> hostAndPorts = new HashSet<HostAndPort>();
+        for(String item : hostPorts) {
+            String[] hostPort = item.split(":");
+            HostAndPort hostAndPort = new HostAndPort(hostPort[0],Integer.valueOf(hostPort[1]));
+            hostAndPorts.add(hostAndPort);
+        }
+        return hostAndPorts;
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        if (jedisCluster != null) {
+            jedisCluster.close();
+        }
+    }
+
+    public void setJedisPoolConfig(JedisPoolConfig jedisPoolConfig) {
+        this.jedisPoolConfig = jedisPoolConfig;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setTimeout(int timeout) {
+        this.timeout = timeout;
     }
 }
