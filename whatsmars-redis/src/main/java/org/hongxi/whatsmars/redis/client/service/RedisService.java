@@ -80,7 +80,7 @@ public interface RedisService<T> {
 	
 	T getObject(String key, Class<T> c);
 	
-	byte[] getB(String key);
+	byte[] getBytes(String key);
 
 	/**
 	 * <pre>
@@ -108,11 +108,12 @@ public interface RedisService<T> {
 	 */
 	boolean flushDB();
 
-    void pubMsg(String channel, Object obj);
-
-    Set<String> getSet(String key);
-
-    long addSet(String key, String... values);
-
+	/**
+	 * <pre>
+	 *
+	 * &#64;param keys
+	 * &#64;return 批量获取key的值
+	 * </pre>
+	 */
     List<T> multiGet(Collection keys);
 }

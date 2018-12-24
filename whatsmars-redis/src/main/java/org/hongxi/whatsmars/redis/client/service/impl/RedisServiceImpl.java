@@ -1,21 +1,16 @@
 package org.hongxi.whatsmars.redis.client.service.impl;
 
-import com.alibaba.fastjson.JSON;
-import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.hongxi.whatsmars.redis.client.service.RedisService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.io.IOException;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -23,6 +18,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+@Slf4j
 @Service
 public class RedisServiceImpl<T> implements RedisService<T> {
 
@@ -30,8 +26,6 @@ public class RedisServiceImpl<T> implements RedisService<T> {
 
 	@Resource
 	private RedisTemplate<String, Serializable> redisTemplate;
-	@Autowired
-	private StringRedisTemplate stringRedisTemplate;
 
 	@Override
 	public boolean set(final byte[] key, final byte[] value, final long activeTime) {
@@ -69,7 +63,7 @@ public class RedisServiceImpl<T> implements RedisService<T> {
 		try {
 			b = objectMapper.writeValueAsBytes(value);
 		} catch (JsonProcessingException e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 			return false;
 		}
 		return this.set(key, b, activeTime);
@@ -83,7 +77,7 @@ public class RedisServiceImpl<T> implements RedisService<T> {
 					byte[] value = connection.get(key.getBytes());
 					return value == null ? null : new String(value, CHARSET);
 				} catch (UnsupportedEncodingException e) {
-					e.printStackTrace();
+					log.error(e.getMessage(), e);
 				}
 				return null;
 			}
@@ -101,12 +95,8 @@ public class RedisServiceImpl<T> implements RedisService<T> {
 				ObjectMapper objectMapper = new ObjectMapper();
 				try {
 					return objectMapper.readValue(value, c);
-				} catch (JsonParseException e) {
-					e.printStackTrace();
-				} catch (JsonMappingException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
+				} catch (Exception e) {
+					log.error(e.getMessage(), e);
 				}
 				return null;
 			}
@@ -160,29 +150,12 @@ public class RedisServiceImpl<T> implements RedisService<T> {
 	}
 
 	@Override
-	public byte[] getB(final String key) {
+	public byte[] getBytes(final String key) {
 		return redisTemplate.execute(new RedisCallback<byte[]>() {
 			public byte[] doInRedis(RedisConnection connection) throws DataAccessException {
 				return connection.get(key.getBytes());
 			}
 		});
-	}
-
-	@Override
-	public void pubMsg(String channel, Object obj) {
-		assert null != obj;
-		String msg = obj instanceof String ? String.valueOf(obj) : JSON.toJSONString(obj);
-		stringRedisTemplate.convertAndSend(channel, msg);
-	}
-
-	@Override
-	public Set<String> getSet(String key) {
-		return stringRedisTemplate.opsForSet().members(key);
-	}
-
-	@Override
-	public long addSet(String key, String... values) {
-		return stringRedisTemplate.opsForSet().add(key, values);
 	}
 
 	@Override

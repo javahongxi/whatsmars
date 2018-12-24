@@ -1,5 +1,6 @@
 package org.hongxi.whatsmars.redis.client.service.impl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.hongxi.whatsmars.redis.client.service.RedisMapService;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+@Slf4j
 @Service
 public class RedisMapServiceImpl implements RedisMapService {
 
@@ -121,7 +123,7 @@ public class RedisMapServiceImpl implements RedisMapService {
 		try {
 			return value == null ? null : new String(value, CHARSET);
 		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		}
 		return null;
 	}
