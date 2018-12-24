@@ -1,5 +1,6 @@
 package org.hongxi.whatsmars.spring.boot.controller;
 
+import org.hongxi.whatsmars.redis.client.service.RedisStringService;
 import org.hongxi.whatsmars.spring.boot.async.MessageService;
 import org.hongxi.whatsmars.spring.boot.dao.UserMapper;
 import org.slf4j.Logger;
@@ -22,6 +23,8 @@ public class InitRunner implements CommandLineRunner {
     private UserMapper userMapper;
     @Autowired
     private MessageService messageService;
+    @Autowired
+    private RedisStringService redisStringService;
 
     @Override
     public void run(String... args) throws Exception {
@@ -31,5 +34,9 @@ public class InitRunner implements CommandLineRunner {
         for (int i = 0; i < 10; i++) {
             messageService.send("message" + i);
         }
+
+        String key = "domain";
+        redisStringService.set(key, "hongxi.org", 60); // 60s
+        System.out.println(redisStringService.get(key));
     }
 }

@@ -56,6 +56,15 @@ spring:
       test-while-idle: true
       time-between-eviction-runs-millis: 5000
       validation-query: SELECT 1
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 10000
+    pool:
+      max-active: 8
+      max-idle: 8
+      max-wait: -1
+      min-idle: 0
 server:
   port: 8081
   tomcat:
@@ -87,6 +96,15 @@ spring:
       test-while-idle: true
       time-between-eviction-runs-millis: 5000
       validation-query: SELECT 1
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 10000
+    pool:
+      max-active: 8
+      max-idle: 8
+      max-wait: -1
+      min-idle: 0
 server:
   port: 8081
   tomcat:
@@ -118,6 +136,15 @@ spring:
       test-while-idle: true
       time-between-eviction-runs-millis: 5000
       validation-query: SELECT 1
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 10000
+    pool:
+      max-active: 8
+      max-idle: 8
+      max-wait: -1
+      min-idle: 0
 server:
   port: 8081
   tomcat:
