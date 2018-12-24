@@ -15,9 +15,11 @@ public class DubboConfig {
      * 配置文件里配置默认的，这里配置其他需要的
      */
     @Bean("otherRegistry")
-    public RegistryConfig otherRegistry(@Value("${registry.other.address}") String address,
-                                      @Value("${registry.other.id}") String id) {
+    public RegistryConfig otherRegistry(@Value("${registry.other.protocol}") String protocol,
+                                        @Value("${registry.other.address}") String address,
+                                        @Value("${registry.other.id}") String id) {
         RegistryConfig registry = new RegistryConfig();
+        registry.setProtocol(protocol);
         registry.setAddress(address);
         registry.setId(id);
         return registry;
