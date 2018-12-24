@@ -13,7 +13,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 public class KafkaApplication implements CommandLineRunner {
 
     @Autowired
-    private KafkaTemplate<Object, String> kafkaTemplate;
+    private KafkaTemplate<String, String> kafkaTemplate;
 
     public static void main(String[] args) {
         SpringApplication.run(KafkaApplication.class, args);
