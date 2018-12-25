@@ -28,7 +28,7 @@ public class RedisServiceImpl<T> implements RedisService<T> {
 	private RedisTemplate<String, Serializable> redisTemplate;
 
 	@Override
-	public boolean set(final byte[] key, final byte[] value, final long activeTime) {
+	public boolean set(byte[] key, byte[] value, long activeTime) {
 		return redisTemplate.execute(new RedisCallback<Boolean>() {
 			public Boolean doInRedis(RedisConnection connection) throws DataAccessException {
 				boolean rs = true;
@@ -70,7 +70,17 @@ public class RedisServiceImpl<T> implements RedisService<T> {
 	}
 
 	@Override
-	public String get(final String key) {
+	public boolean set(String key, T value, long activeTime) {
+		return this.set(key.getBytes(), value, activeTime);
+	}
+
+	@Override
+	public boolean set(String key, T value) {
+		return this.set(key, value, 0L);
+	}
+
+	@Override
+	public String get(String key) {
 		return redisTemplate.execute(new RedisCallback<String>() {
 			public String doInRedis(RedisConnection connection) throws DataAccessException {
 				try {
@@ -85,7 +95,7 @@ public class RedisServiceImpl<T> implements RedisService<T> {
 	}
 
 	@Override
-	public T getObject(final String key, final Class<T> c) {
+	public T getObject(String key, Class<T> c) {
 		return redisTemplate.execute(new RedisCallback<T>() {
 			public T doInRedis(RedisConnection connection) throws DataAccessException {
 				byte[] value = connection.get(key.getBytes());
@@ -109,7 +119,7 @@ public class RedisServiceImpl<T> implements RedisService<T> {
 	}
 
 	@Override
-	public boolean exists(final String key) {
+	public boolean exists(String key) {
 		return redisTemplate.execute(new RedisCallback<Boolean>() {
 			public Boolean doInRedis(RedisConnection connection) throws DataAccessException {
 				return connection.exists(key.getBytes());
@@ -128,7 +138,7 @@ public class RedisServiceImpl<T> implements RedisService<T> {
 	}
 
 	@Override
-	public long delete(final Collection<String> keys) {
+	public long delete(Collection<String> keys) {
 		return redisTemplate.execute(new RedisCallback<Long>() {
 			public Long doInRedis(RedisConnection connection) throws DataAccessException {
 				long result = 0;
@@ -141,7 +151,7 @@ public class RedisServiceImpl<T> implements RedisService<T> {
 	}
 
 	@Override
-	public long delete(final String... keys) {
+	public long delete(String... keys) {
 		Collection<String> cols = new ArrayList<String>();
 		for (String key : keys) {
 			cols.add(key);
@@ -150,7 +160,7 @@ public class RedisServiceImpl<T> implements RedisService<T> {
 	}
 
 	@Override
-	public byte[] getBytes(final String key) {
+	public byte[] getBytes(String key) {
 		return redisTemplate.execute(new RedisCallback<byte[]>() {
 			public byte[] doInRedis(RedisConnection connection) throws DataAccessException {
 				return connection.get(key.getBytes());

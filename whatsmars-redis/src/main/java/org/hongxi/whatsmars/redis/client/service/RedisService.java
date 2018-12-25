@@ -69,6 +69,10 @@ public interface RedisService<T> {
 	
 	boolean set(byte[] key, T value, long activeTime);
 
+	boolean set(String key, T value, long activeTime);
+
+	boolean set(String key, T value);
+
 	/**
 	 * <pre>
 	 *  

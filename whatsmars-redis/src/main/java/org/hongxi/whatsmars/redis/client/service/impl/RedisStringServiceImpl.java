@@ -107,4 +107,5 @@ public class RedisStringServiceImpl implements RedisStringService {
         String msg = obj instanceof String ? String.valueOf(obj) : JSON.toJSONString(obj);
         stringRedisTemplate.convertAndSend(channel, msg);
     }
+
 }

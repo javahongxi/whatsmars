@@ -18,7 +18,7 @@ public class RedisSortedSetServiceImpl implements RedisSortedSetService {
 	private RedisTemplate<String, Set<Object>> redisTemplate;
 	
 	@Override
-	public long zadd(final byte[] key, final Set<Tuple> tuples) {
+	public long zadd(byte[] key, Set<Tuple> tuples) {
 		redisTemplate.execute(new RedisCallback<Long>() {
 
 			@Override
@@ -30,7 +30,7 @@ public class RedisSortedSetServiceImpl implements RedisSortedSetService {
 	}
 
 	@Override
-	public Set<byte[]> zrange(final byte[] key, final int start, final int end) {
+	public Set<byte[]> zrange(byte[] key, int start, int end) {
 		return redisTemplate.execute(new RedisCallback<Set<byte[]>>() {
 
 			@Override
@@ -54,6 +54,5 @@ public class RedisSortedSetServiceImpl implements RedisSortedSetService {
 	public Set<byte[]> zrange(String key, int start, int end) {
 		return this.zrange(key.getBytes(), start, end);
 	}
-
 
 }

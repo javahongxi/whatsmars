@@ -25,7 +25,7 @@ public class RedisMapServiceImpl implements RedisMapService {
 	private RedisTemplate<String, Map<byte[], byte[]>> redisTemplate;
 	
 	@Override
-	public boolean hMSet(final  String redisKey, final Map<byte[], byte[]> valueMap) {
+	public boolean hMSet(String redisKey, Map<byte[], byte[]> valueMap) {
 		if(CollectionUtils.isEmpty(valueMap)){
 			return false;
 		}
@@ -41,7 +41,7 @@ public class RedisMapServiceImpl implements RedisMapService {
 	}
 
 	@Override
-	public Set<byte[]> hKeys(final String redisKey) {
+	public Set<byte[]> hKeys(String redisKey) {
 		return redisTemplate.execute(new RedisCallback<Set<byte[]>>() {
 
 			@Override
@@ -52,7 +52,7 @@ public class RedisMapServiceImpl implements RedisMapService {
 	}
 
 	@Override
-	public Map<byte[], byte[]> hGetAll(final String redisKey) {
+	public Map<byte[], byte[]> hGetAll(String redisKey) {
 		return redisTemplate.execute(new RedisCallback<Map<byte[], byte[]>>() {
 
 			@Override
@@ -63,7 +63,7 @@ public class RedisMapServiceImpl implements RedisMapService {
 	}
 
 	@Override
-	public List<byte[]> hMGet(final String redisKey, final List<String> mapKeys) {
+	public List<byte[]> hMGet(String redisKey, List<String> mapKeys) {
 		return redisTemplate.execute(new RedisCallback<List<byte[]>>() {
 
 			@Override
@@ -80,7 +80,7 @@ public class RedisMapServiceImpl implements RedisMapService {
 	}
 
 	@Override
-	public byte[] hGet(final String redisKey, final String mapKey) {
+	public byte[] hGet(String redisKey, String mapKey) {
 		return redisTemplate.execute(new RedisCallback<byte[]>() {
 
 			@Override
@@ -91,7 +91,7 @@ public class RedisMapServiceImpl implements RedisMapService {
 	}
 
 	@Override
-	public long hDel(final String redisKey, final List<String> mapKeys) {
+	public long hDel(String redisKey, List<String> mapKeys) {
 		return redisTemplate.execute(new RedisCallback<Long>() {
 
 			@Override
@@ -107,7 +107,7 @@ public class RedisMapServiceImpl implements RedisMapService {
 	}
 
 	@Override
-	public boolean hSet(final String redisKey, final String mapKey, final String mapValue) {
+	public boolean hSet(String redisKey, String mapKey, String mapValue) {
 		return redisTemplate.execute(new RedisCallback<Boolean>() {
 
 			@Override
@@ -129,7 +129,7 @@ public class RedisMapServiceImpl implements RedisMapService {
 	}
 
 	@Override
-	public String hGet(final String redisKey, final byte[] mapKey) {
+	public String hGet(String redisKey, byte[] mapKey) {
 		return redisTemplate.execute(new RedisCallback<String>() {
 
 			@Override
@@ -144,7 +144,7 @@ public class RedisMapServiceImpl implements RedisMapService {
 	}
 
 	@Override
-	public long hDel(final String redisKey, final byte[] mapKey) {
+	public long hDel(String redisKey, byte[] mapKey) {
 		return redisTemplate.execute(new RedisCallback<Long>() {
 
 			@Override
