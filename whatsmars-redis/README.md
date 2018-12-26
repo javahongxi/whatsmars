@@ -17,7 +17,7 @@ Spring Boot 2.x默认使用Lettuce。
 - [Twemproxy](https://github.com/twitter/twemproxy)/[Codis](https://github.com/CodisLabs/codis): 云厂商大都采用这类方案 `代理方案`
 - Redis Cluster: 官方集群方案，无中心结构，动态扩缩容，最大支撑1000个节点，`理想方案`
 
-### Master/Slave Separation
+### Read/Write Separation
 通常情况下，Slave只是作为数据备份，不提供read操作，这种考虑是为了避免slave提供stale数据而导致一些问题。
 不过在很多场景下，即使slave数据有一定的延迟，我们仍然可以兼容或者正常处理，此时我们可以将slave提供read
 服务，并在M-S集群中将read操作分流，此时我们的Redis集群将可以支撑更高的QPS。本实例中，仅仅提供了“读写分
@@ -38,5 +38,5 @@ MySQL的主要任务是把数据组织成树表，在磁盘和内存之间进行
 - [如何根据key前缀统计内存占用](https://segmentfault.com/q/1010000010575235)
 - [《Redis设计与实现》](https://e.jd.com/30189715.html) `e.jd.com`
 
-[whatsmars-spring-boot](https://github.com/javahongxi/whatsmars/tree/master/whatsmars-spring-boot)
-[whatsmars-boot-sample-redis](https://github.com/javahongxi/whatsmars/tree/master/whatsmars-spring-boot-samples/whatsmars-boot-sample-redis)
+- [whatsmars-spring-boot](https://github.com/javahongxi/whatsmars/tree/master/whatsmars-spring-boot)
+- [whatsmars-boot-sample-redis](https://github.com/javahongxi/whatsmars/tree/master/whatsmars-spring-boot-samples/whatsmars-boot-sample-redis)
