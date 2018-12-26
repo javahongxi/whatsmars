@@ -6,7 +6,7 @@
 - [Dubbo](http://dubbo.apache.org/en-us/) / [《企业IT架构转型之道：阿里巴巴中台战略思想与架构实战》](https://book.douban.com/subject/27039508/)
 - [《Redis设计与实现》](https://e.jd.com/30189715.html) `e.jd.com`
 - [《RocketMQ实战与原理解析》](https://e.jd.com/30414640.html) / [《Kafka权威指南》](https://e.jd.com/30442811.html)
-- [Elasticsearch技术解析与实战](https://www.elastic.co) 搜索、分析和存储您的数据
+- [Elasticsearch](https://www.elastic.co) 搜索、分析和存储您的数据
 
 👻 [start.spring.io](https://start.spring.io) 👻 [start.dubbo.io](http://start.dubbo.io)
 
