@@ -54,19 +54,4 @@ public class RedisListServiceImpl implements RedisListService {
 		return this.lrange(key, 0, -1);
 	}
 
-	@Override
-	public long del(byte[] key) {
-		return redisTemplate.execute(new RedisCallback<Long>() {
-			@Override
-			public Long doInRedis(RedisConnection connection) throws DataAccessException {
-				return connection.del(key);
-			}
-		});
-	}
-
-	@Override
-	public long del(String key) {
-		return this.del(key.getBytes());
-	}
-
 }

@@ -31,6 +31,9 @@ public class Demo {
     @Qualifier("shardedRedisClient")
     private ShardedJedisPool shardedRedisClient;
 
+    @Autowired
+    private RedisTemplate redisTemplate;
+
     @Test
     public void testSingleton() {
         Jedis jedis = singletonRedisClient.getResource();
@@ -94,5 +97,12 @@ public class Demo {
             // DB operation
         }
         // ..
+    }
+
+    @Test
+    public void testTemplate() {
+        String key = "domain";
+        redisTemplate.set(key, "hongxi.org");
+        assert "hongxi.org".equals(redisTemplate.get(key));
     }
 }

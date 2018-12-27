@@ -13,8 +13,4 @@ public interface RedisListService {
 	List<byte[]> lrange(String key, long begin, long end);
 	
 	List<byte[]> lrange(String key);
-	
-	long del(byte[] key);
-	
-	long del(String key);
 }

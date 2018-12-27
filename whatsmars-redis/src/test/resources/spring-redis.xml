@@ -31,6 +31,10 @@
         <property name="jedisPoolConfig" ref="commonJedisPoolConfig" />
     </bean>
 
+    <bean id="redisTemplate" class="org.hongxi.whatsmars.redis.client.RedisTemplate">
+        <property name="shardedJedisPool" ref="shardedRedisClient" />
+    </bean>
+
     <bean id="commonJedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
         <property name="maxTotal" value="256" />
         <property name="maxIdle" value="8" />
