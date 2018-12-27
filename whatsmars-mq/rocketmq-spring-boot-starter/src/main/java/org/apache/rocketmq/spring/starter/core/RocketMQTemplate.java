@@ -20,6 +20,7 @@ package org.apache.rocketmq.spring.starter.core;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.nio.charset.Charset;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -121,12 +122,60 @@ public class RocketMQTemplate extends AbstractMessageSendingTemplate<String> imp
         return syncSend(destination, payload, producer.getSendMsgTimeout());
     }
 
+    /**
+     * Same to {@link #syncSend(String, Object)} with send timeout specified in addition.
+     *
+     * @param destination formats: `topicName:tags`
+     * @param payload the Object to use as payload
+     * @param timeout send timeout with millis
+     * @return {@link SendResult}
+     */
+    public SendResult syncSend(String destination, Object payload, long timeout) {
+        Message<?> message = this.doConvert(payload, null, null);
+        return syncSend(destination, message, timeout);
+    }
+
+    /**
+     * Same to {@link #syncSend(String, Object)}
+     */
+    public SendResult syncSend(String destination, Object payload, String keys) {
+        return syncSend(destination, payload, producer.getSendMsgTimeout(), keys);
+    }
+
+    /**
+     * Same to {@link #syncSend(String, Object, long)}
+     * keys 用于消息hash索引，方便查询，尽可能唯一
+     */
+    public SendResult syncSend(String destination, Object payload, long timeout, String keys) {
+        Message<?> message = this.doConvert(payload, keys);
+        return syncSend(destination, message, timeout);
+    }
+
+    /**
+     * Same to {@link #sendDelayed(String, Object, MessageDelayLevel)}
+     */
+    public SendResult sendDelayed(String destination, Object payload, String keys, MessageDelayLevel delayLevel) {
+        Message<?> message = this.doConvert(payload, keys);
+        return sendDelayed(destination, message, producer.getSendMsgTimeout(), delayLevel);
+    }
+
+    /**
+     * Same to {@link #sendDelayed(String, Message, MessageDelayLevel)}
+     */
+    public SendResult sendDelayed(String destination, Object payload, MessageDelayLevel delayLevel) {
+        Message<?> message = this.doConvert(payload, null, null);
+        return sendDelayed(destination, message, producer.getSendMsgTimeout(), delayLevel);
+    }
+
+    /**
+     * Same to {@link #sendDelayed(String, Message, long, MessageDelayLevel)}
+     */
     public SendResult sendDelayed(String destination, Message<?> message, MessageDelayLevel delayLevel) {
         return sendDelayed(destination, message, producer.getSendMsgTimeout(), delayLevel);
     }
 
     /**
-     * Same to {@link #syncSend(String, Message)} with send timeout specified in addition.
+     * Send delayed message.
      *
      * @param destination formats: `topicName:tags`
      * @param message     {@link org.springframework.messaging.Message}
@@ -154,19 +203,6 @@ public class RocketMQTemplate extends AbstractMessageSendingTemplate<String> imp
             log.error("sendDelayed failed. destination:{}, message:{} ", destination, message);
             throw new MessagingException(e.getMessage(), e);
         }
-    }
-
-    /**
-     * Same to {@link #syncSend(String, Object)} with send timeout specified in addition.
-     *
-     * @param destination formats: `topicName:tags`
-     * @param payload the Object to use as payload
-     * @param timeout send timeout with millis
-     * @return {@link SendResult}
-     */
-    public SendResult syncSend(String destination, Object payload, long timeout) {
-        Message<?> message = this.doConvert(payload, null, null);
-        return syncSend(destination, message, timeout);
     }
 
     /**
@@ -207,6 +243,14 @@ public class RocketMQTemplate extends AbstractMessageSendingTemplate<String> imp
             log.info("syncSendOrderly failed. destination:{}, message:{} ", destination, message);
             throw new MessagingException(e.getMessage(), e);
         }
+    }
+
+    /**
+     * Same to {@link #syncSendOrderly(String, Object, String)}
+     */
+    public SendResult syncSendOrderly(String destination, Object payload, String keys, String hashKey) {
+        Message<?> message = this.doConvert(payload, keys);
+        return syncSendOrderly(destination, message, hashKey);
     }
 
     /**
@@ -508,6 +552,13 @@ public class RocketMQTemplate extends AbstractMessageSendingTemplate<String> imp
         }
 
         return rocketMsg;
+    }
+
+    private Message<?> doConvert(Object payload, String keys) {
+        Map<String, Object> headers = new HashMap<>();
+        headers.put(MessageConst.PROPERTY_KEYS, keys);
+        Message<?> message = this.doConvert(payload, headers, null);
+        return message;
     }
 
     @Override
