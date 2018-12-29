@@ -9,6 +9,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import redis.clients.jedis.*;
 
+import java.util.Set;
+
 /**
  * Created by javahongxi on 2017/6/23.
  */
@@ -104,5 +106,18 @@ public class Demo {
         String key = "domain";
         redisTemplate.set(key, "hongxi.org");
         assert "hongxi.org".equals(redisTemplate.get(key));
+    }
+
+    @Test
+    public void testCallback() {
+        String key = "countries";
+        redisTemplate.sadd(key, "China", "America", "Japan");
+        Long result = redisTemplate.execute(new RedisCallback<Long>() {
+            @Override
+            public Long doInRedis(ShardedJedis jedis) {
+                return jedis.scard(key);
+            }
+        });
+        assert 3 == result;
     }
 }

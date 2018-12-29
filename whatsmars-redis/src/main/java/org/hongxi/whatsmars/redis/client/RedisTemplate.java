@@ -14,6 +14,15 @@ public class RedisTemplate {
 
     private ShardedJedisPool shardedJedisPool;
 
+    public <T> T execute(RedisCallback<T> action) {
+        ShardedJedis jedis = fetchJedis();
+        try {
+            return action.doInRedis(jedis);
+        } finally {
+            release(jedis);
+        }
+    }
+
     public void set(String key, String value) {
         ShardedJedis jedis = fetchJedis();
         try {
@@ -128,7 +137,7 @@ public class RedisTemplate {
         }
     }
 
-    public long addSet(String key, String... values) {
+    public long sadd(String key, String... values) {
         ShardedJedis jedis = fetchJedis();
         try {
             return jedis.sadd(key, values);
@@ -137,7 +146,7 @@ public class RedisTemplate {
         }
     }
 
-    public Set<String> getSet(String key) {
+    public Set<String> smembers(String key) {
         ShardedJedis jedis = fetchJedis();
         try {
             return jedis.smembers(key);

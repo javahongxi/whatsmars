@@ -92,20 +92,25 @@ public class RedisStringServiceImpl implements RedisStringService {
     }
 
     @Override
-    public long addSet(String key, String... values) {
+    public long sadd(String key, String... values) {
         return stringRedisTemplate.opsForSet().add(key, values);
     }
 
     @Override
-    public Set<String> getSet(String key) {
+    public Set<String> smembers(String key) {
         return stringRedisTemplate.opsForSet().members(key);
     }
 
     @Override
-    public void pubMsg(String channel, Object obj) {
+    public void convertAndSend(String channel, Object obj) {
         assert obj != null;
         String msg = obj instanceof String ? String.valueOf(obj) : JSON.toJSONString(obj);
         stringRedisTemplate.convertAndSend(channel, msg);
+    }
+
+    @Override
+    public void delete(String key) {
+        stringRedisTemplate.delete(key);
     }
 
 }

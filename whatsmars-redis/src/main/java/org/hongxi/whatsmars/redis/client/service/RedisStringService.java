@@ -38,9 +38,11 @@ public interface RedisStringService {
 
     Boolean getBit(String key, long offset);
 
-    long addSet(String key, String... values);
+    long sadd(String key, String... values);
 
-    Set<String> getSet(String key);
+    Set<String> smembers(String key);
 
-    void pubMsg(String channel, Object obj);
+    void convertAndSend(String channel, Object obj);
+
+    void delete(String key);
 }
