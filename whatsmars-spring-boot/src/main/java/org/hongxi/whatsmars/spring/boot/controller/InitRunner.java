@@ -1,13 +1,16 @@
 package org.hongxi.whatsmars.spring.boot.controller;
 
-import org.hongxi.whatsmars.redis.client.service.RedisStringService;
+import org.hongxi.whatsmars.redis.client.service.RedisService;
 import org.hongxi.whatsmars.spring.boot.async.MessageService;
 import org.hongxi.whatsmars.spring.boot.dao.UserMapper;
+import org.hongxi.whatsmars.spring.boot.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 /**
@@ -24,7 +27,11 @@ public class InitRunner implements CommandLineRunner {
     @Autowired
     private MessageService messageService;
     @Autowired
-    private RedisStringService redisStringService;
+    private RedisService redisService;
+    @Autowired
+    private RedisTemplate redisTemplate;
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
 
     @Override
     public void run(String... args) throws Exception {
@@ -36,7 +43,17 @@ public class InitRunner implements CommandLineRunner {
         }
 
         String key = "domain";
-        redisStringService.set(key, "hongxi.org", 60); // 60s
-        System.out.println(redisStringService.get(key));
+        redisService.set(key, "hongxi.org", 60); // 60s
+        System.out.println(redisService.get(key));
+
+        User user = new User();
+        user.setUsername("javahongxi");
+        user.setNickname("红喜");
+        redisService.set("user", user);
+        System.out.println(redisService.get("user"));
+        System.out.println(redisService.get("user", User.class));
+        redisService.sadd("countries", "China", "America", "Japan");
+        System.out.println(redisTemplate.opsForSet().isMember("countries", "China")); // fasle
+        System.out.println(stringRedisTemplate.opsForSet().isMember("countries", "China")); // true
     }
 }

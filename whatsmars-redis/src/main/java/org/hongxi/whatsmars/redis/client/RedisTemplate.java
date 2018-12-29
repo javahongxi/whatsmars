@@ -32,10 +32,10 @@ public class RedisTemplate {
         }
     }
 
-    public void set(String key, String value, int activeTime) {
+    public void set(String key, String value, int seconds) {
         ShardedJedis jedis = fetchJedis();
         try {
-            jedis.setex(key, activeTime, value);
+            jedis.setex(key, seconds, value);
         } finally {
             release(jedis);
         }

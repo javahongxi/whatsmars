@@ -1,6 +1,6 @@
 package org.hongxi.whatsmars.redis.client.service.impl;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.hongxi.whatsmars.redis.client.service.RedisService;
@@ -8,169 +8,201 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
+/**
+ * Created by shenhongxi on 2018/12/24.
+ */
 @Slf4j
 @Service
-public class RedisServiceImpl<T> implements RedisService<T> {
+public class RedisServiceImpl implements RedisService {
 
-	private static final String CHARSET = "UTF8";
+    @Resource
+    private RedisTemplate<String, Serializable> redisTemplate;
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
 
-	@Resource
-	private RedisTemplate<String, Serializable> redisTemplate;
+    @Override
+    public void set(String key, String value) {
+        stringRedisTemplate.opsForValue().set(key, value);
+    }
 
-	@Override
-	public boolean set(byte[] key, byte[] value, long activeTime) {
-		return redisTemplate.execute(new RedisCallback<Boolean>() {
-			public Boolean doInRedis(RedisConnection connection) throws DataAccessException {
-				boolean rs = true;
-				connection.set(key, value);
-				if (activeTime > 0) {
-					rs = connection.expire(key, activeTime);
-				}
-				return rs;
-			}
-		});
-	}
+    @Override
+    public void set(String key, String value, long seconds) {
+        stringRedisTemplate.opsForValue().set(key, value, seconds, TimeUnit.SECONDS);
+    }
 
-	@Override
-	public boolean set(String key, String value, long activeTime) {
-		return this.set(key.getBytes(), value.getBytes(), activeTime);
-	}
+    @Override
+    public void setIfAbsent(String key, String value) {
+        stringRedisTemplate.opsForValue().setIfAbsent(key, value);
+    }
 
-	@Override
-	public boolean set(String key, String value) {
-		return this.set(key, value, 0L);
-	}
+    @Override
+    public String get(String key) {
+        return stringRedisTemplate.opsForValue().get(key);
+    }
 
-	@Override
-	public boolean set(byte[] key, byte[] value) {
-		return this.set(key, value, 0L);
-	}
+    @Override
+    public String getAndSet(String key, String value) {
+        return stringRedisTemplate.opsForValue().getAndSet(key, value);
+    }
 
-	@Override
-	public boolean set(byte[] key, T value, long activeTime){
-		ObjectMapper objectMapper = new ObjectMapper();
-		byte[] b = null;
-		try {
-			b = objectMapper.writeValueAsBytes(value);
-		} catch (JsonProcessingException e) {
-			log.error(e.getMessage(), e);
-			return false;
-		}
-		return this.set(key, b, activeTime);
-	}
+    @Override
+    public void multiSet(Map<String, String> map) {
+        stringRedisTemplate.opsForValue().multiSet(map);
+    }
 
-	@Override
-	public boolean set(String key, T value, long activeTime) {
-		return this.set(key.getBytes(), value, activeTime);
-	}
+    @Override
+    public List<String> multiGet(Collection<String> keys) {
+        return stringRedisTemplate.opsForValue().multiGet(keys);
+    }
 
-	@Override
-	public boolean set(String key, T value) {
-		return this.set(key, value, 0L);
-	}
+    @Override
+    public Long increment(String key, long delta) {
+        return stringRedisTemplate.opsForValue().increment(key, delta);
+    }
 
-	@Override
-	public String get(String key) {
-		return redisTemplate.execute(new RedisCallback<String>() {
-			public String doInRedis(RedisConnection connection) throws DataAccessException {
-				try {
-					byte[] value = connection.get(key.getBytes());
-					return value == null ? null : new String(value, CHARSET);
-				} catch (UnsupportedEncodingException e) {
-					log.error(e.getMessage(), e);
-				}
-				return null;
-			}
-		});
-	}
+    @Override
+    public Double increment(String key, double delta) {
+        return stringRedisTemplate.opsForValue().increment(key, delta);
+    }
 
-	@Override
-	public T getObject(String key, Class<T> c) {
-		return redisTemplate.execute(new RedisCallback<T>() {
-			public T doInRedis(RedisConnection connection) throws DataAccessException {
-				byte[] value = connection.get(key.getBytes());
-				if(null == value){
-					return null;
-				}
-				ObjectMapper objectMapper = new ObjectMapper();
-				try {
-					return objectMapper.readValue(value, c);
-				} catch (Exception e) {
-					log.error(e.getMessage(), e);
-				}
-				return null;
-			}
-		});
-	}
+    @Override
+    public Integer append(String key, String value) {
+        return stringRedisTemplate.opsForValue().append(key, value);
+    }
 
-	@Override
-	public Set<String> matchKeys(String pattern) {
-		return redisTemplate.keys(pattern);
-	}
+    @Override
+    public String get(String key, long start, long end) {
+        return stringRedisTemplate.opsForValue().get(key, start, end);
+    }
 
-	@Override
-	public boolean exists(String key) {
-		return redisTemplate.execute(new RedisCallback<Boolean>() {
-			public Boolean doInRedis(RedisConnection connection) throws DataAccessException {
-				return connection.exists(key.getBytes());
-			}
-		});
-	}
+    @Override
+    public Long size(String key) {
+        return stringRedisTemplate.opsForValue().size(key);
+    }
 
-	@Override
-	public boolean flushDB() {
-		return redisTemplate.execute(new RedisCallback<Boolean>() {
-			public Boolean doInRedis(RedisConnection connection) throws DataAccessException {
-				connection.flushDb();
-				return true;
-			}
-		});
-	}
+    @Override
+    public Boolean setBit(String key, long offset, boolean value) {
+        return stringRedisTemplate.opsForValue().setBit(key, offset, value);
+    }
 
-	@Override
-	public long delete(Collection<String> keys) {
-		return redisTemplate.execute(new RedisCallback<Long>() {
-			public Long doInRedis(RedisConnection connection) throws DataAccessException {
-				long result = 0;
-				for (String key : keys) {
-					result += connection.del(key.getBytes());
-				}
-				return result;
-			}
-		});
-	}
+    @Override
+    public Boolean getBit(String key, long offset) {
+        return stringRedisTemplate.opsForValue().getBit(key, offset);
+    }
 
-	@Override
-	public long delete(String... keys) {
-		Collection<String> cols = new ArrayList<String>();
-		for (String key : keys) {
-			cols.add(key);
-		}
-		return this.delete(cols);
-	}
+    @Override
+    public long sadd(String key, String... values) {
+        return stringRedisTemplate.opsForSet().add(key, values);
+    }
 
-	@Override
-	public byte[] getBytes(String key) {
-		return redisTemplate.execute(new RedisCallback<byte[]>() {
-			public byte[] doInRedis(RedisConnection connection) throws DataAccessException {
-				return connection.get(key.getBytes());
-			}
-		});
-	}
+    @Override
+    public Set<String> smembers(String key) {
+        return stringRedisTemplate.opsForSet().members(key);
+    }
 
-	@Override
-	public List<T> multiGet(Collection keys) {
-		return redisTemplate.opsForValue().multiGet(keys);
-	}
+    @Override
+    public void convertAndSend(String channel, Object obj) {
+        assert obj != null;
+        String msg = obj instanceof String ? String.valueOf(obj) : JSON.toJSONString(obj);
+        stringRedisTemplate.convertAndSend(channel, msg);
+    }
+
+    @Override
+    public void delete(String key) {
+        stringRedisTemplate.delete(key);
+    }
+
+    @Override
+    public boolean exists(String key) {
+        return redisTemplate.execute(new RedisCallback<Boolean>() {
+            @Override
+            public Boolean doInRedis(RedisConnection connection) throws DataAccessException {
+                return connection.exists(key.getBytes());
+            }
+        });
+    }
+
+    @Override
+    public Set<String> matchKeys(String pattern) {
+        return redisTemplate.keys(pattern);
+    }
+
+    @Override
+    public <T> void set(String key, T value, long seconds) throws Exception {
+        this.set(key.getBytes(), serialize(value), seconds);
+    }
+
+    @Override
+    public <T> void set(String key, T value) throws Exception {
+        this.set(key.getBytes(), serialize(value));
+    }
+
+    @Override
+    public <T> T get(String key, Class<T> clazz) {
+        return redisTemplate.execute(new RedisCallback<T>() {
+            @Override
+            public T doInRedis(RedisConnection connection) throws DataAccessException {
+                byte[] value = connection.get(key.getBytes());
+                if (value == null) {
+                    return null;
+                }
+                ObjectMapper objectMapper = new ObjectMapper();
+                try {
+                    return objectMapper.readValue(value, clazz);
+                } catch (Exception e) {
+                    log.error(e.getMessage(), e);
+                }
+                return null;
+            }
+        });
+    }
+
+    @Override
+    public boolean set(byte[] key, byte[] value, long seconds) {
+        return redisTemplate.execute(new RedisCallback<Boolean>() {
+            @Override
+            public Boolean doInRedis(RedisConnection connection) throws DataAccessException {
+                connection.setEx(key, seconds, value);
+                return true;
+            }
+        });
+    }
+
+    @Override
+    public boolean set(byte[] key, byte[] value) {
+        return redisTemplate.execute(new RedisCallback<Boolean>() {
+            @Override
+            public Boolean doInRedis(RedisConnection connection) throws DataAccessException {
+                connection.set(key, value);
+                return true;
+            }
+        });
+    }
+
+    @Override
+    public byte[] getBytes(String key) {
+        return redisTemplate.execute(new RedisCallback<byte[]>() {
+            @Override
+            public byte[] doInRedis(RedisConnection connection) throws DataAccessException {
+                return connection.get(key.getBytes());
+            }
+        });
+    }
+
+    private <T> byte[] serialize(T value) throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.writeValueAsBytes(value);
+    }
 
 }

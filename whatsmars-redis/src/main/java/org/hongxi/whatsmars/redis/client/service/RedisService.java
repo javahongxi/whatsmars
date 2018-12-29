@@ -2,122 +2,63 @@ package org.hongxi.whatsmars.redis.client.service;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
-public interface RedisService<T> {
-	/**
-	 * <pre>
-	 *  
-	 * 通过key删除 
-	 * &#64;param keys 
-	 * &#64;return 被删除的记录数
-	 * </pre>
-	 */
-	long delete(String... keys);
+/**
+ * Created by shenhongxi on 2018/12/24.
+ */
+public interface RedisService {
 
-	/**
-	 * <pre>
-	 *  
-	 * 通过keys删除 
-	 * &#64;param keys 
-	 * &#64;return 被删除的记录数
-	 * </pre>
-	 */
-	long delete(Collection<String> keys);
+    void set(String key, String value);
 
-	/**
-	 * <pre>
-	 *  
-	 *  &#64;param key 
-	 *  &#64;param value 
-	 *  &#64;param activeTime 秒 
-	 *  &#64;return 添加key value 并且设置存活时间
-	 * </pre>
-	 */
-	boolean set(byte[] key, byte[] value, long activeTime);
+    void set(String key, String value, long seconds);
 
-	/**
-	 * <pre>
-	 *  
-	 * &#64;param key 
-	 * &#64;param value 
-	 * &#64;param activeTime 秒 
-	 * &#64;return 添加key value 并且设置存活时间
-	 * </pre>
-	 */
-	boolean set(String key, String value, long activeTime);
+    void setIfAbsent(String key, String value);
 
-	/**
-	 * <pre>
-	 *  
-	 *  &#64;param key 
-	 *  &#64;param value 
-	 *  &#64;return 添加key value
-	 * </pre>
-	 */
-	boolean set(String key, String value);
+    String get(String key);
 
-	/**
-	 * <pre>
-	 *  
-	 *  &#64;param key 
-	 *  &#64;param value 
-	 *  &#64;return 添加key value
-	 * </pre>
-	 */
-	boolean set(byte[] key, byte[] value);
-	
-	boolean set(byte[] key, T value, long activeTime);
+    String getAndSet(String key, String value);
 
-	boolean set(String key, T value, long activeTime);
+    void multiSet(Map<String, String> map);
 
-	boolean set(String key, T value);
+    List<String> multiGet(Collection<String> keys);
 
-	/**
-	 * <pre>
-	 *  
-	 * &#64;param key 
-	 * &#64;return 获得value
-	 * </pre>
-	 */
-	String get(String key);
-	
-	T getObject(String key, Class<T> c);
-	
-	byte[] getBytes(String key);
+    Long increment(String key, long delta);
 
-	/**
-	 * <pre>
-	 *  
-	 * &#64;param pattern 
-	 * &#64;return 通过正则匹配keys
-	 * </pre>
-	 */
-	Set<String> matchKeys(String pattern);
+    Double increment(String key, double delta);
 
-	/**
-	 * <pre>
-	 *  
-	 * &#64;param key 
-	 * &#64;return 检查key是否已经存在
-	 * </pre>
-	 */
-	boolean exists(String key);
+    Integer append(String key, String value);
 
-	/**
-	 * <pre>
-	 *  
-	 * &#64;return 清空所有数据
-	 * </pre>
-	 */
-	boolean flushDB();
+    String get(String key, long start, long end);
 
-	/**
-	 * <pre>
-	 *
-	 * &#64;param keys
-	 * &#64;return 批量获取key的值
-	 * </pre>
-	 */
-    List<T> multiGet(Collection keys);
+    Long size(String key);
+
+    Boolean setBit(String key, long offset, boolean value);
+
+    Boolean getBit(String key, long offset);
+
+    long sadd(String key, String... values);
+
+    Set<String> smembers(String key);
+
+    void convertAndSend(String channel, Object obj);
+
+    void delete(String key);
+
+    boolean exists(String key);
+
+    Set<String> matchKeys(String pattern);
+
+    <T> void set(String key, T value, long seconds) throws Exception;
+
+    <T> void set(String key, T value) throws Exception;
+
+    <T> T get(String key, Class<T> clazz);
+
+    boolean set(byte[] key, byte[] value, long seconds);
+
+    boolean set(byte[] key, byte[] value);
+
+    byte[] getBytes(String key);
 }
