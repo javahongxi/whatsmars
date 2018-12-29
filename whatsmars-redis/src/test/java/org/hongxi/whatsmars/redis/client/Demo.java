@@ -112,12 +112,7 @@ public class Demo {
     public void testCallback() {
         String key = "countries";
         redisTemplate.sadd(key, "China", "America", "Japan");
-        Long result = redisTemplate.execute(new RedisCallback<Long>() {
-            @Override
-            public Long doInRedis(ShardedJedis jedis) {
-                return jedis.scard(key);
-            }
-        });
+        Long result = redisTemplate.execute((jedis) -> jedis.scard(key));
         assert 3 == result;
     }
 }
