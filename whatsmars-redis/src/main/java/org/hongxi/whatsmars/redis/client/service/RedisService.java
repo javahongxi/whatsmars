@@ -1,5 +1,6 @@
 package org.hongxi.whatsmars.redis.client.service;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +42,22 @@ public interface RedisService {
     long sadd(String key, String... values);
 
     Set<String> smembers(String key);
+
+    boolean sismember(String key, String value);
+
+    void hset(String key, String hashKey, String value);
+
+    String hget(String key, String hashKey);
+
+    boolean hexists(String key, String hashKey);
+
+    void hdel(String key, String... hashKeys);
+
+    long leftPush(String key, Serializable value);
+
+    Serializable rightPop(String key);
+
+    List<Serializable> range(String key, long start, long end);
 
     void convertAndSend(String channel, Object obj);
 

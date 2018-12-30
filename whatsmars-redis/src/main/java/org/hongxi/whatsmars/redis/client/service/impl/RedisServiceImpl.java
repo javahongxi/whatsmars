@@ -2,6 +2,7 @@ package org.hongxi.whatsmars.redis.client.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.hongxi.whatsmars.redis.client.service.RedisService;
 import org.springframework.dao.DataAccessException;
@@ -30,6 +31,8 @@ public class RedisServiceImpl implements RedisService {
     private RedisTemplate<String, Serializable> redisTemplate;
     @Resource
     private StringRedisTemplate stringRedisTemplate;
+    @Setter
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     public void set(String key, String value) {
@@ -112,6 +115,49 @@ public class RedisServiceImpl implements RedisService {
     }
 
     @Override
+    public boolean sismember(String key, String value) {
+        return stringRedisTemplate.opsForSet().isMember(key, value);
+    }
+
+    @Override
+    public void hset(String key, String hashKey, String value) {
+        redisTemplate.opsForHash().put(key, hashKey, value);
+    }
+
+    @Override
+    public String hget(String key, String hashKey) {
+        if (hexists(key, hashKey)) {
+            return redisTemplate.opsForHash().get(key, hashKey).toString();
+        }
+        return null;
+    }
+
+    @Override
+    public boolean hexists(String key, String hashKey) {
+        return redisTemplate.opsForHash().hasKey(key, hashKey);
+    }
+
+    @Override
+    public void hdel(String key, String... hashKeys) {
+        redisTemplate.opsForHash().delete(key, hashKeys);
+    }
+
+    @Override
+    public long leftPush(String key, Serializable value) {
+        return redisTemplate.opsForList().leftPush(key, value);
+    }
+
+    @Override
+    public Serializable rightPop(String key) {
+        return redisTemplate.opsForList().rightPop(key);
+    }
+
+    @Override
+    public List<Serializable> range(String key, long start, long end) {
+        return redisTemplate.opsForList().range(key, start, end);
+    }
+
+    @Override
     public void convertAndSend(String channel, Object obj) {
         assert obj != null;
         String msg = obj instanceof String ? String.valueOf(obj) : JSON.toJSONString(obj);
@@ -150,22 +196,8 @@ public class RedisServiceImpl implements RedisService {
 
     @Override
     public <T> T get(String key, Class<T> clazz) {
-        return redisTemplate.execute(new RedisCallback<T>() {
-            @Override
-            public T doInRedis(RedisConnection connection) throws DataAccessException {
-                byte[] value = connection.get(key.getBytes());
-                if (value == null) {
-                    return null;
-                }
-                ObjectMapper objectMapper = new ObjectMapper();
-                try {
-                    return objectMapper.readValue(value, clazz);
-                } catch (Exception e) {
-                    log.error(e.getMessage(), e);
-                }
-                return null;
-            }
-        });
+        byte[] value = this.getBytes(key);
+        return this.deserialize(value, clazz);
     }
 
     @Override
@@ -201,8 +233,16 @@ public class RedisServiceImpl implements RedisService {
     }
 
     private <T> byte[] serialize(T value) throws Exception {
-        ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsBytes(value);
+    }
+
+    private <T> T deserialize(byte[] value, Class<T> clazz) {
+        try {
+            return objectMapper.readValue(value, clazz);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+        return null;
     }
 
 }

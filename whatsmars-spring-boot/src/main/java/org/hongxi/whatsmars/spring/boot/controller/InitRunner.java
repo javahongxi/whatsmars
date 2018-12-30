@@ -55,5 +55,13 @@ public class InitRunner implements CommandLineRunner {
         redisService.sadd("countries", "China", "America", "Japan");
         System.out.println(redisTemplate.opsForSet().isMember("countries", "China")); // fasle
         System.out.println(stringRedisTemplate.opsForSet().isMember("countries", "China")); // true
+
+        redisService.hset("menu", "A", "a");
+        System.out.println(redisService.hget("menu", "A"));
+
+        redisService.leftPush("message", "haha");
+        redisService.leftPush("message", user);
+        System.out.println(redisService.rightPop("message"));
+        System.out.println(redisService.rightPop("message"));
     }
 }
