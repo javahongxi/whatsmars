@@ -2,19 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <artifactId>whatsmars-parent</artifactId>
         <groupId>org.hongxi</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
     <artifactId>whatsmars-elasticjob</artifactId>
 
     <properties>
         <elastic-job.version>2.1.5</elastic-job.version>
         <h2.version>1.4.184</h2.version>
-        <start-class>org.hongxi.whatsmars.job.Application</start-class>
     </properties>
 
     <dependencies>
@@ -44,35 +44,10 @@
     </dependencies>
 
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>springloaded</artifactId>
-                        <version>${springloaded.version}</version>
-                    </dependency>
-                </dependencies>
-                <!-- POM不是继承spring-boot-starter-parent的话，需要下面的指定 -->
-                <configuration>
-                    <mainClass>${start-class}</mainClass>
-                    <layout>ZIP</layout>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

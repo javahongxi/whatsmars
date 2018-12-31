@@ -2,12 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>org.hongxi</groupId>
         <artifactId>whatsmars-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
     <artifactId>whatsmars-sharding-jdbc</artifactId>
     <packaging>jar</packaging>
@@ -15,7 +16,6 @@
     <url>http://toutiao.im</url>
 
     <properties>
-        <start-class>org.hongxi.whatsmars.shardingjdbc.Application</start-class>
         <sharding-jdbc.version>2.0.1</sharding-jdbc.version>
     </properties>
 
@@ -44,35 +44,10 @@
     </dependencies>
 
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>springloaded</artifactId>
-                        <version>${springloaded.version}</version>
-                    </dependency>
-                </dependencies>
-                <!-- POM不是继承spring-boot-starter-parent的话，需要下面的指定 -->
-                <configuration>
-                    <mainClass>${start-class}</mainClass>
-                    <layout>ZIP</layout>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
