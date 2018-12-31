@@ -7,13 +7,13 @@
     <parent>
         <artifactId>whatsmars-rpc</artifactId>
         <groupId>org.hongxi</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>ByteStack.CN1</version>
     </parent>
 
     <artifactId>whatsmars-remoting</artifactId>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
-    <url>http://maven.apache.org</url>
+    <description>Transport of RPC</description>
 
     <dependencies>
         <dependency>

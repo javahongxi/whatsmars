@@ -31,4 +31,5 @@ hs_err_pid*
 # Others
 activemq-data/*
 dump.rdb
+pom.xml.versionsBackup
 

@@ -7,13 +7,13 @@
     <parent>
         <artifactId>whatsmars-parent</artifactId>
         <groupId>org.hongxi</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>ByteStack.CN1</version>
     </parent>
 
     <artifactId>whatsmars-common</artifactId>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
-    <url>http://maven.apache.org</url>
+    <description>Utils公共模块</description>
 
     <dependencies>
         <!-- 图片压缩工具 -->

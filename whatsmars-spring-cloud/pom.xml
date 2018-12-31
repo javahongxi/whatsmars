@@ -13,7 +13,7 @@
 
     <groupId>org.hongxi</groupId>
     <artifactId>whatsmars-spring-cloud</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>Finchley.RELEASE</version>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
     <description>The demo module of spring cloud project</description>
@@ -68,6 +68,11 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <!--mvn versions:set -DoldVersion=1.0-SNAPSHOT -DnewVersion=Finchley.RELEASE-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

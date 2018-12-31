@@ -7,11 +7,13 @@
     <parent>
         <groupId>org.hongxi</groupId>
         <artifactId>whatsmars-spring-cloud</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>Finchley.RELEASE</version>
     </parent>
 
     <artifactId>whatsmars-cloud-consumer</artifactId>
     <name>${project.artifactId}</name>
+    <packaging>jar</packaging>
+    <description>Spring Cloud Consumer Demo</description>
 
     <dependencies>
         <dependency>

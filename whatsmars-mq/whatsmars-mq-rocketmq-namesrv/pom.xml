@@ -7,10 +7,13 @@
     <parent>
         <artifactId>whatsmars-mq</artifactId>
         <groupId>org.hongxi</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>ByteStack.CN1</version>
     </parent>
 
     <artifactId>whatsmars-mq-rocketmq-namesrv</artifactId>
+    <packaging>jar</packaging>
+    <name>${project.artifactId}</name>
+    <description>RocketMQ NameServer Startup</description>
 
     <dependencies>
         <dependency>

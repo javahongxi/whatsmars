@@ -7,11 +7,13 @@
     <parent>
         <artifactId>whatsmars-parent</artifactId>
         <groupId>org.hongxi</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>ByteStack.CN1</version>
     </parent>
 
     <artifactId>whatsmars-mq</artifactId>
     <packaging>pom</packaging>
+    <name>${project.artifactId}</name>
+    <description>RocketMQ, Kafka 封装及demo</description>
 
     <modules>
         <module>whatsmars-mq-rocketmq</module>

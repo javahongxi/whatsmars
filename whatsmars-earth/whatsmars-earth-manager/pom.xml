@@ -7,16 +7,19 @@
     <parent>
         <artifactId>whatsmars-earth</artifactId>
         <groupId>org.hongxi</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>ByteStack.CN1</version>
     </parent>
 
     <artifactId>whatsmars-earth-manager</artifactId>
+    <packaging>jar</packaging>
+    <name>${project.artifactId}</name>
+    <description>Manager - DAO组合或调用第三方接口</description>
 
     <dependencies>
         <dependency>
             <groupId>org.hongxi</groupId>
             <artifactId>whatsmars-earth-dao</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>ByteStack.CN1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>

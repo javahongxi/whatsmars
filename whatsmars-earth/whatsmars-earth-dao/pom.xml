@@ -7,13 +7,13 @@
     <parent>
         <artifactId>whatsmars-earth</artifactId>
         <groupId>org.hongxi</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>ByteStack.CN1</version>
     </parent>
 
     <artifactId>whatsmars-earth-dao</artifactId>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
-    <url>http://maven.apache.org</url>
+    <description>DAO - 数据访问层</description>
 
     <build>
         <resources>
@@ -28,7 +28,7 @@
         <dependency>
             <groupId>org.hongxi</groupId>
             <artifactId>whatsmars-earth-domain</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>ByteStack.CN1</version>
         </dependency>
         <dependency>
             <groupId>org.mybatis</groupId>

@@ -7,13 +7,13 @@
     <parent>
         <artifactId>whatsmars-earth</artifactId>
         <groupId>org.hongxi</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>ByteStack.CN1</version>
     </parent>
 
     <artifactId>whatsmars-earth-domain</artifactId>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
-    <url>http://maven.apache.org</url>
+    <description>Domain - 领域对象</description>
 
     <dependencies>
         <dependency>

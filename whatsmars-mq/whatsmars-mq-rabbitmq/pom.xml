@@ -7,14 +7,13 @@
     <parent>
         <artifactId>whatsmars-mq</artifactId>
         <groupId>org.hongxi</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>ByteStack.CN1</version>
     </parent>
 
     <artifactId>whatsmars-mq-rabbitmq</artifactId>
-
-    <properties>
-        <start-class>org.hongxi.whatsmars.rabbitmq.boot.SampleAmqpSimpleApplication</start-class>
-    </properties>
+    <packaging>jar</packaging>
+    <name>${project.artifactId}</name>
+    <description>rabbitmq demo</description>
 
     <dependencies>
         <dependency>

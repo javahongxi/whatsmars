@@ -7,29 +7,29 @@
     <parent>
         <artifactId>whatsmars-earth</artifactId>
         <groupId>org.hongxi</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>ByteStack.CN1</version>
     </parent>
 
     <artifactId>whatsmars-earth-service</artifactId>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
-    <url>http://maven.apache.org</url>
+    <description>Service - 业务层，可调DAO/Manager</description>
 
     <dependencies>
         <dependency>
             <groupId>org.hongxi</groupId>
             <artifactId>whatsmars-common</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>ByteStack.CN1</version>
         </dependency>
         <dependency>
             <groupId>org.hongxi</groupId>
             <artifactId>whatsmars-earth-dao</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>ByteStack.CN1</version>
         </dependency>
         <dependency>
             <groupId>org.hongxi</groupId>
             <artifactId>whatsmars-earth-manager</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>ByteStack.CN1</version>
         </dependency>
 
         <dependency>

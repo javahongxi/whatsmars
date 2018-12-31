@@ -7,13 +7,13 @@
     <parent>
         <groupId>org.hongxi</groupId>
         <artifactId>whatsmars-parent</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>ByteStack.CN1</version>
     </parent>
 
     <artifactId>whatsmars-spring-boot</artifactId>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
-    <url>http://maven.apache.org</url>
+    <description>Spring Boot 实战</description>
 
     <dependencies>
         <dependency>
@@ -84,7 +84,7 @@
         <dependency>
             <groupId>org.hongxi</groupId>
             <artifactId>whatsmars-common</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>ByteStack.CN1</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.mongodb</groupId>
@@ -100,7 +100,7 @@
         <dependency>
             <groupId>org.hongxi</groupId>
             <artifactId>whatsmars-redis</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>ByteStack.CN1</version>
         </dependency>
     </dependencies>
 

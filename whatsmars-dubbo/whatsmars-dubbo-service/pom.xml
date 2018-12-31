@@ -7,12 +7,13 @@
     <parent>
         <artifactId>whatsmars-dubbo</artifactId>
         <groupId>org.hongxi</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>ByteStack.CN1</version>
     </parent>
 
     <artifactId>whatsmars-dubbo-service</artifactId>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
+    <description>普通service</description>
 
     <dependencies>
         <dependency>

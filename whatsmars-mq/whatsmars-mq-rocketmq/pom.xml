@@ -7,10 +7,13 @@
     <parent>
         <artifactId>whatsmars-mq</artifactId>
         <groupId>org.hongxi</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>ByteStack.CN1</version>
     </parent>
 
     <artifactId>whatsmars-mq-rocketmq</artifactId>
+    <packaging>jar</packaging>
+    <name>${project.artifactId}</name>
+    <description>RocketMQ demo</description>
 
     <properties>
         <start-class>org.hongxi.whatsmars.rocketmq.boot.producer.ProducerApplication</start-class>
@@ -20,7 +23,7 @@
         <dependency>
             <groupId>org.hongxi</groupId>
             <artifactId>rocketmq-spring-boot-starter</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>ByteStack.CN1</version>
         </dependency>
     </dependencies>
 

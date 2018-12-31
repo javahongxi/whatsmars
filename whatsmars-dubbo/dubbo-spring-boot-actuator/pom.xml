@@ -7,10 +7,13 @@
     <parent>
         <artifactId>whatsmars-dubbo</artifactId>
         <groupId>org.hongxi</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>ByteStack.CN1</version>
     </parent>
 
     <artifactId>dubbo-spring-boot-actuator</artifactId>
+    <packaging>jar</packaging>
+    <name>${project.artifactId}</name>
+    <description>dubbo health</description>
 
     <dependencies>
         <dependency>
