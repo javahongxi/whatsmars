@@ -1,4 +1,4 @@
-# whatsmars
+# 🚀whatsmars
 *`./mvnw clean package -Dmaven.test.skip`* [`java 8+`](http://www.oracle.com/technetwork/java/javase/downloads) [`mvnrepository`](http://mvn.hongxi.org)
 <br>*What's Mars? 专注于Java生态研究，为Java学习者少走弯路。*
 <br>Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketMQ**🔥 + **Elasticsearch**🔥)
