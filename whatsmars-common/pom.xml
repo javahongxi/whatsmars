@@ -26,6 +26,7 @@
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongo-java-driver</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <dependency>

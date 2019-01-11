@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 @EnableConfigurationProperties({UserConfig.class})
 @ImportResource(locations={"classpath*:spring/*.xml"})
-@ComponentScan({"org.hongxi.whatsmars.spring.boot", "org.hongxi.whatsmars.redis.client"})
 public class App {
 
     public static void main(String[] args) {

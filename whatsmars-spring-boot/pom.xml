@@ -85,12 +85,6 @@
             <groupId>org.hongxi</groupId>
             <artifactId>whatsmars-common</artifactId>
             <version>Rocket.S1</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.mongodb</groupId>
-                    <artifactId>mongo-java-driver</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 
