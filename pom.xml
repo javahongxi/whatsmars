@@ -223,7 +223,9 @@
 
     <scm>
         <url>https://github.com/javahongxi/whatsmars</url>
-        <connection>https://github.com/javahongxi/whatsmars.git</connection>
+        <connection>scm:git:https://github.com/javahongxi/whatsmars.git</connection>
+        <developerConnection>scm:git:https://github.com/javahongxi/whatsmars.git</developerConnection>
+        <tag>HEAD</tag>
     </scm>
 
     <build>
