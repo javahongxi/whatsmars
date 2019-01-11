@@ -7,7 +7,7 @@
     <parent>
         <artifactId>whatsmars-mq</artifactId>
         <groupId>org.hongxi</groupId>
-        <version>ByteStack.CN1</version>
+        <version>Rocket.S1</version>
     </parent>
 
     <artifactId>whatsmars-mq-rocketmq</artifactId>
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>org.hongxi</groupId>
             <artifactId>rocketmq-spring-boot-starter</artifactId>
-            <version>ByteStack.CN1</version>
+            <version>Rocket.S1</version>
         </dependency>
     </dependencies>
 

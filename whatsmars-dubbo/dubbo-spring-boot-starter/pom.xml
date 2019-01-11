@@ -7,7 +7,7 @@
     <parent>
         <artifactId>whatsmars-dubbo</artifactId>
         <groupId>org.hongxi</groupId>
-        <version>ByteStack.CN1</version>
+        <version>Rocket.S1</version>
     </parent>
 
     <artifactId>dubbo-spring-boot-starter</artifactId>
