@@ -31,7 +31,7 @@ whatsmars-spring-cloud | Spring Cloud 微服务生态
 whatsmars-tomcat | 模拟tomcat实现
 whatsmars-zk | zookeeper
 
-### Mars Stack
+### Rocket Stack
 - [x] [*Dubbo*](https://github.com/alibaba/dubbo)
 - [x] [*Sentinel*](https://github.com/alibaba/Sentinel)
 - [x] [*ZooKeeper*](https://github.com/apache/zookeeper)
