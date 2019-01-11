@@ -1,6 +1,6 @@
 # 🚀whatsmars
 *`./mvnw clean package -Dmaven.test.skip`* [`java 8+`](http://www.oracle.com/technetwork/java/javase/downloads) [`mvnrepository`](http://mvn.hongxi.org)
-<br>*What's Mars? 专注于Java生态研究，为Java学习者少走弯路。*
+<br>*What's Mars? Mars is the fourth planet from the Sun and the second-smallest planet in the Solar System after Mercury.*
 <br>Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketMQ**🔥 + **Elasticsearch**🔥)
 - [Spring Boot](https://spring.io/projects/spring-boot) Series(Servlet, Tomcat, Spring, SpringMVC, Spring Data, Spring Boot, Spring WebFlux, Spring Cloud)
 - [Dubbo](http://dubbo.apache.org/en-us/) / [《企业IT架构转型之道：阿里巴巴中台战略思想与架构实战》](https://book.douban.com/subject/27039508/)
