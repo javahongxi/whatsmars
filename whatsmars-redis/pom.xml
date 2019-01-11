@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.hongxi</groupId>
         <artifactId>whatsmars-parent</artifactId>
-        <version>ByteStack.CN1</version>
+        <version>Rocket.S1</version>
     </parent>
 
     <artifactId>whatsmars-redis</artifactId>
@@ -21,8 +21,8 @@
             <artifactId>jedis</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-redis</artifactId>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
             <optional>true</optional>
         </dependency>
         <dependency>
@@ -36,6 +36,11 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
             <optional>true</optional>
         </dependency>
 
