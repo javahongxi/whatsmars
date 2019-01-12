@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.boot.sample.kafka;
+package org.hongxi.whatsmars.kafka;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

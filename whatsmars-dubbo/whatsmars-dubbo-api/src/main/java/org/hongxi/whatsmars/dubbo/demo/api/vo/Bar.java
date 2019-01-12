@@ -1,7 +1,5 @@
 package org.hongxi.whatsmars.dubbo.demo.api.vo;
 
-import org.nustaq.serialization.annotations.Version;
-
 import java.io.Serializable;
 
 public class Bar implements Serializable {
@@ -11,7 +9,7 @@ public class Bar implements Serializable {
     private String barId;
 
     private String name;
-    @Version(1) // 采用fst序列化时，增加字段需加此注解，每次加字段时版本号也需增加
+
     private String address;
 
     public Bar() {}

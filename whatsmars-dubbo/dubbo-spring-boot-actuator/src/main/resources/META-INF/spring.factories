@@ -1,5 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-org.hongxi.whatsmars.dubbo.actuate.autoconfigure.DubboEndpointAutoConfiguration
-
-org.springframework.boot.actuate.autoconfigure.ManagementContextConfiguration=\
-org.hongxi.whatsmars.dubbo.actuate.autoconfigure.DubboMvcEndpointManagementContextConfiguration

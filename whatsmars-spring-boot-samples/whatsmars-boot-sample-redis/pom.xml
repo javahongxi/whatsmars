@@ -7,7 +7,7 @@
     <parent>
         <artifactId>whatsmars-spring-boot-samples</artifactId>
         <groupId>org.hongxi</groupId>
-        <version>2.0.6.RELEASE</version>
+        <version>Rocket.S1</version>
     </parent>
 
     <artifactId>whatsmars-boot-sample-redis</artifactId>

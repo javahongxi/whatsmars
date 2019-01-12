@@ -10,14 +10,14 @@ spring:
 sharding:
   jdbc:
     datasource:
-      names: ds_0,ds_1
-      ds_0:
+      names: ds0,ds1
+      ds0:
         type: org.apache.commons.dbcp.BasicDataSource
         driver-class-name: com.mysql.jdbc.Driver
         url: jdbc:mysql://db.hongxi.org:3306/demo_ds_0
         username: root
         password: n36bxXMnHina
-      ds_1:
+      ds1:
         type: org.apache.commons.dbcp.BasicDataSource
         driver-class-name: com.mysql.jdbc.Driver
         url: jdbc:mysql://db.hongxi.org:3306/demo_ds_1
@@ -28,17 +28,17 @@ sharding:
         default-database-strategy:
           inline:
             sharding-column: user_id
-            algorithm-expression: ds_${user_id % 2}
+            algorithm-expression: ds${user_id % 2}
         tables:
           t_order:
-            actual-data-nodes: ds_${0..1}.t_order_${0..1}
+            actual-data-nodes: ds${0..1}.t_order_${0..1}
             table-strategy:
               inline:
                 sharding-column: order_id
                 algorithm-expression: t_order_${order_id % 2}
             key-generator-column-name: order_id
           t_order_item:
-            actual-data-nodes: ds_${0..1}.t_order_item_${0..1}
+            actual-data-nodes: ds${0..1}.t_order_item_${0..1}
             table-strategy:
               inline:
                 sharding-column: order_id

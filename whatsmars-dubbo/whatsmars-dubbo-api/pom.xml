@@ -15,12 +15,5 @@
     <name>${project.artifactId}</name>
     <description>Dubbo服务接口定义</description>
 
-    <dependencies>
-        <dependency>
-            <groupId>de.ruedigermoeller</groupId>
-            <artifactId>fst</artifactId>
-        </dependency>
-    </dependencies>
-
 
 </project>

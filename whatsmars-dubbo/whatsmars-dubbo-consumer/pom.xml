@@ -68,11 +68,6 @@
         </dependency>
 
         <dependency>
-            <groupId>de.ruedigermoeller</groupId>
-            <artifactId>fst</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>com.alibaba.csp</groupId>
             <artifactId>sentinel-dubbo-adapter</artifactId>
         </dependency>

@@ -2,6 +2,7 @@ package org.hongxi.whatsmars.boot.sample.mybatis.domain;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.Tolerate;
 
 import java.util.Date;
 
@@ -24,5 +25,8 @@ public class User {
     private Date createDate;
 
     private Date updateDate;
+
+    @Tolerate
+    public User() {}
 
 }
