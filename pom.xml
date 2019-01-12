@@ -57,7 +57,6 @@
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <fastjson.version>1.2.44</fastjson.version>
         <swagger2.version>2.5.0</swagger2.version>
-        <netty.version>4.1.30.Final</netty.version>
         <jetty_version>6.1.26</jetty_version>
         <hessian.version>4.0.7</hessian.version>
         <zkclient.version>0.9</zkclient.version>
@@ -156,11 +155,6 @@
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${swagger2.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.netty</groupId>
-                <artifactId>netty-all</artifactId>
-                <version>${netty.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.mortbay.jetty</groupId>
