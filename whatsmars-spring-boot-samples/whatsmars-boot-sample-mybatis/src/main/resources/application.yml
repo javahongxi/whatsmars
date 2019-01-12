@@ -1,7 +1,7 @@
 user:
   datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
     jdbc-url: jdbc:mysql://db.hongxi.org:3306/user?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
-    driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: n36bxXMnHina
     connectionTimeout: 30000
@@ -13,8 +13,8 @@ user:
 
 trade:
   datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
     jdbc-url: jdbc:mysql://db.hongxi.org:3306/trade?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
-    driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: n36bxXMnHina
     connectionTimeout: 30000
