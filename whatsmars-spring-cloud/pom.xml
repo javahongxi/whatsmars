@@ -12,7 +12,6 @@
 
     <groupId>org.hongxi</groupId>
     <artifactId>whatsmars-spring-cloud</artifactId>
-    <version>Finchley.RELEASE</version>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
     <description>The demo module of spring cloud project</description>
