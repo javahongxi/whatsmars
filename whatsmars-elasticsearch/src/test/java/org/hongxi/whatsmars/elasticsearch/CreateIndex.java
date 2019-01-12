@@ -3,7 +3,7 @@ package org.hongxi.whatsmars.elasticsearch;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
@@ -24,7 +24,7 @@ public class CreateIndex {
     @Before
     public void getClient() throws Exception{
         client = new PreBuiltTransportClient(Settings.EMPTY)
-                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("127.0.0.1"), 9300));
+                .addTransportAddress(new TransportAddress(InetAddress.getByName("127.0.0.1"), 9300));
     }
 
     /**

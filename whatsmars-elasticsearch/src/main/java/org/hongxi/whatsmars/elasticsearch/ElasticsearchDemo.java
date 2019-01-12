@@ -3,7 +3,7 @@ package org.hongxi.whatsmars.elasticsearch;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 
 import java.net.InetAddress;
@@ -19,7 +19,7 @@ public class ElasticsearchDemo {
         // on startup
         //此步骤添加IP，至少一个，如果设置了"client.transport.sniff"= true 一个就够了，因为添加了自动嗅探配置
         TransportClient client = new PreBuiltTransportClient(Settings.EMPTY)
-                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("127.0.0.1"), 9300));
+                .addTransportAddress(new TransportAddress(InetAddress.getByName("127.0.0.1"), 9300));
 
         Map<String, Object> json = new HashMap<>();
         json.put("user","hongxi");
