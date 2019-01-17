@@ -51,7 +51,7 @@ whatsmars-zk | zookeeper
 - *深入一点* [deep.hongxi.org](http://deep.hongxi.org) ✏️
 
 ### Warm tips
-- JDK is the most important.
+- [Java SE](https://github.com/javahongxi/javase) is the most important.
 - 带着问题去看源代码，没必要把源代码看完
 - 看源代码最大的技巧是看英文注释，另一个技巧是日志+DEBUG
 - 如果没有时间去深入研究一款软件，那么从宏观层面理解它的设计思想是重要的
