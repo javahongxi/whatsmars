@@ -18,8 +18,4 @@
         <key>moneyUtils</key>
         <class>org.hongxi.whatsmars.earth.domain.util.CalculatorUtils</class>
     </tool>
-    <tool>
-        <key>numberFormatUtils</key>
-        <class>org.hongxi.whatsmars.common.util.NumberFormatUtils</class>
-    </tool>
 </toolbox>

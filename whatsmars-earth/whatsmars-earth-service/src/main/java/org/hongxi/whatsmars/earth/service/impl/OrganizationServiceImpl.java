@@ -1,7 +1,7 @@
 package org.hongxi.whatsmars.earth.service.impl;
 
-import org.hongxi.whatsmars.common.pojo.Result;
-import org.hongxi.whatsmars.common.pojo.ResultCode;
+import org.hongxi.whatsmars.earth.common.pojo.Result;
+import org.hongxi.whatsmars.earth.common.pojo.ResultCode;
 import org.hongxi.whatsmars.earth.dao.OrganizationDao;
 import org.hongxi.whatsmars.earth.service.OrganizationService;
 import org.hongxi.whatsmars.earth.domain.pojo.Organization;

@@ -18,7 +18,7 @@
     <dependencies>
         <dependency>
             <groupId>org.hongxi</groupId>
-            <artifactId>whatsmars-common</artifactId>
+            <artifactId>whatsmars-earth-common</artifactId>
             <version>Rocket.S1</version>
         </dependency>
         <dependency>

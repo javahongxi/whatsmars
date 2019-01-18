@@ -22,6 +22,7 @@
         <module>whatsmars-earth-web</module>
         <module>whatsmars-earth-support-web</module>
         <module>whatsmars-earth-manager</module>
+        <module>whatsmars-earth-common</module>
     </modules>
 
     <properties>

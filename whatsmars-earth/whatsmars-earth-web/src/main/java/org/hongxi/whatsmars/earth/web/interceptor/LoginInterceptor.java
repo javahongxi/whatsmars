@@ -1,6 +1,6 @@
 package org.hongxi.whatsmars.earth.web.interceptor;
 
-import org.hongxi.whatsmars.common.util.DESUtils;
+import org.hongxi.whatsmars.earth.common.util.DESUtils;
 import org.hongxi.whatsmars.earth.domain.misc.LoginContext;
 import org.hongxi.whatsmars.earth.domain.misc.LoginContextHolder;
 import org.hongxi.whatsmars.earth.domain.misc.SystemConfig;

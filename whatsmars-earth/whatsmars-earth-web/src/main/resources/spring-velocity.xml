@@ -28,16 +28,6 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
-    <!--加上下面这个对 mvc:resources 有影响-->
-    <!--<bean id="conversionService"
-          class="org.springframework.context.support.ConversionServiceFactoryBean">
-        <property name="converters">
-            <list>
-                <bean class="com.whatsmars.earth.web.converter.StringToDateConverter"/>
-            </list>
-        </property>
-    </bean>-->
-
     <mvc:resources mapping="/css/**" location="/css/"/>
     <mvc:resources mapping="/js/**" location="/js/"/>
     <mvc:resources mapping="/images/**" location="/images/"/>

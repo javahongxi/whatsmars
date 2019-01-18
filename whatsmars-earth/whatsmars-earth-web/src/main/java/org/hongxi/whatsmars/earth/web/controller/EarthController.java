@@ -1,10 +1,10 @@
 package org.hongxi.whatsmars.earth.web.controller;
 
+import org.hongxi.whatsmars.earth.common.pojo.Result;
 import org.hongxi.whatsmars.earth.domain.enums.OrganizationLevelEnum;
 import org.hongxi.whatsmars.earth.domain.enums.OrganizationStatusEnum;
 import org.hongxi.whatsmars.earth.domain.enums.UserTypeEnum;
 import org.hongxi.whatsmars.earth.service.OrganizationService;
-import org.hongxi.whatsmars.common.pojo.Result;
 import org.hongxi.whatsmars.earth.domain.permission.Permission;
 import org.hongxi.whatsmars.earth.domain.query.OrganizationQuery;
 import org.apache.commons.lang.StringUtils;

@@ -1,6 +1,6 @@
 package org.hongxi.whatsmars.earth.web.controller;
 
-import org.hongxi.whatsmars.common.util.DESUtils;
+import org.hongxi.whatsmars.earth.common.util.DESUtils;
 import org.hongxi.whatsmars.earth.domain.constants.Constants;
 import org.hongxi.whatsmars.earth.domain.misc.SystemConfig;
 import org.apache.commons.lang.RandomStringUtils;
@@ -25,7 +25,7 @@ public class BaseController {
      * @param response 生成token，path为当前页面的路径，比如：/teacher
      * @return
      */
-    public String createToken(HttpServletRequest request,HttpServletResponse response) {
+    protected String createToken(HttpServletRequest request,HttpServletResponse response) {
         String token = RandomStringUtils.random(32,true,true);
 
         Cookie cookie = new Cookie(TOKEN_KEY,DESUtils.encrypt(token,Constants.HTTP_ENCRYPT_KEY));
@@ -42,7 +42,7 @@ public class BaseController {
      * @param response
      * @return
      */
-    public void removeToken(HttpServletRequest request,HttpServletResponse response) {
+    protected void removeToken(HttpServletRequest request,HttpServletResponse response) {
         Cookie cookie = new Cookie(TOKEN_KEY,null);
         cookie.setDomain(systemConfig.getCookieDomain());
         cookie.setMaxAge(0);//立即过期
@@ -55,7 +55,7 @@ public class BaseController {
      * @param request
      * @return
      */
-    public String getToken(HttpServletRequest request) {
+    protected String getToken(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
         if(cookies == null) {
             return null;
@@ -75,7 +75,7 @@ public class BaseController {
      * @param request
      * @return
      */
-    public String getClientIP(HttpServletRequest request) {
+    protected String getClientIP(HttpServletRequest request) {
         String ip = request.getHeader("x-forwarded-for");
         if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getHeader("Proxy-Client-IP");
@@ -95,7 +95,7 @@ public class BaseController {
      * @param request
      * @return
      */
-    public String getCurrentValidateCode(HttpServletRequest request) {
+    protected String getCurrentValidateCode(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
         if(cookies == null) {
             return null;

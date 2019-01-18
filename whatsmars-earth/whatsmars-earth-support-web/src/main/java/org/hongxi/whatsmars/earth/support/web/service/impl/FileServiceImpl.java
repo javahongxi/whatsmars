@@ -1,9 +1,9 @@
 package org.hongxi.whatsmars.earth.support.web.service.impl;
 
-import org.hongxi.whatsmars.common.ImageSizeEnum;
-import org.hongxi.whatsmars.common.mongo.GridFSClient;
-import org.hongxi.whatsmars.common.pojo.Result;
-import org.hongxi.whatsmars.common.pojo.ResultCode;
+import org.hongxi.whatsmars.earth.common.ImageSizeEnum;
+import org.hongxi.whatsmars.earth.common.mongo.GridFSClient;
+import org.hongxi.whatsmars.earth.common.pojo.Result;
+import org.hongxi.whatsmars.earth.common.pojo.ResultCode;
 import org.hongxi.whatsmars.earth.support.web.service.FileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +26,7 @@ public class FileServiceImpl implements FileService {
     private GridFSClient gridFSClient;
 
     @Override
-    public Result uploadFile(InputStream inputStream, String format,String uid) {
+    public Result uploadFile(InputStream inputStream, String format, String uid) {
         Result result = new Result();
         try {
             String filename = gridFSClient.saveFile(inputStream,format,uid);

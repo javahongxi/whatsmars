@@ -1,6 +1,6 @@
 package org.hongxi.whatsmars.earth.service;
 
-import org.hongxi.whatsmars.common.pojo.Result;
+import org.hongxi.whatsmars.earth.common.pojo.Result;
 import org.hongxi.whatsmars.earth.domain.query.OrganizationQuery;
 
 /**
@@ -8,6 +8,6 @@ import org.hongxi.whatsmars.earth.domain.query.OrganizationQuery;
  */
 public interface OrganizationService {
 
-    public Result list(OrganizationQuery query);
+    Result list(OrganizationQuery query);
 
 }

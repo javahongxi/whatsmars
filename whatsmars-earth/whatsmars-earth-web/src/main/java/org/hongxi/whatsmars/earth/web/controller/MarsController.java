@@ -2,8 +2,8 @@ package org.hongxi.whatsmars.earth.web.controller;
 
 import com.itextpdf.text.log.Logger;
 import com.itextpdf.text.log.LoggerFactory;
-import org.hongxi.whatsmars.common.pojo.Result;
-import org.hongxi.whatsmars.common.util.ResultHelper;
+import org.hongxi.whatsmars.earth.common.pojo.Result;
+import org.hongxi.whatsmars.earth.common.util.ResultHelper;
 import org.hongxi.whatsmars.earth.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

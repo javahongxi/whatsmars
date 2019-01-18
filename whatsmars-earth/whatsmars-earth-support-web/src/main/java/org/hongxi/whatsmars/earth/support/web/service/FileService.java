@@ -1,7 +1,6 @@
 package org.hongxi.whatsmars.earth.support.web.service;
 
-
-import org.hongxi.whatsmars.common.pojo.Result;
+import org.hongxi.whatsmars.earth.common.pojo.Result;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
