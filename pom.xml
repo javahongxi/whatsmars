@@ -30,7 +30,6 @@
         <module>whatsmars-redis</module>
         <module>whatsmars-spring-cloud</module>
         <module>whatsmars-sharding-jdbc</module>
-        <module>whatsmars-earth</module>
         <module>whatsmars-spring-boot-samples</module>
         <module>whatsmars-elasticsearch</module>
         <module>whatsmars-zk</module>

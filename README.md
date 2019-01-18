@@ -16,7 +16,6 @@ Module | Intro
 whatsmars-common | Utils公共模块
 whatsmars-dbrouter | 分库分表实现
 whatsmars-dubbo | 高性能分布式RPC框架
-whatsmars-earth | springmvc+velocity实战
 whatsmars-elasticjob | 分布式调度
 whatsmars-elasticsearch | Elasticsearch
 whatsmars-mq | 消息中间件RocketMQ,Kafka等
