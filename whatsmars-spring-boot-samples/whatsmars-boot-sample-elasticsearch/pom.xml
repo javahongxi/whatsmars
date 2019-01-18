@@ -7,7 +7,7 @@
     <parent>
         <artifactId>whatsmars-spring-boot-samples</artifactId>
         <groupId>org.hongxi</groupId>
-        <version>Rocket.S1</version>
+        <version>Rocket.S2</version>
     </parent>
 
     <artifactId>whatsmars-boot-sample-elasticsearch</artifactId>
