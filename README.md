@@ -14,7 +14,6 @@
 Module | Intro
 ------ | ------
 whatsmars-common | Utils公共模块
-whatsmars-dbrouter | 分库分表实现
 whatsmars-dubbo | 高性能分布式RPC框架
 whatsmars-elasticjob | 分布式调度
 whatsmars-elasticsearch | Elasticsearch
@@ -26,23 +25,19 @@ whatsmars-spring | Spring Framework
 whatsmars-spring-boot | Spring Boot 实战
 whatsmars-spring-boot-samples | Spring Boot 2+
 whatsmars-spring-cloud | Spring Cloud 微服务生态
-whatsmars-tomcat | 模拟tomcat实现
 whatsmars-zk | zookeeper
 
 ### Rocket Stack
 - [x] [*Dubbo*](https://github.com/alibaba/dubbo)
-- [x] [*Sentinel*](https://github.com/alibaba/Sentinel)
 - [x] [*ZooKeeper*](https://github.com/apache/zookeeper)
 - [x] [*RocketMQ*](https://github.com/apache/rocketmq)
 - [x] [*Kafka*](https://github.com/apache/kafka)
-- [x] [*Tomcat*](https://github.com/apache/tomcat)
 - [x] [*Spring Framework*](https://github.com/spring-projects/spring-framework)
 - [x] [*Spring Data*](https://github.com/spring-projects/spring-data-examples)
 - [x] [*Spring Boot*](https://github.com/spring-projects/spring-boot)
 - [x] [*Spring Cloud*](https://github.com/spring-cloud/spring-cloud-netflix)
 - [x] [*Redis*](https://github.com/antirez/redis)
-- [ ] [*Otter*](https://github.com/alibaba/otter)
-- [x] [*Elasticsearch*](https://github.com/elastic/elasticsearch)
+- [ ] [*Elasticsearch*](https://github.com/elastic/elasticsearch)
 
 ### Friendship links
 - [*阿里巴巴Java开发手册*](https://github.com/alibaba/Alibaba-Java-Coding-Guidelines) 📚

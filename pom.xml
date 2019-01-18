@@ -19,10 +19,8 @@
 
     <modules>
         <module>whatsmars-common</module>
-        <module>whatsmars-tomcat</module>
         <module>whatsmars-spring</module>
         <module>whatsmars-spring-boot</module>
-        <module>whatsmars-dbrouter</module>
         <module>whatsmars-elasticjob</module>
         <module>whatsmars-dubbo</module>
         <module>whatsmars-rpc</module>
