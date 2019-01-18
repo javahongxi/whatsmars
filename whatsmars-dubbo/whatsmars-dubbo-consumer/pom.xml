@@ -7,7 +7,7 @@
     <parent>
         <artifactId>whatsmars-dubbo</artifactId>
         <groupId>org.hongxi</groupId>
-        <version>Rocket.S2</version>
+        <version>Rocket.S3</version>
     </parent>
 
     <artifactId>whatsmars-dubbo-consumer</artifactId>
