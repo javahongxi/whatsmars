@@ -1,6 +1,6 @@
-package org.hongxi.whatsmars.shardingjdbc.repository;
+package org.hongxi.whatsmars.shardingsphere.repository;
 
-import org.hongxi.whatsmars.shardingjdbc.entity.Order;
+import org.hongxi.whatsmars.shardingsphere.entity.Order;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

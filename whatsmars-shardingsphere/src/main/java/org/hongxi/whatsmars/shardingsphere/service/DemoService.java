@@ -1,9 +1,9 @@
-package org.hongxi.whatsmars.shardingjdbc.service;
+package org.hongxi.whatsmars.shardingsphere.service;
 
-import org.hongxi.whatsmars.shardingjdbc.entity.Order;
-import org.hongxi.whatsmars.shardingjdbc.entity.OrderItem;
-import org.hongxi.whatsmars.shardingjdbc.repository.OrderItemRepository;
-import org.hongxi.whatsmars.shardingjdbc.repository.OrderRepository;
+import org.hongxi.whatsmars.shardingsphere.entity.Order;
+import org.hongxi.whatsmars.shardingsphere.entity.OrderItem;
+import org.hongxi.whatsmars.shardingsphere.repository.OrderItemRepository;
+import org.hongxi.whatsmars.shardingsphere.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

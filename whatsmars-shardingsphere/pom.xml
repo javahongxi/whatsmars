@@ -10,7 +10,7 @@
         <version>Rocket.S3</version>
     </parent>
 
-    <artifactId>whatsmars-sharding-jdbc</artifactId>
+    <artifactId>whatsmars-shardingsphere</artifactId>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
     <description>shardingjdbc demo</description>

@@ -1,22 +1,12 @@
-package org.hongxi.whatsmars.shardingjdbc.entity;
+package org.hongxi.whatsmars.shardingsphere.entity;
 
-public final class OrderItem {
-    
-    private long orderItemId;
+public final class Order {
     
     private long orderId;
     
     private int userId;
     
     private String status;
-    
-    public long getOrderItemId() {
-        return orderItemId;
-    }
-    
-    public void setOrderItemId(final long orderItemId) {
-        this.orderItemId = orderItemId;
-    }
     
     public long getOrderId() {
         return orderId;
@@ -44,6 +34,6 @@ public final class OrderItem {
     
     @Override
     public String toString() {
-        return String.format("item_id:%s, order_id: %s, user_id: %s, status: %s", orderItemId, orderId, userId, status);
+        return String.format("order_id: %s, user_id: %s, status: %s", orderId, userId, status);
     }
 }

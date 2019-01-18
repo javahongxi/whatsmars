@@ -7,7 +7,7 @@
         <!--<setting name="logImpl" value="STDOUT_LOGGING" />-->
     <!--</settings>-->
     <typeAliases>
-        <package name="org.hongxi.whatsmars.shardingjdbc.entity"/>
+        <package name="org.hongxi.whatsmars.shardingsphere.entity"/>
     </typeAliases>
     <mappers>
         <mapper resource="META-INF/mappers/OrderMapper.xml"/>

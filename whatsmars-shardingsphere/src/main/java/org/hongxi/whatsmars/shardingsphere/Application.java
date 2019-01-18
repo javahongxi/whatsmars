@@ -1,6 +1,6 @@
-package org.hongxi.whatsmars.shardingjdbc;
+package org.hongxi.whatsmars.shardingsphere;
 
-import org.hongxi.whatsmars.shardingjdbc.service.DemoService;
+import org.hongxi.whatsmars.shardingsphere.service.DemoService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
