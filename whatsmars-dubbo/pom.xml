@@ -27,7 +27,6 @@
 
     <properties>
         <dubbo-boot.version>0.2.0</dubbo-boot.version>
-        <dubbo.version>2.6.4</dubbo.version>
         <sentinel.version>1.3.0-GA</sentinel.version>
     </properties>
 
@@ -37,11 +36,6 @@
                 <groupId>com.alibaba.boot</groupId>
                 <artifactId>dubbo-spring-boot-starter</artifactId>
                 <version>${dubbo-boot.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>dubbo</artifactId>
-                <version>${dubbo.version}</version>
             </dependency>
 
             <dependency>
