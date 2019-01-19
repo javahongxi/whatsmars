@@ -1,1 +1,1 @@
-spring-data-elasticsearch
+https://www.elastic.co/cn/downloads/past-releases/elasticsearch-6-4-3
