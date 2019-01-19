@@ -1,3 +1,3 @@
 # Zookeeper
 - curator demo
-- ConfigServer简单实现
+- zookeeper remoting 封装
