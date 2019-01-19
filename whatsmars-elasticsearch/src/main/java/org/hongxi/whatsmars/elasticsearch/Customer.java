@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.boot.sample.elasticsearch;
+package org.hongxi.whatsmars.elasticsearch;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;

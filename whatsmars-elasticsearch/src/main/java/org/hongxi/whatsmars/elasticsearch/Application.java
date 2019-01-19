@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.boot.sample.elasticsearch;
+package org.hongxi.whatsmars.elasticsearch;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

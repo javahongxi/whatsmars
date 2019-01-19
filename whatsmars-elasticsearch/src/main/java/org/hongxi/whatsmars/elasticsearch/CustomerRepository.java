@@ -1,8 +1,8 @@
-package org.hongxi.whatsmars.boot.sample.elasticsearch;
-
-import java.util.List;
+package org.hongxi.whatsmars.elasticsearch;
 
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
+
+import java.util.List;
 
 public interface CustomerRepository extends ElasticsearchRepository<Customer, String> {
 
