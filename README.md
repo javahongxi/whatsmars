@@ -15,7 +15,7 @@ Module | Intro
 ------ | ------
 whatsmars-common | Utils公共模块
 whatsmars-dubbo | 高性能分布式RPC框架
-whatsmars-elasticjob | 分布式调度
+whatsmars-elasticjob | 分布式调度框架
 whatsmars-elasticsearch | Elasticsearch
 whatsmars-mq | 消息中间件RocketMQ,Kafka等
 whatsmars-redis | Redis客户端简单封装
@@ -23,9 +23,9 @@ whatsmars-rpc | Transport & RPC & Serialization
 whatsmars-shardingsphere | 分布式数据库中间件
 whatsmars-spring | Spring Framework
 whatsmars-spring-boot | Spring Boot 实战
-whatsmars-spring-boot-samples | Spring Boot 2+
+whatsmars-spring-boot-samples | Spring Boot Samples
 whatsmars-spring-cloud | Spring Cloud 微服务生态
-whatsmars-zk | zookeeper
+whatsmars-zk | 利用zookeeper简单实现ConfigServer
 
 ### Rocket Stack
 - [x] [*Dubbo*](https://github.com/alibaba/dubbo)
