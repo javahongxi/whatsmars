@@ -7,7 +7,7 @@
     <parent>
         <artifactId>whatsmars-spring-boot-samples</artifactId>
         <groupId>org.hongxi</groupId>
-        <version>Rocket.S3</version>
+        <version>Rocket.S4</version>
     </parent>
 
     <artifactId>whatsmars-boot-sample-logback</artifactId>

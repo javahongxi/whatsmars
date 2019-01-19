@@ -7,7 +7,7 @@
     <parent>
         <artifactId>whatsmars-rpc</artifactId>
         <groupId>org.hongxi</groupId>
-        <version>Rocket.S3</version>
+        <version>Rocket.S4</version>
     </parent>
 
     <artifactId>whatsmars-remoting</artifactId>
@@ -32,7 +32,7 @@
         <dependency>
             <groupId>org.hongxi</groupId>
             <artifactId>whatsmars-logging</artifactId>
-            <version>Rocket.S3</version>
+            <version>Rocket.S4</version>
         </dependency>
 
         <dependency>
