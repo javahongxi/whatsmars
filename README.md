@@ -25,7 +25,7 @@ whatsmars-spring | Spring Framework
 whatsmars-spring-boot | Spring Boot 实战
 whatsmars-spring-boot-samples | Spring Boot Samples
 whatsmars-spring-cloud | Spring Cloud 微服务生态
-whatsmars-zk | 利用zookeeper简单实现ConfigServer
+whatsmars-zk | zookeeper remoting 封装
 
 ### Rocket Stack
 - [x] [*Dubbo*](https://github.com/alibaba/dubbo)
