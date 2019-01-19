@@ -5,13 +5,15 @@ import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.recipes.cache.ChildData;
 import org.apache.curator.framework.recipes.cache.PathChildrenCache;
 import org.apache.curator.retry.RetryNTimes;
+import org.junit.Test;
 
 /**
  * Created by shenhongxi on 2018/10/27.
  */
 public class WatcherTest {
 
-    public static void main(String[] args) throws Exception {
+    @Test
+    public void testWatcher() throws Exception {
         CuratorFramework client = CuratorFrameworkFactory.newClient("127.0.0.1:2181", new RetryNTimes(10, 5000));
         client.start();
 

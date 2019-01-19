@@ -3,6 +3,8 @@ package org.hongxi.whatsmars.zk.curator;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.RetryNTimes;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +16,13 @@ public class DubboTest {
 
     private static CuratorFramework client = CuratorFrameworkFactory.newClient("127.0.0.1:2181", new RetryNTimes(10, 5000));
 
-    static {
+    @Before
+    public void start() {
         client.start();
     }
 
-    public static void main(String[] args) {
+    @Test
+    public void testDubbo() {
         String path = "/dubbo";
         print(path);
         final String path2 = "/dubbo/org.hongxi.whatsmars.dubbo.demo.api.DemoService";
