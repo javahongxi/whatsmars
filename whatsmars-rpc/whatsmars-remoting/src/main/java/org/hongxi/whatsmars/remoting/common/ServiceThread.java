@@ -17,8 +17,8 @@
 package org.hongxi.whatsmars.remoting.common;
 
 
-import org.hongxi.whatsmars.logging.InternalLogger;
-import org.hongxi.whatsmars.logging.InternalLoggerFactory;
+import org.hongxi.whatsmars.common.logging.InternalLogger;
+import org.hongxi.whatsmars.common.logging.InternalLoggerFactory;
 
 /**
  * Base class for background thread

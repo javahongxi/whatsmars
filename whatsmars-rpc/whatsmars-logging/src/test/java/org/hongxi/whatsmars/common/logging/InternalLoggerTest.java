@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.hongxi.whatsmars.logging;
+package org.hongxi.whatsmars.common.logging;
 
-import org.hongxi.whatsmars.logging.inner.*;
+import org.hongxi.whatsmars.common.logging.inner.*;
 import org.junit.Assert;
 import org.junit.Test;
 

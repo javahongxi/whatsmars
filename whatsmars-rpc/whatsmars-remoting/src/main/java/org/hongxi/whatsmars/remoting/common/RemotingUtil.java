@@ -19,8 +19,8 @@ package org.hongxi.whatsmars.remoting.common;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
-import org.hongxi.whatsmars.logging.InternalLogger;
-import org.hongxi.whatsmars.logging.InternalLoggerFactory;
+import org.hongxi.whatsmars.common.logging.InternalLogger;
+import org.hongxi.whatsmars.common.logging.InternalLoggerFactory;
 
 import java.io.IOException;
 import java.lang.reflect.Method;

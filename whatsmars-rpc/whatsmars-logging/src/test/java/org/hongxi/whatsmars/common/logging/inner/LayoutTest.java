@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.hongxi.whatsmars.logging.inner;
+package org.hongxi.whatsmars.common.logging.inner;
 
-import org.hongxi.whatsmars.logging.BasicLoggerTest;
+import org.hongxi.whatsmars.common.logging.BasicLoggerTest;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -45,7 +45,7 @@ public class LayoutTest extends BasicLoggerTest {
     public void testLogFormat() {
         Layout innerLayout = LoggingBuilder.newLayoutBuilder().withDefaultLayout().build();
 
-        LoggingEvent loggingEvent = new LoggingEvent(Logger.class.getName(), logger, org.hongxi.whatsmars.logging.inner.Level.INFO,
+        LoggingEvent loggingEvent = new LoggingEvent(Logger.class.getName(), logger, Level.INFO,
             "junit test error", null);
         String format = innerLayout.format(loggingEvent);
 

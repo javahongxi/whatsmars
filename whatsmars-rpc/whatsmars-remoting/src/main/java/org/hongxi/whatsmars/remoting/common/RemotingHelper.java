@@ -17,8 +17,8 @@
 package org.hongxi.whatsmars.remoting.common;
 
 import io.netty.channel.Channel;
-import org.hongxi.whatsmars.logging.InternalLogger;
-import org.hongxi.whatsmars.logging.InternalLoggerFactory;
+import org.hongxi.whatsmars.common.logging.InternalLogger;
+import org.hongxi.whatsmars.common.logging.InternalLoggerFactory;
 import org.hongxi.whatsmars.remoting.exception.RemotingConnectException;
 import org.hongxi.whatsmars.remoting.exception.RemotingSendRequestException;
 import org.hongxi.whatsmars.remoting.exception.RemotingTimeoutException;

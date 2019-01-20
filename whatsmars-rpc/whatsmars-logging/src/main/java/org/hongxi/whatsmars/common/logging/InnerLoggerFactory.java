@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.hongxi.whatsmars.logging;
+package org.hongxi.whatsmars.common.logging;
 
-import org.hongxi.whatsmars.logging.inner.Logger;
+import org.hongxi.whatsmars.common.logging.inner.Logger;
 
 import java.util.HashMap;
 import java.util.Map;

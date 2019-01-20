@@ -19,8 +19,8 @@ package org.hongxi.whatsmars.remoting.netty;
 
 
 import io.netty.util.internal.logging.InternalLogLevel;
-import org.hongxi.whatsmars.logging.InternalLogger;
-import org.hongxi.whatsmars.logging.InternalLoggerFactory;
+import org.hongxi.whatsmars.common.logging.InternalLogger;
+import org.hongxi.whatsmars.common.logging.InternalLoggerFactory;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 

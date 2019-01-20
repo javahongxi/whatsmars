@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.hongxi.whatsmars.logging;
+package org.hongxi.whatsmars.common.logging;
 
 import ch.qos.logback.classic.joran.JoranConfigurator;
 import ch.qos.logback.core.Context;

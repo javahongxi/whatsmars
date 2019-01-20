@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.hongxi.whatsmars.logging;
+package org.hongxi.whatsmars.common.logging;
 
 public interface InternalLogger {
 

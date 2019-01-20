@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.hongxi.whatsmars.logging.inner;
+package org.hongxi.whatsmars.common.logging.inner;
 
 import java.io.Serializable;
 

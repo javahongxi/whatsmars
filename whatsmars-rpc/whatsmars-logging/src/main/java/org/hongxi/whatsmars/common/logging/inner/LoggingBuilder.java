@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.hongxi.whatsmars.logging.inner;
+package org.hongxi.whatsmars.common.logging.inner;
 
 import java.io.*;
 import java.text.MessageFormat;
@@ -840,7 +840,7 @@ public class LoggingBuilder {
                     out.write(string);
                     count += string.length();
                 } catch (IOException e) {
-                    appender.handleError("Write failure.", e, Appender.CODE_WRITE_FAILURE);
+                    appender.handleError("Write failure.", e, CODE_WRITE_FAILURE);
                 }
             }
 

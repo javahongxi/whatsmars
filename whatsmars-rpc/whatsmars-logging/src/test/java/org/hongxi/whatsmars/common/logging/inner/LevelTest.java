@@ -15,26 +15,23 @@
  * limitations under the License.
  */
 
-package org.hongxi.whatsmars.logging.inner;
+package org.hongxi.whatsmars.common.logging.inner;
 
-
-import org.hongxi.whatsmars.logging.InnerLoggerFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class MessageFormatterTest {
+public class LevelTest {
 
     @Test
-    public void formatTest(){
-        InnerLoggerFactory.FormattingTuple logging = InnerLoggerFactory.MessageFormatter.format("this is {},and {}", "logging", 6546);
-        String message = logging.getMessage();
-        Assert.assertTrue(message.contains("logging"));
-
-        InnerLoggerFactory.FormattingTuple format = InnerLoggerFactory.MessageFormatter.format("cause exception {}", 143545, new RuntimeException());
-        String message1 = format.getMessage();
-        Throwable throwable = format.getThrowable();
-        System.out.println(message1);
-        Assert.assertTrue(throwable != null);
+    public void levelTest() {
+        Level info = Level.toLevel("info");
+        Level error = Level.toLevel(3);
+        Assert.assertTrue(error != null && info != null);
     }
 
+    @Test
+    public void loggerLevel(){
+        Level level = Logger.getRootLogger().getLevel();
+        Assert.assertTrue(level!=null);
+    }
 }

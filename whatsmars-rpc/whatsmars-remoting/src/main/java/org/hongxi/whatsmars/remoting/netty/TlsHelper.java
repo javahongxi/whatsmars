@@ -20,8 +20,8 @@ package org.hongxi.whatsmars.remoting.netty;
 import io.netty.handler.ssl.*;
 import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
 import io.netty.handler.ssl.util.SelfSignedCertificate;
-import org.hongxi.whatsmars.logging.InternalLogger;
-import org.hongxi.whatsmars.logging.InternalLoggerFactory;
+import org.hongxi.whatsmars.common.logging.InternalLogger;
+import org.hongxi.whatsmars.common.logging.InternalLoggerFactory;
 import org.hongxi.whatsmars.remoting.common.RemotingHelper;
 
 import java.io.File;

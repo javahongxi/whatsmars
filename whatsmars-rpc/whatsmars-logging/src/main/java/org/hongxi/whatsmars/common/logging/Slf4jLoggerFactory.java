@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.hongxi.whatsmars.logging;
+package org.hongxi.whatsmars.common.logging;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +29,7 @@ public class Slf4jLoggerFactory extends InternalLoggerFactory {
 
     @Override
     protected String getLoggerType() {
-        return InternalLoggerFactory.LOGGER_SLF4J;
+        return LOGGER_SLF4J;
     }
 
     @Override

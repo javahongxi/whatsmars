@@ -17,8 +17,8 @@
 package org.hongxi.whatsmars.remoting.protocol;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import org.hongxi.whatsmars.logging.InternalLogger;
-import org.hongxi.whatsmars.logging.InternalLoggerFactory;
+import org.hongxi.whatsmars.common.logging.InternalLogger;
+import org.hongxi.whatsmars.common.logging.InternalLoggerFactory;
 import org.hongxi.whatsmars.remoting.CommandCustomHeader;
 import org.hongxi.whatsmars.remoting.annotation.CFNotNull;
 import org.hongxi.whatsmars.remoting.common.RemotingHelper;

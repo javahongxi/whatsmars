@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-package org.hongxi.whatsmars.logging.inner;
+package org.hongxi.whatsmars.common.logging.inner;
 
-import org.hongxi.whatsmars.logging.BasicLoggerTest;
-import org.hongxi.whatsmars.logging.InnerLoggerFactory;
-import org.hongxi.whatsmars.logging.InternalLogger;
-import org.hongxi.whatsmars.logging.InternalLoggerFactory;
+import org.hongxi.whatsmars.common.logging.BasicLoggerTest;
+import org.hongxi.whatsmars.common.logging.InnerLoggerFactory;
+import org.hongxi.whatsmars.common.logging.InternalLogger;
+import org.hongxi.whatsmars.common.logging.InternalLoggerFactory;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
