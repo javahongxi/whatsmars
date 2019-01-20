@@ -16,7 +16,7 @@
  */
 package org.hongxi.whatsmars.zk.remoting.zkclient;
 
-import com.alibaba.dubbo.common.URL;
+import org.hongxi.whatsmars.common.URL;
 import org.hongxi.whatsmars.zk.remoting.ZookeeperClient;
 import org.hongxi.whatsmars.zk.remoting.ZookeeperTransporter;
 

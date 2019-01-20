@@ -16,7 +16,7 @@
  */
 package org.hongxi.whatsmars.zk.remoting;
 
-import com.alibaba.dubbo.common.URL;
+import org.hongxi.whatsmars.common.URL;
 
 import java.util.List;
 

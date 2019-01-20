@@ -16,7 +16,7 @@
  */
 package org.hongxi.whatsmars.zk.remoting.zkclient;
 
-import com.alibaba.dubbo.common.URL;
+import org.hongxi.whatsmars.common.URL;
 import org.I0Itec.zkclient.IZkChildListener;
 import org.I0Itec.zkclient.IZkStateListener;
 import org.I0Itec.zkclient.exception.ZkNoNodeException;

@@ -17,8 +17,8 @@
 package org.hongxi.whatsmars.zk.remoting.curator;
 
 import org.apache.curator.framework.api.CuratorWatcher;
-import com.alibaba.dubbo.common.URL;
-import com.alibaba.dubbo.common.utils.NetUtils;
+import org.hongxi.whatsmars.common.URL;
+import org.hongxi.whatsmars.common.util.NetUtils;
 import org.apache.curator.test.TestingServer;
 import org.apache.zookeeper.WatchedEvent;
 import org.hongxi.whatsmars.zk.remoting.ChildListener;

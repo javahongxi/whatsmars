@@ -18,8 +18,8 @@ package org.hongxi.whatsmars.zk.remoting.zkclient;
 
 import org.I0Itec.zkclient.IZkChildListener;
 import org.apache.curator.test.TestingServer;
-import com.alibaba.dubbo.common.URL;
-import com.alibaba.dubbo.common.utils.NetUtils;
+import org.hongxi.whatsmars.common.URL;
+import org.hongxi.whatsmars.common.util.NetUtils;
 import org.hongxi.whatsmars.zk.remoting.StateListener;
 import org.junit.After;
 import org.junit.Before;

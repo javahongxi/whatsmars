@@ -16,18 +16,16 @@
  */
 package org.hongxi.whatsmars.zk.remoting.zkclient;
 
-import com.alibaba.dubbo.common.concurrent.ListenableFutureTask;
-import com.alibaba.dubbo.common.logger.Logger;
-import com.alibaba.dubbo.common.logger.LoggerFactory;
-import com.alibaba.dubbo.common.utils.Assert;
+import org.hongxi.whatsmars.common.util.Assert;
 import org.I0Itec.zkclient.IZkChildListener;
 import org.I0Itec.zkclient.IZkStateListener;
 import org.I0Itec.zkclient.ZkClient;
 import org.apache.zookeeper.Watcher.Event.KeeperState;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -37,35 +35,26 @@ import java.util.concurrent.TimeUnit;
  * @date 2017/10/29
  */
 public class ZkClientWrapper {
-    Logger logger = LoggerFactory.getLogger(ZkClientWrapper.class);
-
+    private Logger logger = LoggerFactory.getLogger(ZkClientWrapper.class);
     private long timeout;
     private ZkClient client;
     private volatile KeeperState state;
-    private ListenableFutureTask<ZkClient> listenableFutureTask;
+    private CompletableFuture<ZkClient> completableFuture;
     private volatile boolean started = false;
-
 
     public ZkClientWrapper(final String serverAddr, long timeout) {
         this.timeout = timeout;
-        listenableFutureTask = ListenableFutureTask.create(new Callable<ZkClient>() {
-            @Override
-            public ZkClient call() throws Exception {
-                return new ZkClient(serverAddr, Integer.MAX_VALUE);
-            }
-        });
+        completableFuture = CompletableFuture.supplyAsync(() -> new ZkClient(serverAddr, Integer.MAX_VALUE));
     }
 
     public void start() {
         if (!started) {
-            Thread connectThread = new Thread(listenableFutureTask);
-            connectThread.setName("DubboZkclientConnector");
-            connectThread.setDaemon(true);
-            connectThread.start();
             try {
-                client = listenableFutureTask.get(timeout, TimeUnit.MILLISECONDS);
+                client = completableFuture.get(timeout, TimeUnit.MILLISECONDS);
+//                this.client.subscribeStateChanges(IZkStateListener);
             } catch (Throwable t) {
                 logger.error("Timeout! zookeeper server can not be connected in : " + timeout + "ms!", t);
+                completableFuture.whenComplete(this::makeClientReady);
             }
             started = true;
         } else {
@@ -73,24 +62,18 @@ public class ZkClientWrapper {
         }
     }
 
-    public void addListener(final IZkStateListener listener) {
-        listenableFutureTask.addListener(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    client = listenableFutureTask.get();
-                    client.subscribeStateChanges(listener);
-                } catch (InterruptedException e) {
-                    logger.warn(Thread.currentThread().getName() + " was interrupted unexpectedly, which may cause unpredictable exception!");
-                } catch (ExecutionException e) {
-                    logger.error("Got an exception when trying to create zkclient instance, can not connect to zookeeper server, please check!", e);
-                }
+    public void addListener(IZkStateListener listener) {
+        completableFuture.whenComplete((value, exception) -> {
+            this.makeClientReady(value, exception);
+            if (exception == null) {
+                client.subscribeStateChanges(listener);
             }
         });
     }
 
     public boolean isConnected() {
-        return client != null && state == KeeperState.SyncConnected;
+//        return client != null && state == KeeperState.SyncConnected;
+        return client != null;
     }
 
     public void createPersistent(String path) {
@@ -103,6 +86,16 @@ public class ZkClientWrapper {
         client.createEphemeral(path);
     }
 
+    public void createPersistent(String path, String data) {
+        Assert.notNull(client, new IllegalStateException("Zookeeper is not connected yet!"));
+        client.createPersistent(path, data);
+    }
+
+    public void createEphemeral(String path, String data) {
+        Assert.notNull(client, new IllegalStateException("Zookeeper is not connected yet!"));
+        client.createEphemeral(path, data);
+    }
+
     public void delete(String path) {
         Assert.notNull(client, new IllegalStateException("Zookeeper is not connected yet!"));
         client.delete(path);
@@ -111,6 +104,11 @@ public class ZkClientWrapper {
     public List<String> getChildren(String path) {
         Assert.notNull(client, new IllegalStateException("Zookeeper is not connected yet!"));
         return client.getChildren(path);
+    }
+
+    public String getData(String path) {
+        Assert.notNull(client, new IllegalStateException("Zookeeper is not connected yet!"));
+        return client.readData(path);
     }
 
     public boolean exists(String path) {
@@ -131,6 +129,15 @@ public class ZkClientWrapper {
     public void unsubscribeChildChanges(String path, IZkChildListener listener) {
         Assert.notNull(client, new IllegalStateException("Zookeeper is not connected yet!"));
         client.unsubscribeChildChanges(path, listener);
+    }
+
+    private void makeClientReady(ZkClient client, Throwable e) {
+        if (e != null) {
+            logger.error("Got an exception when trying to create zkclient instance, can not connect to zookeeper server, please check!", e);
+        } else {
+            this.client = client;
+//            this.client.subscribeStateChanges(IZkStateListener);
+        }
     }
 
 

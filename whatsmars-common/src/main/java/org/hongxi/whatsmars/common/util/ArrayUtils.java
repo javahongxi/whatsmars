@@ -14,17 +14,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hongxi.whatsmars.zk.remoting.curator;
 
-import org.hongxi.whatsmars.common.URL;
-import org.hongxi.whatsmars.zk.remoting.ZookeeperClient;
-import org.hongxi.whatsmars.zk.remoting.ZookeeperTransporter;
+package org.hongxi.whatsmars.common.util;
 
-public class CuratorZookeeperTransporter implements ZookeeperTransporter {
+/**
+ * Contains some methods to check array.
+ */
+public final class ArrayUtils {
 
-    @Override
-    public ZookeeperClient connect(URL url) {
-        return new CuratorZookeeperClient(url);
+    private ArrayUtils() {
     }
 
+    /**
+     * <p>Checks if the array is null or empty. <p/>
+     *
+     * @param array th array to check
+     * @return {@code true} if the array is null or empty.
+     */
+    public static boolean isEmpty(final Object[] array) {
+        return array == null || array.length == 0;
+    }
+
+    /**
+     * <p>Checks if the array is not null or empty. <p/>
+     *
+     * @param array th array to check
+     * @return {@code true} if the array is not null or empty.
+     */
+    public static boolean isNotEmpty(final Object[] array) {
+        return !isEmpty(array);
+    }
 }

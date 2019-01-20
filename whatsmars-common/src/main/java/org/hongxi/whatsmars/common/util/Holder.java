@@ -14,17 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hongxi.whatsmars.zk.remoting.curator;
+package org.hongxi.whatsmars.common.util;
 
-import org.hongxi.whatsmars.common.URL;
-import org.hongxi.whatsmars.zk.remoting.ZookeeperClient;
-import org.hongxi.whatsmars.zk.remoting.ZookeeperTransporter;
+/**
+ * Helper Class for hold a value.
+ */
+public class Holder<T> {
 
-public class CuratorZookeeperTransporter implements ZookeeperTransporter {
+    private volatile T value;
 
-    @Override
-    public ZookeeperClient connect(URL url) {
-        return new CuratorZookeeperClient(url);
+    public void set(T value) {
+        this.value = value;
+    }
+
+    public T get() {
+        return value;
     }
 
 }

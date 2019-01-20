@@ -38,9 +38,13 @@
             <artifactId>zkclient</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>dubbo-common</artifactId>
-            <version>${dubbo.version}</version>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hongxi</groupId>
+            <artifactId>whatsmars-common</artifactId>
+            <version>Rocket.S4</version>
         </dependency>
     </dependencies>
 

@@ -14,17 +14,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hongxi.whatsmars.zk.remoting.curator;
+package org.hongxi.whatsmars.common.config;
 
-import org.hongxi.whatsmars.common.URL;
-import org.hongxi.whatsmars.zk.remoting.ZookeeperClient;
-import org.hongxi.whatsmars.zk.remoting.ZookeeperTransporter;
 
-public class CuratorZookeeperTransporter implements ZookeeperTransporter {
+/**
+ * FIXME: is this really necessary? PropertiesConfiguration should have already covered this:
+ * @see PropertiesConfiguration
+ * @See ConfigUtils#getProperty(String)
+ */
+public class SystemConfiguration extends AbstractPrefixConfiguration {
+
+    public SystemConfiguration(String prefix, String id) {
+        super(prefix, id);
+    }
+
+    public SystemConfiguration() {
+        this(null, null);
+    }
 
     @Override
-    public ZookeeperClient connect(URL url) {
-        return new CuratorZookeeperClient(url);
+    public Object getInternalProperty(String key) {
+        return System.getProperty(key);
     }
 
 }

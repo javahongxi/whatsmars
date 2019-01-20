@@ -14,17 +14,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hongxi.whatsmars.zk.remoting.curator;
+package org.hongxi.whatsmars.common.config;
 
-import org.hongxi.whatsmars.common.URL;
-import org.hongxi.whatsmars.zk.remoting.ZookeeperClient;
-import org.hongxi.whatsmars.zk.remoting.ZookeeperTransporter;
+/**
+ * Configuration from system environment
+ */
+public class EnvironmentConfiguration extends AbstractPrefixConfiguration {
 
-public class CuratorZookeeperTransporter implements ZookeeperTransporter {
+    public EnvironmentConfiguration(String prefix, String id) {
+        super(prefix, id);
+    }
+
+    public EnvironmentConfiguration() {
+        this(null, null);
+    }
 
     @Override
-    public ZookeeperClient connect(URL url) {
-        return new CuratorZookeeperClient(url);
+    public Object getInternalProperty(String key) {
+        return System.getenv(key);
     }
 
 }

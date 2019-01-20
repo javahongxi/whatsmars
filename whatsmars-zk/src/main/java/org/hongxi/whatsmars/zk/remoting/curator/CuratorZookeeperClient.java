@@ -16,8 +16,8 @@
  */
 package org.hongxi.whatsmars.zk.remoting.curator;
 
-import com.alibaba.dubbo.common.URL;
-import com.alibaba.dubbo.common.utils.StringUtils;
+import org.hongxi.whatsmars.common.URL;
+import org.hongxi.whatsmars.common.util.StringUtils;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.api.CuratorWatcher;
