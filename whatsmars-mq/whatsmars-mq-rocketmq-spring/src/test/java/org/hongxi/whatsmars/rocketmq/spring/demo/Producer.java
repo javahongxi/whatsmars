@@ -10,7 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Producer {
 
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("mq-producer.xml");
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("rocketmq-producer.xml");
         RocketMQTemplate rocketMQTemplate = (RocketMQTemplate) context.getBean("rocketMQTemplate");
         for (int i = 0; i < 20; i++) {
             try {
