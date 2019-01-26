@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @ConditionalOnProperty(prefix = "trade.mq", value = {"nameServer"})
 @Slf4j
 @Service
-@RocketMQMessageListener(nameServer = "${trade.mq.nameServer}", instanceName = "${trade.mq.nameServer}", topic = "test-topic-3", consumerGroup = "my-consumer_test-topic-3")
+@RocketMQMessageListener(nameServer = "${trade.mq.nameServer}", instanceName = "${trade.mq.clusterName}", topic = "test-topic-3", consumerGroup = "my-consumer_test-topic-3")
 public class MyConsumer3 implements RocketMQListener<String> {
     public void onMessage(String message) {
         log.info("received message: " + message);
