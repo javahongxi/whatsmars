@@ -18,7 +18,6 @@
     <modules>
         <module>whatsmars-remoting</module>
         <module>whatsmars-serialization</module>
-        <module>whatsmars-rpc-grpc</module>
         <module>whatsmars-logging</module>
     </modules>
 
