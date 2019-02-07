@@ -3,10 +3,8 @@
  */
 package org.hongxi.whatsmars.dubbo.demo.provider;
 
-import com.alibaba.dubbo.rpc.RpcContext;
+import org.apache.dubbo.rpc.RpcContext;
 import org.hongxi.whatsmars.dubbo.demo.api.DemoService;
-import org.hongxi.whatsmars.dubbo.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -15,13 +13,9 @@ import java.util.Date;
 @Service("demoService")
 public class DemoServiceImpl implements DemoService {
 
-    @Autowired
-    private UserService userService;
-
     public String sayHello(String name) {
-        boolean registerSuccess = userService.register(name);
         System.out.println("[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "] Hello " + name + ", request from consumer: " + RpcContext.getContext().getRemoteAddress());
-        return "Hello " + name + ", registerSuccess:" + registerSuccess + ", response form provider: " + RpcContext.getContext().getLocalAddress();
+        return "Hello " + name + ", response form provider: " + RpcContext.getContext().getLocalAddress();
     }
     
 }

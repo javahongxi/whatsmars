@@ -20,14 +20,6 @@ dubbo:
   scan:
     basePackages: org.hongxi.whatsmars.dubbo.demo.provider.service
 
-endpoints:
-  dubbo:
-    enabled: true
-management:
-  port: 9091
-  security:
-    enabled: false
-
 registry:
   other:
     protocol: zookeeper

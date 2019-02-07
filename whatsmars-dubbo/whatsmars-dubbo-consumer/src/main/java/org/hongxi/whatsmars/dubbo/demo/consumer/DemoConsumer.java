@@ -3,7 +3,7 @@
  */
 package org.hongxi.whatsmars.dubbo.demo.consumer;
 
-import com.alibaba.dubbo.rpc.service.EchoService;
+import org.apache.dubbo.rpc.service.EchoService;
 import org.hongxi.whatsmars.dubbo.demo.api.DemoService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -24,13 +24,13 @@ public class DemoConsumer {
 
 		// hessian protocol 直连
 		DemoService demoService2 = (DemoService) context.getBean("demoService2");
-		String hello2 = demoService2.sayHello("hessian直连");
+		String hello2 = demoService2.sayHello("dubbo直连");
 		System.out.println(hello2);
 
 		// hessian protocol
-		DemoService demoService3 = (DemoService) context.getBean("demoService3");
-		String hello3 = demoService3.sayHello("hessian");
-		System.out.println(hello3);
+//		DemoService demoService3 = (DemoService) context.getBean("demoService3");
+//		String hello3 = demoService3.sayHello("hessian");
+//		System.out.println(hello3);
 
 		// service group
 		DemoService demoService4 = (DemoService) context.getBean("demoService4");

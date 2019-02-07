@@ -21,13 +21,10 @@
         <module>whatsmars-dubbo-provider</module>
         <module>whatsmars-dubbo-provider-boot</module>
         <module>whatsmars-dubbo-consumer-boot</module>
-        <module>whatsmars-dubbo-service</module>
-        <module>whatsmars-dubbo-sentinel</module>
     </modules>
 
     <properties>
         <dubbo-boot.version>0.2.0</dubbo-boot.version>
-        <sentinel.version>1.3.0-GA</sentinel.version>
     </properties>
 
     <dependencyManagement>
@@ -36,17 +33,6 @@
                 <groupId>com.alibaba.boot</groupId>
                 <artifactId>dubbo-spring-boot-starter</artifactId>
                 <version>${dubbo-boot.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.alibaba.csp</groupId>
-                <artifactId>sentinel-dubbo-adapter</artifactId>
-                <version>${sentinel.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.csp</groupId>
-                <artifactId>sentinel-transport-simple-http</artifactId>
-                <version>${sentinel.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

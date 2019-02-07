@@ -3,7 +3,7 @@
  */
 package org.hongxi.whatsmars.dubbo.demo.consumer;
 
-import com.alibaba.dubbo.rpc.RpcContext;
+import org.apache.dubbo.rpc.RpcContext;
 import org.hongxi.whatsmars.dubbo.demo.api.DemoService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
