@@ -53,6 +53,7 @@
         <commons-logging.version>1.2</commons-logging.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <fastjson.version>1.2.44</fastjson.version>
+        <hessian.version>4.0.7</hessian.version>
         <swagger2.version>2.5.0</swagger2.version>
         <zkclient.version>0.9</zkclient.version>
         <curator.version>2.12.0</curator.version>
@@ -131,6 +132,11 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.caucho</groupId>
+                <artifactId>hessian</artifactId>
+                <version>${hessian.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.springfox</groupId>
