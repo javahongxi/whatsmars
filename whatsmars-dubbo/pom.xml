@@ -21,18 +21,15 @@
         <module>whatsmars-dubbo-provider</module>
         <module>whatsmars-dubbo-provider-boot</module>
         <module>whatsmars-dubbo-consumer-boot</module>
+        <module>dubbo-spring-boot-starter</module>
     </modules>
-
-    <properties>
-        <dubbo-boot.version>0.2.0</dubbo-boot.version>
-    </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.alibaba.boot</groupId>
+                <groupId>org.hongxi</groupId>
                 <artifactId>dubbo-spring-boot-starter</artifactId>
-                <version>${dubbo-boot.version}</version>
+                <version>Rocket.S4</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

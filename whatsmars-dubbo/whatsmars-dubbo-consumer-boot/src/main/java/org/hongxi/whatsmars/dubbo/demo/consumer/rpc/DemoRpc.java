@@ -1,6 +1,6 @@
 package org.hongxi.whatsmars.dubbo.demo.consumer.rpc;
 
-import com.alibaba.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.Reference;
 import org.hongxi.whatsmars.dubbo.demo.api.DemoService;
 import org.hongxi.whatsmars.dubbo.demo.api.OtherService;
 import org.springframework.stereotype.Component;

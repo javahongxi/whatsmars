@@ -1,6 +1,6 @@
 package org.hongxi.whatsmars.dubbo.demo.provider.config;
 
-import com.alibaba.dubbo.config.RegistryConfig;
+import org.apache.dubbo.config.RegistryConfig;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -3,8 +3,8 @@
  */
 package org.hongxi.whatsmars.dubbo.demo.provider.service;
 
-import com.alibaba.dubbo.config.annotation.Service;
-import com.alibaba.dubbo.rpc.RpcContext;
+import org.apache.dubbo.config.annotation.Service;
+import org.apache.dubbo.rpc.RpcContext;
 import org.hongxi.whatsmars.dubbo.demo.api.OtherService;
 
 import java.text.SimpleDateFormat;

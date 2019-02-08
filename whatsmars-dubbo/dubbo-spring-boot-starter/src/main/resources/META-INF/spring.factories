@@ -1,0 +1,11 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.apache.dubbo.spring.starter.autoconfigure.DubboAutoConfiguration
+
+
+org.springframework.context.ApplicationListener=\
+org.apache.dubbo.spring.starter.context.event.OverrideDubboConfigApplicationListener,\
+org.apache.dubbo.spring.starter.context.event.WelcomeLogoApplicationListener,\
+org.apache.dubbo.spring.starter.context.event.AwaitingNonWebApplicationListener
+
+org.springframework.boot.env.EnvironmentPostProcessor=\
+org.apache.dubbo.spring.starter.env.DubboDefaultPropertiesEnvironmentPostProcessor
