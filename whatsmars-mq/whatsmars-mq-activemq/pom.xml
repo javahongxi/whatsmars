@@ -5,7 +5,7 @@
     <parent>
         <artifactId>whatsmars-mq</artifactId>
         <groupId>org.hongxi</groupId>
-        <version>Rocket.S4</version>
+        <version>Rocket.S5</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 

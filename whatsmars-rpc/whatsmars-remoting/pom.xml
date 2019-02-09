@@ -5,7 +5,7 @@
     <parent>
         <artifactId>whatsmars-rpc</artifactId>
         <groupId>org.hongxi</groupId>
-        <version>Rocket.S4</version>
+        <version>Rocket.S5</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -31,7 +31,7 @@
         <dependency>
             <groupId>org.hongxi</groupId>
             <artifactId>whatsmars-logging</artifactId>
-            <version>Rocket.S4</version>
+            <version>Rocket.S5</version>
         </dependency>
     </dependencies>
 
