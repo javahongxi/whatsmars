@@ -21,6 +21,8 @@
         <module>whatsmars-dubbo-provider-boot</module>
         <module>whatsmars-dubbo-consumer-boot</module>
         <module>dubbo-spring-boot-starter</module>
+        <module>whatsmars-dubbo-provider-annotation</module>
+        <module>whatsmars-dubbo-consumer-annotation</module>
     </modules>
 
     <dependencyManagement>
