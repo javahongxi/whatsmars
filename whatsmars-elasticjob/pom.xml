@@ -16,7 +16,6 @@
 
     <properties>
         <elastic-job.version>2.1.5</elastic-job.version>
-        <h2.version>1.4.184</h2.version>
     </properties>
 
     <dependencies>
@@ -25,8 +24,8 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
         <dependency>
-            <artifactId>elastic-job-lite-spring</artifactId>
             <groupId>com.dangdang</groupId>
+            <artifactId>elastic-job-lite-spring</artifactId>
             <version>${elastic-job.version}</version>
         </dependency>
         <dependency>
@@ -37,7 +36,6 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>${h2.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-dbcp</groupId>
