@@ -49,5 +49,6 @@ whatsmars-zk | zookeeper remoting 封装
 - 带着问题去看源代码，没必要把源代码看完
 - 看源代码最大的技巧是看英文注释，另一个技巧是日志+DEBUG
 - 如果没有时间去深入研究一款软件，那么从宏观层面理解它的设计思想是重要的
+- 读书很重要，包括非技术书
 
 &copy; [hongxi.org](http://hongxi.org) | [wiki.hongxi.org](http://wiki.hongxi.org) | [blog.hongxi.org](http://blog.hongxi.org)
