@@ -1,7 +1,7 @@
 # [Apache Dubbo](http://dubbo.apache.org)
 高性能分布式RPC框架 👻 [start.dubbo.io](http://start.dubbo.io)
 
-> 好的微服务架构师一定是业务架构师，基于业务的建瓴，微服务设计三部曲，遵循自下而上的设计原则，即原子服务、服务组合和业务编排，避免系统之间出现混乱调用。
+> Dubbo框架的实现充分践行了可扩展性，即**类→抽象类→接口**+SPI。我们平时在spring-boot环境下，也可利用**类→抽象类→接口**+AutoConfiguration实现可扩展性，一些场景下要学会用**面向接口编程**代替if-else。
 
 ### 为什么zookeeper不适合做服务注册中心
 有个思考，从CAP角度考虑，服务注册中心是CP系统还是AP系统呢？
@@ -24,7 +24,6 @@
 - java -jar -Ddubbo.registry.address=zookeeper://127.0.0.1:2181 whatsmars-dubbo-consumer.jar
 
 ### User Guide
-- https://github.com/javahongxi/dubbo-samples
 - [Dubbo框架设计](https://github.com/javahongxi/whatsmars/wiki/Dubbo%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1)
 - 配置覆盖策略：java -D > xml > properties，properties适合全局配置。本地调试时，可利用此特性在
 IDEA VM options 设置 -Ddubbo.registry.register=false (有id时为-Ddubbo.registry.xx.register=false)
