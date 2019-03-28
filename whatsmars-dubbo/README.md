@@ -118,6 +118,11 @@ registry.register(URL.valueOf("override://0.0.0.0/com.foo.BarService?category=co
 <dubbo:service delay="-1" />
 ```
 - 并发控制，异步调用，本地调用，参数回调，事件通知 ...
+- 关于枚举值
+  + 如果是完备集，可以用 Enum，比如：ENABLE, DISABLE。
+  + 如果是业务种类，以后明显会有类型增加，不建议用 Enum，可以用 String 代替。
+  + 如果是在返回值中用了 Enum，并新增了 Enum 值，建议先升级服务消费方，这样服务提供方不会返回新值。
+  + 如果是在传入参数中用了 Enum，并新增了 Enum 值，建议先升级服务提供方，这样服务消费方不会传入新值。
 
 ### More
 - [《企业IT架构转型之道：阿里巴巴中台战略思想与架构实战》](https://book.douban.com/subject/27039508/)
