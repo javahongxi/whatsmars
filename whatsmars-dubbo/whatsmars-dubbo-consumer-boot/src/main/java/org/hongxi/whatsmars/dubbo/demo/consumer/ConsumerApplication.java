@@ -12,8 +12,8 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class ConsumerApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(ConsumerApplication.class, args);
-        DemoRpc demoRpc = context.getBean(DemoRpc.class);
-        System.out.println(demoRpc.sayHello("Lily"));
-        System.out.println(demoRpc.sayHello2("Lily"));
+//        DemoRpc demoRpc = context.getBean(DemoRpc.class);
+//        System.out.println(demoRpc.sayHello("Lily"));
+//        System.out.println(demoRpc.sayHello2("Lily"));
     }
 }

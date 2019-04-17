@@ -12,10 +12,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class DemoRpc {
 
-    @Reference
+    @Reference(check = false)
     private DemoService demoService;
 
-    @Reference(registry = "otherRegistry")
+    @Reference(registry = "otherRegistry", check = false)
     private OtherService otherService;
 
     public String sayHello(String name) {
