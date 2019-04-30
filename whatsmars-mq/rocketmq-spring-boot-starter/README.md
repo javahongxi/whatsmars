@@ -5,3 +5,6 @@
 - 优化getMessageType方法，支持 MyConsumer extends AbstractConsumer implements RocketMQListener <br>（官方只支持MyConsumer implements RocketMQListener）
 - RocketMQTemplate方法重载(加入keys)
 - 暂未加入事务消息功能 （官方最新版支持）
+
+当需要往其他集群发送消息时，需要拷贝一份`RocketMQAutoConfiguration`和`RocketMQProperties`，
+并相应修改@Bean方法名和Conditional，最重要的是给MQProducer设置instanceName，且默认的MQProducer也需要手动实例化。
