@@ -12,7 +12,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class DemoRpc {
 
-    @Reference(check = false)
+    /**
+     * 当不指定registry时，Reference会从所有含有该service的registry里选择一个registry
+     */
+    @Reference(registry = "defaultRegistry", check = false)
     private DemoService demoService;
 
     @Reference(registry = "otherRegistry", check = false)
