@@ -13,6 +13,7 @@ import java.util.Date;
 @Service(registry = "otherRegistry")
 public class OtherServiceImpl implements OtherService {
 
+    @Override
     public String sayHello(String name) {
         System.out.println("[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "] Hello " + name + ", request from consumer: " + RpcContext.getContext().getRemoteAddress());
         return "Hi " + name + ", response form provider: " + RpcContext.getContext().getLocalAddress();

@@ -6,7 +6,7 @@ dubbo:
   registry:
     protocol: zookeeper
     address: 127.0.0.1:2181
-    id: my-registry
+    id: defaultRegistry
   protocol:
     port: 20882
     name: dubbo
