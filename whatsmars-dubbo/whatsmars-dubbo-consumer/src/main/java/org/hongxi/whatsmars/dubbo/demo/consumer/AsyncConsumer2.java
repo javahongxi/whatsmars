@@ -22,19 +22,15 @@ public class AsyncConsumer2 {
 
         final DemoService demoService = (DemoService) context.getBean("demoService");
 
-        Future<String> f = RpcContext.getContext().asyncCall(new Callable<String>() {
-            public String call() throws Exception {
-                return demoService.sayHello("async call request");
-            }
+        Future<String> f = RpcContext.getContext().asyncCall(() -> {
+            return demoService.sayHello("async call request");
         });
 
         System.out.println("async call ret :" + f.get());
 
-        RpcContext.getContext().asyncCall(new Runnable() {
-            public void run() {
-                demoService.sayHello("oneway call request1");
-                demoService.sayHello("oneway call request2");
-            }
+        RpcContext.getContext().asyncCall(() -> {
+            demoService.sayHello("oneway call request1");
+            demoService.sayHello("oneway call request2");
         });
 
         System.in.read();

@@ -16,7 +16,15 @@
  */
 package org.apache.dubbo.spring.starter.util;
 
+import org.apache.dubbo.config.ApplicationConfig;
+import org.apache.dubbo.config.spring.beans.factory.annotation.ServiceAnnotationBeanPostProcessor;
+import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
+import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfigBinding;
+import org.apache.dubbo.config.spring.context.properties.DubboConfigBinder;
+
+import org.springframework.boot.context.ContextIdApplicationContextInitializer;
 import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.core.env.PropertyResolver;
 
 import java.util.Collections;
 import java.util.Map;
@@ -26,7 +34,7 @@ import java.util.TreeMap;
 /**
  * The utilities class for Dubbo
  *
- * @since 1.0.0
+ * @since 2.7.0
  */
 public abstract class DubboUtils {
 
@@ -49,38 +57,38 @@ public abstract class DubboUtils {
     /**
      * The prefix of property name for Dubbo scan
      */
-    public static final String DUBBO_SCAN_PREFIX = DUBBO_PREFIX + PROPERTY_NAME_SEPARATOR + "scan";
+    public static final String DUBBO_SCAN_PREFIX = DUBBO_PREFIX + PROPERTY_NAME_SEPARATOR + "scan" + PROPERTY_NAME_SEPARATOR;
 
     /**
-     * The prefix of property name for Dubbo Config.ØØ
+     * The prefix of property name for Dubbo Config
      */
-    public static final String DUBBO_CONFIG_PREFIX = DUBBO_PREFIX + PROPERTY_NAME_SEPARATOR + "config";
+    public static final String DUBBO_CONFIG_PREFIX = DUBBO_PREFIX + PROPERTY_NAME_SEPARATOR + "config" + PROPERTY_NAME_SEPARATOR;
 
     /**
      * The property name of base packages to scan
      * <p>
      * The default value is empty set.
      */
-    public static final String BASE_PACKAGES_PROPERTY_NAME = DUBBO_SCAN_PREFIX + PROPERTY_NAME_SEPARATOR + "base-packages";
+    public static final String BASE_PACKAGES_PROPERTY_NAME = "base-packages";
 
     /**
      * The property name of multiple properties binding from externalized configuration
      * <p>
      * The default value is {@link #DEFAULT_MULTIPLE_CONFIG_PROPERTY_VALUE}
      */
-    public static final String MULTIPLE_CONFIG_PROPERTY_NAME = DUBBO_CONFIG_PREFIX + PROPERTY_NAME_SEPARATOR + "multiple";
+    public static final String MULTIPLE_CONFIG_PROPERTY_NAME = "multiple";
 
     /**
      * The default value of multiple properties binding from externalized configuration
      */
-    public static final boolean DEFAULT_MULTIPLE_CONFIG_PROPERTY_VALUE = false;
+    public static final boolean DEFAULT_MULTIPLE_CONFIG_PROPERTY_VALUE = true;
 
     /**
      * The property name of override Dubbo config
      * <p>
      * The default value is {@link #DEFAULT_OVERRIDE_CONFIG_PROPERTY_VALUE}
      */
-    public static final String OVERRIDE_CONFIG_PROPERTY_NAME = DUBBO_CONFIG_PREFIX + PROPERTY_NAME_SEPARATOR + "override";
+    public static final String OVERRIDE_CONFIG_FULL_PROPERTY_NAME = DUBBO_CONFIG_PREFIX + "override";
 
     /**
      * The default property value of  override Dubbo config
@@ -91,27 +99,78 @@ public abstract class DubboUtils {
     /**
      * The github URL of Dubbo Spring Boot
      */
-    public static final String DUBBO_SPRING_BOOT_GITHUB_URL = "https://github.com/apache/incubator-dubbo-spring-boot-project";
+    public static final String DUBBO_SPRING_BOOT_GITHUB_URL = "https://github.com/apache/dubbo-spring-boot-project";
 
     /**
      * The git URL of Dubbo Spring Boot
      */
-    public static final String DUBBO_SPRING_BOOT_GIT_URL = "https://github.com/apache/incubator-dubbo-spring-boot-project.git";
+    public static final String DUBBO_SPRING_BOOT_GIT_URL = "https://github.com/apache/dubbo-spring-boot-project.git";
 
     /**
      * The issues of Dubbo Spring Boot
      */
-    public static final String DUBBO_SPRING_BOOT_ISSUES_URL = "https://github.com/apache/incubator-dubbo-spring-boot-project/issues";
+    public static final String DUBBO_SPRING_BOOT_ISSUES_URL = "https://github.com/apache/dubbo-spring-boot-project/issues";
 
     /**
      * The github URL of Dubbo
      */
-    public static final String DUBBO_GITHUB_URL = "https://github.com/apache/incubator-dubbo";
+    public static final String DUBBO_GITHUB_URL = "https://github.com/apache/dubbo";
 
     /**
      * The google group URL of Dubbo
      */
     public static final String DUBBO_MAILING_LIST = "dev@dubbo.apache.org";
+
+    /**
+     * The bean name of Relaxed-binding {@link DubboConfigBinder}
+     */
+    public static final String RELAXED_DUBBO_CONFIG_BINDER_BEAN_NAME = "relaxedDubboConfigBinder";
+
+    /**
+     * The bean name of {@link PropertyResolver} for {@link ServiceAnnotationBeanPostProcessor}'s base-packages
+     */
+    public static final String BASE_PACKAGES_PROPERTY_RESOLVER_BEAN_NAME = "dubboScanBasePackagesPropertyResolver";
+
+    /**
+     * The property name of Spring Application
+     *
+     * @see ContextIdApplicationContextInitializer
+     * @since 2.7.1
+     */
+    public static final String SPRING_APPLICATION_NAME_PROPERTY = "spring.application.name";
+
+    /**
+     * The property id of {@link ApplicationConfig} Bean
+     *
+     * @see EnableDubboConfig
+     * @see EnableDubboConfigBinding
+     * @since 2.7.1
+     */
+    public static final String DUBBO_APPLICATION_ID_PROPERTY = "dubbo.application.id";
+
+    /**
+     * The property name of {@link ApplicationConfig}
+     *
+     * @see EnableDubboConfig
+     * @see EnableDubboConfigBinding
+     * @since 2.7.1
+     */
+    public static final String DUBBO_APPLICATION_NAME_PROPERTY = "dubbo.application.name";
+
+    /**
+     * The property name of {@link ApplicationConfig#getQosEnable() application's QOS enable}
+     *
+     * @since 2.7.1
+     */
+    public static final String DUBBO_APPLICATION_QOS_ENABLE_PROPERTY = "dubbo.application.qos-enable";
+
+    /**
+     * The property name of {@link EnableDubboConfig#multiple() @EnableDubboConfig.multiple()}
+     *
+     * @since 2.7.1
+     */
+    public static final String DUBBO_CONFIG_MULTIPLE_PROPERTY = "dubbo.config.multiple";
+
 
     /**
      * Filters Dubbo Properties from {@link ConfigurableEnvironment}

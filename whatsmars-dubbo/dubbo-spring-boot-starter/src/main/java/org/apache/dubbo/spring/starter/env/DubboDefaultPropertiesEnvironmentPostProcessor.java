@@ -16,21 +16,23 @@
  */
 package org.apache.dubbo.spring.starter.env;
 
-import org.apache.dubbo.config.ApplicationConfig;
-import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
-import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfigBinding;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.context.ContextIdApplicationContextInitializer;
 import org.springframework.boot.env.EnvironmentPostProcessor;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.Ordered;
-import org.springframework.core.env.*;
+import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.core.env.Environment;
+import org.springframework.core.env.MapPropertySource;
+import org.springframework.core.env.MutablePropertySources;
+import org.springframework.core.env.PropertySource;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+
+import static org.apache.dubbo.spring.starter.util.DubboUtils.*;
 
 /**
  * The lowest precedence {@link EnvironmentPostProcessor} processes
@@ -42,32 +44,13 @@ public class DubboDefaultPropertiesEnvironmentPostProcessor implements Environme
     /**
      * The name of default {@link PropertySource} defined in SpringApplication#configurePropertySources method.
      */
-    private static final String PROPERTY_SOURCE_NAME = "defaultProperties";
+    public static final String PROPERTY_SOURCE_NAME = "defaultProperties";
 
     /**
-     * The property name of Spring Application
-     *
-     * @see ContextIdApplicationContextInitializer
+     * The property name of "spring.main.allow-bean-definition-overriding".
+     * Please refer to: https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.1-Release-Notes#bean-overriding
      */
-    private static final String SPRING_APPLICATION_NAME_PROPERTY = "spring.application.name";
-
-    /**
-     * The property name of {@link ApplicationConfig}
-     *
-     * @see EnableDubboConfig
-     * @see EnableDubboConfigBinding
-     */
-    private static final String DUBBO_APPLICATION_NAME_PROPERTY = "dubbo.application.name";
-
-    /**
-     * The property name of {@link EnableDubboConfig#multiple() @EnableDubboConfig.multiple()}
-     */
-    private static final String DUBBO_CONFIG_MULTIPLE_PROPERTY = "dubbo.config.multiple";
-
-    /**
-     * The property name of {@link ApplicationConfig#getQosEnable() application's QOS enable}
-     */
-    private static final String DUBBO_APPLICATION_QOS_ENABLE_PROPERTY = "dubbo.application.qos-enable";
+    public static final String ALLOW_BEAN_DEFINITION_OVERRIDING_PROPERTY = "spring.main.allow-bean-definition-overriding";
 
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
@@ -88,6 +71,7 @@ public class DubboDefaultPropertiesEnvironmentPostProcessor implements Environme
         setDubboApplicationNameProperty(environment, defaultProperties);
         setDubboConfigMultipleProperty(defaultProperties);
         setDubboApplicationQosEnableProperty(defaultProperties);
+        setAllowBeanDefinitionOverriding(defaultProperties);
         return defaultProperties;
     }
 
@@ -105,6 +89,18 @@ public class DubboDefaultPropertiesEnvironmentPostProcessor implements Environme
 
     private void setDubboApplicationQosEnableProperty(Map<String, Object> defaultProperties) {
         defaultProperties.put(DUBBO_APPLICATION_QOS_ENABLE_PROPERTY, Boolean.FALSE.toString());
+    }
+
+    /**
+     * Set {@link #ALLOW_BEAN_DEFINITION_OVERRIDING_PROPERTY "spring.main.allow-bean-definition-overriding"} to be
+     * <code>true</code> as default.
+     *
+     * @param defaultProperties the default {@link Properties properties}
+     * @see #ALLOW_BEAN_DEFINITION_OVERRIDING_PROPERTY
+     * @since 2.7.1
+     */
+    private void setAllowBeanDefinitionOverriding(Map<String, Object> defaultProperties) {
+        defaultProperties.put(ALLOW_BEAN_DEFINITION_OVERRIDING_PROPERTY, Boolean.TRUE.toString());
     }
 
     /**

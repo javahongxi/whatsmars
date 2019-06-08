@@ -28,7 +28,7 @@ whatsmars-spring-cloud | Spring Cloud 微服务生态
 whatsmars-zk | zookeeper remoting 封装
 
 ### Rocket Stack
-- [x] [*Dubbo*](https://github.com/alibaba/dubbo)
+- [x] [*Dubbo*](https://github.com/apache/dubbo)
 - [x] [*ZooKeeper*](https://github.com/apache/zookeeper)
 - [x] [*RocketMQ*](https://github.com/apache/rocketmq)
 - [x] [*Kafka*](https://github.com/apache/kafka)

@@ -19,12 +19,13 @@ package org.apache.dubbo.spring.starter.context.event;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.context.event.SmartApplicationListener;
+import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 
 import java.util.concurrent.ExecutorService;
@@ -37,9 +38,14 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * Awaiting Non-Web Spring Boot {@link ApplicationListener}
  *
- * @since 0.1.1
+ * @since 2.7.0
  */
 public class AwaitingNonWebApplicationListener implements SmartApplicationListener {
+
+    private static final String[] WEB_APPLICATION_CONTEXT_CLASSES = new String[]{
+            "org.springframework.web.context.WebApplicationContext",
+            "org.springframework.boot.web.reactive.context.ReactiveWebApplicationContext"
+    };
 
     private static final Logger logger = LoggerFactory.getLogger(AwaitingNonWebApplicationListener.class);
 
@@ -54,6 +60,14 @@ public class AwaitingNonWebApplicationListener implements SmartApplicationListen
 
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
 
+    private static <T> T[] of(T... values) {
+        return values;
+    }
+
+    static AtomicBoolean getAwaited() {
+        return awaited;
+    }
+
     @Override
     public boolean supportsEventType(Class<? extends ApplicationEvent> eventType) {
         return ObjectUtils.containsElement(SUPPORTED_APPLICATION_EVENTS, eventType);
@@ -62,10 +76,6 @@ public class AwaitingNonWebApplicationListener implements SmartApplicationListen
     @Override
     public boolean supportsSourceType(Class<?> sourceType) {
         return true;
-    }
-
-    private static <T> T[] of(T... values) {
-        return values;
     }
 
     @Override
@@ -86,12 +96,30 @@ public class AwaitingNonWebApplicationListener implements SmartApplicationListen
 
         final SpringApplication springApplication = event.getSpringApplication();
 
-        if (!WebApplicationType.NONE.equals(springApplication.getWebApplicationType())) {
+        if (isWebApplication(event.getApplicationContext(), springApplication.getClassLoader())) {
             return;
         }
 
         await();
+    }
 
+    private static boolean isWebApplication(ApplicationContext applicationContext, ClassLoader classLoader) {
+        boolean webApplication = false;
+        for (String contextClass : WEB_APPLICATION_CONTEXT_CLASSES) {
+            if (isAssignable(contextClass, applicationContext.getClass(), classLoader)) {
+                webApplication = true;
+                break;
+            }
+        }
+        return webApplication;
+    }
+
+    private static boolean isAssignable(String target, Class<?> type, ClassLoader classLoader) {
+        try {
+            return ClassUtils.resolveClassName(target, classLoader).isAssignableFrom(type);
+        } catch (Throwable ex) {
+            return false;
+        }
     }
 
     protected void onContextClosedEvent(ContextClosedEvent event) {
@@ -145,9 +173,5 @@ public class AwaitingNonWebApplicationListener implements SmartApplicationListen
         } finally {
             lock.unlock();
         }
-    }
-
-    static AtomicBoolean getAwaited() {
-        return awaited;
     }
 }

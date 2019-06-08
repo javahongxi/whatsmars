@@ -15,10 +15,10 @@ public class DemoRpc {
     /**
      * 当不指定registry时，Reference会从所有含有该service的registry里选择一个registry
      */
-    @Reference(registry = "defaultRegistry", check = false)
+    @Reference(registry = "defaultRegistry")
     private DemoService demoService;
 
-    @Reference(registry = "otherRegistry", check = false)
+    @Reference(registry = "otherRegistry")
     private OtherService otherService;
 
     public String sayHello(String name) {

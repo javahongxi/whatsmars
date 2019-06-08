@@ -27,7 +27,7 @@ import java.util.Map;
  * The utilities class for {@link Environment}
  *
  * @see Environment
- * @since 1.0.0
+ * @since 2.7.0
  */
 public abstract class EnvironmentUtils {
 

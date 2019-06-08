@@ -28,7 +28,9 @@ import org.springframework.core.env.Environment;
 
 import java.util.SortedMap;
 
-import static org.apache.dubbo.spring.starter.util.DubboUtils.*;
+import static org.apache.dubbo.spring.starter.util.DubboUtils.DEFAULT_OVERRIDE_CONFIG_PROPERTY_VALUE;
+import static org.apache.dubbo.spring.starter.util.DubboUtils.OVERRIDE_CONFIG_FULL_PROPERTY_NAME;
+import static org.apache.dubbo.spring.starter.util.DubboUtils.filterDubboProperties;
 
 /**
  * {@link ApplicationListener} to override the dubbo properties from {@link Environment}into
@@ -37,7 +39,7 @@ import static org.apache.dubbo.spring.starter.util.DubboUtils.*;
  * <p>
  *
  * @see ConfigUtils
- * @since 1.0.0
+ * @since 2.7.0
  */
 @Order // LOWEST_PRECEDENCE Make sure last execution
 public class OverrideDubboConfigApplicationListener implements ApplicationListener<ApplicationEnvironmentPreparedEvent> {
@@ -53,7 +55,7 @@ public class OverrideDubboConfigApplicationListener implements ApplicationListen
 
         ConfigurableEnvironment environment = event.getEnvironment();
 
-        boolean override = environment.getProperty(OVERRIDE_CONFIG_PROPERTY_NAME, boolean.class,
+        boolean override = environment.getProperty(OVERRIDE_CONFIG_FULL_PROPERTY_NAME, boolean.class,
                 DEFAULT_OVERRIDE_CONFIG_PROPERTY_VALUE);
 
         if (override) {
@@ -63,19 +65,12 @@ public class OverrideDubboConfigApplicationListener implements ApplicationListen
             ConfigUtils.getProperties().putAll(dubboProperties);
 
             if (logger.isInfoEnabled()) {
-
                 logger.info("Dubbo Config was overridden by externalized configuration {}", dubboProperties);
-
             }
-
         } else {
-
             if (logger.isInfoEnabled()) {
-
-                logger.info("Disable override Dubbo Config caused by property {} = {}", OVERRIDE_CONFIG_PROPERTY_NAME, override);
-
+                logger.info("Disable override Dubbo Config caused by property {} = {}", OVERRIDE_CONFIG_FULL_PROPERTY_NAME, override);
             }
-
         }
 
     }
