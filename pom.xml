@@ -13,7 +13,7 @@
     <groupId>org.hongxi</groupId>
     <artifactId>whatsmars-parent</artifactId>
     <packaging>pom</packaging>
-    <version>Rocket.S5</version>
+    <version>Rocket.S6</version>
     <url>https://github.com/javahongxi/whatsmars</url>
 
     <modules>
@@ -254,7 +254,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
             </plugin>
-            <!--mvn versions:set -DoldVersion=Rocket.S4 -DnewVersion=Rocket.S5-->
+            <!--mvn versions:set -DoldVersion=Rocket.S5 -DnewVersion=Rocket.S6-->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
