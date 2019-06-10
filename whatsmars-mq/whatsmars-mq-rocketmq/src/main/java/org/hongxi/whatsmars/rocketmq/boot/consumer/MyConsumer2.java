@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RocketMQMessageListener(topic = "test-topic-2", consumerGroup = "my-consumer_test-topic-2")
 public class MyConsumer2 implements RocketMQListener<OrderPaidEvent> {
+    @Override
     public void onMessage(OrderPaidEvent orderPaidEvent) {
         log.info("received orderPaidEvent: " + orderPaidEvent);
     }

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 @RocketMQMessageListener(topic = "test-topic-4", consumerGroup = "my-consumer_test-topic-4",
     consumeMode = ConsumeMode.ORDERLY)
 public class MyConsumer4 implements RocketMQListener<String> {
+    @Override
     public void onMessage(String message) {
         log.info("received message: " + message);
         int a = 1 / 0;

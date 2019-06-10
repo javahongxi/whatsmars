@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RocketMQMessageListener(nameServer = "${trade.mq.nameServer}", instanceName = "${trade.mq.clusterName}", topic = "test-topic-3", consumerGroup = "my-consumer_test-topic-3")
 public class MyConsumer3 implements RocketMQListener<String> {
+    @Override
     public void onMessage(String message) {
         log.info("received message: " + message);
     }
