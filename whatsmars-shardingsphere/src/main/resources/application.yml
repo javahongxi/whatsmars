@@ -7,8 +7,7 @@ mybatis:
 ---
 spring:
   profiles: sharding
-sharding:
-  jdbc:
+  shardingsphere:
     datasource:
       names: ds0,ds1
       ds0:
@@ -23,27 +22,26 @@ sharding:
         url: jdbc:mysql://db.hongxi.org:3306/demo_ds_1
         username: root
         password: n36bxXMnHina
-    config:
-      sharding:
-        default-database-strategy:
-          inline:
-            sharding-column: user_id
-            algorithm-expression: ds${user_id % 2}
-        tables:
-          t_order:
-            actual-data-nodes: ds${0..1}.t_order_${0..1}
-            table-strategy:
-              inline:
-                sharding-column: order_id
-                algorithm-expression: t_order_${order_id % 2}
-            key-generator-column-name: order_id
-          t_order_item:
-            actual-data-nodes: ds${0..1}.t_order_item_${0..1}
-            table-strategy:
-              inline:
-                sharding-column: order_id
-                algorithm-expression: t_order_item_${order_id % 2}
-            key-generator-column-name: order_item_id
+    sharding:
+      default-database-strategy:
+        inline:
+          sharding-column: user_id
+          algorithm-expression: ds${user_id % 2}
+      tables:
+        t_order:
+          actual-data-nodes: ds${0..1}.t_order_${0..1}
+          table-strategy:
+            inline:
+              sharding-column: order_id
+              algorithm-expression: t_order_${order_id % 2}
+          key-generator-column-name: order_id
+        t_order_item:
+          actual-data-nodes: ds${0..1}.t_order_item_${0..1}
+          table-strategy:
+            inline:
+              sharding-column: order_id
+              algorithm-expression: t_order_item_${order_id % 2}
+          key-generator-column-name: order_item_id
 
 ---
 spring:

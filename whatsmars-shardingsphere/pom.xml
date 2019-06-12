@@ -15,18 +15,13 @@
     <description>shardingjdbc demo</description>
 
     <properties>
-        <shardingsphere.version>3.0.0</shardingsphere.version>
+        <shardingsphere.version>4.0.0-RC1</shardingsphere.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>io.shardingsphere</groupId>
+            <groupId>org.apache.shardingsphere</groupId>
             <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
-            <version>${shardingsphere.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.shardingsphere</groupId>
-            <artifactId>sharding-core</artifactId>
             <version>${shardingsphere.version}</version>
         </dependency>
         <dependency>
