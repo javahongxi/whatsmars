@@ -130,7 +130,5 @@ broker会在一段时间后回查ProducerGroup里的其他实例，确认消息�
 消费位点就是一个数字，把Consumer Offset改一下就可以达到重放的目的了。
 
 ### More
-- [RocketMQ架构模块解析](https://blog.csdn.net/javahongxi/article/details/72956608)
-- [RocketMQ高并发读写](https://blog.csdn.net/javahongxi/article/details/72956619)
-- [RocketMQ消费失败重试深入分析](https://www.jianshu.com/p/925a628f3f80)
-- [《RocketMQ实战与原理解析》](https://e.jd.com/30414640.html) `e.jd.com`
+- [源码研究RocketMQ](https://blog.csdn.net/prestigeding/column/info/20603)
+- [《RocketMQ技术内幕：RocketMQ架构设计与实现原理》](https://e.jd.com/30446645.html) `e.jd.com`
