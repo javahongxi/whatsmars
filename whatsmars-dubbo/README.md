@@ -125,6 +125,7 @@ registry.register(URL.valueOf("override://0.0.0.0/com.foo.BarService?category=co
   + 如果是在传入参数中用了 Enum，并新增了 Enum 值，建议先升级服务提供方，这样服务消费方不会传入新值。
 
 ### More
+- [《高可用可伸缩微服务架构：基于 Dubbo、Spring 和 Service Mesh》](https://item.jd.com/12585284.html)
 - [《企业IT架构转型之道：阿里巴巴中台战略思想与架构实战》](https://book.douban.com/subject/27039508/)
 - [《亿级流量网站架构核心技术》](https://book.douban.com/subject/26999243/) `douban.com`
 - [《从Paxos到Zookeeper》](https://book.douban.com/subject/26292004/) `douban.com`
