@@ -34,5 +34,8 @@ public class SampleRedisApplication implements CommandLineRunner {
         redisTemplate.opsForValue().set("user3", user);
         User user1 = (User) redisTemplate.opsForValue().get("user3");
         System.out.println(user1.getUsername());
+
+        redisTemplate.opsForList().rightPush("list", 1);
+        System.out.println(redisTemplate.opsForList().range("list", 0, 2));
     }
 }
