@@ -132,3 +132,4 @@ broker会在一段时间后回查ProducerGroup里的其他实例，确认消息�
 ### More
 - [源码研究RocketMQ](https://blog.csdn.net/prestigeding/column/info/20603)
 - [《RocketMQ技术内幕：RocketMQ架构设计与实现原理》](https://e.jd.com/30446645.html) `e.jd.com`
+- [RocketMQ VS kafka](https://github.com/javahongxi/whatsmars/wiki/RocketMQ-VS-kafka)
