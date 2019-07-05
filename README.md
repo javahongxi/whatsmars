@@ -42,7 +42,6 @@ whatsmars-zk | zookeeper remoting 封装
 ### Friendship links
 - [*阿里巴巴Java开发手册*](https://github.com/alibaba/Alibaba-Java-Coding-Guidelines) 📚
 - *技术wiki* [wiki.hongxi.org](http://wiki.hongxi.org) ✏️
-- *深入一点* [deep.hongxi.org](http://deep.hongxi.org) ✏️
 
 ### Warm tips
 - 类→抽象类→接口
