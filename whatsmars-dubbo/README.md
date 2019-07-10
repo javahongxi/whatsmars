@@ -1,5 +1,5 @@
 # [Apache Dubbo](http://dubbo.apache.org)
-高性能分布式RPC框架 👻 [start.dubbo.io](http://start.dubbo.io)
+高性能分布式RPC框架 👻 [start.dubbo.io](http://start.dubbo.io) 👻 [Dubbo源码导读](http://wiki.hongxi.org)
 
 > Dubbo框架的实现充分践行了可扩展性，即**类→抽象类→接口**+SPI。我们平时在spring-boot环境下，也可利用**类→抽象类→接口**+AutoConfiguration实现可扩展性，一些场景下要学会用**面向接口编程**代替if-else。
 
