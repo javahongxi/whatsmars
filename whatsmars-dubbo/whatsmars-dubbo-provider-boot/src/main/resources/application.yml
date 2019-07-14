@@ -19,6 +19,10 @@ dubbo:
     qosPort: 22223
   scan:
     basePackages: org.hongxi.whatsmars.dubbo.demo.provider.service
+  provider:
+    threadpool: fixed
+    threads: 200
+    dispatcher: message
 
 registry:
   other:

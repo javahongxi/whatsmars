@@ -24,7 +24,7 @@
 	<context:component-scan base-package="org.hongxi.whatsmars.dubbo"/>
 
 	<!-- provider用于统一配置全部service，优先级service > provider -->
-	<dubbo:provider timeout="3000" />
+	<dubbo:provider timeout="3000" dispatcher="message" threadpool="fixed" threads="200" />
 
     <!-- 默认配了 protocol="dubbo,hessian" 默认retries="2" -->
 	<dubbo:service interface="org.hongxi.whatsmars.dubbo.demo.api.DemoService" ref="demoService"
