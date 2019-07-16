@@ -9,13 +9,13 @@ https://www.elastic.co/cn/downloads/past-releases/elasticsearch-6-4-3
 ### 日均5亿查询量的京东到家订单中心，为什么舍MySQL用ES?
 
 
-![img](http://img.blog.itpub.net/blog/2019/07/12/bf09d9cb83488f26.jpeg?x-oss-process=style/bb&mprfK=http%3A%2F%2Fwww.itpub.net%2F)
+![img](https://github.com/javahongxi/static/blob/master/jddj_es_01.jpeg)
 
 京东到家订单中心系统业务中，无论是外部商家的订单生产，或是内部上下游系统的依赖，订单查询的调用量都非常大，造成了订单数据读多写少的情况。
 
 我们把订单数据存储在MySQL中，但显然只通过DB来支撑大量的查询是不可取的。同时对于一些复杂的查询，MySQL支持得不够友好，所以订单中心系统使用了Elasticsearch来承载订单查询的主要压力。
 
-![img](http://img.blog.itpub.net/blog/2019/07/12/fd82d432753b97b5.jpeg?x-oss-process=style/bb&mprfK=http%3A%2F%2Fwww.itpub.net%2F)
+![img](https://github.com/javahongxi/static/blob/master/jddj_es_02.jpeg)
 
 Elasticsearch作为一款功能强大的分布式搜索引擎，支持近实时的存储、搜索数据，在京东到家订单系统中发挥着巨大作用，目前订单中心ES集群存储数据量达到10亿个文档，日均查询量达到5亿。
 
@@ -41,7 +41,7 @@ ES的性能跟硬件资源有很大关系，当ES集群单独部署到物理机�
 
 ES查询的原理，当请求打到某号分片的时候，如果没有指定分片类型（Preference参数）查询，请求会负载到对应分片号的各个节点上。而集群默认副本配置是一主一副，针对此情况，我们想到了扩容副本的方式，由默认的一主一副变为一主二副，同时增加相应物理机。
 
-![img](http://img.blog.itpub.net/blog/2019/07/12/2a63b4fee0ea2621.jpeg?x-oss-process=style/bb&mprfK=http%3A%2F%2Fwww.itpub.net%2F)
+![img](https://github.com/javahongxi/static/blob/master/jddj_es_03.jpeg)
 
 订单中心ES集群架设示意图
 
@@ -51,7 +51,7 @@ ES查询的原理，当请求打到某号分片的时候，如果没有指定分
 
 下图为订单中心ES集群各阶段性能示意图，直观地展示了各阶段优化后ES集群性能的显著提升：
 
-![img](http://img.blog.itpub.net/blog/2019/07/12/43e0976d41570e74.jpeg?x-oss-process=style/bb&mprfK=http%3A%2F%2Fwww.itpub.net%2F)
+![img](https://github.com/javahongxi/static/blob/master/jddj_es_04.jpeg)
 
 当然分片数量和分片副本数量并不是越多越好，在此阶段，我们对选择适当的分片数量做了进一步探索。分片数可以理解为MySQL中的分库分表，而当前订单中心ES查询主要分为两类：单ID查询以及分页查询。
 
@@ -69,7 +69,7 @@ ES查询的原理，当请求打到某号分片的时候，如果没有指定分
 
 所以归档机制中增加删除备集群文档的逻辑，让新搭建的备集群存储的订单数据与订单中心线上数据库中的数据量保持一致。同时使用ZK在查询服务中做了流量控制开关，保证查询流量能够实时降级到备集群。在此，订单中心主从集群完成，ES查询服务稳定性大大提升。
 
-![img](http://img.blog.itpub.net/blog/2019/07/12/8c41e56b70e4b90d.jpeg?x-oss-process=style/bb&mprfK=http%3A%2F%2Fwww.itpub.net%2F)
+![img](https://github.com/javahongxi/static/blob/master/jddj_es_05.jpeg)
 
 **5、现今：实时互备双集群阶段**
 
@@ -85,7 +85,7 @@ ES查询的原理，当请求打到某号分片的时候，如果没有指定分
 
 同时备集群增加一键降级到主集群的功能，两个集群地位同等重要，但都可以各自降级到另一个集群。双写策略也优化为：假设有AB集群，正常同步方式写主（A集群）异步方式写备（B集群）。A集群发生异常时，同步写B集群（主），异步写A集群（备）。
 
-![img](http://img.blog.itpub.net/blog/2019/07/12/4866d1171a7c45e7.jpeg?x-oss-process=style/bb&mprfK=http%3A%2F%2Fwww.itpub.net%2F)
+![img](https://github.com/javahongxi/static/blob/master/jddj_es_06.jpeg)
 
 **ES 订单数据的同步方案**
 
@@ -110,7 +110,7 @@ MySQL数据同步到ES中，大致总结可以分为两种方案：
 
 当前订单系统ES采用的是默认Refresh配置，故对于那些订单数据实时性比较高的业务，直接走数据库查询，保证数据的准确性。
 
-![img](http://img.blog.itpub.net/blog/2019/07/12/715d50d448ae379a.jpeg?x-oss-process=style/bb&mprfK=http%3A%2F%2Fwww.itpub.net%2F)
+![img](https://github.com/javahongxi/static/blob/master/jddj_es_07.jpeg)
 
 **2、避免深分页查询**
 
