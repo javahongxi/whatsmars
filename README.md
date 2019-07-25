@@ -8,7 +8,7 @@
 - [《RocketMQ技术内幕：RocketMQ架构设计与实现原理》](https://e.jd.com/30446645.html) / [《Kafka权威指南》](https://e.jd.com/30442811.html) 削峰填谷，异步解耦，顺序消息，分布式事务消息，大数据分析，分布式模缓存同步
 - [*Elasticsearch*](https://www.elastic.co) *搜索、分析和存储您的数据*
 
-👻 [start.spring.io](https://start.spring.io) 👻 [start.dubbo.io](http://start.dubbo.io) 👻 [wiki.hongxi.org](http://wiki.hongxi.org)
+👻 [start.spring.io](https://start.spring.io) 👻 [wiki.hongxi.org](http://wiki.hongxi.org)
 
 ### Modules intro
 Module | Intro
