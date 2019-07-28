@@ -44,7 +44,7 @@ whatsmars-zk | zookeeper remoting 封装
 - *技术wiki* [wiki.hongxi.org](http://wiki.hongxi.org) ✏️
 
 ### Warm tips
-- Java三大核心技术：并发，NIO，反射
+- Java两大核心技术：并发，NIO
 - 类→抽象类→接口
 - 带着问题去看源代码，没必要把源代码看完
 - 看源代码最大的技巧是看英文注释，另一个技巧是日志+DEBUG
