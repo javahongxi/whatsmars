@@ -35,8 +35,8 @@ whatsmars-zk | zookeeper remoting 封装
 - [x] [*Spring Framework*](https://github.com/spring-projects/spring-framework)
 - [x] [*Spring Data*](https://github.com/spring-projects/spring-data-examples)
 - [x] [*Spring Boot*](https://github.com/spring-projects/spring-boot)
-- [x] [*Spring Cloud*](https://github.com/spring-cloud/spring-cloud-netflix)
 - [x] [*Redis*](https://github.com/antirez/redis)
+- [x] [*Netty*](https://github.com/netty/netty)
 - [ ] [*Elasticsearch*](https://github.com/elastic/elasticsearch)
 
 ### Friendship links
