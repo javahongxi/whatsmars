@@ -29,7 +29,7 @@ whatsmars-zk | zookeeper remoting 封装
 
 ### Rocket Stack
 - [x] [*Java SE*](http://java.hongxi.org)
-- [ ] [*Netty*](https://github.com/netty/netty)
+- [x] [*Netty*](https://github.com/netty/netty)
 - [x] [*Dubbo*](https://github.com/apache/dubbo)
 - [x] [*RocketMQ*](https://github.com/apache/rocketmq)
 - [ ] [*Kafka*](https://github.com/apache/kafka)
