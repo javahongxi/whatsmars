@@ -68,7 +68,7 @@ RocketMQ的请求/返回字段定义以及编解码逻辑都在`RemotingCommand`
     }
 
     public ByteBuffer encodeHeader(final int bodyLength) {
-        // 1> header length size
+        // 1> header length size (1+3)
         int length = 4;
 
         // 2> header data length
@@ -80,6 +80,7 @@ RocketMQ的请求/返回字段定义以及编解码逻辑都在`RemotingCommand`
         // 3> body data length
         length += bodyLength;
 
+        // 消息长度 + length - bodyLength
         ByteBuffer result = ByteBuffer.allocate(4 + length - bodyLength);
 
         // length
