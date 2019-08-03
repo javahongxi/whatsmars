@@ -60,7 +60,7 @@ public class NettyEncoder extends MessageToByteEncoder<RemotingCommand> {
 }
 ```
 
-RocketMQ的请求/返回字段以及编解码逻辑都在`RemotingCommand`里，我们继续看encodeHeader()
+RocketMQ的请求/返回字段定义以及编解码逻辑都在`RemotingCommand`里，我们继续看encodeHeader()
 
 ```java
     public ByteBuffer encodeHeader() {
