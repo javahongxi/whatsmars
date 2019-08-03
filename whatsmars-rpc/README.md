@@ -377,6 +377,59 @@ header的decode细节在`RocketMQSerializable`里
     }
 ```
 
+### RocketMQ remoting 线程模型
+"1 + N + M1 + M2"的Reactor多线程模型 (N,M1,M2可配)
+
+| 线程数 | 线程名                         | 线程具体说明            |
+| :----- | :----------------------------- | :---------------------- |
+| 1      | NettyBoss_%d                   | Reactor 主线程          |
+| N      | NettyServerEPOLLSelector_%d_%d | Reactor 线程池          |
+| M1     | NettyServerCodecThread_%d      | Worker线程池            |
+| M2     | RemotingExecutorThread_%d      | 业务processor处理线程池 |
+
+`NettyRemotingServer`
+```java
+    ServerBootstrap childHandler =
+            // 为了方便理解，我们姑且将eventLoopGroupSelector称为线程池
+            // 线程池eventLoopGroupSelector用于将accepted的channel注册到selector上
+            this.serverBootstrap.group(this.eventLoopGroupBoss, this.eventLoopGroupSelector)
+                .channel(useEpoll() ? EpollServerSocketChannel.class : NioServerSocketChannel.class)
+                .option(ChannelOption.SO_BACKLOG, 1024)
+                .option(ChannelOption.SO_REUSEADDR, true)
+                .option(ChannelOption.SO_KEEPALIVE, false)
+                .childOption(ChannelOption.TCP_NODELAY, true)
+                .childOption(ChannelOption.SO_SNDBUF, nettyServerConfig.getServerSocketSndBufSize())
+                .childOption(ChannelOption.SO_RCVBUF, nettyServerConfig.getServerSocketRcvBufSize())
+                .localAddress(new InetSocketAddress(this.nettyServerConfig.getListenPort()))
+                .childHandler(new ChannelInitializer<SocketChannel>() {
+                    @Override
+                    public void initChannel(SocketChannel ch) throws Exception {
+                        ch.pipeline()
+                            // 为了方便理解，我们姑且将defaultEventExecutorGroup称为线程池
+                            // 线程池defaultEventExecutorGroup用于执行pipeline里的channelHandlers
+                            .addLast(defaultEventExecutorGroup, HANDSHAKE_HANDLER_NAME,
+                                new HandshakeHandler(TlsSystemConfig.tlsMode))
+                            .addLast(defaultEventExecutorGroup,
+                                new NettyEncoder(),
+                                new NettyDecoder(),
+                                new IdleStateHandler(0, 0, nettyServerConfig.getServerChannelMaxIdleTimeSeconds()),
+                                new NettyConnectManageHandler(),
+                                // NettyServerHandler里有业务处理线程池
+                                new NettyServerHandler()
+                            );
+                    }
+                });
+```
+
+### ChannelHandlers的执行顺序
+pipeline里的handlers分为两类，分别实现了ChannelInboundHandler和ChannelOutboundHandler接口。
+ChannelInboundHandler对从客户端发往服务器的报文进行处理，一般用来执行解码、读取客户端数据、进行业务处理等；
+ChannelOutboundHandler对从服务器发往客户端的报文进行处理，一般用来进行编码、发送报文到客户端。
+ChannelInboundHandler按照注册的先后顺序执行，ChannelOutboundHandler按照注册的先后顺序逆序执行。
+
+### 线程安全
+ChannelPipeline与SocketChannel绑定，是线程安全的。ChannelHandler..
+
 
 - [《Netty权威指南》](http://e.jd.com/30186249.html) `e.jd.com`
 - [开发者如何玩转 RocketMQ？附最全源码解读 【Remoting篇】](https://blog.csdn.net/javahongxi/article/details/86628470)
