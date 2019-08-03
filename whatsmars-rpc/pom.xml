@@ -18,6 +18,7 @@
         <module>whatsmars-remoting</module>
         <module>whatsmars-serialization</module>
         <module>whatsmars-logging</module>
+        <module>whatsmars-netty</module>
     </modules>
 
 
