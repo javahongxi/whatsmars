@@ -18,14 +18,21 @@ package org.hongxi.whatsmars.netty.objectecho;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * Handles both client-side and server-side handler depending on which
  * constructor was called.
  */
 public class ObjectEchoServerHandler extends ChannelInboundHandlerAdapter {
 
+    private AtomicInteger counter = new AtomicInteger();
+
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
+        if (counter.incrementAndGet() % 1000 == 0) {
+            System.out.println("received Object: " + msg);
+        }
         // Echo back the received object to the client.
         ctx.write(msg);
     }
