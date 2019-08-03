@@ -1,7 +1,7 @@
 language: java
 jdk:
-    - oraclejdk8
-#    - openjdk7
+#    - oraclejdk8
+    - openjdk8
 branches:
   only:
     - master
