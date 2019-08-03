@@ -19,7 +19,7 @@ whatsmars-elasticjob | 分布式调度框架
 whatsmars-elasticsearch | Elasticsearch
 whatsmars-mq | 消息中间件RocketMQ,Kafka等
 whatsmars-redis | Redis客户端简单封装
-whatsmars-rpc | Transport & Protocol & Serialization
+whatsmars-rpc | Transporter & Codec & Serialization
 whatsmars-shardingsphere | 分布式数据库中间件
 whatsmars-spring | Spring Framework
 whatsmars-spring-boot | Spring Boot 实战
