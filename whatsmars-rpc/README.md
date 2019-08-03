@@ -428,7 +428,51 @@ ChannelOutboundHandler对从服务器发往客户端的报文进行处理，一�
 ChannelInboundHandler按照注册的先后顺序执行，ChannelOutboundHandler按照注册的先后顺序逆序执行。
 
 ### 线程安全
-ChannelPipeline与SocketChannel绑定，是线程安全的。ChannelHandler..
+ChannelPipeline与SocketChannel绑定，是线程安全的。标注@Sharable的ChannelHandler必须是线程安全的，如ChannelInitializer。
+
+```java
+/**
+ * A special {@link ChannelInboundHandler} which offers an easy way to initialize a {@link Channel} once it was
+ * registered to its {@link EventLoop}.
+ *
+ * Implementations are most often used in the context of {@link Bootstrap#handler(ChannelHandler)} ,
+ * {@link ServerBootstrap#handler(ChannelHandler)} and {@link ServerBootstrap#childHandler(ChannelHandler)} to
+ * setup the {@link ChannelPipeline} of a {@link Channel}.
+ *
+ * <pre>
+ *
+ * public class MyChannelInitializer extends {@link ChannelInitializer} {
+ *     public void initChannel({@link Channel} channel) {
+ *         channel.pipeline().addLast("myHandler", new MyHandler());
+ *     }
+ * }
+ *
+ * {@link ServerBootstrap} bootstrap = ...;
+ * ...
+ * bootstrap.childHandler(new MyChannelInitializer());
+ * ...
+ * </pre>
+ * Be aware that this class is marked as {@link Sharable} and so the implementation must be safe to be re-used.
+ */
+@Sharable
+public abstract class ChannelInitializer<C extends Channel> extends ChannelInboundHandlerAdapter {
+
+    // We use a ConcurrentMap as a ChannelInitializer is usually shared between all Channels in a Bootstrap /
+    // ServerBootstrap. This way we can reduce the memory usage compared to use Attributes.
+    private final ConcurrentMap<ChannelHandlerContext, Boolean> initMap = PlatformDependent.newConcurrentHashMap();
+
+    /**
+     * This method will be called once the {@link Channel} was registered. After the method returns this instance
+     * will be removed from the {@link ChannelPipeline} of the {@link Channel}.
+     *
+     * @param ch            the {@link Channel} which was registered.
+     * @throws Exception    is thrown if an error occurs. In that case it will be handled by
+     *                      {@link #exceptionCaught(ChannelHandlerContext, Throwable)} which will by default close
+     *                      the {@link Channel}.
+     */
+    protected abstract void initChannel(C ch) throws Exception;
+}
+```
 
 
 - [《Netty权威指南》](http://e.jd.com/30186249.html) `e.jd.com`
