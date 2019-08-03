@@ -265,6 +265,35 @@ public class NettyDecoder extends LengthFieldBasedFrameDecoder {
 - lengthAdjustment = 0
 - initialBytesToStrip = 4
 
+```java
+/**
+ * A decoder that splits the received {@link ByteBuf}s dynamically by the
+ * value of the length field in the message.  It is particularly useful when you
+ * decode a binary message which has an integer header field that represents the
+ * length of the message body or the whole message.
+ *
+ * <h3>2 bytes length field at offset 0, strip header</h3>
+ *
+ * Because we can get the length of the content by calling
+ * {@link ByteBuf#readableBytes()}, you might want to strip the length
+ * field by specifying <tt>initialBytesToStrip</tt>.  In this example, we
+ * specified <tt>2</tt>, that is same with the length of the length field, to
+ * strip the first two bytes.
+ * <pre>
+ * lengthFieldOffset   = 0
+ * lengthFieldLength   = 2
+ * lengthAdjustment    = 0
+ * <b>initialBytesToStrip</b> = <b>2</b> (= the length of the Length field)
+ *
+ * BEFORE DECODE (14 bytes)         AFTER DECODE (12 bytes)
+ * +--------+----------------+      +----------------+
+ * | Length | Actual Content |----->| Actual Content |
+ * | 0x000C | "HELLO, WORLD" |      | "HELLO, WORLD" |
+ * +--------+----------------+      +----------------+
+ * </pre>
+ */
+```
+
 继续看 `RemotingCommand`
 ```java
     public static RemotingCommand decode(final ByteBuffer byteBuffer) {
