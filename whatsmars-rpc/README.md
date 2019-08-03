@@ -5,7 +5,13 @@ Transporter & Codec & Serialization
 
 上面这张图虽然是Dubbo的remoting设计，但这个设计具有一定的通用参考性。下面解读下RocketMQ的remoting的Codec部分。
 
-RocketMQ的通信协议的格式如下：<br>
+RocketMQ的通信协议的格式如下：
+
+ 4 byte   | 1+3 byte | 变长 | 变长
+------ | ------|------ |------
+消息长度 | 序列化类型+消息头长度 | 消息头数据 | 消息体数据
+
+
 4byte   | 1+3 byte           | 变长       | 变长<br>
 消息长度 | 序列化类型+消息头长度 | 消息头数据 | 消息体数据
 
