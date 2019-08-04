@@ -206,6 +206,7 @@ AbstractChannelHandlerContext，里面有next,与perv分别指向下一个或上
 ```
 
 从上述方法，不难看出,ChannelPipeline的实现源码，就是沿着调用链向上或向下传播事件并执行之。
+其实ChannelPipeline并没有什么高深的地方，其设计哲学就是职责链模式。
 
 ### ChannelHandlers的执行顺序
 pipeline里的handlers分为两类，分别实现了ChannelInboundHandler和ChannelOutboundHandler接口。
