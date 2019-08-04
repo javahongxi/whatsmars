@@ -408,7 +408,7 @@ header的decode细节在`RocketMQSerializable`里
                     @Override
                     public void initChannel(SocketChannel ch) throws Exception {
                         ch.pipeline()
-                            // MultithreadEventExecutorGroup
+                            // DefaultEventExecutorGroup
                             // defaultEventExecutorGroup用于执行pipeline里的channelHandlers
                             // 如果没有设置defaultEventExecutorGroup，则用workerGroup执行
                             .addLast(defaultEventExecutorGroup, HANDSHAKE_HANDLER_NAME,
