@@ -3,7 +3,9 @@ Transporter & Codec & Serialization
 
 ![img](https://github.com/javahongxi/static/blob/master/dubbo_01.jpg)
 
-上面这张图虽然是Dubbo的remoting设计，但这个设计具有一定的通用参考性。下面解读下RocketMQ的remoting的Codec和线程模型。
+上面这张图虽然是Dubbo的remoting设计，但这个设计具有一定的通用参考性。
+
+下面解读下RocketMQ的remoting的Codec和线程模型。
 
 RocketMQ的通信协议的格式如下：
 
