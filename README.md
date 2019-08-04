@@ -34,9 +34,9 @@ whatsmars-zk | zookeeper remoting 封装
 - [x] [*RocketMQ*](https://github.com/apache/rocketmq)
 - [ ] [*Kafka*](https://github.com/apache/kafka)
 - [ ] [*ZooKeeper*](https://github.com/apache/zookeeper)
+- [x] [*Spring Boot*](https://github.com/spring-projects/spring-boot)
 - [x] [*Spring Framework*](https://github.com/spring-projects/spring-framework)
 - [x] [*Spring Data*](https://github.com/spring-projects/spring-data-examples)
-- [x] [*Spring Boot*](https://github.com/spring-projects/spring-boot)
 - [x] [*Redis*](https://github.com/antirez/redis)
 - [ ] [*Elasticsearch*](https://github.com/elastic/elasticsearch)
 
