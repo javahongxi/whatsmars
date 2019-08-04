@@ -387,11 +387,12 @@ header的decode细节在`RocketMQSerializable`里
 | M1     | NettyServerCodecThread_%d      | Worker线程池            |
 | M2     | RemotingExecutorThread_%d      | 业务processor处理线程池 |
 
+![img](https://github.com/javahongxi/static/blob/master/rocketmq_01.png)
+
 `NettyRemotingServer`
 ```java
     ServerBootstrap childHandler =
-            // 为了方便理解，我们姑且将eventLoopGroupSelector称为线程池
-            // 线程池eventLoopGroupSelector用于将accepted的channel注册到selector上
+            // EventLoopGroup: bossGroup, workerGroup
             this.serverBootstrap.group(this.eventLoopGroupBoss, this.eventLoopGroupSelector)
                 .channel(useEpoll() ? EpollServerSocketChannel.class : NioServerSocketChannel.class)
                 .option(ChannelOption.SO_BACKLOG, 1024)
@@ -405,9 +406,9 @@ header的decode细节在`RocketMQSerializable`里
                     @Override
                     public void initChannel(SocketChannel ch) throws Exception {
                         ch.pipeline()
-                            // 为了方便理解，我们姑且将defaultEventExecutorGroup称为线程池
-                            // 线程池defaultEventExecutorGroup用于执行pipeline里的channelHandlers
-                            // 如果没有设置defaultEventExecutorGroup，则用workerGroup即上面的eventLoopGroupSelector执行channelHandlers
+                            // MultithreadEventExecutorGroup
+                            // defaultEventExecutorGroup用于执行pipeline里的channelHandlers
+                            // 如果没有设置defaultEventExecutorGroup，则用workerGroup执行
                             .addLast(defaultEventExecutorGroup, HANDSHAKE_HANDLER_NAME,
                                 new HandshakeHandler(TlsSystemConfig.tlsMode))
                             .addLast(defaultEventExecutorGroup,
