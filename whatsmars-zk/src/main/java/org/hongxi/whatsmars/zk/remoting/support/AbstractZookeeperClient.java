@@ -1,22 +1,5 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package org.hongxi.whatsmars.zk.remoting.support;
 
-import org.hongxi.whatsmars.common.URL;
 import org.hongxi.whatsmars.zk.remoting.ChildListener;
 import org.hongxi.whatsmars.zk.remoting.StateListener;
 import org.hongxi.whatsmars.zk.remoting.ZookeeperClient;
@@ -33,22 +16,11 @@ public abstract class AbstractZookeeperClient<TargetChildListener> implements Zo
 
     protected static final Logger logger = LoggerFactory.getLogger(AbstractZookeeperClient.class);
 
-    private final URL url;
-
     private final Set<StateListener> stateListeners = new CopyOnWriteArraySet<StateListener>();
 
     private final ConcurrentMap<String, ConcurrentMap<ChildListener, TargetChildListener>> childListeners = new ConcurrentHashMap<String, ConcurrentMap<ChildListener, TargetChildListener>>();
 
     private volatile boolean closed = false;
-
-    public AbstractZookeeperClient(URL url) {
-        this.url = url;
-    }
-
-    @Override
-    public URL getUrl() {
-        return url;
-    }
 
     @Override
     public void create(String path, boolean ephemeral) {

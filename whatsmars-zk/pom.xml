@@ -40,11 +40,6 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.hongxi</groupId>
-            <artifactId>whatsmars-common</artifactId>
-            <version>Rocket.S6</version>
-        </dependency>
     </dependencies>
 
 
