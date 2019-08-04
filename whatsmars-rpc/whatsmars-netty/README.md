@@ -213,3 +213,6 @@ pipeline里的handlers分为两类，分别实现了ChannelInboundHandler和Chan
 ChannelInboundHandler对从客户端发往服务器的报文进行处理，一般用来执行解码、读取客户端数据、进行业务处理等；
 ChannelOutboundHandler对从服务器发往客户端的报文进行处理，一般用来进行编码、发送报文到客户端。
 ChannelInboundHandler按照注册的先后顺序执行，ChannelOutboundHandler按照注册的先后顺序逆序执行。
+
+### 线程安全
+ChannelPipeline与SocketChannel绑定，是线程安全的。标注@Sharable的ChannelHandler必须是线程安全的，如ChannelInitializer。
