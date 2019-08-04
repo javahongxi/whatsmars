@@ -407,6 +407,7 @@ header的decode细节在`RocketMQSerializable`里
                         ch.pipeline()
                             // 为了方便理解，我们姑且将defaultEventExecutorGroup称为线程池
                             // 线程池defaultEventExecutorGroup用于执行pipeline里的channelHandlers
+                            // 如果没有设置defaultEventExecutorGroup，则用workerGroup即上面的eventLoopGroupSelector执行channelHandlers
                             .addLast(defaultEventExecutorGroup, HANDSHAKE_HANDLER_NAME,
                                 new HandshakeHandler(TlsSystemConfig.tlsMode))
                             .addLast(defaultEventExecutorGroup,
