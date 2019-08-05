@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.common.threadlocal;
+package org.hongxi.whatsmars.common.util.concurrent;
 
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;

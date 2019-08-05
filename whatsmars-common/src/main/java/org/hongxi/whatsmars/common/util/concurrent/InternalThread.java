@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.common.threadlocal;
+package org.hongxi.whatsmars.common.util.concurrent;
 
 /**
  * InternalThread

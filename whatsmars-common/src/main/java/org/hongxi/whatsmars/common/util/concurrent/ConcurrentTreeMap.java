@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.common.queue;
+package org.hongxi.whatsmars.common.util.concurrent;
 
 import java.util.Comparator;
 import java.util.Map;

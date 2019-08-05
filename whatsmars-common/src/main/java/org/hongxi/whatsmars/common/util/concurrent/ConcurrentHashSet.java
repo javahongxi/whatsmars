@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.common.util;
+package org.hongxi.whatsmars.common.util.concurrent;
 
 import java.util.AbstractSet;
 import java.util.ConcurrentModificationException;

@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.common;
+package org.hongxi.whatsmars.common.util.concurrent;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
@@ -6,17 +6,17 @@ import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 /**
  * Add reset feature for @see java.util.concurrent.CountDownLatch
  */
-public class CountDownLatch2 {
+public class CountDownLatch {
     private final Sync sync;
 
     /**
-     * Constructs a {@code CountDownLatch2} initialized with the given count.
+     * Constructs a {@code CountDownLatch} initialized with the given count.
      *
      * @param count the number of times {@link #countDown} must be invoked before threads can pass through {@link
      * #await}
      * @throws IllegalArgumentException if {@code count} is negative
      */
-    public CountDownLatch2(int count) {
+    public CountDownLatch(int count) {
         if (count < 0) {
             throw new IllegalArgumentException("count < 0");
         }
@@ -140,7 +140,7 @@ public class CountDownLatch2 {
     }
 
     /**
-     * Synchronization control For CountDownLatch2.
+     * Synchronization control For CountDownLatch.
      * Uses AQS state to represent count.
      */
     private static final class Sync extends AbstractQueuedSynchronizer {

@@ -1,6 +1,4 @@
-package org.hongxi.whatsmars.common.threadlocal;
-
-import org.hongxi.whatsmars.common.util.NamedThreadFactory;
+package org.hongxi.whatsmars.common.util.concurrent;
 
 /**
  * NamedInternalThreadFactory

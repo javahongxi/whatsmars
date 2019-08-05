@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.common;
+package org.hongxi.whatsmars.common.util;
 
 import lombok.extern.slf4j.Slf4j;
 

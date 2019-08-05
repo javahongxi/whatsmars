@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.common.threadpool;
+package org.hongxi.whatsmars.common.util.concurrent;
 
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.RejectedExecutionException;

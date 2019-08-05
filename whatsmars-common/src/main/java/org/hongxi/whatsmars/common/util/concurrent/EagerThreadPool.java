@@ -1,6 +1,4 @@
-package org.hongxi.whatsmars.common.threadpool;
-
-import org.hongxi.whatsmars.common.threadlocal.NamedInternalThreadFactory;
+package org.hongxi.whatsmars.common.util.concurrent;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;

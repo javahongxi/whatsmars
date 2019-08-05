@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.common.util;
+package org.hongxi.whatsmars.common.util.concurrent;
 
 import lombok.extern.slf4j.Slf4j;
 
