@@ -74,7 +74,7 @@ topicRouteData = this.mQClientAPIImpl.getDefaultTopicRouteInfoFromNameServer(def
 - Broker上存Topic信息，Topic由多个队列组成，队列会平均分散在多个Broker上。Producer的发送机制保证消息尽量平均分布到
 所有队列中，最终效果就是所有消息都平均落在每个Broker上。
 - RocketMQ的消息的存储是由ConsumeQueue和CommitLog配合来完成的，ConsumeQueue中只存储很少的数据，消息主体都是通过CommitLog来进行读写。
-如果某个消息只在CommitLog中有数据，而ConsumeQueue中没有，则消费者无法消费，RocketMQ的事务消息实现就利用了这一点。
+如果某个消息只在CommitLog中有数据，而ConsumeQueue中没有，则消费者无法消费。
   + CommitLog：是消息主体以及元数据的存储主体，对CommitLog建立一个ConsumeQueue，每个ConsumeQueue对应一个（概念模型中的）MessageQueue，所以只要有
   CommitLog在，ConsumeQueue即使数据丢失，仍然可以恢复出来。
   + ConsumeQueue：是一个消息的逻辑队列，存储了这个Queue在CommitLog中的起始offset，log大小和MessageTag的hashCode。每个Topic下的每个Queue都有一个对应的
