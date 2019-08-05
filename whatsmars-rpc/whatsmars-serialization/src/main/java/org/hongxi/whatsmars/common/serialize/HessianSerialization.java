@@ -1,8 +1,7 @@
-package org.hongxi.whatsmars.common.serialize.hessian2;
+package org.hongxi.whatsmars.common.serialize;
 
 import com.caucho.hessian.io.Hessian2Input;
 import com.caucho.hessian.io.Hessian2Output;
-import org.hongxi.whatsmars.common.serialize.Serialization;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -11,21 +10,21 @@ import java.io.IOException;
 /**
  * Created by shenhongxi on 2018/10/7.
  */
-public class Hessian2Serialization implements Serialization {
+public class HessianSerialization implements Serialization {
 
     @Override
-    public byte[] serialize(Object data) throws IOException {
+    public byte[] serialize(Object obj) throws IOException {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         Hessian2Output out = new Hessian2Output(bos);
-        out.writeObject(data);
+        out.writeObject(obj);
         out.flush();
         return bos.toByteArray();
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public <T> T deserialize(byte[] data, Class<T> clz) throws IOException {
-        Hessian2Input input = new Hessian2Input(new ByteArrayInputStream(data));
+    public <T> T deserialize(byte[] bytes, Class<T> clz) throws IOException {
+        Hessian2Input input = new Hessian2Input(new ByteArrayInputStream(bytes));
         return (T) input.readObject(clz);
     }
 
