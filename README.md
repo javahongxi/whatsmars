@@ -43,7 +43,6 @@ whatsmars-zk | zookeeper remoting 封装
 ### Friendship links
 - [*阿里巴巴Java开发手册*](https://github.com/alibaba/Alibaba-Java-Coding-Guidelines) 📚
 - *技术wiki* [wiki.hongxi.org](http://wiki.hongxi.org) ✏️
-- *Java基础* [java.hongxi.org](http://java.hongxi.org) ☕
 
 ### Warm tips
 - Java两大核心技术：并发，NIO
