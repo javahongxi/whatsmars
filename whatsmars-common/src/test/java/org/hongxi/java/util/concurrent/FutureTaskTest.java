@@ -25,5 +25,6 @@ public class FutureTaskTest {
         if (!task2.isCancelled()) {
             System.out.println(task2.get());
         }
+        executorService.shutdown();
     }
 }

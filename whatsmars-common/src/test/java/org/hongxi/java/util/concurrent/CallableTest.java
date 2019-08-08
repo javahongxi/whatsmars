@@ -20,5 +20,6 @@ public class CallableTest {
         long begin = System.currentTimeMillis();
         System.out.println(future.get());
         System.out.println(System.currentTimeMillis() - begin);
+        executorService.shutdown();
     }
 }

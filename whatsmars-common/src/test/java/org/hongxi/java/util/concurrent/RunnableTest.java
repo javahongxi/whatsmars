@@ -18,5 +18,6 @@ public class RunnableTest {
         Future<String> future = executorService.submit(() ->
                 System.out.println("..."), "world");
         System.out.println(future.get());
+        executorService.shutdown();
     }
 }
