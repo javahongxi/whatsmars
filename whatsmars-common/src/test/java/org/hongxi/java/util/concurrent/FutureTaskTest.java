@@ -19,7 +19,11 @@ public class FutureTaskTest {
                 System.out.println("..."), "world");
         executorService.submit(task2);
         System.out.println(task.get());
-        System.out.println(task2.get());
-
+        task2.cancel(true);
+        System.out.println(task2.isCancelled()); // maybe true or false, because need time
+        System.out.println(task2.isDone()); // must be true
+        if (!task2.isCancelled()) {
+            System.out.println(task2.get());
+        }
     }
 }
