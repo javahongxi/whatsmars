@@ -13,7 +13,7 @@ import java.util.stream.IntStream;
 public class RunnableTest {
 
     public static void main(String[] args) throws Exception {
-        ExecutorService executorService = Executors.newCachedThreadPool();
+        ExecutorService executorService = Executors.newFixedThreadPool(3);
         IntStream.range(0, 10).forEach(n -> {
             executorService.execute(() -> System.out.println(n));
         });
