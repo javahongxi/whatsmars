@@ -1,4 +1,4 @@
-package org.hongxi.java.util.lang;
+package org.hongxi.java.util.lang.oop;
 
 /**
  * @author shenhongxi 2019/8/11
