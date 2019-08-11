@@ -10,7 +10,7 @@ import java.util.concurrent.Executors;
 public class ExchangerTest {
     public static void main(String[] args) {
         ExecutorService executorService = Executors.newCachedThreadPool();
-        final Exchanger<String> exchanger = new Exchanger<String>();
+        final Exchanger<String> exchanger = new Exchanger<>();
         executorService.execute(() -> {
             try {
                 String data1 = "zxx";
