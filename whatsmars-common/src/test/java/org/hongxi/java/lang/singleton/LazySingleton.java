@@ -1,4 +1,4 @@
-package org.hongxi.java.util.lang.singleton;
+package org.hongxi.java.lang.singleton;
 
 /**
  * @author shenhongxi 2019/8/11

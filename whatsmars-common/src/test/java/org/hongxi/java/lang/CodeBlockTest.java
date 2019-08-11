@@ -1,4 +1,4 @@
-package org.hongxi.java.util.lang;
+package org.hongxi.java.lang;
 
 /**
  * Created by shenhongxi on 2017/11/17.
