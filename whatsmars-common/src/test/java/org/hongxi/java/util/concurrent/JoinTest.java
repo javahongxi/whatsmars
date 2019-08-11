@@ -3,9 +3,12 @@ package org.hongxi.java.util.concurrent;
 import java.util.Arrays;
 
 /**
- * Created on 2019/8/11.
+ * join():
+ * while (isAlive()) {
+ *     wait(0);
+ * }
  *
- * @author shenhongxi
+ * @author shenhongxi 2019/8/11
  */
 public class JoinTest {
 
