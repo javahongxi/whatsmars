@@ -6,6 +6,7 @@ import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 import java.util.concurrent.RecursiveAction;
 import java.util.concurrent.CountedCompleter;
+import java.util.stream.IntStream;
 
 /**
  * @author shenhongxi 2019/8/11
@@ -33,6 +34,11 @@ public class ForkJoinTest {
         for (int i = 0; i < 10; i++) {
             System.out.print(array[i] + " ");
         }
+
+        System.out.println();
+        IntStream.range(1, 10).forEach(e -> System.out.print(e + " "));
+        System.out.println();
+        IntStream.range(1, 10).parallel().forEach(e -> System.out.print(e + " "));
     }
 
     static class AccumulationTask extends RecursiveTask<Integer> {
