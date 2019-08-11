@@ -26,11 +26,11 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class ObjectEchoServerHandler extends ChannelInboundHandlerAdapter {
 
-    private int counter;
+    private int count;
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        if (counter++ % 1000 == 0) {
+        if (count++ % 1000 == 0) {
             System.out.println("received Object: " + msg);
         }
         // Echo back the received object to the client.
