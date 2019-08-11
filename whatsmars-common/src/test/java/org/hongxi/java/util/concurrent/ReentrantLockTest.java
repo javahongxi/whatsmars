@@ -4,6 +4,9 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * @author shenhongxi 2019/8/11
+ */
 public class ReentrantLockTest {
 
     public static void main(String[] args) {

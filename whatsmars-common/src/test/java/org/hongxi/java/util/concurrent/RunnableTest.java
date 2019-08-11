@@ -6,9 +6,7 @@ import java.util.concurrent.Future;
 import java.util.stream.IntStream;
 
 /**
- * Created on 2019/8/8.
- *
- * @author shenhongxi
+ * @author shenhongxi 2019/8/8
  *
  * @see CallableTest
  * @see FutureTaskTest

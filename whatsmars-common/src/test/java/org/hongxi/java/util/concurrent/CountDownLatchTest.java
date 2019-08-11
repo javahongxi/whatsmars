@@ -3,9 +3,7 @@ package org.hongxi.java.util.concurrent;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * Created on 2019/8/11.
- *
- * @author shenhongxi
+ * @author shenhongxi 2019/8/11
  *
  * @see JoinTest
  * @see InvokeAllTest

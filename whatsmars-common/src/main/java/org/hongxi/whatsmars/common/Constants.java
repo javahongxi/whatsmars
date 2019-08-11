@@ -3,9 +3,7 @@ package org.hongxi.whatsmars.common;
 import java.util.regex.Pattern;
 
 /**
- * Created on 2019/8/5.
- *
- * @author shenhongxi
+ * @author shenhongxi 2019/8/5
  */
 public class Constants {
 

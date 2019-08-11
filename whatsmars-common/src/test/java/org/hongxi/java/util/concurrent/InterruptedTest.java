@@ -1,16 +1,15 @@
 package org.hongxi.java.util.concurrent;
 
 /**
- * Created on 2019/8/10.
- *
- * @author shenhongxi
+ * @author shenhongxi 2019/8/10
  */
 public class InterruptedTest {
 
     public static void main(String[] args) {
         Thread t = new Thread(() -> {
-            System.out.println(Thread.interrupted()); // currentThread().isInterrupted(true);
-            System.out.println(Thread.interrupted());
+            // currentThread().isInterrupted(true);
+            System.out.println(Thread.interrupted()); // true
+            System.out.println(Thread.interrupted()); // false
         });
         t.start();
         t.interrupt(); // Just to set the interrupt flag

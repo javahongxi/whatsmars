@@ -1,9 +1,7 @@
 package org.hongxi.java.util.concurrent;
 
 /**
- * Created on 2019/8/10.
- *
- * @author shenhongxi
+ * @author shenhongxi 2019/8/10
  *
  * @see InterruptedTest
  */

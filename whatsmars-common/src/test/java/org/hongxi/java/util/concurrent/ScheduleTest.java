@@ -7,9 +7,7 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created on 2019/8/10.
- *
- * @author shenhongxi
+ * @author shenhongxi 2019/8/10
  */
 public class ScheduleTest {
 

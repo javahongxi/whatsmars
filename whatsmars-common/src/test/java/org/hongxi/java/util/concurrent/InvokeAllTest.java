@@ -6,9 +6,7 @@ import java.util.List;
 import java.util.concurrent.*;
 
 /**
- * Created on 2019/8/11.
- *
- * @author shenhongxi
+ * @author shenhongxi 2019/8/11
  */
 public class InvokeAllTest {
 

@@ -4,6 +4,9 @@ import java.io.RandomAccessFile;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 
+/**
+ * Created by javahongxi on 2018/1/2.
+ */
 public class MappedFileTest {
     static private final int start = 0;
     static private final int size = 1024;

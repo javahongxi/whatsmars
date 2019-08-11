@@ -11,6 +11,9 @@ import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Set;
 
+/**
+ * Created by javahongxi on 2018/1/2.
+ */
 public class MultiPortEcho {
     private int ports[];
     private ByteBuffer echoBuffer = ByteBuffer.allocate(1024);

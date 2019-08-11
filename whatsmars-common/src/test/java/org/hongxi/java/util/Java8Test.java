@@ -9,6 +9,9 @@ import java.nio.charset.StandardCharsets;
 import java.time.*;
 import java.util.Base64;
 
+/**
+ * Created by javahongxi on 2018/1/2.
+ */
 public class Java8Test {
 
     @Test

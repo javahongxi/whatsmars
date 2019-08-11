@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+/**
+ * Created by javahongxi on 2018/1/2.
+ */
 public class TCPClient {
 	
 	public static void main(String[] args) {

@@ -7,6 +7,9 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetSocketAddress;
 
+/**
+ * Created by javahongxi on 2018/1/2.
+ */
 public class UDPClient {
 	public static void main(String[] args) {
 		try {

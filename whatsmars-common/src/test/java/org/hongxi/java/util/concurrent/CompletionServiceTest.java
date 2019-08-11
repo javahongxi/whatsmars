@@ -11,6 +11,8 @@ public class CompletionServiceTest {
     public static void main(String[] args) {
         ExecutorService executor = Executors.newFixedThreadPool(10);
         CompletionService<Integer> completionService = new ExecutorCompletionService<>(executor);
+
+        // produce
         for (int i = 0; i < 10; i++) {
             final int seq = i + 1;
             completionService.submit(() -> {
@@ -18,6 +20,8 @@ public class CompletionServiceTest {
                 return seq;
             });
         }
+
+        // consume
         for (int i = 0; i < 10; i++) {
             try {
                 System.out.println(completionService.take().get());

@@ -4,6 +4,9 @@ import java.util.concurrent.Exchanger;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * @author shenhongxi 2019/8/11
+ */
 public class ExchangerTest {
     public static void main(String[] args) {
         ExecutorService executorService = Executors.newCachedThreadPool();

@@ -5,15 +5,14 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 
 /**
- * Created on 2019/8/8.
- *
- * @author shenhongxi
+ * @author shenhongxi 2019/8/8
  */
 public class FutureTaskTest {
 
     public static void main(String[] args) throws Exception {
         ExecutorService executorService = Executors.newCachedThreadPool();
         FutureTask<String> task = new FutureTask<>(() -> "hello");
+        // submit(Runnable)
         executorService.submit(task);
         FutureTask<String> task2 = new FutureTask<>(() ->
                 System.out.println("..."), "world");

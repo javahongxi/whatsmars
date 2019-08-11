@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 
+/**
+ * Created by javahongxi on 2018/1/2.
+ */
 public class UDPServer {
 	public static void main(String[] args) {
 		try {

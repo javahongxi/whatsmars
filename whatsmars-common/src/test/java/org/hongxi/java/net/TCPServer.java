@@ -6,6 +6,9 @@ import java.net.BindException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * Created by javahongxi on 2018/1/2.
+ */
 public class TCPServer {
 	boolean started;
 	ServerSocket ss;
