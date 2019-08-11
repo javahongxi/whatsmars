@@ -6,9 +6,7 @@ import javax.naming.OperationNotSupportedException;
 import java.io.IOException;
 
 /**
- * Created on 2019/8/5.
- *
- * @author shenhongxi
+ * @author shenhongxi 2019/8/5
  */
 public class MsgpackSerialization implements Serialization {
 

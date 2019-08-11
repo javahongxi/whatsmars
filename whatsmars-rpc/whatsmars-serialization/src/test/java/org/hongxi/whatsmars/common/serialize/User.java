@@ -5,20 +5,22 @@ import org.msgpack.annotation.Message;
 
 import java.io.Serializable;
 
+/**
+ * @author shenhongxi 2019/8/5
+ */
 @Message
 @Data
 public class User implements Serializable {
-        private static final long serialVersionUID = -7723128823885218090L;
+    private static final long serialVersionUID = -7723128823885218090L;
 
-        String name;
-        int age;
+    String name;
+    int age;
 
-    public User() {
-    }
+    public User() {}
 
     public User(String name, int age) {
-            this.name = name;
-            this.age = age;
-        }
-
+        this.name = name;
+        this.age = age;
     }
+
+}

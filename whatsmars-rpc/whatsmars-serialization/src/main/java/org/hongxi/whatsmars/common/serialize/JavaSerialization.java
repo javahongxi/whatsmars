@@ -3,9 +3,7 @@ package org.hongxi.whatsmars.common.serialize;
 import java.io.*;
 
 /**
- * Created on 2019/8/5.
- *
- * @author shenhongxi
+ * @author shenhongxi 2019/8/5
  */
 public class JavaSerialization implements Serialization {
 

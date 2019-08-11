@@ -15,7 +15,8 @@ import java.util.List;
  * <pre>
  * 对于嵌套场景无法支持
  * </pre>
- * 
+ *
+ * @author shenhongxi 2019/8/5
  */
 public class FastJsonSerialization implements Serialization {
 
