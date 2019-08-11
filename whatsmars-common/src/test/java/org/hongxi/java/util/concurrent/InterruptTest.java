@@ -4,6 +4,8 @@ package org.hongxi.java.util.concurrent;
  * Created on 2019/8/10.
  *
  * @author shenhongxi
+ *
+ * @see InterruptTest2
  */
 public class InterruptTest {
 
