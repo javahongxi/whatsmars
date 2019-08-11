@@ -5,7 +5,7 @@ package org.hongxi.java.util.concurrent;
  *
  * @author shenhongxi
  *
- * @see InterruptTest2
+ * @see InterruptedTest
  */
 public class InterruptTest {
 

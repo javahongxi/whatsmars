@@ -5,7 +5,7 @@ package org.hongxi.java.util.concurrent;
  *
  * @author shenhongxi
  */
-public class InterruptTest2 {
+public class InterruptedTest {
 
     public static void main(String[] args) {
         Thread t = new Thread(() -> {

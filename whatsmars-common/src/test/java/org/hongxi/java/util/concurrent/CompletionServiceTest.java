@@ -11,10 +11,10 @@ public class CompletionServiceTest {
     public static void main(String[] args) {
         ExecutorService executor = Executors.newFixedThreadPool(10);
         CompletionService<Integer> completionService = new ExecutorCompletionService<>(executor);
-        for (int i = 1; i <= 10; i++) {
-            final int seq = i;
+        for (int i = 0; i < 10; i++) {
+            final int seq = i + 1;
             completionService.submit(() -> {
-                Thread.sleep(new Random().nextInt(5000));
+                Thread.sleep(new Random().nextInt(3000));
                 return seq;
             });
         }
