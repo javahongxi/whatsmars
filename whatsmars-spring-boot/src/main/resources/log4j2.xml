@@ -11,7 +11,7 @@
                 <ThresholdFilter level="DEBUG" onMatch="ACCEPT"
                                  onMismatch="DENY"/>
             </Filters>
-            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%p] [%t] - [%X{sid}] %c{1.} - %m%n"/>
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:stack:SSS}] [%p] [%t] - [%X{sid}] %c{1.} - %m%n"/>
         </console>
 
         <RollingFile name="RollingFileDebug" fileName="${log.path}/debug.log"
@@ -22,7 +22,7 @@
                 <ThresholdFilter level="DEBUG" onMatch="ACCEPT"
                                  onMismatch="DENY"/>
             </Filters>
-            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%p] [%t] - [%X{sid}] %c{1.} - %m%n"/>
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:stack:SSS}] [%p] [%t] - [%X{sid}] %c{1.} - %m%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy/>
                 <SizeBasedTriggeringPolicy size="100 MB"/>
@@ -36,7 +36,7 @@
                 <ThresholdFilter level="WARN" onMatch="DENY"
                                  onMismatch="NEUTRAL"/>
             </Filters>
-            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%p] [%t] - [%X{sid}] %c{1.} - %m%n"/>
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:stack:SSS}] [%p] [%t] - [%X{sid}] %c{1.} - %m%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy/>
                 <SizeBasedTriggeringPolicy size="100 MB"/>
@@ -50,7 +50,7 @@
                 <ThresholdFilter level="ERROR" onMatch="DENY"
                                  onMismatch="NEUTRAL"/>
             </Filters>
-            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%p] [%t] - [%X{sid}] %c{1.} - %m%n"/>
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:stack:SSS}] [%p] [%t] - [%X{sid}] %c{1.} - %m%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy/>
                 <SizeBasedTriggeringPolicy size="100 MB"/>
@@ -60,7 +60,7 @@
         <RollingFile name="RollingFileError" fileName="${log.path}/error.log"
                      filePattern="${log.path}/$${date:yyyy-MM-dd}/error-%d{yyyy-MM-dd}-%i.log">
             <ThresholdFilter level="ERROR"/>
-            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%p] [%t] - [%X{sid}] %c{1.} - %m%n"/>
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:stack:SSS}] [%p] [%t] - [%X{sid}] %c{1.} - %m%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy/>
                 <SizeBasedTriggeringPolicy size="100 MB"/>
@@ -70,7 +70,7 @@
         <RollingFile name="RollingFileTrace" fileName="${log.path}/trace.log"
                      filePattern="${log.path}/$${date:yyyy-MM-dd}/trace-%d{yyyy-MM-dd}-%i.log">
             <ThresholdFilter level="TRACE" onMatch="ACCEPT" onMismatch="DENY"/>
-            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%p] [%t] - [%X{sid}] %c{1.} - %m%n"/>
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:stack:SSS}] [%p] [%t] - [%X{sid}] %c{1.} - %m%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy/>
                 <SizeBasedTriggeringPolicy size="100 MB"/>
@@ -78,7 +78,7 @@
         </RollingFile>
         
         <File name="UserService" fileName="${log.path}/user-service.log">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />  
+            <PatternLayout pattern="%d{HH:mm:stack.SSS} [%t] %-5level %logger{36} - %msg%n" />
         </File>
 
     </appenders>
