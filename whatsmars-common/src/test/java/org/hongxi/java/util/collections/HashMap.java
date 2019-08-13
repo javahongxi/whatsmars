@@ -4,6 +4,7 @@ import java.util.Objects;
 
 /**
  * @author shenhongxi 2019/8/13
+ * @see java.util.Hashtable
  */
 public class HashMap<K, V> {
 
@@ -20,15 +21,11 @@ public class HashMap<K, V> {
     /**
      * The table is rehashed when its size exceeds this threshold.  (The
      * value of this field is (int)(capacity * loadFactor).)
-     *
-     * @serial
      */
     private int threshold;
 
     /**
      * The load factor for the hashtable.
-     *
-     * @serial
      */
     private float loadFactor;
 
@@ -194,64 +191,6 @@ public class HashMap<K, V> {
     private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
 
     /**
-     * Increases the capacity of and internally reorganizes this
-     * hashtable, in order to accommodate and access its entries more
-     * efficiently.  This method is called automatically when the
-     * number of keys in the hashtable exceeds this hashtable's capacity
-     * and load factor.
-     */
-    @SuppressWarnings("unchecked")
-    protected void rehash() {
-        int oldCapacity = table.length;
-        Entry<?,?>[] oldMap = table;
-
-        // overflow-conscious code
-        int newCapacity = (oldCapacity << 1) + 1;
-        if (newCapacity - MAX_ARRAY_SIZE > 0) {
-            if (oldCapacity == MAX_ARRAY_SIZE)
-                // Keep running with MAX_ARRAY_SIZE buckets
-                return;
-            newCapacity = MAX_ARRAY_SIZE;
-        }
-        Entry<?,?>[] newMap = new Entry<?,?>[newCapacity];
-
-        modCount++;
-        threshold = (int)Math.min(newCapacity * loadFactor, MAX_ARRAY_SIZE + 1);
-        table = newMap;
-
-        for (int i = oldCapacity ; i-- > 0 ;) {
-            for (Entry<K,V> old = (Entry<K,V>)oldMap[i]; old != null ; ) {
-                Entry<K,V> e = old;
-                old = old.next;
-
-                int index = (e.hash & 0x7FFFFFFF) % newCapacity;
-                e.next = (Entry<K,V>)newMap[index];
-                newMap[index] = e;
-            }
-        }
-    }
-
-    private void addEntry(int hash, K key, V value, int index) {
-        modCount++;
-
-        Entry<?,?> tab[] = table;
-        if (count >= threshold) {
-            // Rehash the table if the threshold is exceeded
-            rehash();
-
-            tab = table;
-            hash = key.hashCode();
-            index = (hash & 0x7FFFFFFF) % tab.length;
-        }
-
-        // Creates the new entry.
-        @SuppressWarnings("unchecked")
-        Entry<K,V> e = (Entry<K,V>) tab[index];
-        tab[index] = new Entry<>(hash, key, value, e);
-        count++;
-    }
-
-    /**
      * Maps the specified <code>key</code> to the specified
      * <code>value</code> in this hashtable. Neither the key nor the
      * value can be <code>null</code>. <p>
@@ -292,6 +231,64 @@ public class HashMap<K, V> {
         return null;
     }
 
+    private void addEntry(int hash, K key, V value, int index) {
+        modCount++;
+
+        Entry<?,?> tab[] = table;
+        if (count >= threshold) {
+            // Rehash the table if the threshold is exceeded
+            rehash();
+
+            tab = table;
+            hash = key.hashCode();
+            index = (hash & 0x7FFFFFFF) % tab.length;
+        }
+
+        // Creates the new entry.
+        @SuppressWarnings("unchecked")
+        Entry<K,V> e = (Entry<K,V>) tab[index];
+        tab[index] = new Entry<>(hash, key, value, e);
+        count++;
+    }
+
+    /**
+     * Increases the capacity of and internally reorganizes this
+     * hashtable, in order to accommodate and access its entries more
+     * efficiently.  This method is called automatically when the
+     * number of keys in the hashtable exceeds this hashtable's capacity
+     * and load factor.
+     */
+    @SuppressWarnings("unchecked")
+    protected void rehash() {
+        int oldCapacity = table.length;
+        Entry<?,?>[] oldMap = table;
+
+        // overflow-conscious code
+        int newCapacity = (oldCapacity << 1) + 1;
+        if (newCapacity - MAX_ARRAY_SIZE > 0) {
+            if (oldCapacity == MAX_ARRAY_SIZE)
+                // Keep running with MAX_ARRAY_SIZE buckets
+                return;
+            newCapacity = MAX_ARRAY_SIZE;
+        }
+        Entry<?,?>[] newMap = new Entry<?,?>[newCapacity];
+
+        modCount++;
+        threshold = (int)Math.min(newCapacity * loadFactor, MAX_ARRAY_SIZE + 1);
+        table = newMap;
+
+        for (int i = oldCapacity ; i-- > 0 ;) {
+            for (Entry<K,V> old = (Entry<K,V>)oldMap[i]; old != null ; ) {
+                Entry<K,V> e = old;
+                old = old.next;
+
+                int index = (e.hash & 0x7FFFFFFF) % newCapacity;
+                e.next = (Entry<K,V>)newMap[index];
+                newMap[index] = e;
+            }
+        }
+    }
+
     /**
      * Removes the key (and its corresponding value) from this
      * hashtable. This method does nothing if the key is not in the hashtable.
@@ -330,7 +327,7 @@ public class HashMap<K, V> {
     public void clear() {
         Entry<?,?> tab[] = table;
         modCount++;
-        for (int index = tab.length; --index >= 0; )
+        for (int index = tab.length; --index >= 0;)
             tab[index] = null;
         count = 0;
     }
