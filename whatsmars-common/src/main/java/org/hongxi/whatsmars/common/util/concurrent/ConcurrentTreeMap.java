@@ -28,19 +28,19 @@ public class ConcurrentTreeMap<K, V> {
         }
     }
 
-    public V putIfAbsentAndRetExsit(K key, V value) {
+    public V putIfAbsent(K key, V value) {
         lock.lock();
         try {
             if (roundQueue.put(key)) {
-                V exsit = tree.get(key);
-                if (null == exsit) {
+                V oldValue = tree.get(key);
+                if (null == oldValue) {
                     tree.put(key, value);
-                    exsit = value;
+                    oldValue = value;
                 }
-                return exsit;
+                return oldValue;
             } else {
-                V exsit = tree.get(key);
-                return exsit;
+                V oldValue = tree.get(key);
+                return oldValue;
             }
         } finally {
             lock.unlock();
