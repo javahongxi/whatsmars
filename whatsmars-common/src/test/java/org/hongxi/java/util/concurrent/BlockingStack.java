@@ -9,11 +9,11 @@ public class BlockingStack<E> {
     Object[] items;
     int size;
 
-    BlockingStack() {
+    public BlockingStack() {
         items = new Object[DEFAULT_CAPACITY];
     }
 
-    BlockingStack(int capacity) {
+    public BlockingStack(int capacity) {
         if (capacity <= 0) throw new IllegalArgumentException();
         items = new Object[capacity];
     }

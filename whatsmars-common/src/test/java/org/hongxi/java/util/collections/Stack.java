@@ -6,10 +6,9 @@ import java.util.List;
 
 /**
  * @author shenhongxi 2019/8/12
- *
  * @see java.util.Stack
  */
-public class SimpleStack<E> {
+public class Stack<E> {
 
     private int size;
 

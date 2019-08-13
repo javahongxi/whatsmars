@@ -2,16 +2,15 @@ package org.hongxi.java.util.collections;
 
 /**
  * @author shenhongxi 2019/8/12
- *
  * @see java.util.LinkedList
  */
-public class SimpleList<E> {
+public class LinkedList<E> {
 
     int size;
     Node<E> first;
     Node<E> last;
 
-    void add(E e) {
+    public void add(E e) {
         final Node<E> l = last;
         final Node<E> newNode = new Node<>(e, null);
         last = newNode;
@@ -22,7 +21,7 @@ public class SimpleList<E> {
         size++;
     }
 
-    void reverse() {
+    public void reverse() {
         if (first == null) return;
         last = first;
         Node<E> pre = first;

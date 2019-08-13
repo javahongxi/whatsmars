@@ -6,7 +6,7 @@ package org.hongxi.java.util.collections;
 public class StackTest {
 
     public static void main(String[] args) {
-        SimpleStack<Integer> stack = new SimpleStack<>();
+        Stack<Integer> stack = new Stack<>();
         stack.push(1);
         stack.push(2);
         stack.push(3);

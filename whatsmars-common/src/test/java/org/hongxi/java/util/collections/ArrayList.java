@@ -4,8 +4,9 @@ import java.util.Arrays;
 
 /**
  * @author shenhongxi 2019/8/12
+ * @see java.util.ArrayList
  */
-public class SimpleArrList<E> {
+public class ArrayList<E> {
 
     private static final int DEFAULT_CAPACITY = 10;
 
@@ -16,11 +17,11 @@ public class SimpleArrList<E> {
     Object[] elements;
     int size;
 
-    SimpleArrList() {
+    public ArrayList() {
         elements = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
     }
 
-    void add(E e) {
+    public void add(E e) {
         ensureCapacityInternal(size + 1);
         elements[size++] = e;
     }
