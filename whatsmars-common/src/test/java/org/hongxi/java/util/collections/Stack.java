@@ -7,6 +7,8 @@ import java.util.List;
 /**
  * @author shenhongxi 2019/8/12
  * @see java.util.Stack
+ * @see org.hongxi.java.util.concurrent.BlockingStack
+ * @see org.hongxi.java.util.concurrent.BlockingQueue
  */
 public class Stack<E> {
 
