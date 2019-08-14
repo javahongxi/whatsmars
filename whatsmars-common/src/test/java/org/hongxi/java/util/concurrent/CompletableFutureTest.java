@@ -27,8 +27,8 @@ public class CompletableFutureTest {
                 .exceptionally(e -> "error: " + e.getMessage())
                 .thenAccept(System.out::println);
 
-        CompletableFuture.supplyAsync(() -> 1)
-                .thenApply(i -> i++)
+        final CompletableFuture f = CompletableFuture.supplyAsync(() -> 1)
+                .thenApply(i -> ++i)
                 .handle((r, e) -> {
                     if (e != null)
                         return "error";
@@ -41,5 +41,39 @@ public class CompletableFutureTest {
         CompletableFuture.supplyAsync(() -> "f1")
                 .thenAcceptBoth(CompletableFuture.completedFuture("f2"),
                         (r1, r2) -> System.out.println(String.join(",", r1, r2)));
+
+        CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return 10;
+        }).acceptEither(f, (r) -> System.out.println(r));
+
+        CompletableFuture.supplyAsync(() -> {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                return 10;
+            }).runAfterEither(f, () -> System.out.println("runAfterEither"));
+
+        CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return 10;
+        }).applyToEither(f, i -> ++i);
+
+        CompletableFuture.supplyAsync(() -> 10)
+                .runAfterBoth(f, () -> System.out.println("runAfterBoth"));
+
+        CompletableFuture.supplyAsync(() -> 10)
+                .thenCompose(n -> CompletableFuture.completedFuture(n))
+                .thenAccept(System.out::println);
     }
 }
