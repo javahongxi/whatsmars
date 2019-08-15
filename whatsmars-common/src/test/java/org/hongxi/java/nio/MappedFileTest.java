@@ -12,11 +12,10 @@ public class MappedFileTest {
     static private final int size = 1024;
 
     static public void main(String args[]) throws Exception {
-        RandomAccessFile raf = new RandomAccessFile("mappedfile.txt", "rw");
-        FileChannel fc = raf.getChannel();
+        RandomAccessFile raf = new RandomAccessFile("/Users/javahongxi/mappedfile.txt", "rw");
+        FileChannel channel = raf.getChannel();
 
-        MappedByteBuffer mbb = fc.map(FileChannel.MapMode.READ_WRITE,
-                start, size);
+        MappedByteBuffer mbb = channel.map(FileChannel.MapMode.READ_WRITE, start, size);
 
         mbb.put(0, (byte) 97);
         mbb.put(1023, (byte) 122);
