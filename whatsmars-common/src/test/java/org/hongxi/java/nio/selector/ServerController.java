@@ -10,6 +10,9 @@ import java.util.Iterator;
 import java.util.zip.Adler32;
 import java.util.zip.Checksum;
 
+/**
+ * @author shenhongxi 2019/8/15
+ */
 public class ServerController {
     private int port;
     private Thread thread = new ServerThread();

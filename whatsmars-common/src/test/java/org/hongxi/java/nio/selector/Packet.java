@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 
+/**
+ * @author shenhongxi 2019/8/15
+ */
 public class Packet implements Serializable {
 
     private static final long serialVersionUID = 7719389291885063462L;

@@ -5,6 +5,7 @@ import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 
 /**
+ * MappedByteBuffer
  * Created by javahongxi on 2018/1/2.
  */
 public class MappedFileTest {
@@ -16,7 +17,6 @@ public class MappedFileTest {
         FileChannel channel = raf.getChannel();
 
         MappedByteBuffer mbb = channel.map(FileChannel.MapMode.READ_WRITE, start, size);
-
         mbb.put(0, (byte) 97);
         mbb.put(1023, (byte) 122);
 
