@@ -5,11 +5,8 @@ package org.hongxi.java.lang.singleton;
  */
 public class EagerSingleton {
 
-    private static EagerSingleton instance = new EagerSingleton();
+    public static final EagerSingleton INSTANCE = new EagerSingleton();
 
     private EagerSingleton() {}
 
-    public static EagerSingleton getInstance() {
-        return instance;
-    }
 }
