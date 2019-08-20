@@ -408,9 +408,7 @@ header的decode细节在`RocketMQSerializable`里
                     @Override
                     public void initChannel(SocketChannel ch) throws Exception {
                         ch.pipeline()
-                            // DefaultEventExecutorGroup
-                            // defaultEventExecutorGroup用于执行pipeline里的channelHandlers
-                            // 如果没有设置defaultEventExecutorGroup，则用workerGroup执行
+                            // DefaultEventExecutorGroup: optionalGroup (相当于netty提供的业务线程池)
                             .addLast(defaultEventExecutorGroup, HANDSHAKE_HANDLER_NAME,
                                 new HandshakeHandler(TlsSystemConfig.tlsMode))
                             .addLast(defaultEventExecutorGroup,
