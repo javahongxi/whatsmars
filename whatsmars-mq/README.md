@@ -4,5 +4,4 @@
 - [RocketMQ吐血总结](https://github.com/javahongxi/whatsmars/tree/master/whatsmars-mq/whatsmars-mq-rocketmq)
 - [RocketMQ VS kafka](https://github.com/javahongxi/whatsmars/wiki/RocketMQ-VS-kafka)
 
-京东秒杀架构图
-![mq_jd](mq_jd.jpg)
+![jdms](https://github.com/javahongxi/static/blob/master/jdms.jpg)
