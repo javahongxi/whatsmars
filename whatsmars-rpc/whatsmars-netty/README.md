@@ -148,6 +148,18 @@ protected MultithreadEventExecutorGroup(int nThreads, Executor executor, Object.
     }
 ```
 
+`NioEventLoop`
+```java
+    /**
+     * The NIO {@link Selector}.
+     */
+    private Selector selector;
+    private Selector unwrappedSelector;
+    private SelectedSelectionKeySet selectedKeys;
+
+    private final SelectorProvider provider;
+```
+
 `SingleThreadEventExecutor`
 ```java
     private final Queue<Runnable> taskQueue;
