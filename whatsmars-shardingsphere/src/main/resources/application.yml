@@ -12,13 +12,13 @@ spring:
       names: ds0,ds1
       ds0:
         type: org.apache.commons.dbcp.BasicDataSource
-        driver-class-name: com.mysql.jdbc.Driver
+        driver-class-name: com.mysql.cj.jdbc.Driver
         url: jdbc:mysql://db.hongxi.org:3306/demo_ds_0
         username: root
         password: n36bxXMnHina
       ds1:
         type: org.apache.commons.dbcp.BasicDataSource
-        driver-class-name: com.mysql.jdbc.Driver
+        driver-class-name: com.mysql.cj.jdbc.Driver
         url: jdbc:mysql://db.hongxi.org:3306/demo_ds_1
         username: root
         password: n36bxXMnHina
@@ -46,167 +46,159 @@ spring:
 ---
 spring:
   profiles: sharding-db
-sharding:
-    jdbc:
-        config:
-            sharding:
-                default-database-strategy:
-                    inline:
-                        algorithm-expression: ds_${user_id % 2}
-                        sharding-column: user_id
-                tables:
-                    t_order:
-                        actual-data-nodes: ds_${0..1}.t_order
-                        key-generator-column-name: order_id
-                    t_order_item:
-                        actual-data-nodes: ds_${0..1}.t_order_item
-                        key-generator-column-name: order_item_id
-        datasource:
-            ds_0:
-                driver-class-name: com.mysql.jdbc.Driver
-                password: ''
-                type: org.apache.commons.dbcp.BasicDataSource
-                url: jdbc:mysql://localhost:3306/demo_ds_0
-                username: root
-            ds_1:
-                driver-class-name: com.mysql.jdbc.Driver
-                password: ''
-                type: org.apache.commons.dbcp.BasicDataSource
-                url: jdbc:mysql://localhost:3306/demo_ds_1
-                username: root
-            names: ds_0,ds_1
+  shardingsphere:
+    sharding:
+      default-database-strategy:
+        inline:
+          algorithm-expression: ds_${user_id % 2}
+          sharding-column: user_id
+      tables:
+        t_order:
+          actual-data-nodes: ds_${0..1}.t_order
+          key-generator-column-name: order_id
+        t_order_item:
+          actual-data-nodes: ds_${0..1}.t_order_item
+          key-generator-column-name: order_item_id
+    datasource:
+      ds_0:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: ''
+        type: org.apache.commons.dbcp.BasicDataSource
+        url: jdbc:mysql://localhost:3306/demo_ds_0
+        username: root
+      ds_1:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: ''
+        type: org.apache.commons.dbcp.BasicDataSource
+        url: jdbc:mysql://localhost:3306/demo_ds_1
+        username: root
+      names: ds_0,ds_1
 
 ---
 spring:
   profiles: sharding-tbl
-sharding:
-    jdbc:
-        config:
-            sharding:
-                tables:
-                    t_order:
-                        actual-data-nodes: ds.t_order_${0..1}
-                        key-generator-column-name: order_id
-                        table-strategy:
-                            inline:
-                                algorithm-expression: t_order_${order_id % 2}
-                                sharding-column: order_id
-                    t_order_item:
-                        actual-data-nodes: ds.t_order_item_${0..1}
-                        key-generator-column-name: order_item_id
-                        table-strategy:
-                            inline:
-                                algorithm-expression: t_order_item_${order_id % 2}
-                                sharding-column: order_id
-        datasource:
-            ds:
-                driver-class-name: com.mysql.jdbc.Driver
-                password: ''
-                type: org.apache.commons.dbcp.BasicDataSource
-                url: jdbc:mysql://localhost:3306/demo_ds
-                username: root
-            names: ds
+  shardingsphere:
+    sharding:
+      tables:
+        t_order:
+          actual-data-nodes: ds.t_order_${0..1}
+          key-generator-column-name: order_id
+          table-strategy:
+            inline:
+              algorithm-expression: t_order_${order_id % 2}
+              sharding-column: order_id
+        t_order_item:
+          actual-data-nodes: ds.t_order_item_${0..1}
+          key-generator-column-name: order_item_id
+          table-strategy:
+            inline:
+              algorithm-expression: t_order_item_${order_id % 2}
+              sharding-column: order_id
+    datasource:
+      ds:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: ''
+        type: org.apache.commons.dbcp.BasicDataSource
+        url: jdbc:mysql://localhost:3306/demo_ds
+        username: root
+      names: ds
 
 ---
 spring:
   profiles: masterslave
-sharding:
-    jdbc:
-        config:
-            masterslave:
-                load-balance-algorithm-type: round_robin
-                master-data-source-name: ds_master
-                name: ds_ms
-                slave-data-source-names: ds_slave_0,ds_slave_1
-        datasource:
-            ds_master:
-                driver-class-name: com.mysql.jdbc.Driver
-                password: ''
-                type: org.apache.commons.dbcp.BasicDataSource
-                url: jdbc:mysql://localhost:3306/demo_ds_master
-                username: root
-            ds_slave_0:
-                driver-class-name: com.mysql.jdbc.Driver
-                password: ''
-                type: org.apache.commons.dbcp.BasicDataSource
-                url: jdbc:mysql://localhost:3306/demo_ds_slave_0
-                username: root
-            ds_slave_1:
-                driver-class-name: com.mysql.jdbc.Driver
-                password: ''
-                type: org.apache.commons.dbcp.BasicDataSource
-                url: jdbc:mysql://localhost:3306/demo_ds_slave_1
-                username: root
-            names: ds_master,ds_slave_0,ds_slave_1
+  shardingsphere:
+    masterslave:
+      load-balance-algorithm-type: round_robin
+      master-data-source-name: ds_master
+      name: ds_ms
+      slave-data-source-names: ds_slave_0,ds_slave_1
+    datasource:
+      ds_master:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: ''
+        type: org.apache.commons.dbcp.BasicDataSource
+        url: jdbc:mysql://localhost:3306/demo_ds_master
+        username: root
+      ds_slave_0:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: ''
+        type: org.apache.commons.dbcp.BasicDataSource
+        url: jdbc:mysql://localhost:3306/demo_ds_slave_0
+        username: root
+      ds_slave_1:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: ''
+        type: org.apache.commons.dbcp.BasicDataSource
+        url: jdbc:mysql://localhost:3306/demo_ds_slave_1
+        username: root
+      names: ds_master,ds_slave_0,ds_slave_1
 
 ---
 spring:
   profiles: sharding-masterslave
-sharding:
-    jdbc:
-        config:
-            sharding:
-                default-database-strategy:
-                    inline:
-                        algorithm-expression: ds_${user_id % 2}
-                        sharding-column: user_id
-                master-slave-rules:
-                    ds_0:
-                        master-data-source-name: ds_master_0
-                        slave-data-source-names: ds_master_0_slave_0, ds_master_0_slave_1
-                    ds_1:
-                        master-data-source-name: ds_master_1
-                        slave-data-source-names: ds_master_1_slave_0, ds_master_1_slave_1
-                tables:
-                    t_order:
-                        actual-data-nodes: ds_${0..1}.t_order_${0..1}
-                        key-generator-column-name: order_id
-                        table-strategy:
-                            inline:
-                                algorithm-expression: t_order_${order_id % 2}
-                                sharding-column: order_id
-                    t_order_item:
-                        actual-data-nodes: ds_${0..1}.t_order_item_${0..1}
-                        key-generator-column-name: order_item_id
-                        table-strategy:
-                            inline:
-                                algorithm-expression: t_order_item_${order_id % 2}
-                                sharding-column: order_id
-        datasource:
-            ds_master_0:
-                driver-class-name: com.mysql.jdbc.Driver
-                password: ''
-                type: org.apache.commons.dbcp.BasicDataSource
-                url: jdbc:mysql://localhost:3306/demo_ds_master_0
-                username: root
-            ds_master_0_slave_0:
-                driver-class-name: com.mysql.jdbc.Driver
-                password: ''
-                type: org.apache.commons.dbcp.BasicDataSource
-                url: jdbc:mysql://localhost:3306/demo_ds_master_0_slave_0
-                username: root
-            ds_master_0_slave_1:
-                driver-class-name: com.mysql.jdbc.Driver
-                password: ''
-                type: org.apache.commons.dbcp.BasicDataSource
-                url: jdbc:mysql://localhost:3306/demo_ds_master_0_slave_1
-                username: root
-            ds_master_1:
-                driver-class-name: com.mysql.jdbc.Driver
-                password: ''
-                type: org.apache.commons.dbcp.BasicDataSource
-                url: jdbc:mysql://localhost:3306/demo_ds_master_1
-                username: root
-            ds_master_1_slave_0:
-                driver-class-name: com.mysql.jdbc.Driver
-                password: ''
-                type: org.apache.commons.dbcp.BasicDataSource
-                url: jdbc:mysql://localhost:3306/demo_ds_master_1_slave_0
-                username: root
-            ds_master_1_slave_1:
-                driver-class-name: com.mysql.jdbc.Driver
-                password: ''
-                type: org.apache.commons.dbcp.BasicDataSource
-                url: jdbc:mysql://localhost:3306/demo_ds_master_1_slave_1
-                username: root
-            names: ds_master_0,ds_master_1,ds_master_0_slave_0,ds_master_0_slave_1,ds_master_1_slave_0,ds_master_1_slave_1
+  shardingsphere:
+    sharding:
+      default-database-strategy:
+        inline:
+          algorithm-expression: ds_${user_id % 2}
+          sharding-column: user_id
+      master-slave-rules:
+        ds_0:
+          master-data-source-name: ds_master_0
+          slave-data-source-names: ds_master_0_slave_0, ds_master_0_slave_1
+        ds_1:
+          master-data-source-name: ds_master_1
+          slave-data-source-names: ds_master_1_slave_0, ds_master_1_slave_1
+      tables:
+        t_order:
+          actual-data-nodes: ds_${0..1}.t_order_${0..1}
+          key-generator-column-name: order_id
+          table-strategy:
+            inline:
+              algorithm-expression: t_order_${order_id % 2}
+              sharding-column: order_id
+        t_order_item:
+          actual-data-nodes: ds_${0..1}.t_order_item_${0..1}
+          key-generator-column-name: order_item_id
+          table-strategy:
+            inline:
+              algorithm-expression: t_order_item_${order_id % 2}
+              sharding-column: order_id
+    datasource:
+      ds_master_0:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: ''
+        type: org.apache.commons.dbcp.BasicDataSource
+        url: jdbc:mysql://localhost:3306/demo_ds_master_0
+        username: root
+      ds_master_0_slave_0:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: ''
+        type: org.apache.commons.dbcp.BasicDataSource
+        url: jdbc:mysql://localhost:3306/demo_ds_master_0_slave_0
+        username: root
+      ds_master_0_slave_1:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: ''
+        type: org.apache.commons.dbcp.BasicDataSource
+        url: jdbc:mysql://localhost:3306/demo_ds_master_0_slave_1
+        username: root
+      ds_master_1:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: ''
+        type: org.apache.commons.dbcp.BasicDataSource
+        url: jdbc:mysql://localhost:3306/demo_ds_master_1
+        username: root
+      ds_master_1_slave_0:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: ''
+        type: org.apache.commons.dbcp.BasicDataSource
+        url: jdbc:mysql://localhost:3306/demo_ds_master_1_slave_0
+        username: root
+      ds_master_1_slave_1:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: ''
+        type: org.apache.commons.dbcp.BasicDataSource
+        url: jdbc:mysql://localhost:3306/demo_ds_master_1_slave_1
+        username: root
+      names: ds_master_0,ds_master_1,ds_master_0_slave_0,ds_master_0_slave_1,ds_master_1_slave_0,ds_master_1_slave_1
