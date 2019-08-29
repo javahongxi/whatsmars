@@ -14,4 +14,4 @@ server.properties port=9092<br>
 启动zk zookeeper-server-start.bat ../../config/zookeeper.properties<br>
 启动server kafka-server-start.bat ../../config/server.properties<br>
 
-[kafka原理与特性](https://blog.csdn.net/javahongxi/article/details/85109383)
+[《Apache Kafka 源码剖析》](https://e.jd.com/30352947.html)
