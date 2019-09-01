@@ -3,7 +3,7 @@ package org.hongxi.whatsmars.kafka;
 import kafka.Kafka;
 
 /**
- * Created by shenhongxi on 2019-08-27.
+ * @author shenhongxi 2019-08-27.
  */
 public class KafkaStartup {
 

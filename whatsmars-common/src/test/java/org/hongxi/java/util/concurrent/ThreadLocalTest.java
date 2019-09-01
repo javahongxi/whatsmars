@@ -1,7 +1,7 @@
 package org.hongxi.java.util.concurrent;
 
 /**
- * Created by shenhongxi on 2019-08-31.
+ * @author shenhongxi 2019-08-31.
  */
 public class ThreadLocalTest {
 
