@@ -22,11 +22,16 @@ public class FIFOMutex {
         // 只有队首的线程可以获取锁
         while (waiters.peek() != current || !locked.compareAndSet(false, true)) {
             LockSupport.park(this);
+            // 忽略中断，并重置中断标记，然后继续while判断
             if (Thread.interrupted())
                 wasInterrupted = true;
         }
 
         waiters.remove();
+        /**
+         * 其他线程中断了该线程，虽然我对中断信号不感兴趣，忽略它，
+         * 但是不代表其他线程对该标识不感兴趣，所以要恢复下
+         */
         if (wasInterrupted)
             current.interrupt();
     }
