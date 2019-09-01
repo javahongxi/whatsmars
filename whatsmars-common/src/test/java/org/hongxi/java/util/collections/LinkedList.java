@@ -7,29 +7,29 @@ package org.hongxi.java.util.collections;
 public class LinkedList<E> {
 
     int size;
-    Node<E> first;
-    Node<E> last;
+    Node<E> head;
+    Node<E> tail;
 
     public void add(E e) {
-        final Node<E> l = last;
+        final Node<E> l = tail;
         final Node<E> newNode = new Node<>(e, null);
-        last = newNode;
+        tail = newNode;
         if (l == null)
-            first = newNode;
+            head = newNode;
         else
             l.next = newNode;
         size++;
     }
 
     public void reverse() {
-        if (first == null) return;
-        last = first;
-        Node<E> pre = first;
+        if (head == null) return;
+        tail = head;
+        Node<E> pre = head;
         Node<E> curr = pre.next;
         while (curr != null) {
             pre.next = curr.next;
-            curr.next = first;
-            first = curr;
+            curr.next = head;
+            head = curr;
             curr = pre.next;
         }
     }
@@ -47,9 +47,9 @@ public class LinkedList<E> {
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
-        for (Node<E> p = first; p != null; p = p.next) {
+        for (Node<E> p = head; p != null; p = p.next) {
             s.append(p.item);
-            if (p != last) {
+            if (p != tail) {
                 s.append(", ");
             }
         }
