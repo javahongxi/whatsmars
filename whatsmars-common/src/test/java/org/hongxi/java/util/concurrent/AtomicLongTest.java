@@ -4,8 +4,10 @@ import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * @author shenhongxi 2019/09/01
+ * @see LongAdderTest
+ * @see LongAccumulatorTest
  */
-public class AtomicTest {
+public class AtomicLongTest {
 
     private static AtomicLong count = new AtomicLong();
 
