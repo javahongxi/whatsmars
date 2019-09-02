@@ -5,6 +5,9 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author shenhongxi 2019/8/13
+ * @see java.util.concurrent.ArrayBlockingQueue
+ * @see java.util.concurrent.LinkedBlockingQueue
+ * @see java.util.concurrent.ConcurrentLinkedQueue
  */
 public class BlockingQueue<E> {
 
