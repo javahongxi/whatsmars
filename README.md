@@ -2,7 +2,7 @@
 *`./mvnw clean package -Dmaven.test.skip`* [`java 8+`](http://www.oracle.com/technetwork/java/javase/downloads) [`mvnrepository`](http://mvn.hongxi.org)
 <br>*What's Mars? Mars is the fourth planet from the Sun and the second-smallest planet in the Solar System after Mercury.*
 <br>Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketMQ**🔥 + **Elasticsearch**🔥)
-<br>*深入研究JavaSE,Dubbo,RocketMQ,Netty等的源码*
+<br>*深入研究JavaSE,Netty,Dubbo,RocketMQ的源码*
 - [Spring Boot](https://spring.io/projects/spring-boot) 解放生产力的利器
 - [《Redis设计与实现》](https://e.jd.com/30189715.html) 缓存，NoSQL数据库，分布式锁，位图
 - [Dubbo](http://dubbo.apache.org/en-us/) / [《企业IT架构转型之道：阿里巴巴中台战略思想与架构实战》](https://book.douban.com/subject/27039508/) 分布式RPC，微服务架构
