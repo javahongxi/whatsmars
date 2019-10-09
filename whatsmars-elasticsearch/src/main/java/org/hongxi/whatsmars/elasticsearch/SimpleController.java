@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -23,6 +24,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/es")
 public class SimpleController {
+
+    private static final String QUERY_PARAMETER_REST_TOTAL_HITS_AS_INT = "rest_total_hits_as_int";
+    private static final String QUERY_PARAMETER_IGNORE_THROTTLED = "ignore_throttled";
 
     @Autowired
     private ElasticsearchTemplate elasticsearchTemplate;
@@ -74,9 +78,9 @@ public class SimpleController {
     public Object search(@PathVariable String indices,
                          @RequestBody(required = false) JSONObject query) {
         StringBuilder endpoint = new StringBuilder("/").append(indices).append("/_search");
-        Request request = new Request("POST", endpoint.toString());
-        request.addParameter("rest_total_hits_as_int", "true");
-        request.addParameter("ignore_throttled", "true");
+        Request request = new Request(HttpMethod.POST.name(), endpoint.toString());
+        request.addParameter(QUERY_PARAMETER_REST_TOTAL_HITS_AS_INT, Boolean.TRUE.toString());
+        request.addParameter(QUERY_PARAMETER_IGNORE_THROTTLED, Boolean.TRUE.toString());
         try {
             if (query != null) {
                 request.setJsonEntity(query.toString());
