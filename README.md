@@ -40,11 +40,11 @@ whatsmars-zk | zookeeper remoting 封装
 - [x] [*Spring Data*](https://github.com/spring-projects/spring-data-examples)
 - [x] [*Redis*](https://github.com/antirez/redis)
 - [ ] [*Elasticsearch*](https://github.com/elastic/elasticsearch)
-- [ ] [*Go*](http://go.hongxi.org)
 
 ### Friendship links
 - [*阿里巴巴Java开发手册*](https://github.com/alibaba/Alibaba-Java-Coding-Guidelines) 📚
 - *技术wiki* [wiki.hongxi.org](http://wiki.hongxi.org) ✏️
+- *Go战略* [go.hongxi.org](http://go.hongxi.org) 🚙
 
 ### Warm tips
 - Java两大核心技术：并发，NIO
