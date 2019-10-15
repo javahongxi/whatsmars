@@ -39,7 +39,7 @@ whatsmars-zk | zookeeper remoting 封装
 - [x] [*Spring Framework*](https://github.com/spring-projects/spring-framework)
 - [x] [*Spring Data*](https://github.com/spring-projects/spring-data-examples)
 - [x] [*Redis*](https://github.com/antirez/redis)
-- [ ] [*Elasticsearch*](https://github.com/elastic/elasticsearch)
+- [x] [*Elasticsearch*](https://github.com/elastic/elasticsearch)
 
 ### Friendship links
 - [*阿里巴巴Java开发手册*](https://github.com/alibaba/Alibaba-Java-Coding-Guidelines) 📚
