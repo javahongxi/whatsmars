@@ -5,6 +5,7 @@ import org.elasticsearch.action.DocWriteResponse;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.action.update.UpdateResponse;
@@ -98,10 +99,12 @@ public class TransportClientTest {
 
     @Test
     public void search() {
-        SearchResponse response = client.prepareSearch(INDEX)
-                .setQuery(QueryBuilders.queryStringQuery("study"))
-                .get();
+        SearchRequestBuilder requestBuilder = client.prepareSearch(INDEX)
+                .setQuery(QueryBuilders.queryStringQuery("study"));
+        System.out.println(requestBuilder);
+        SearchResponse response = requestBuilder.get();
         System.out.println(JSON.toJSONString(response));
+        assert response.getHits().getTotalHits() > 0;
     }
 
     @After
