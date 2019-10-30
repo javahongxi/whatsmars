@@ -30,6 +30,7 @@
         <module>whatsmars-spring-boot-samples</module>
         <module>whatsmars-elasticsearch</module>
         <module>whatsmars-zk</module>
+        <module>whatsmars-storm</module>
     </modules>
 
     <!--这里的properties会覆盖父pom里的重名的配置-->
