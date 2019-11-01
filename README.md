@@ -18,7 +18,7 @@ whatsmars-common | Utils公共模块 / Java SE demo
 whatsmars-dubbo | 高性能分布式RPC框架
 whatsmars-elasticjob | 分布式调度框架
 whatsmars-elasticsearch | Elasticsearch
-whatsmars-flink |  分布式流处理框架
+whatsmars-flink |  分布式流式计算框架
 whatsmars-mq | 消息中间件RocketMQ,Kafka等
 whatsmars-redis | Redis客户端简单封装
 whatsmars-rpc | Transporter & Codec & Serialization
@@ -27,7 +27,7 @@ whatsmars-spring | Spring Framework
 whatsmars-spring-boot | Spring Boot 实战
 whatsmars-spring-boot-samples | Spring Boot Samples
 whatsmars-spring-cloud | Spring Cloud 微服务生态
-whatsmars-storm | 分布式流处理框架
+whatsmars-storm | 分布式流式计算框架
 whatsmars-zk | zookeeper remoting 封装
 
 ### Rocket Stack
