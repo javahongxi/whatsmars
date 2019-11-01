@@ -43,7 +43,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>stormapplied.githubcommits.LocalTopologyRunner</mainClass>
+                            <mainClass>org.hongxi.whatsmars.storm.LocalTopologyRunner</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
