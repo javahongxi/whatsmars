@@ -14,7 +14,7 @@
 ### Modules intro
 Module | Intro
 ------ | ------
-whatsmars-common | Utils公共模块 / Java SE demo
+whatsmars-common | Utils公共模块
 whatsmars-dubbo | 高性能分布式RPC框架
 whatsmars-elasticjob | 分布式调度框架
 whatsmars-elasticsearch | Elasticsearch
