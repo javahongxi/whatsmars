@@ -23,7 +23,7 @@ import java.util.List;
  * Created by shenhongxi on 2018/12/9.
  */
 @Configuration
-public class MybatisConfig {
+public class MybatisConfiguration {
 
     @MapperScan(basePackages = "org.hongxi.whatsmars.boot.sample.mybatis.dao.user", sqlSessionTemplateRef = "userSqlSessionTemplate")
     private class userMapperScan {}

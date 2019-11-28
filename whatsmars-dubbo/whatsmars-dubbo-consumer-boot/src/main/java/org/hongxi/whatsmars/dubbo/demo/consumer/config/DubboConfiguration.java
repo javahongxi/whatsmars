@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
  * Created by shenhongxi on 2018/11/30.
  */
 @Configuration
-public class DubboConfig {
+public class DubboConfiguration {
 
     /**
      * 配置文件里配置默认的，这里配置其他需要的

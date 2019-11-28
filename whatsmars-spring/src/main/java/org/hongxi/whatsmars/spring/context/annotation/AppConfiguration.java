@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  */
 //@Configuration
 @ComponentScan //("org.hongxi.whatsmars.spring.context.annotation.service")
-public class AppConfig {
+public class AppConfiguration {
     @Autowired
     private DemoService demoService;
 

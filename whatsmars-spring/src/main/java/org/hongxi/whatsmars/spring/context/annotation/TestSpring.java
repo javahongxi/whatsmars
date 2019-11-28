@@ -23,7 +23,7 @@ public class TestSpring {
 
     public static void main(String[] args) {
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-        ctx.register(AppConfig.class, JustConfig.class);
+        ctx.register(AppConfiguration.class, JustConfiguration.class);
         ctx.scan("org.hongxi.whatsmars.spring.context.annotation.repository");
         ctx.refresh();
         Mars mars = ctx.getBean(Mars.class);
