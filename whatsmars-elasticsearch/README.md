@@ -6,5 +6,5 @@ https://www.elastic.co/cn/downloads/past-releases/elasticsearch-6-4-3
 无法承载海量数据的查询。此时应考虑同步写ES，对于实时性要求不高和那些复杂的查询直接走ES，少部分实时性
 要求极高的请求仍走关系型数据库，这种情况下完全不用再做关系型数据库读写分离。
 
-### 日志搜索ELK
-Elasticsearch + Logstash + Kibana
+### 日志采集与搜索 ELK
+Data -> Logstash -> Kafka -> Logstash -> Elasticsearch -> Kibana
