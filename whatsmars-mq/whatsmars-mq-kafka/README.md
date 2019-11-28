@@ -2,7 +2,7 @@
 
 1. 启动zk org.hongxi.whatsmars.zk.ZKStartup
 1. 启动kafka org.hongxi.whatsmars.kafka.KafkaStartup
-1. 启动client org.hongxi.whatsmars.kafka.KafkaApplication
+1. 启动client org.hongxi.whatsmars.kafka.boot.KafkaApplication
 
 linux:<br>
 启动zk ./zookeeper-server-start.sh ../config/zookeeper.properties<br>

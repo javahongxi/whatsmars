@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.kafka.examples;
+package org.hongxi.whatsmars.kafka.quickstart;
 
 public class KafkaProperties {
     public static final String TOPIC = "topic1";

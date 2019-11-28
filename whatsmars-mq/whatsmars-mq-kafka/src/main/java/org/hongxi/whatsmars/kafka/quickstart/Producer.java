@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.kafka.examples;
+package org.hongxi.whatsmars.kafka.quickstart;
 
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.IntegerSerializer;

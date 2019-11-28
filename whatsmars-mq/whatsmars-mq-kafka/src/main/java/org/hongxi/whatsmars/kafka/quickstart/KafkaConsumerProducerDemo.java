@@ -1,6 +1,7 @@
-package org.hongxi.whatsmars.kafka.examples;
+package org.hongxi.whatsmars.kafka.quickstart;
 
 public class KafkaConsumerProducerDemo {
+
     public static void main(String[] args) {
         boolean isAsync = args.length == 0 || !args[0].trim().equalsIgnoreCase("sync");
         Producer producerThread = new Producer(KafkaProperties.TOPIC, isAsync);

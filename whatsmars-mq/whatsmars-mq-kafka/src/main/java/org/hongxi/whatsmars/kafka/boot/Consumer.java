@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.kafka;
+package org.hongxi.whatsmars.kafka.boot;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;

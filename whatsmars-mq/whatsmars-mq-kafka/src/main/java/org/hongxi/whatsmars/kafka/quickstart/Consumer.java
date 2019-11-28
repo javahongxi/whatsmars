@@ -1,6 +1,5 @@
-package org.hongxi.whatsmars.kafka.examples;
+package org.hongxi.whatsmars.kafka.quickstart;
 
-import kafka.utils.ShutdownableThread;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -10,12 +9,11 @@ import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
 
-public class Consumer extends ShutdownableThread {
+public class Consumer extends Thread {
     private final KafkaConsumer<Integer, String> consumer;
     private final String topic;
 
     public Consumer(String topic) {
-        super("KafkaConsumerExample", false);
         Properties props = new Properties();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaProperties.KAFKA_SERVER_URL + ":" + KafkaProperties.KAFKA_SERVER_PORT);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "DemoConsumer");
@@ -30,21 +28,13 @@ public class Consumer extends ShutdownableThread {
     }
 
     @Override
-    public void doWork() {
+    public void run() {
         consumer.subscribe(Collections.singletonList(this.topic));
-        ConsumerRecords<Integer, String> records = consumer.poll(Duration.ofSeconds(1));
-        for (ConsumerRecord<Integer, String> record : records) {
-            System.out.println("Received message: (" + record.key() + ", " + record.value() + ") at offset " + record.offset());
+        while (true) {
+            ConsumerRecords<Integer, String> records = consumer.poll(Duration.ofSeconds(1));
+            for (ConsumerRecord<Integer, String> record : records) {
+                System.out.println("Received message: (" + record.key() + ", " + record.value() + ") at offset " + record.offset());
+            }
         }
-    }
-
-    @Override
-    public String name() {
-        return null;
-    }
-
-    @Override
-    public boolean isInterruptible() {
-        return false;
     }
 }
