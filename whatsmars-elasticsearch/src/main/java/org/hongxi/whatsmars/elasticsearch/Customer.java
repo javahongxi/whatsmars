@@ -3,6 +3,8 @@ package org.hongxi.whatsmars.elasticsearch;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 @Document(indexName = "customer", type = "customer", shards = 1, replicas = 0, refreshInterval = "-1")
 public class Customer {
@@ -12,7 +14,7 @@ public class Customer {
 	private String id;
 
 	private String firstName;
-
+	@Field(type = FieldType.Keyword)
 	private String lastName;
 
 	public Customer() {

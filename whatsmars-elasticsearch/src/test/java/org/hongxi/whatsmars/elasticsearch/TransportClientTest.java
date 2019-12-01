@@ -15,6 +15,10 @@ import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.aggregations.Aggregation;
+import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.aggregations.bucket.terms.StringTerms;
+import org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.junit.After;
 import org.junit.Before;
@@ -24,7 +28,9 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Created by shenhongxi on 2018/11/19.
@@ -105,6 +111,22 @@ public class TransportClientTest {
         SearchResponse response = requestBuilder.get();
         System.out.println(JSON.toJSONString(response));
         assert response.getHits().getTotalHits() > 0;
+    }
+
+    // 利用groupBy获取distinct值
+    @Test
+    public void distinct() {
+        TermsAggregationBuilder termsAggregationBuilder = AggregationBuilders.terms("aggs").field("lastName");
+        SearchResponse response = client.prepareSearch("customer")
+                .addAggregation(termsAggregationBuilder)
+                .get();
+        Aggregation aggregation = response.getAggregations().asMap().get("aggs");
+        StringTerms stringTerms = (StringTerms) aggregation;
+        List<String> lastNames = stringTerms.getBuckets()
+                .stream()
+                .map(StringTerms.Bucket::getKeyAsString)
+                .collect(Collectors.toList());
+        System.out.println(lastNames);
     }
 
     @After
