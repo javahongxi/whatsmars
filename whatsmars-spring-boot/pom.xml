@@ -88,7 +88,6 @@
         <dependency>
             <groupId>org.hongxi</groupId>
             <artifactId>whatsmars-common</artifactId>
-            <version>Rocket.S7</version>
         </dependency>
     </dependencies>
 

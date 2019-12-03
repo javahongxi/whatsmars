@@ -1,6 +1,4 @@
-package org.hongxi.whatsmars.spring.profile;
-
-import org.springframework.util.StringUtils;
+package org.hongxi.whatsmars.common.profile;
 
 public class ProfileUtils {
 
@@ -9,6 +7,6 @@ public class ProfileUtils {
 
     public static String getProfile() {
         String profile = System.getProperty(PROFILE_ENV_NAME);
-        return StringUtils.isEmpty(profile) ? DEFAULT_PROFILE : profile;
+        return profile == null || profile.trim().length() == 0 ? DEFAULT_PROFILE : profile;
     }
 }
