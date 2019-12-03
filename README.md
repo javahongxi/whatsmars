@@ -27,6 +27,7 @@ whatsmars-spring | Spring Framework
 whatsmars-spring-boot | Spring Boot 实战
 whatsmars-spring-boot-samples | Spring Boot Samples
 whatsmars-spring-cloud | Spring Cloud 微服务生态
+whatsmars-spring-data | Spring Data
 whatsmars-storm | 分布式流式计算框架
 whatsmars-zk | zookeeper remoting 封装
 
