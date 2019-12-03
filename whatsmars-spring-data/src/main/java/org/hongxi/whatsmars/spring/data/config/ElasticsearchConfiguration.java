@@ -9,7 +9,7 @@ import org.springframework.data.elasticsearch.client.TransportClientFactoryBean;
 import java.util.Properties;
 
 @Configuration
-public class EsConfiguration {
+public class ElasticsearchConfiguration {
 
     @Value("${es.cluster.name}")
     private String clusterName;
