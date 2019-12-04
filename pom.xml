@@ -30,7 +30,6 @@
         <module>whatsmars-spring-boot-samples</module>
         <module>whatsmars-elasticsearch</module>
         <module>whatsmars-zk</module>
-        <module>whatsmars-storm</module>
         <module>whatsmars-flink</module>
         <module>whatsmars-spring-data</module>
     </modules>
