@@ -27,7 +27,7 @@ import static springfox.documentation.schema.AlternateTypeRules.newRule;
 @ConditionalOnClass(EnableSwagger2.class)
 @EnableSwagger2
 @Configuration
-public class SwaggerConfig {
+public class SwaggerConfiguration {
 
     @Autowired
     private TypeResolver typeResolver;

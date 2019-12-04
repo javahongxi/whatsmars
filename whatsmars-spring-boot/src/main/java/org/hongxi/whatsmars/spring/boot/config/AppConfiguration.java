@@ -20,7 +20,7 @@ import javax.servlet.DispatcherType;
  */
 @Configuration
 @EnableConfigurationProperties(UserConfig.class)
-public class AppConfig {
+public class AppConfiguration {
 
     @ConditionalOnProperty(value = "api.auth.enabled")
     @Profile({"dev", "prod"})
