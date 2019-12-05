@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="debug">
+
+    <properties>
+        <property name="log.path">/data/logs/whatsmars-spring-data</property>
+    </properties>
+
+    <appenders>
+        <console name="Console" target="SYSTEM_OUT">
+            <Filters>
+                <ThresholdFilter level="DEBUG" onMatch="ACCEPT"
+                                 onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </console>
+
+    </appenders>
+
+    <loggers>
+        <root level="INFO">
+            <appender-ref ref="Console"/>
+        </root>
+    </loggers>
+
+</configuration>
