@@ -4,12 +4,11 @@ import org.hongxi.whatsmars.kafka.spring.config.KafkaConfiguration;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.kafka.core.KafkaTemplate;
 
-public class Main {
+public class Application {
 
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-        context.register(KafkaConfiguration.class);
-        context.scan("org.hongxi.whatsmars.kafka.spring.consumer");
+        context.scan(Application.class.getPackage().getName());
         context.refresh();
 
         KafkaTemplate<String, String> kafkaTemplate = context.getBean(KafkaTemplate.class);

@@ -7,8 +7,7 @@ public class TestSpring {
 
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-//        context.register(PropertyConfiguration.class);
-        context.scan("org.hongxi.whatsmars.spring.profile");
+        context.scan(TestSpring.class.getPackage().getName());
         context.getEnvironment().setActiveProfiles(ProfileUtils.getProfile());
         context.refresh();
     }

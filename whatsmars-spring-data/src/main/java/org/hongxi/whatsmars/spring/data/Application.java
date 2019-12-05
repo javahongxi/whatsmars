@@ -11,7 +11,7 @@ public class Application {
 
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-        context.scan("org.hongxi.whatsmars.spring.data");
+        context.scan(Application.class.getPackage().getName());
         context.getEnvironment().setActiveProfiles(ProfileUtils.getProfile());
         context.refresh();
     }
