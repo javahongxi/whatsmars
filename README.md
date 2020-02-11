@@ -46,7 +46,6 @@ whatsmars-zk | zookeeper remoting 封装
 
 ### Friendship links
 - [*阿里巴巴Java开发手册*](https://github.com/alibaba/Alibaba-Java-Coding-Guidelines) 📚
-- *技术wiki* [wiki.hongxi.org](http://wiki.hongxi.org) ✏️
 - [*Java诊断利器Arthas*](https://github.com/alibaba/arthas) 👀
 
 ### Warm tips
