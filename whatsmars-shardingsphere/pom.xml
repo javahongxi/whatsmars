@@ -15,7 +15,7 @@
     <description>shardingjdbc demo</description>
 
     <properties>
-        <shardingsphere.version>4.0.0-RC2</shardingsphere.version>
+        <shardingsphere.version>4.0.1</shardingsphere.version>
     </properties>
 
     <dependencies>
