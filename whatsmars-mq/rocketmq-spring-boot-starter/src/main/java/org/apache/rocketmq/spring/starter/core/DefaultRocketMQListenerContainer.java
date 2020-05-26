@@ -225,8 +225,22 @@ public class DefaultRocketMQListenerContainer implements InitializingBean, Rocke
             String str = new String(messageExt.getBody(), Charset.forName(charset));
             if (Objects.equals(messageType, String.class)) {
                 return str;
+            } else if (Objects.equals(messageType, Byte.class)) {
+                return Byte.parseByte(str);
+            } else if (Objects.equals(messageType, Short.class)) {
+                return Short.parseShort(str);
+            } else if (Objects.equals(messageType, Integer.class)) {
+                return Integer.parseInt(str);
+            } else if (Objects.equals(messageType, Long.class)) {
+                return Long.parseLong(str);
+            } else if (Objects.equals(messageType, Float.class)) {
+                return Float.parseFloat(str);
+            } else if (Objects.equals(messageType, Double.class)) {
+                return Double.parseDouble(str);
+            } else if (Objects.equals(messageType, Boolean.class)) {
+                return Boolean.parseBoolean(str);
             } else {
-                // if msgType not string, use objectMapper change it.
+                // if msgType not primitive, use objectMapper change it.
                 try {
                     return objectMapper.readValue(str, messageType);
                 } catch (Exception e) {

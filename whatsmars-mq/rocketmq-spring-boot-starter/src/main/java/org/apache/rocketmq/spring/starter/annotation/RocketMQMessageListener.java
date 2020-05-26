@@ -26,10 +26,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import org.apache.rocketmq.common.protocol.heartbeat.MessageModel;
+import org.springframework.stereotype.Service;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
+@Service
 public @interface RocketMQMessageListener {
 
     /**

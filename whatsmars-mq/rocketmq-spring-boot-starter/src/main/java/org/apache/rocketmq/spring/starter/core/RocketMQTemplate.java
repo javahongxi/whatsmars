@@ -498,8 +498,8 @@ public class RocketMQTemplate extends AbstractMessageSendingTemplate<String> imp
         Object payloadObj = message.getPayload();
         byte[] payloads;
 
-        if (payloadObj instanceof String) {
-            payloads = ((String) payloadObj).getBytes(Charset.forName(charset));
+        if (isPrimitiveType(payloadObj)) {
+            payloads = payloadObj.toString().getBytes(Charset.forName(charset));
         } else {
             try {
                 String jsonObj = this.objectMapper.writeValueAsString(payloadObj);
@@ -552,6 +552,12 @@ public class RocketMQTemplate extends AbstractMessageSendingTemplate<String> imp
         }
 
         return rocketMsg;
+    }
+
+    private boolean isPrimitiveType(Object obj) {
+        return obj instanceof String || obj instanceof Byte || obj instanceof Short
+                || obj instanceof Integer || obj instanceof Long || obj instanceof Float
+                || obj instanceof Double || obj instanceof Boolean;
     }
 
     private Message<?> doConvert(Object payload, String keys) {

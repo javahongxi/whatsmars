@@ -4,6 +4,8 @@
 - 发送延时消息方法参数优化(魔法参数改为枚举)
 - 优化getMessageType方法，支持 MyConsumer extends AbstractConsumer implements RocketMQListener <br>（官方只支持MyConsumer implements RocketMQListener）
 - RocketMQTemplate方法重载(加入keys)
+- 让@RocketMQMessageListener自带@Service注解
+- 消息数据类型转换优化，增加Integer,Boolean等基础类型的转换
 - 暂未加入事务消息功能 （官方最新版支持）
 
 ### 关于RocketMQTemplate往多集群发送消息的说明
