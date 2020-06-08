@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: ${artifactId}
+
+dubbo:
+  registry:
+    protocol: zookeeper
+    address: 127.0.0.1:2181
+    id: defaultRegistry
+  protocol:
+    port: 20882
+    name: dubbo
+    status: server
+    id: dubbo
+  application:
+    name: ${artifactId}
+    id: ${artifactId}
+    qosEnable: true
+    qosPort: 22223
+  scan:
+    basePackages: org.hongxi.whatsmars.dubbo.demo.provider.service
+  provider:
+    threadpool: fixed
+    threads: 200
+    dispatcher: message

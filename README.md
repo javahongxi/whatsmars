@@ -13,6 +13,7 @@
 ### Modules intro
 Module | Intro
 ------ | ------
+whatsmars-archetypes | 脚手架
 whatsmars-common | Utils公共模块
 whatsmars-dubbo | 高性能分布式RPC框架
 whatsmars-elasticjob | 分布式调度框架

@@ -32,6 +32,7 @@
         <module>whatsmars-zk</module>
         <module>whatsmars-flink</module>
         <module>whatsmars-spring-data</module>
+        <module>whatsmars-archetypes</module>
     </modules>
 
     <!--这里的properties会覆盖父pom里的重名的配置-->
