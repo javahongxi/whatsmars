@@ -34,12 +34,15 @@ import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.spring.starter.enums.ConsumeMode;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionValidationException;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -115,8 +118,10 @@ public class RocketMQAutoConfiguration {
     @EnableConfigurationProperties(RocketMQProperties.class)
     @ConditionalOnProperty(prefix = "spring.rocketmq", value = "nameServer")
     @Order
-    public static class ListenerContainerConfiguration implements ApplicationContextAware, InitializingBean {
+    public static class ListenerContainerConfiguration implements ApplicationContextAware, BeanFactoryAware, InitializingBean {
         private ConfigurableApplicationContext applicationContext;
+
+        private DefaultListableBeanFactory beanFactory;
 
         private AtomicLong counter = new AtomicLong(0);
 
@@ -159,7 +164,8 @@ public class RocketMQAutoConfiguration {
             }
 
             RocketMQListener rocketMQListener = (RocketMQListener) bean;
-            RocketMQMessageListener annotation = clazz.getAnnotation(RocketMQMessageListener.class);
+            GenericBeanDefinition bd = (GenericBeanDefinition) beanFactory.getBeanDefinition(beanName);
+            RocketMQMessageListener annotation = bd.getBeanClass().getAnnotation(RocketMQMessageListener.class);
             validate(annotation);
             BeanDefinitionBuilder beanBuilder = BeanDefinitionBuilder.rootBeanDefinition(DefaultRocketMQListenerContainer.class);
             String nameServer = rocketMQProperties.getNameServer();
@@ -208,6 +214,11 @@ public class RocketMQAutoConfiguration {
             if (annotation.consumeMode() == ConsumeMode.ORDERLY &&
                 annotation.messageModel() == MessageModel.BROADCASTING)
                 throw new BeanDefinitionValidationException("Bad annotation definition in @RocketMQMessageListener, messageModel BROADCASTING does not support ORDERLY message!");
+        }
+
+        @Override
+        public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+            this.beanFactory = (DefaultListableBeanFactory) beanFactory;
         }
     }
 
