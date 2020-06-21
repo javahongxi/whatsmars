@@ -7,9 +7,14 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
  * Created by shenhongxi on 2020/6/10.
  */
 public class DemoBeanPostProcessor implements BeanPostProcessor {
+
+    public DemoBeanPostProcessor() {
+        System.out.println("new DemoBeanPostProcessor");
+    }
+
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        if (beanName.equals("demoBean")) {
+        if (bean.getClass() == DemoBean.class) {
             System.out.println("postProcessBeforeInitialization");
         }
         return bean;
@@ -17,7 +22,7 @@ public class DemoBeanPostProcessor implements BeanPostProcessor {
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        if (beanName.equals("demoBean")) {
+        if (bean.getClass() == DemoBean.class) {
             System.out.println("postProcessAfterInitialization");
         }
         return bean;
