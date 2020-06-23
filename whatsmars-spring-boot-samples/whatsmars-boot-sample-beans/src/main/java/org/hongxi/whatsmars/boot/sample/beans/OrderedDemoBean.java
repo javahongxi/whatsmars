@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.boot.sample.bean;
+package org.hongxi.whatsmars.boot.sample.beans;
 
 import org.springframework.core.Ordered;
 

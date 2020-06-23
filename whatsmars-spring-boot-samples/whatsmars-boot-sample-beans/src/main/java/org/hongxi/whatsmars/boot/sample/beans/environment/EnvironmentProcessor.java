@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.boot.sample.bean;
+package org.hongxi.whatsmars.boot.sample.beans.environment;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.env.EnvironmentPostProcessor;

@@ -1,5 +1,6 @@
-package org.hongxi.whatsmars.boot.sample.bean;
+package org.hongxi.whatsmars.boot.sample.beans.postprocessor;
 
+import org.hongxi.whatsmars.boot.sample.beans.DemoBean;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
