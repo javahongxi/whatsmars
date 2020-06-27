@@ -51,7 +51,7 @@
         <fastjson.version>1.2.44</fastjson.version>
         <guava.version>20.0</guava.version>
         <hessian.version>4.0.7</hessian.version>
-        <jackson.version>2.9.9</jackson.version>
+        <jackson.version>2.11.1</jackson.version>
         <javassist.version>3.24.1-GA</javassist.version>
         <log4j.version>1.2.16</log4j.version>
         <mybatis.version>3.4.5</mybatis.version>
