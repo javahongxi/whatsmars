@@ -23,7 +23,7 @@
         <module>whatsmars-boot-sample-mongodb</module>
         <module>whatsmars-boot-sample-redis</module>
         <module>whatsmars-boot-sample-mybatis</module>
-        <module>whatsmars-boot-sample-bean</module>
+        <module>whatsmars-boot-sample-beans</module>
     </modules>
 
     <dependencies>

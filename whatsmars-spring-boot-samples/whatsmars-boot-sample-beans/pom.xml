@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>whatsmars-boot-sample-bean</artifactId>
+    <artifactId>whatsmars-boot-sample-beans</artifactId>
     <name>${project.artifactId}</name>
     <packaging>jar</packaging>
     <description>Spring Boot Bean Sample</description>
