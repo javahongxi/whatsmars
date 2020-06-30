@@ -3,12 +3,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>${groupId}</groupId>
-        <artifactId>${artifactId}</artifactId>
+        <artifactId>${rootArtifactId}</artifactId>
         <version>${version}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>${artifactId}-service</artifactId>
+    <artifactId>${artifactId}</artifactId>
 
     <dependencies>
         <dependency>
@@ -20,10 +20,16 @@
             <artifactId>dubbo-spring-boot-starter</artifactId>
             <version>Rocket.S8</version>
         </dependency>
+#if (${includeActuator} == 'true' || ${includeActuator} == 'Y' || ${includeActuator} == 'y')
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+#end
 
         <dependency>
             <groupId>${groupId}</groupId>
-            <artifactId>${artifactId}-api</artifactId>
+            <artifactId>${rootArtifactId}-api</artifactId>
             <version>${version}</version>
         </dependency>
     </dependencies>

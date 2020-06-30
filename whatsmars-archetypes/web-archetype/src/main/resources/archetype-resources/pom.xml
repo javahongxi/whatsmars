@@ -29,6 +29,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
+#if (${includeActuator} == 'true' || ${includeActuator} == 'Y' || ${includeActuator} == 'y')
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+#end
     </dependencies>
 
     <build>

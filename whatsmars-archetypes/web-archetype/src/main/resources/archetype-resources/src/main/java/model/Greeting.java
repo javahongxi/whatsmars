@@ -1,4 +1,4 @@
-package org.hongxi.${artifactIdPackage}.model;
+package ${package}.model;
 
 public class Greeting {
     private long id;

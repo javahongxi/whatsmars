@@ -2,19 +2,59 @@
 
 <archetype-descriptor name="standard">
     <requiredProperties>
+        <requiredProperty key="package">
+            <defaultValue>${groupId}</defaultValue>
+        </requiredProperty>
         <requiredProperty key="artifactIdCamelCase">
             <defaultValue>${artifactId.replaceAll("^a|-a", "A").replaceAll("^b|-b", "B").replaceAll("^c|-c", "C").replaceAll("^d|-d", "D").replaceAll("^e|-e", "E").replaceAll("^f|-f", "F").replaceAll("^g|-g", "G").replaceAll("^h|-h", "H").replaceAll("^i|-i", "I").replaceAll("^j|-j", "J").replaceAll("^k|-k", "K").replaceAll("^l|-l", "L").replaceAll("^m|-m", "M").replaceAll("^n|-n", "N").replaceAll("^o|-o", "O").replaceAll("^p|-p", "P").replaceAll("^q|-q", "Q").replaceAll("^r|-r", "R").replaceAll("^s|-s", "S").replaceAll("^t|-t", "T").replaceAll("^u|-u", "U").replaceAll("^v|-v", "V").replaceAll("^w|-w", "W").replaceAll("^x|-x", "X").replaceAll("^y|-y", "Y").replaceAll("^z|-z", "Z")}</defaultValue>
         </requiredProperty>
-        <requiredProperty key="artifactIdPackage">
-            <defaultValue>${artifactId.replace("-",".")}</defaultValue>
+
+        <requiredProperty key="includeActuator">
+            <defaultValue>false</defaultValue>
         </requiredProperty>
     </requiredProperties>
 
+    <modules>
+        <module id="${rootArtifactId}-api" name="${rootArtifactId}-api" dir="__rootArtifactId__-api">
+
+        </module>
+        <module id="${rootArtifactId}-service" name="${rootArtifactId}-service" dir="__rootArtifactId__-service">
+
+        </module>
+    </modules>
+
     <fileSets>
-        <fileSet filtered="true">
-            <directory></directory>
+        <fileSet filtered="true" encoding="UTF-8" packaged="true">
+            <directory>__rootArtifactId__-api/src/main/java</directory>
             <includes>
                 <include>**/*</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8" packaged="true">
+            <directory>__rootArtifactId__-api/src/test/java</directory>
+            <includes>
+                <include>**/*</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8" packaged="true">
+            <directory>__rootArtifactId__-service/src/main/java</directory>
+            <includes>
+                <include>**/*</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8" packaged="true">
+            <directory>__rootArtifactId__-service/src/test/java</directory>
+            <includes>
+                <include>**/*</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory />
+            <includes>
+                <include>**/.gitignore</include>
+                <include>**/log4j2.xml</include>
+                <include>**/*.yaml</include>
+                <include>**/*.yml</include>
             </includes>
         </fileSet>
     </fileSets>
