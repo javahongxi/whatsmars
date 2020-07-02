@@ -15,6 +15,7 @@
     <modules>
         <module>web-archetype</module>
         <module>dubbo-archetype</module>
+        <module>whatsmars-initializr</module>
     </modules>
 
 

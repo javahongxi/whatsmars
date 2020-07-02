@@ -27,8 +27,8 @@ rm -f ${artifactId}.tar
 
 mvn archetype:generate                                  \
   -DarchetypeCatalog=internal                           \
-  -DarchetypeGroupId=org.hongxi             \
-  -DarchetypeArtifactId=${type}-archetype   \
+  -DarchetypeGroupId=org.hongxi                         \
+  -DarchetypeArtifactId=${type}-archetype               \
   -DarchetypeVersion=Rocket.S8                          \
   -DgroupId=${groupId}                                  \
   -DartifactId=${artifactId}                            \
@@ -42,5 +42,3 @@ rm -rf ${artifactId}
 
 time=$(date "+%Y-%m-%d %H:%M:%S")
 echo "${time} create project ${artifactId} successfully" >> generate-project.log
-
-# 可用java调用此脚本生成工程，上传至某个地方，然后下载

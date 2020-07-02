@@ -2,6 +2,11 @@
 
 <archetype-descriptor name="standard">
     <requiredProperties>
+        <requiredProperty key="groupId" />
+        <requiredProperty key="artifactId" />
+        <requiredProperty key="version">
+            <defaultValue>1.0.0-SNAPSHOT</defaultValue>
+        </requiredProperty>
         <requiredProperty key="package">
             <defaultValue>${groupId}</defaultValue>
         </requiredProperty>
