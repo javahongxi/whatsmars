@@ -11,7 +11,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.validation.Valid;
 import java.io.File;
 
 /**
@@ -24,7 +23,7 @@ public class InitializrController {
     private static final String CMD = "sh generate.sh ";
 
     @PostMapping
-    public ResponseEntity<byte[]> initialize(@Valid ProjectMeta projectMeta) throws Exception {
+    public ResponseEntity<byte[]> initialize(ProjectMeta projectMeta) throws Exception {
         if (StringUtils.isEmpty(projectMeta.getPackageName())) {
             projectMeta.setPackageName(projectMeta.getGroupId());
         }

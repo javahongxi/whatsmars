@@ -6,12 +6,7 @@ import org.apache.http.util.EntityUtils;
 import org.elasticsearch.client.Request;
 import org.elasticsearch.client.Response;
 import org.elasticsearch.client.RestClient;
-import org.elasticsearch.index.query.QueryBuilder;
-import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
-import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,29 +24,10 @@ public class SimpleController {
     private static final String QUERY_PARAMETER_IGNORE_THROTTLED = "ignore_throttled";
 
     @Autowired
-    private ElasticsearchTemplate elasticsearchTemplate;
-
-    @Autowired
     private CustomerRepository repository;
 
     @Autowired
     private RestClient restClient;
-
-    @RequestMapping("/indexExists/{indexName}")
-    public Boolean indexExists(@PathVariable String indexName) {
-        return elasticsearchTemplate.indexExists(indexName);
-    }
-
-    @RequestMapping("/search/{indices}")
-    public List<Customer> query(@PathVariable String indices) {
-        QueryBuilder queryBuilder= QueryBuilders.boolQuery()
-                .must(QueryBuilders.matchQuery("firstName", "Alice"));
-        SearchQuery searchQuery = new NativeSearchQueryBuilder()
-                .withIndices(indices)
-                .withQuery(queryBuilder)
-                .build();
-        return elasticsearchTemplate.queryForList(searchQuery, Customer.class);
-    }
 
     @RequestMapping("/save")
     public String testEsRepo() {
