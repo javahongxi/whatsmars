@@ -19,10 +19,11 @@
         <module>whatsmars-cloud-consumer</module>
         <module>whatsmars-cloud-eureka</module>
         <module>whatsmars-cloud-provider</module>
+        <module>whatsmars-cloud-gateway</module>
     </modules>
 
     <properties>
-        <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
+        <spring-cloud.version>Hoxton.SR6</spring-cloud.version>
     </properties>
 
     <dependencyManagement>

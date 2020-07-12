@@ -1,5 +1,4 @@
 # Spring Cloud
-`Finchley`
 
 依次启动eureka,provider,consumer
 1. 直接访问 localhost:8763/hi?name=hongxi
