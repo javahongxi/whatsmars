@@ -4,3 +4,8 @@ planet:
   names:
     - Mars
     - Earth
+
+test:
+  map:
+    first: 1
+    second: 2
