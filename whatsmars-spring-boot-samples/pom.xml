@@ -24,6 +24,7 @@
         <module>whatsmars-boot-sample-redis</module>
         <module>whatsmars-boot-sample-mybatis</module>
         <module>whatsmars-boot-sample-beans</module>
+        <module>whatsmars-boot-sample-actuator</module>
     </modules>
 
     <dependencies>
