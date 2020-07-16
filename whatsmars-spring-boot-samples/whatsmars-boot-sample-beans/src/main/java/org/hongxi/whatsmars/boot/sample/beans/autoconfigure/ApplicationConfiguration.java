@@ -29,6 +29,7 @@ public class ApplicationConfiguration {
     @Bean
     public DemoBean demoBean(TestProperties testProperties) {
         System.out.println(testProperties.getMap());
+        System.out.println(testProperties.getProperties());
         return new DemoBean();
     }
 
