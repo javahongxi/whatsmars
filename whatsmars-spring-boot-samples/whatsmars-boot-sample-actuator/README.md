@@ -6,3 +6,7 @@
 ```
 curl http://localhost:8080/actuator/mappings -u application:whatsmars-spring-boot
 ```
+
+如果要禁止http访问actuator，有两种方式：
+- 增加 ActuatorFilter，拦截 /actuator 开头的请求
+- 非Web应用中去掉Web模块

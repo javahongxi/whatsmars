@@ -23,7 +23,8 @@ public class StandardWebSecurityConfigurer extends WebSecurityConfigurerAdapter 
   
     @Override  
     public void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()  
+        http.csrf().disable()
+                .authorizeRequests()
                 .requestMatchers(EndpointRequest.to(
                         MappingsEndpoint.class,
                         EnvironmentEndpoint.class,
@@ -36,7 +37,7 @@ public class StandardWebSecurityConfigurer extends WebSecurityConfigurerAdapter 
                 .anyRequest()
                 .permitAll()
                 .and()
-                .httpBasic();  
+                .httpBasic();
   
     }  
 }  
