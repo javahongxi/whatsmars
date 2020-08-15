@@ -12,3 +12,8 @@ test:
   properties:
     a: x
     b: y
+
+mars:
+  provider:
+    dubboPort: 2000
+    logPath: /tmp/logs

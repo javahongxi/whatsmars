@@ -8,5 +8,7 @@ public class EnvironmentProcessor implements EnvironmentPostProcessor {
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
         System.out.println("postProcessEnvironment");
+        System.setProperty("mars.consumer.dubboPort", "2000");
+        System.out.println(environment.getProperty("mars.consumer.dubbo-port"));
     }
 }

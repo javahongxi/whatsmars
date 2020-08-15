@@ -50,6 +50,7 @@ public class ApplicationConfiguration {
 
     @Bean
     @Conditional(OrCondition.class)
+    @ConditionalOnProperty(prefix = "mars", name = {"provider.dubbo-port", "provider.log-path"})
     public ConditionalBean conditionalBean() {
         return new ConditionalBean();
     }
