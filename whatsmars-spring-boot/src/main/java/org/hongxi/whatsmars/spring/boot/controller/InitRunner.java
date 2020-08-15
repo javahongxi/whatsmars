@@ -29,7 +29,7 @@ public class InitRunner implements CommandLineRunner {
         userMapper.createIfNotExistsTable();
 
         for (int i = 0; i < 10; i++) {
-            messageService.send("message" + i);
+            logger.info("send result: {}", messageService.send("message" + i).get());
         }
     }
 }
