@@ -6,7 +6,7 @@ server:
   port: 8080
   tomcat:
     uri-encoding: UTF-8
-    basedir: /data/logs/whatsmars-spring-boot
+    basedir: /tmp/logs/whatsmars-spring-boot
     accesslog:
       directory: logs
       enabled: true
