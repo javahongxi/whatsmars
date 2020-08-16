@@ -1,0 +1,3 @@
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss

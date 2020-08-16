@@ -28,6 +28,7 @@
         <module>whatsmars-boot-sample-web</module>
         <module>whatsmars-boot-sample-async</module>
         <module>whatsmars-boot-sample-datasource</module>
+        <module>whatsmars-boot-sample-thymeleaf</module>
     </modules>
 
     <dependencies>
