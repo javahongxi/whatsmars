@@ -19,7 +19,6 @@
     <modules>
         <module>whatsmars-common</module>
         <module>whatsmars-spring</module>
-        <module>whatsmars-spring-boot</module>
         <module>whatsmars-elasticjob</module>
         <module>whatsmars-dubbo</module>
         <module>whatsmars-rpc</module>
@@ -30,7 +29,6 @@
         <module>whatsmars-spring-boot-samples</module>
         <module>whatsmars-elasticsearch</module>
         <module>whatsmars-zk</module>
-        <module>whatsmars-flink</module>
         <module>whatsmars-spring-data</module>
         <module>whatsmars-archetypes</module>
     </modules>
@@ -57,7 +55,6 @@
         <mybatis.version>3.4.5</mybatis.version>
         <mybatis-spring.version>1.3.1</mybatis-spring.version>
         <rocketmq.version>4.5.1</rocketmq.version>
-        <swagger2.version>2.5.0</swagger2.version>
         <zkclient.version>0.9</zkclient.version>
     </properties>
 
@@ -138,16 +135,6 @@
                 <groupId>com.caucho</groupId>
                 <artifactId>hessian</artifactId>
                 <version>${hessian.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>${swagger2.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>${swagger2.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.101tec</groupId>

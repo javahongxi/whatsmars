@@ -1,3 +1,15 @@
 spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
+
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+    basedir: /data/logs/whatsmars-spring-boot
+    accesslog:
+      directory: logs
+      enabled: true
+      pattern: common
+      prefix: access_log
+      suffix: .log
