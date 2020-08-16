@@ -26,6 +26,7 @@
         <module>whatsmars-boot-sample-beans</module>
         <module>whatsmars-boot-sample-actuator</module>
         <module>whatsmars-boot-sample-web</module>
+        <module>whatsmars-boot-sample-async</module>
     </modules>
 
     <dependencies>
