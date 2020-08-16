@@ -30,6 +30,7 @@
         <module>whatsmars-boot-sample-datasource</module>
         <module>whatsmars-boot-sample-thymeleaf</module>
         <module>whatsmars-boot-sample-swagger</module>
+        <module>whatsmars-boot-sample-log4j2</module>
     </modules>
 
     <dependencies>

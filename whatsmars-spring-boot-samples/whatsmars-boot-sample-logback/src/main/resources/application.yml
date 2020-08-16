@@ -1,8 +1,8 @@
 logging.level.org.springframework.boot: DEBUG
 
 logging:
-  file: ./logs/whatsmars/whatsmars.log
-  file-rolling: ./logs/whatsmars/%d{yyyy-MM}/whatsmars.log
+  file: /tmp/logs/whatsmars/whatsmars.log
+  file-rolling: /tmp/logs/whatsmars/%d{yyyy-MM}/whatsmars.log
   max-file-size: 100MB
   max-history: 365
   total-size-cap: 20GB
