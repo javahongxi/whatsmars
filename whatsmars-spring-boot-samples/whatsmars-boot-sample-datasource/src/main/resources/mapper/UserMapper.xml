@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.hongxi.whatsmars.boot.sample.datasource.dao.UserMapper">
+
+    <update id="createIfNotExistsTable">
+        CREATE TABLE IF NOT EXISTS user (id BIGINT AUTO_INCREMENT, username VARCHAR(20) NOT NULL, nickname VARCHAR(20), gender TINYINT, age INT, create_date DATETIME, update_date DATETIME, PRIMARY KEY (id));
+    </update>
+
+    <!--<select id="findByUsername" parameterType="string" resultType="User">
+        select * from user where username = #username#
+    </select>-->
+    
+    <insert id="insert" parameterType="User">
+        insert into user(username, nickname, gender, age, create_date, update_date)
+        values(#{username}, #{nickname}, #{gender}, #{age}, NOW(), NOW())
+    </insert>
+
+    <insert id="insertBatch" parameterType="list">
+        insert into user(username, nickname, gender, age, create_date, update_date) values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.username}, #{item.nickname}, #{item.gender}, #{item.age}, #{item.createDate}, #{item.updateDate})
+        </foreach>
+    </insert>
+
+    <select id="query" resultType="User">
+        select * from user
+    </select>
+
+    <update id="update" parameterType="User">
+        update user set update_date = NOW
+        <if test="username != null">, username = #{username}</if>
+        <if test="nickname != null">, nickname = #{nickname}</if>
+        <if test="age != null">, age = #{age}</if>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from user where id = #{id}
+    </delete>
+
+    <select id="findByNicknameAndGender" resultType="User">
+        select * from user where nickname = #{nickname} and gender = #{gender}
+    </select>
+
+</mapper>

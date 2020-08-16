@@ -20,6 +20,10 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.hongxi</groupId>
+            <artifactId>whatsmars-common</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

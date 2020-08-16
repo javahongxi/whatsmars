@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="info">
+
+    <properties>
+        <property name="log.path">/data/logs/whatsmars-boot-sample-datasource</property>
+    </properties>
+
+    <appenders>
+        <console name="Console" target="SYSTEM_OUT">
+            <Filters>
+                <ThresholdFilter level="DEBUG" onMatch="ACCEPT"
+                                 onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:stack:SSS}] [%p] [%t] - [%X{sid}] %c{1.} - %m%n"/>
+        </console>
+
+        <RollingFile name="RollingFileDebug" fileName="${log.path}/debug.log"
+                     filePattern="${log.path}/$${date:yyyy-MM-dd}/debug-%d{yyyy-MM-dd}-%i.log">
+            <Filters>
+                <ThresholdFilter level="INFO" onMatch="DENY"
+                                 onMismatch="ACCEPT"/>
+                <ThresholdFilter level="DEBUG" onMatch="ACCEPT"
+                                 onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:stack:SSS}] [%p] [%t] - [%X{sid}] %c{1.} - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+        </RollingFile>
+
+        <RollingFile name="RollingFileInfo" fileName="${log.path}/info.log"
+                     filePattern="${log.path}/$${date:yyyy-MM-dd}/info-%d{yyyy-MM-dd}-%i.log">
+            <Filters>
+                <ThresholdFilter level="INFO"/>
+                <ThresholdFilter level="WARN" onMatch="DENY"
+                                 onMismatch="NEUTRAL"/>
+            </Filters>
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:stack:SSS}] [%p] [%t] - [%X{sid}] %c{1.} - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+        </RollingFile>
+
+        <RollingFile name="RollingFileWarn" fileName="${log.path}/warn.log"
+                     filePattern="${log.path}/$${date:yyyy-MM-dd}/warn-%d{yyyy-MM-dd}-%i.log">
+            <Filters>
+                <ThresholdFilter level="WARN"/>
+                <ThresholdFilter level="ERROR" onMatch="DENY"
+                                 onMismatch="NEUTRAL"/>
+            </Filters>
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:stack:SSS}] [%p] [%t] - [%X{sid}] %c{1.} - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+        </RollingFile>
+
+        <RollingFile name="RollingFileError" fileName="${log.path}/error.log"
+                     filePattern="${log.path}/$${date:yyyy-MM-dd}/error-%d{yyyy-MM-dd}-%i.log">
+            <ThresholdFilter level="ERROR"/>
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:stack:SSS}] [%p] [%t] - [%X{sid}] %c{1.} - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+        </RollingFile>
+
+        <RollingFile name="RollingFileTrace" fileName="${log.path}/trace.log"
+                     filePattern="${log.path}/$${date:yyyy-MM-dd}/trace-%d{yyyy-MM-dd}-%i.log">
+            <ThresholdFilter level="TRACE" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:stack:SSS}] [%p] [%t] - [%X{sid}] %c{1.} - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+        </RollingFile>
+    </appenders>
+
+    <loggers>
+        <root level="INFO">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="RollingFileInfo"/>
+            <appender-ref ref="RollingFileWarn"/>
+            <appender-ref ref="RollingFileError"/>
+            <appender-ref ref="RollingFileDebug"/>
+            <appender-ref ref="RollingFileTrace"/>
+        </root>
+
+        <!-- mybatis loggers -->
+        <logger name="com.ibatis" level="INFO"/>
+        <logger name="org.apache.ibatis" level="INFO"/>
+        <logger name="org.mybatis.spring" level="INFO"/>
+        <logger name="com.ibatis.common.jdbc.SimpleDataSource" level="INFO"/>
+        <logger name="com.ibatis.common.jdbc.ScriptRunner" level="DEBUG"/>
+        <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG"/>
+        <!-- sql loggers -->
+        <logger name="java.sql.Connection" level="DEBUG" additivity="true"/>
+        <logger name="java.sql.Statement" level="DEBUG" additivity="true"/>
+        <logger name="java.sql.PreparedStatement" level="DEBUG" additivity="true"/>
+        <logger name="java.sql.ResultSet" level="DEBUG" additivity="true"/>
+        <!-- spring loggers -->
+        <logger name="org.springframework" level="WARN"/>
+        <logger name="org.springframework.web" level="WARN"/>
+        <logger name="springfox.documentation" level="WARN"/>
+        <logger name="org.hibernate" level="ERROR"/>
+        <logger name="springfox.documentation" level="ERROR"/>
+    </loggers>
+
+</configuration>
