@@ -5,7 +5,7 @@
     <parent>
         <artifactId>whatsmars-archetypes</artifactId>
         <groupId>org.hongxi</groupId>
-        <version>Rocket.S8</version>
+        <version>Rocket.S9</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 

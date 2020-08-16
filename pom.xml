@@ -13,7 +13,7 @@
     <groupId>org.hongxi</groupId>
     <artifactId>whatsmars-parent</artifactId>
     <packaging>pom</packaging>
-    <version>Rocket.S8</version>
+    <version>Rocket.S9</version>
     <url>https://github.com/javahongxi/whatsmars</url>
 
     <modules>
