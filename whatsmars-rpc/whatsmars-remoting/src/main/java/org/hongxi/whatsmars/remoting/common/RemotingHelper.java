@@ -17,12 +17,12 @@
 package org.hongxi.whatsmars.remoting.common;
 
 import io.netty.channel.Channel;
-import org.hongxi.whatsmars.common.logging.InternalLogger;
-import org.hongxi.whatsmars.common.logging.InternalLoggerFactory;
 import org.hongxi.whatsmars.remoting.exception.RemotingConnectException;
 import org.hongxi.whatsmars.remoting.exception.RemotingSendRequestException;
 import org.hongxi.whatsmars.remoting.exception.RemotingTimeoutException;
 import org.hongxi.whatsmars.remoting.protocol.RemotingCommand;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -34,7 +34,7 @@ public class RemotingHelper {
     public static final String ROCKETMQ_REMOTING = "RocketmqRemoting";
     public static final String DEFAULT_CHARSET = "UTF-8";
 
-    private static final InternalLogger log = InternalLoggerFactory.getLogger(ROCKETMQ_REMOTING);
+    private static final Logger log = LoggerFactory.getLogger(ROCKETMQ_REMOTING);
 
     public static String exceptionSimpleDesc(final Throwable e) {
         StringBuffer sb = new StringBuffer();

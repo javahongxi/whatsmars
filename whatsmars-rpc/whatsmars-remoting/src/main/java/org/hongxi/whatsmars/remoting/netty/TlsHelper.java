@@ -20,9 +20,9 @@ package org.hongxi.whatsmars.remoting.netty;
 import io.netty.handler.ssl.*;
 import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
 import io.netty.handler.ssl.util.SelfSignedCertificate;
-import org.hongxi.whatsmars.common.logging.InternalLogger;
-import org.hongxi.whatsmars.common.logging.InternalLoggerFactory;
 import org.hongxi.whatsmars.remoting.common.RemotingHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -47,7 +47,7 @@ public class TlsHelper {
         InputStream decryptPrivateKey(String privateKeyEncryptPath, boolean forClient) throws IOException;
     }
 
-    private static final InternalLogger LOGGER = InternalLoggerFactory.getLogger(RemotingHelper.ROCKETMQ_REMOTING);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RemotingHelper.ROCKETMQ_REMOTING);
 
     private static DecryptionStrategy decryptionStrategy = new DecryptionStrategy() {
         @Override

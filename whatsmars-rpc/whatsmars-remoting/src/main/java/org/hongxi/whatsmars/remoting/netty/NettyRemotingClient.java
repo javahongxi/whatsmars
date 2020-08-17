@@ -25,8 +25,6 @@ import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.handler.timeout.IdleStateHandler;
 import io.netty.util.concurrent.DefaultEventExecutorGroup;
-import org.hongxi.whatsmars.common.logging.InternalLogger;
-import org.hongxi.whatsmars.common.logging.InternalLoggerFactory;
 import org.hongxi.whatsmars.remoting.ChannelEventListener;
 import org.hongxi.whatsmars.remoting.InvokeCallback;
 import org.hongxi.whatsmars.remoting.RPCHook;
@@ -39,6 +37,8 @@ import org.hongxi.whatsmars.remoting.exception.RemotingSendRequestException;
 import org.hongxi.whatsmars.remoting.exception.RemotingTimeoutException;
 import org.hongxi.whatsmars.remoting.exception.RemotingTooMuchRequestException;
 import org.hongxi.whatsmars.remoting.protocol.RemotingCommand;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.SocketAddress;
@@ -51,7 +51,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class NettyRemotingClient extends NettyRemotingAbstract implements RemotingClient {
-    private static final InternalLogger log = InternalLoggerFactory.getLogger(RemotingHelper.ROCKETMQ_REMOTING);
+    private static final Logger log = LoggerFactory.getLogger(RemotingHelper.ROCKETMQ_REMOTING);
 
     private static final long LOCK_TIMEOUT_MILLIS = 3000;
 

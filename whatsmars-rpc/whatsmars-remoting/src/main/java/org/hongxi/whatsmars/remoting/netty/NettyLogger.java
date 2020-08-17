@@ -19,8 +19,8 @@ package org.hongxi.whatsmars.remoting.netty;
 
 
 import io.netty.util.internal.logging.InternalLogLevel;
-import org.hongxi.whatsmars.common.logging.InternalLogger;
-import org.hongxi.whatsmars.common.logging.InternalLoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -50,10 +50,10 @@ public class NettyLogger {
 
     private static class NettyBridgeLogger implements io.netty.util.internal.logging.InternalLogger {
 
-        private InternalLogger logger = null;
+        private Logger logger = null;
 
         public NettyBridgeLogger(String name) {
-            logger = InternalLoggerFactory.getLogger(name);
+            logger = LoggerFactory.getLogger(name);
         }
 
         @Override

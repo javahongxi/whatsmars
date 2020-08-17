@@ -22,8 +22,6 @@ import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslHandler;
-import org.hongxi.whatsmars.common.logging.InternalLogger;
-import org.hongxi.whatsmars.common.logging.InternalLoggerFactory;
 import org.hongxi.whatsmars.remoting.ChannelEventListener;
 import org.hongxi.whatsmars.remoting.InvokeCallback;
 import org.hongxi.whatsmars.remoting.RPCHook;
@@ -36,6 +34,8 @@ import org.hongxi.whatsmars.remoting.exception.RemotingTimeoutException;
 import org.hongxi.whatsmars.remoting.exception.RemotingTooMuchRequestException;
 import org.hongxi.whatsmars.remoting.protocol.RemotingCommand;
 import org.hongxi.whatsmars.remoting.protocol.RemotingSysResponseCode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.SocketAddress;
 import java.util.HashMap;
@@ -50,7 +50,7 @@ public abstract class NettyRemotingAbstract {
     /**
      * Remoting logger instance.
      */
-    private static final InternalLogger log = InternalLoggerFactory.getLogger(RemotingHelper.ROCKETMQ_REMOTING);
+    private static final Logger log = LoggerFactory.getLogger(RemotingHelper.ROCKETMQ_REMOTING);
 
     /**
      * Semaphore to limit maximum number of on-going one-way requests, which protects system memory footprint.

@@ -46,6 +46,7 @@
         <commons-lang.version>2.6</commons-lang.version>
         <commons-logging.version>1.2</commons-logging.version>
         <curator.version>2.12.0</curator.version>
+        <disruptor.version>3.4.2</disruptor.version>
         <dubbo.version>2.7.3</dubbo.version>
         <fastjson.version>1.2.70</fastjson.version>
         <guava.version>20.0</guava.version>
@@ -124,6 +125,12 @@
                 <groupId>log4j</groupId>
                 <artifactId>log4j</artifactId>
                 <version>${log4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.lmax</groupId>
+                <artifactId>disruptor</artifactId>
+                <version>${disruptor.version}</version>
             </dependency>
 
             <dependency>
