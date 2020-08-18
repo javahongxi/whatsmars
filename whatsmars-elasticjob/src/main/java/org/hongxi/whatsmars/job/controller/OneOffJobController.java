@@ -7,7 +7,7 @@
  * the License.  You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,16 +15,25 @@
  * limitations under the License.
  */
 
-package org.hongxi.whatsmars.job;
+package org.hongxi.whatsmars.job.controller;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.apache.shardingsphere.elasticjob.lite.api.bootstrap.impl.OneOffJobBootstrap;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@SpringBootApplication
-public class Application {
+import javax.annotation.Resource;
+
+@RestController
+@DependsOn("org.apache.shardingsphere.elasticjob.lite.spring.boot.job.ElasticJobLiteAutoConfiguration")
+public class OneOffJobController {
     
-    public static void main(final String[] args) {
-        EmbedZookeeperServer.start(2181);
-        SpringApplication.run(Application.class, args);
+    @Resource(name = "manualScriptJobBean")
+    private OneOffJobBootstrap manualScriptJob;
+    
+    @GetMapping("/execute")
+    public String executeOneOffJob() {
+        manualScriptJob.execute();
+        return "{\"msg\":\"OK\"}";
     }
 }

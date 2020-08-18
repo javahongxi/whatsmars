@@ -1,9 +1,10 @@
 /*
- * Copyright 1999-2015 dangdang.com.
- * <p>
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -12,12 +13,11 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- * </p>
  */
 
-package org.hongxi.whatsmars.job.fixture.repository;
+package org.hongxi.whatsmars.job.repository;
 
-import org.hongxi.whatsmars.job.fixture.entity.Foo;
+import org.hongxi.whatsmars.job.entity.Foo;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Repository
 public class FooRepository {
     
-    private Map<Long, Foo> data = new ConcurrentHashMap<Long, Foo>(300, 1);
+    private final Map<Long, Foo> data = new ConcurrentHashMap<>(300, 1);
     
     public FooRepository() {
         init();
@@ -47,7 +47,7 @@ public class FooRepository {
     }
     
     public List<Foo> findTodoData(final String location, final int limit) {
-        List<Foo> result = new ArrayList<Foo>(limit);
+        List<Foo> result = new ArrayList<>(limit);
         int count = 0;
         for (Map.Entry<Long, Foo> each : data.entrySet()) {
             Foo foo = each.getValue();

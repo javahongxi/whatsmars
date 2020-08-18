@@ -15,24 +15,28 @@
     <description>elasticjob demo</description>
 
     <properties>
-        <elastic-job.version>2.1.5</elastic-job.version>
+        <elasticjob.version>3.0.0-alpha</elasticjob.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.dangdang</groupId>
-            <artifactId>elastic-job-lite-spring</artifactId>
-            <version>${elastic-job.version}</version>
+            <groupId>org.apache.shardingsphere.elasticjob</groupId>
+            <artifactId>elasticjob-lite-spring-boot-starter</artifactId>
+            <version>${elasticjob.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-framework</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-test</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>

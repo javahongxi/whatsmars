@@ -1,0 +1,35 @@
+spring:
+  profiles:
+    active: dev
+
+elasticjob:
+  tracing:
+    type: RDB
+  regCenter:
+    serverLists: localhost:2181
+    namespace: elasticjob-lite-springboot
+  jobs:
+    simpleJob:
+      elasticJobClass: org.apache.shardingsphere.elasticjob.simple.job.SimpleJob
+      cron: 0/5 * * * * ?
+      shardingTotalCount: 3
+      shardingItemParameters: 0=Beijing,1=Shanghai,2=Guangzhou
+    dataflowJob:
+      elasticJobClass: org.apache.shardingsphere.elasticjob.dataflow.job.DataflowJob
+      cron: 0/5 * * * * ?
+      shardingTotalCount: 3
+      shardingItemParameters: 0=Beijing,1=Shanghai,2=Guangzhou
+    scriptJob:
+      elasticJobType: SCRIPT
+      cron: 0/10 * * * * ?
+      shardingTotalCount: 3
+      props:
+        script.command.line: "echo SCRIPT Job: "
+    manualScriptJob:
+      elasticJobType: SCRIPT
+      jobBootstrapBeanName: manualScriptJobBean
+      shardingTotalCount: 9
+      props:
+        script.command.line: "echo Manual SCRIPT Job: "
+  dump:
+    port: 9888

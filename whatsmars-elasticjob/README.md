@@ -1,5 +1,5 @@
 ### 分布式调度
-http://elasticjob.io
+https://shardingsphere.apache.org/elasticjob/
 
 先启动zookeeper
 
