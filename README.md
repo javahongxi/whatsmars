@@ -19,7 +19,7 @@ whatsmars-dubbo | 高性能分布式RPC框架
 whatsmars-elasticjob | 分布式调度框架
 whatsmars-elasticsearch | Elasticsearch
 whatsmars-mq | 消息中间件RocketMQ,Kafka等
-whatsmars-netty | 广泛使用的NIO框架
+whatsmars-netty | NIO框架首选
 whatsmars-redis | Redis客户端简单封装
 whatsmars-rpc | Transporter & Codec & Serialization
 whatsmars-shardingsphere | 分布式数据库中间件
