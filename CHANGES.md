@@ -4,4 +4,5 @@
 - Add module `whatsmars-archetypes`
 - Add more spring boot samples
 - Add spring cloud gateway demo
+- New whatsmars-rpc `summer`
 - Remove some useless modules

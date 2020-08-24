@@ -1,0 +1,2 @@
+org.hongxi.summer.serialize.Hessian2Serialization
+org.hongxi.summer.serialize.FastJsonSerialization

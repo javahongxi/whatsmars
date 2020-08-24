@@ -106,6 +106,9 @@ broker会在一段时间后回查ProducerGroup里的其他实例，确认消息�
 需要一提的是，当消费者(不同jvm实例)都在同一台物理机上时，若指定instanceName，消费负载均衡将失效(每个实例都将消费所有消息)。
 另外，在一个jvm里模拟集群消费时，必须指定不同的instanceName，否则启动时会提示ConsumerGroup已存在。
 
+### RocketMQ Remoting
+see remoting.md
+
 ### Q&A
 #### Q1：分布式消息系统中，如何避免消息重复？
 
