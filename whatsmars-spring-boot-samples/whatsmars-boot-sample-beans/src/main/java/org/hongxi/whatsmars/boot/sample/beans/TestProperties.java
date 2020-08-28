@@ -15,4 +15,6 @@ public class TestProperties {
 
     private Map<String, String> map;
     private Properties properties;
+
+    private String name;
 }

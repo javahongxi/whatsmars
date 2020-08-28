@@ -30,6 +30,7 @@ public class ApplicationConfiguration {
     public DemoBean demoBean(TestProperties testProperties) {
         System.out.println(testProperties.getMap());
         System.out.println(testProperties.getProperties());
+        System.out.println(testProperties.getName());
         return new DemoBean();
     }
 

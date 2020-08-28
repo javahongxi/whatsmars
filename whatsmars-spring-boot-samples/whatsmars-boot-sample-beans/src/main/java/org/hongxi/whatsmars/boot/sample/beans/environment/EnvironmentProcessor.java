@@ -10,5 +10,7 @@ public class EnvironmentProcessor implements EnvironmentPostProcessor {
         System.out.println("postProcessEnvironment");
         System.setProperty("mars.consumer.dubboPort", "2000");
         System.out.println(environment.getProperty("mars.consumer.dubbo-port"));
+
+        System.setProperty("test.name", "test-name");
     }
 }
