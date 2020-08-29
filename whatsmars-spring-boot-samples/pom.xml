@@ -31,9 +31,14 @@
         <module>whatsmars-boot-sample-thymeleaf</module>
         <module>whatsmars-boot-sample-swagger</module>
         <module>whatsmars-boot-sample-log4j2</module>
+        <module>whatsmars-boot-sample-test</module>
     </modules>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
