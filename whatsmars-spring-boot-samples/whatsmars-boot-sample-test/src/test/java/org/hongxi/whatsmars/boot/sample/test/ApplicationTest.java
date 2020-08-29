@@ -1,3 +1,5 @@
+package org.hongxi.whatsmars.boot.sample.test;
+
 import org.hongxi.whatsmars.boot.sample.test.Application;
 import org.hongxi.whatsmars.boot.sample.test.DemoService;
 import org.junit.Test;
