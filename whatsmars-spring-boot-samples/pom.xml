@@ -32,6 +32,7 @@
         <module>whatsmars-boot-sample-swagger</module>
         <module>whatsmars-boot-sample-log4j2</module>
         <module>whatsmars-boot-sample-test</module>
+        <module>whatsmars-boot-sample-mybatis-plus</module>
     </modules>
 
     <dependencies>
