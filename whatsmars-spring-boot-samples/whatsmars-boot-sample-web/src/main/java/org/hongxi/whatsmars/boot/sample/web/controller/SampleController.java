@@ -1,6 +1,7 @@
 package org.hongxi.whatsmars.boot.sample.web.controller;
 
-import org.hongxi.whatsmars.boot.sample.web.model.JsonResponse;
+import org.hongxi.whatsmars.common.result.Result;
+import org.hongxi.whatsmars.common.result.ResultHelper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class SampleController {
 
     @GetMapping("/hello")
-    public JsonResponse<String> hello(@RequestParam String userId,
-                                      @RequestParam Integer age) {
+    public Result<String> hello(@RequestParam String userId,
+                                @RequestParam Integer age) {
         String hello = userId + "," + age;
-        return JsonResponse.success(hello);
+        return ResultHelper.newSuccessResult(hello);
     }
 }

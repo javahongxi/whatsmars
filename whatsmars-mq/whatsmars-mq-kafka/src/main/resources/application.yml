@@ -1,6 +1,9 @@
 spring:
   kafka:
     bootstrap-servers: 127.0.0.1:9092
+    producer:
+      value-serializer:
     consumer:
       group-id: testGroup
       auto-offset-reset: earliest
+      value-deserializer:

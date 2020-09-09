@@ -31,4 +31,8 @@ public class ResultHelper {
         }
     }
 
+    public static Result newResult(int code, String message) {
+        return new Result(code, message);
+    }
+
 }
