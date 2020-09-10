@@ -5,18 +5,22 @@ package org.hongxi.whatsmars.common.result;
  */
 public class ResultHelper {
 
-    public static Result newSuccessResult() {
-        return newResult(true);
-    }
-
     public static <T> Result newSuccessResult(T data) {
         Result result = newSuccessResult();
         result.setData(data);
         return result;
     }
 
+    public static Result newErrorResult(int code, String message) {
+        return new Result(code, message);
+    }
+
     public static Result newErrorResult() {
         return newResult(false);
+    }
+
+    public static Result newSuccessResult() {
+        return newResult(true);
     }
 
     public static Result newResult(boolean success) {
@@ -29,10 +33,6 @@ public class ResultHelper {
         } else {
             return new Result(500, message == null ? "系统繁忙，请稍后再试" : message);
         }
-    }
-
-    public static Result newResult(int code, String message) {
-        return new Result(code, message);
     }
 
 }

@@ -24,7 +24,7 @@ public class DefaultExceptionHandler {
     @ResponseBody
     public Result handleLogicException(HttpServletRequest request, BusinessException e) {
         log.error("business exception handled, request:{}", request.getRequestURI(), e);
-        return ResultHelper.newResult(e.getCode(), e.getMsg());
+        return ResultHelper.newErrorResult(e.getCode(), e.getMsg());
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -35,6 +35,6 @@ public class DefaultExceptionHandler {
             throw e;
         }
         log.error("exception handled, request:{}", request.getRequestURI(), e);
-        return ResultHelper.newResult(500, e.getMessage());
+        return ResultHelper.newErrorResult(500, e.getMessage());
     }
 }
