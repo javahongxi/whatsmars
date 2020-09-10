@@ -5,33 +5,33 @@ package org.hongxi.whatsmars.common.result;
  */
 public class ResultHelper {
 
-    public static <T> Result newSuccessResult(T data) {
-        Result result = newSuccessResult();
+    public static <T> Result<T> newSuccessResult(T data) {
+        Result<T> result = newSuccessResult();
         result.setData(data);
         return result;
     }
 
-    public static Result newErrorResult(int code, String message) {
-        return new Result(code, message);
+    public static <T> Result<T> newErrorResult(int code, String message) {
+        return new Result<>(code, message);
     }
 
-    public static Result newErrorResult() {
+    public static <T> Result<T> newErrorResult() {
         return newResult(false);
     }
 
-    public static Result newSuccessResult() {
+    public static  <T> Result<T> newSuccessResult() {
         return newResult(true);
     }
 
-    public static Result newResult(boolean success) {
+    public static  <T> Result<T> newResult(boolean success) {
         return newResult(success, null);
     }
 
-    public static Result newResult(boolean success, String message) {
+    public static  <T> Result<T> newResult(boolean success, String message) {
         if (success) {
-            return new Result(200, message == null ? "操作成功" : message);
+            return new Result<>(200, message == null ? "操作成功" : message);
         } else {
-            return new Result(500, message == null ? "系统繁忙，请稍后再试" : message);
+            return new Result<>(500, message == null ? "系统繁忙，请稍后再试" : message);
         }
     }
 

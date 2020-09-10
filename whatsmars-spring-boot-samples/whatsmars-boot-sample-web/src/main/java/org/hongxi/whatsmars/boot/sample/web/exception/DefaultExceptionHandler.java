@@ -22,7 +22,7 @@ public class DefaultExceptionHandler {
     @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(BusinessException.class)
     @ResponseBody
-    public Result handleLogicException(HttpServletRequest request, BusinessException e) {
+    public Result<Void> handleLogicException(HttpServletRequest request, BusinessException e) {
         log.error("business exception handled, request:{}", request.getRequestURI(), e);
         return ResultHelper.newErrorResult(e.getCode(), e.getMsg());
     }
@@ -30,7 +30,7 @@ public class DefaultExceptionHandler {
     @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    public Result handleException(HttpServletRequest request, Exception e) throws Exception {
+    public Result<Void> handleException(HttpServletRequest request, Exception e) throws Exception {
         if (AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class) != null) {
             throw e;
         }
