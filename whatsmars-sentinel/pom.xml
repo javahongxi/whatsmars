@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>whatsmars-sentinel-webmvc</module>
+        <module>whatsmars-sentinel-aop</module>
     </modules>
 
     <dependencyManagement>
@@ -30,6 +31,11 @@
             <dependency>
                 <groupId>com.alibaba.csp</groupId>
                 <artifactId>sentinel-spring-webmvc-adapter</artifactId>
+                <version>${sentinel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-annotation-aspectj</artifactId>
                 <version>${sentinel.version}</version>
             </dependency>
         </dependencies>
