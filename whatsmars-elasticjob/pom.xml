@@ -34,8 +34,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.curator</groupId>
-            <artifactId>curator-test</artifactId>
+            <groupId>org.hongxi</groupId>
+            <artifactId>whatsmars-zk-embed</artifactId>
+            <version>Rocket.S9</version>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>

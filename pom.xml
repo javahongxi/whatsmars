@@ -33,6 +33,7 @@
         <module>whatsmars-archetypes</module>
         <module>whatsmars-netty</module>
         <module>whatsmars-sentinel</module>
+        <module>whatsmars-zk-embed</module>
     </modules>
 
     <!--这里的properties会覆盖父pom里的重名的配置-->
@@ -85,6 +86,32 @@
                 <groupId>org.apache.rocketmq</groupId>
                 <artifactId>rocketmq-client</artifactId>
                 <version>${rocketmq.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-core</artifactId>
+                <version>${sentinel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-transport-simple-http</artifactId>
+                <version>${sentinel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-spring-webmvc-adapter</artifactId>
+                <version>${sentinel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-annotation-aspectj</artifactId>
+                <version>${sentinel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-apache-dubbo-adapter</artifactId>
+                <version>${sentinel.version}</version>
             </dependency>
 
             <dependency>
