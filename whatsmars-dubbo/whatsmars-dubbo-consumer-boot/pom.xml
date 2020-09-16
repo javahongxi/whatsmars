@@ -29,6 +29,11 @@
             <artifactId>whatsmars-dubbo-api</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-apache-dubbo-adapter</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

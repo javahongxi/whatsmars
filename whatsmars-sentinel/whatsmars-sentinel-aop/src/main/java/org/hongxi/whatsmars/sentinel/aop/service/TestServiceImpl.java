@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service;
 public class TestServiceImpl implements TestService {
 
     @Override
-    @SentinelResource(value = "test", blockHandler = "handleException", blockHandlerClass = {ExceptionUtils.class})
+    @SentinelResource(value = "test", blockHandler = "handleException",
+            blockHandlerClass = ExceptionUtils.class)
     public void test() {
         System.out.println("Test");
     }
