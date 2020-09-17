@@ -22,7 +22,7 @@ whatsmars-mq | 消息中间件RocketMQ,Kafka等
 whatsmars-netty | NIO框架首选
 whatsmars-redis | Redis客户端简单封装
 whatsmars-rpc | RPC核心实现
-whatsmars-sentinel | 流量控制组件
+whatsmars-sentinel | 流量控制与熔断降级组件
 whatsmars-shardingsphere | 分布式数据库中间件
 whatsmars-spring | Spring Framework
 whatsmars-spring-boot-samples | Spring Boot Samples

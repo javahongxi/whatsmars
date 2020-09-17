@@ -113,6 +113,26 @@
                 <artifactId>sentinel-apache-dubbo-adapter</artifactId>
                 <version>${sentinel.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-apache-httpclient-adapter</artifactId>
+                <version>${sentinel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-okhttp-adapter</artifactId>
+                <version>${sentinel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-datasource-extension</artifactId>
+                <version>${sentinel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-parameter-flow-control</artifactId>
+                <version>${sentinel.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>com.google.guava</groupId>

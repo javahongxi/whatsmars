@@ -14,6 +14,11 @@
     <modules>
         <module>whatsmars-sentinel-webmvc</module>
         <module>whatsmars-sentinel-aop</module>
+        <module>whatsmars-sentinel-httpclient</module>
+        <module>whatsmars-sentinel-okhttp</module>
+        <module>whatsmars-sentinel-basic</module>
+        <module>whatsmars-sentinel-file-datasource</module>
+        <module>whatsmars-sentinel-parameter-flow-control</module>
     </modules>
 
     <dependencies>
