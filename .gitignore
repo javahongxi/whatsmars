@@ -32,4 +32,5 @@ hs_err_pid*
 activemq-data/*
 dump.rdb
 pom.xml.versionsBackup
+*.jar.original
 
