@@ -23,7 +23,9 @@ public final class EmbedZookeeperServer {
      */
     public static void start(final int port) {
         try {
-            testingServer = new TestingServer(port, new File(String.format("target/test_zk_data/%s/", System.nanoTime())));
+            File dir = new File(String.format("%s/test_zk_data/%s/",
+                    System.getProperty("user.home"), System.nanoTime()));
+            testingServer = new TestingServer(port, dir);
         // CHECKSTYLE:OFF
         } catch (final Exception ex) {
         // CHECKSTYLE:ON
