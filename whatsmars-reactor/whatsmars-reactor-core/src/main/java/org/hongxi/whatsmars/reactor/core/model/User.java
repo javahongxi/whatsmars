@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.reactor.core;
+package org.hongxi.whatsmars.reactor.core.model;
 
 import java.io.Serializable;
 import java.util.Date;
