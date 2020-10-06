@@ -2,12 +2,14 @@ package org.hongxi.whatsmars.reactor.core;
 
 import org.hongxi.whatsmars.reactor.core.model.User;
 import org.junit.Test;
+import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import reactor.core.Disposable;
 import reactor.core.publisher.BaseSubscriber;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.util.function.Tuples;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -406,5 +408,185 @@ public class FluxTests {
         Flux.range(1, 3)
                 .log("FluxEvents")
                 .subscribe(e -> {}, e -> {}, () -> {}, s -> s.request(2));
+    }
+
+    @Test
+    public void usingPushOperator() throws InterruptedException {
+        Flux.push(emitter -> IntStream
+                .range(2000, 100000)
+                .forEach(emitter::next))
+                .delayElements(Duration.ofMillis(1))
+                .subscribe(System.out::println);
+
+        Thread.sleep(1000);
+    }
+
+    @Test
+    public void usingCreateOperator() throws InterruptedException {
+        Flux.create(emitter -> {
+            emitter.onDispose(() -> System.out.println("Disposed"));
+            // push events to emitter
+        })
+                .subscribe(System.out::println);
+
+        Thread.sleep(1000);
+    }
+
+    @Test
+    public void usingGenerate() throws InterruptedException {
+        Flux.generate(
+                () -> Tuples.of(0L, 1L),
+                (state, sink) -> {
+                    System.out.println("generated value: " + state.getT2());
+                    sink.next(state.getT2());
+                    long newValue = state.getT1() + state.getT2();
+                    return Tuples.of(state.getT2(), newValue);
+                })
+                .take(7)
+                .subscribe(System.out::println);
+
+        Thread.sleep(100);
+    }
+
+    @Test
+    public void tryWithResources() {
+        try (Connection conn = Connection.newConnection()) {
+            conn.getData().forEach(
+                    data -> System.out.println("Received data: " + data)
+            );
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void usingOperator() {
+        Flux<String> ioRequestResults = Flux.using(
+                Connection::newConnection,
+                connection -> Flux.fromIterable(connection.getData()),
+                Connection::close
+        );
+
+        ioRequestResults
+                .subscribe(
+                        data -> System.out.println("Received data: " + data),
+                        e -> System.out.println("Error: " + e.getMessage()),
+                        () -> System.out.println("Stream finished"));
+    }
+
+    @Test
+    public void usingWhenExample() throws InterruptedException {
+        Flux.usingWhen(
+                Transaction.beginTransaction(),
+                transaction -> transaction.insertRows(Flux.just("A", "B")),
+                Transaction::commit,
+                Transaction::rollback
+        ).subscribe(
+                d -> System.out.println("onNext: " + d),
+                e -> System.out.println("onError: " + e.getMessage()),
+                () -> System.out.println("onComplete")
+        );
+
+        Thread.sleep(1000);
+    }
+
+    private Flux<String> recommendedBooks(String userId) {
+        return Flux.defer(() -> {
+            if (random.nextInt(10) < 7) {
+                return Flux.<String>error(new RuntimeException("Conn error"))
+                        .delaySequence(Duration.ofMillis(100));
+            } else {
+                return Flux.just("Blue Mars", "The Expanse")
+                        .delayElements(Duration.ofMillis(50));
+            }
+        }).doOnSubscribe(s -> System.out.println("Request for " + userId));
+    }
+
+    @Test
+    public void handlingErrors() throws InterruptedException {
+        Flux.just("user-1")
+                .flatMap(user ->
+                        recommendedBooks(user)
+                                .retryBackoff(5, Duration.ofMillis(100))
+                                .timeout(Duration.ofSeconds(3))
+                                .onErrorResume(e -> Flux.just("The Martian"))
+                )
+                .subscribe(
+                        b -> System.out.println("onNext: " + b),
+                        e -> System.err.println("onError: " + e.getMessage()),
+                        () -> System.out.println("onComplete")
+                );
+
+        Thread.sleep(5000);
+    }
+
+    static class Connection implements AutoCloseable {
+        private final Random rnd = new Random();
+
+        static Connection newConnection() {
+            System.out.println("IO Connection created");
+            return new Connection();
+        }
+
+        public Iterable<String> getData() {
+            if (rnd.nextInt(10) < 3) {
+                throw new RuntimeException("Communication error");
+            }
+            return Arrays.asList("Some", "data");
+        }
+
+        @Override
+        public void close() {
+            System.out.println("IO Connection closed");
+        }
+    }
+
+    static class Transaction {
+        private static final Random random = new Random();
+        private final int id;
+
+        public Transaction(int id) {
+            this.id = id;
+            System.out.println(String.format("[T: {%d}] created", id));
+        }
+
+        public static Mono<Transaction> beginTransaction() {
+            return Mono.defer(() ->
+                    Mono.just(new Transaction(random.nextInt(1000))));
+        }
+
+        public Flux<String> insertRows(Publisher<String> rows) {
+            return Flux.from(rows)
+                    .delayElements(Duration.ofMillis(100))
+                    .flatMap(row -> {
+                        if (random.nextInt(10) < 2) {
+                            return Mono.error(new RuntimeException("Error on: " + row));
+                        } else {
+                            return Mono.just(row);
+                        }
+                    });
+        }
+
+        public Mono<Void> commit() {
+            return Mono.defer(() -> {
+                System.out.println(String.format("[T: {%d}] commit", id));
+                if (random.nextBoolean()) {
+                    return Mono.empty();
+                } else {
+                    return Mono.error(new RuntimeException("Conflict"));
+                }
+            });
+        }
+
+        public Mono<Void> rollback() {
+            return Mono.defer(() -> {
+                System.out.println(String.format("[T: {%d}] rollback", id));
+                if (random.nextBoolean()) {
+                    return Mono.empty();
+                } else {
+                    return Mono.error(new RuntimeException("Conn error"));
+                }
+            });
+        }
     }
 }
