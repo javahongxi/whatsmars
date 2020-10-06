@@ -1,19 +1,22 @@
 package org.hongxi.whatsmars.reactor.core;
 
-import org.hongxi.whatsmars.reactor.core.model.User;
 import org.junit.Test;
 import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import reactor.core.Disposable;
 import reactor.core.publisher.BaseSubscriber;
+import reactor.core.publisher.ConnectableFlux;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.test.StepVerifier;
+import reactor.util.function.Tuple2;
 import reactor.util.function.Tuples;
 
 import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.IntStream;
 
 /**
@@ -212,6 +215,29 @@ public class FluxTests {
     }
 
     @Test
+    public void shouldCreateDefer() {
+        Mono<User> userMono = requestUserData(null);
+        StepVerifier.create(userMono)
+                .expectNextCount(0)
+                .expectErrorMessage("Invalid user id")
+                .verify();
+    }
+
+    @Test
+    public void startStopStreamProcessing() throws Exception {
+        Mono<?> startCommand = Mono.delay(Duration.ofSeconds(1));
+        Mono<?> stopCommand = Mono.delay(Duration.ofSeconds(3));
+        Flux<Long> streamOfData = Flux.interval(Duration.ofMillis(100));
+
+        streamOfData
+                .skipUntilOther(startCommand)
+                .takeUntilOther(stopCommand)
+                .subscribe(System.out::println);
+
+        Thread.sleep(4000);
+    }
+
+    @Test
     public void collectExample() {
         Flux.just(1, 6, 2, 8, 3, 1, 5, 1)
                 .collectSortedList(Comparator.reverseOrder())
@@ -362,19 +388,23 @@ public class FluxTests {
     }
 
     @Test
-    public void flatMapExample() {
+    public void flatMapExample() throws InterruptedException {
         Flux.just("user-1", "user-2", "user-3")
                 .flatMap(u -> requestBooks(u)
                         .map(b -> u + "/" + b))
                 .subscribe(System.out::println);
+
+        Thread.sleep(1000);
     }
 
     @Test
-    public void sampleExample() {
+    public void sampleExample() throws InterruptedException {
         Flux.range(1, 100)
                 .delayElements(Duration.ofMillis(1))
                 .sample(Duration.ofMillis(20))
                 .subscribe(System.out::println);
+
+        Thread.sleep(1000);
     }
 
     @Test
@@ -404,25 +434,29 @@ public class FluxTests {
     }
 
     @Test
-    public void usingPushOperator() {
+    public void usingPushOperator() throws InterruptedException {
         Flux.push(emitter -> IntStream
                 .range(2000, 100000)
                 .forEach(emitter::next))
                 .delayElements(Duration.ofMillis(1))
                 .subscribe(System.out::println);
+
+        Thread.sleep(1000);
     }
 
     @Test
-    public void usingCreateOperator() {
+    public void usingCreateOperator() throws InterruptedException {
         Flux.create(emitter -> {
             emitter.onDispose(() -> System.out.println("Disposed"));
             // push events to emitter
         })
                 .subscribe(System.out::println);
+
+        Thread.sleep(1000);
     }
 
     @Test
-    public void usingGenerate() {
+    public void usingGenerate() throws InterruptedException {
         Flux.generate(
                 () -> Tuples.of(0L, 1L),
                 (state, sink) -> {
@@ -433,6 +467,8 @@ public class FluxTests {
                 })
                 .take(7)
                 .subscribe(System.out::println);
+
+        Thread.sleep(100);
     }
 
     @Test
@@ -462,7 +498,7 @@ public class FluxTests {
     }
 
     @Test
-    public void usingWhenExample() {
+    public void usingWhenExample() throws InterruptedException {
         Flux.usingWhen(
                 Transaction.beginTransaction(),
                 transaction -> transaction.insertRows(Flux.just("A", "B")),
@@ -473,6 +509,8 @@ public class FluxTests {
                 e -> System.out.println("onError: " + e.getMessage()),
                 () -> System.out.println("onComplete")
         );
+
+        Thread.sleep(1000);
     }
 
     private Flux<String> recommendedBooks(String userId) {
@@ -488,7 +526,7 @@ public class FluxTests {
     }
 
     @Test
-    public void handlingErrors() {
+    public void handlingErrors() throws InterruptedException {
         Flux.just("user-1")
                 .flatMap(user ->
                         recommendedBooks(user)
@@ -501,6 +539,114 @@ public class FluxTests {
                         e -> System.err.println("onError: " + e.getMessage()),
                         () -> System.out.println("onComplete")
                 );
+
+        Thread.sleep(5000);
+    }
+
+    @Test
+    public void coldPublisher() {
+        Flux<String> coldPublisher = Flux.defer(() -> {
+            System.out.println("Generating new items");
+            return Flux.just(UUID.randomUUID().toString());
+        });
+
+        System.out.println("No data was generated so far");
+        coldPublisher.subscribe(e -> System.out.println("onNext: " + e));
+        coldPublisher.subscribe(e -> System.out.println("onNext: " + e));
+        System.out.println("Data was generated twice for two subscribers");
+    }
+
+    @Test
+    public void connectExample() {
+        Flux<Integer> source = Flux.range(0, 3)
+                .doOnSubscribe(s ->
+                        System.out.println("new subscription for the cold publisher"));
+
+        ConnectableFlux<Integer> conn = source.publish();
+
+        conn.subscribe(e -> System.out.println("[Subscriber 1] onNext: " + e));
+        conn.subscribe(e -> System.out.println("[Subscriber 2] onNext: " + e));
+
+        System.out.println("all subscribers are ready, connecting");
+        conn.connect();
+    }
+
+    @Test
+    public void cachingExample() throws InterruptedException {
+        Flux<Integer> source = Flux.range(0, 2)
+                .doOnSubscribe(s ->
+                        System.out.println("new subscription for the cold publisher"));
+
+        Flux<Integer> cachedSource = source.cache(Duration.ofSeconds(1));
+
+        cachedSource.subscribe(e -> System.out.println("[S 1] onNext: " + e));
+        cachedSource.subscribe(e -> System.out.println("[S 2] onNext: " + e));
+
+        Thread.sleep(1200);
+
+        cachedSource.subscribe(e -> System.out.println("[S 3] onNext: " + e));
+    }
+
+    @Test
+    public void shareExample() throws InterruptedException {
+        Flux<Integer> source = Flux.range(0, 5)
+                .delayElements(Duration.ofMillis(100))
+                .doOnSubscribe(s ->
+                        System.out.println("new subscription for the cold publisher"));
+
+        Flux<Integer> sharedSource = source.share();
+
+        sharedSource.subscribe(e -> System.out.println("[S 1] onNext: " + e));
+        Thread.sleep(400);
+        sharedSource.subscribe(e -> System.out.println("[S 2] onNext: " + e));
+
+        Thread.sleep(1000);
+    }
+
+    @Test
+    public void elapsedExample() throws InterruptedException {
+        Flux.range(0, 5)
+                .delayElements(Duration.ofMillis(100))
+                .elapsed()
+                .subscribe(e -> System.out.println(
+                        String.format("Elapsed %d ms: %d", e.getT1(), e.getT2())));
+
+        Thread.sleep(1000);
+    }
+
+    @Test
+    public void transformExample() {
+        Function<Flux<String>, Flux<String>> logUserInfo =
+                stream -> stream
+                        .index()
+                        .doOnNext(tp ->
+                                System.out.println(
+                                        String.format("[%d] User: %s", tp.getT1(), tp.getT2())))
+                        .map(Tuple2::getT2);
+
+        Flux.range(1000, 3)
+                .map(i -> "user-" + i)
+                .transform(logUserInfo)
+                .subscribe(e -> System.out.println("onNext: " + e));
+    }
+
+    @Test
+    public void composeExample() {
+        Function<Flux<String>, Flux<String>> logUserInfo = (stream) -> {
+            if (random.nextBoolean()) {
+                return stream
+                        .doOnNext(e -> System.out.println("[path A] User: " + e));
+            } else {
+                return stream
+                        .doOnNext(e -> System.out.println("[path B] User: " + e));
+            }
+        };
+
+        Flux<String> publisher = Flux.just("1", "2")
+                .compose(logUserInfo);
+
+        publisher.subscribe();
+        publisher.subscribe();
     }
 
     static class Connection implements AutoCloseable {
@@ -571,5 +717,9 @@ public class FluxTests {
                 }
             });
         }
+    }
+
+    static class User {
+        public String id, name;
     }
 }
