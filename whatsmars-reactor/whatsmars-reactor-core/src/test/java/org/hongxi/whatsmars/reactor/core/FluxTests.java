@@ -152,14 +152,10 @@ public class FluxTests {
     }
 
     @Test
-    public void disposableExample() {
+    public void disposableExample() throws InterruptedException {
         Disposable disposable = Flux.interval(Duration.ofMillis(50))
                 .subscribe(data -> System.out.println("onNext: " + data));
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Thread.sleep(200);
         disposable.dispose();
     }
 
@@ -317,7 +313,7 @@ public class FluxTests {
     }
 
     @Test
-    public void rangeExample() {
+    public void bufferExample() {
         Flux.range(1, 13)
                 .buffer(4)
                 .subscribe(System.out::println);
@@ -365,23 +361,19 @@ public class FluxTests {
     }
 
     @Test
-    public void flatMapExample() throws InterruptedException {
+    public void flatMapExample() {
         Flux.just("user-1", "user-2", "user-3")
                 .flatMap(u -> requestBooks(u)
                         .map(b -> u + "/" + b))
                 .subscribe(System.out::println);
-
-        Thread.sleep(1000);
     }
 
     @Test
-    public void sampleExample() throws InterruptedException {
+    public void sampleExample() {
         Flux.range(1, 100)
                 .delayElements(Duration.ofMillis(1))
                 .sample(Duration.ofMillis(20))
                 .subscribe(System.out::println);
-
-        Thread.sleep(1000);
     }
 
     @Test
@@ -411,29 +403,25 @@ public class FluxTests {
     }
 
     @Test
-    public void usingPushOperator() throws InterruptedException {
+    public void usingPushOperator() {
         Flux.push(emitter -> IntStream
                 .range(2000, 100000)
                 .forEach(emitter::next))
                 .delayElements(Duration.ofMillis(1))
                 .subscribe(System.out::println);
-
-        Thread.sleep(1000);
     }
 
     @Test
-    public void usingCreateOperator() throws InterruptedException {
+    public void usingCreateOperator() {
         Flux.create(emitter -> {
             emitter.onDispose(() -> System.out.println("Disposed"));
             // push events to emitter
         })
                 .subscribe(System.out::println);
-
-        Thread.sleep(1000);
     }
 
     @Test
-    public void usingGenerate() throws InterruptedException {
+    public void usingGenerate() {
         Flux.generate(
                 () -> Tuples.of(0L, 1L),
                 (state, sink) -> {
@@ -444,8 +432,6 @@ public class FluxTests {
                 })
                 .take(7)
                 .subscribe(System.out::println);
-
-        Thread.sleep(100);
     }
 
     @Test
@@ -475,7 +461,7 @@ public class FluxTests {
     }
 
     @Test
-    public void usingWhenExample() throws InterruptedException {
+    public void usingWhenExample() {
         Flux.usingWhen(
                 Transaction.beginTransaction(),
                 transaction -> transaction.insertRows(Flux.just("A", "B")),
@@ -486,8 +472,6 @@ public class FluxTests {
                 e -> System.out.println("onError: " + e.getMessage()),
                 () -> System.out.println("onComplete")
         );
-
-        Thread.sleep(1000);
     }
 
     private Flux<String> recommendedBooks(String userId) {
@@ -503,7 +487,7 @@ public class FluxTests {
     }
 
     @Test
-    public void handlingErrors() throws InterruptedException {
+    public void handlingErrors() {
         Flux.just("user-1")
                 .flatMap(user ->
                         recommendedBooks(user)
@@ -516,8 +500,6 @@ public class FluxTests {
                         e -> System.err.println("onError: " + e.getMessage()),
                         () -> System.out.println("onComplete")
                 );
-
-        Thread.sleep(5000);
     }
 
     static class Connection implements AutoCloseable {
