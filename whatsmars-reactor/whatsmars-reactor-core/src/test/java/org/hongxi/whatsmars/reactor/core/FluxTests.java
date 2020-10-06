@@ -34,6 +34,7 @@ public class FluxTests {
         Flux<String> never = Flux.never();
     }
 
+    @Test
     public void createMono() {
         Mono<String> stream5 = Mono.just("One");
         Mono<String> stream6 = Mono.justOrEmpty(null);
