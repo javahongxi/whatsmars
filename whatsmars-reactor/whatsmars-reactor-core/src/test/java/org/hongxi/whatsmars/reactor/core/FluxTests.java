@@ -11,15 +11,15 @@ import reactor.core.publisher.Mono;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.IntStream;
 
 /**
  * Created by shenhongxi on 2020/10/6.
  */
 public class FluxTests {
+
+    private final Random random = new Random();
 
     @Test
     public void createFlux() {
@@ -335,5 +335,40 @@ public class FluxTests {
         return number > 2
                 && IntStream.rangeClosed(2, (int) Math.sqrt(number))
                 .noneMatch(n -> (number % n == 0));
+    }
+
+    @Test
+    public void groupByExample() {
+        Flux.range(1, 7)
+                .groupBy(e -> e % 2 == 0 ? "Even" : "Odd")
+                .subscribe(groupFlux -> groupFlux
+                        .scan(
+                                new LinkedList<>(),
+                                (list, elem) -> {
+                                    if (list.size() > 1) {
+                                        list.remove(0);
+                                    }
+                                    list.add(elem);
+                                    return list;
+                                })
+                        .filter(arr -> !arr.isEmpty())
+                        .subscribe(data ->
+                                System.out.println(groupFlux.key() + ": " + data)));
+    }
+
+    private Flux<String> requestBooks(String user) {
+        return Flux.range(1, random.nextInt(3) + 1)
+                .delayElements(Duration.ofMillis(3))
+                .map(i -> "book-" + i);
+    }
+
+    @Test
+    public void flatMapExample() throws InterruptedException {
+        Flux.just("user-1", "user-2", "user-3")
+                .flatMap(u -> requestBooks(u)
+                        .map(b -> u + "/" + b))
+                .subscribe(System.out::println);
+
+        Thread.sleep(1000);
     }
 }
