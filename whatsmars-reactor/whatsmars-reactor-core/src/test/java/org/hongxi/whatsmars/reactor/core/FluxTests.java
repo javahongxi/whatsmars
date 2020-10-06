@@ -371,4 +371,40 @@ public class FluxTests {
 
         Thread.sleep(1000);
     }
+
+    @Test
+    public void sampleExample() throws InterruptedException {
+        Flux.range(1, 100)
+                .delayElements(Duration.ofMillis(1))
+                .sample(Duration.ofMillis(20))
+                .subscribe(System.out::println);
+
+        Thread.sleep(1000);
+    }
+
+    @Test
+    public void doOnExample() {
+        Flux.just(1, 2, 3)
+                .concatWith(Flux.error(new RuntimeException("Conn error")))
+                .doOnEach(System.out::println)
+                .subscribe();
+    }
+
+    @Test
+    public void signalProcessing() {
+        Flux.range(1, 3)
+                .doOnNext(e -> System.out.println("data  : " + e))
+                .materialize()
+                .doOnNext(e -> System.out.println("signal: " + e))
+                .dematerialize()
+                .collectList()
+                .subscribe(r -> System.out.println("result: " + r));
+    }
+
+    @Test
+    public void signalProcessingWithLog() {
+        Flux.range(1, 3)
+                .log("FluxEvents")
+                .subscribe(e -> {}, e -> {}, () -> {}, s -> s.request(2));
+    }
 }
