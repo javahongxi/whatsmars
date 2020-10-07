@@ -12,7 +12,6 @@ import java.time.Duration;
 
 public class ReactiveJsonParser {
 
-
     public static void main(String[] args) {
         Jackson2JsonDecoder decoder = new Jackson2JsonDecoder();
 
