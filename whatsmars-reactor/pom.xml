@@ -11,9 +11,18 @@
 
     <artifactId>whatsmars-reactor</artifactId>
     <packaging>pom</packaging>
+
     <modules>
         <module>whatsmars-reactor-core</module>
+        <module>whatsmars-reactor-webflux</module>
     </modules>
 
+    <dependencies>
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
 </project>

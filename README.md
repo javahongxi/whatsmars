@@ -20,7 +20,7 @@ whatsmars-elasticjob | 分布式调度框架
 whatsmars-elasticsearch | Elasticsearch
 whatsmars-mq | 消息中间件RocketMQ,Kafka等
 whatsmars-netty | NIO框架首选
-whatsmars-reactor | 响应式流框架 Project Reactor
+whatsmars-reactor | 响应式编程
 whatsmars-redis | Redis客户端简单封装
 whatsmars-rpc | RPC核心实现
 whatsmars-sentinel | 流量控制与熔断降级组件
@@ -29,7 +29,6 @@ whatsmars-spring | Spring Framework
 whatsmars-spring-boot-samples | Spring Boot Samples
 whatsmars-spring-cloud | Spring Cloud 微服务生态
 whatsmars-spring-data | Spring Data
-whatsmars-spring-reactor | Spring 响应式编程
 whatsmars-zk | zookeeper remoting 封装
 whatsmars-zk-embed | zk TestingServer
 

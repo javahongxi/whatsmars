@@ -35,7 +35,6 @@
         <module>whatsmars-sentinel</module>
         <module>whatsmars-zk-embed</module>
         <module>whatsmars-reactor</module>
-        <module>whatsmars-spring-reactor</module>
     </modules>
 
     <!--这里的properties会覆盖父pom里的重名的配置-->
