@@ -24,6 +24,10 @@ public class InitializrController {
 
     @PostMapping
     public ResponseEntity<byte[]> initialize(ProjectMeta projectMeta) throws Exception {
+        String artifactId = projectMeta.getArtifactId();
+        if (artifactId.endsWith("-service")) {
+            projectMeta.setArtifactId(artifactId.substring(0, artifactId.length() - 8));
+        }
         if (StringUtils.isEmpty(projectMeta.getPackageName())) {
             projectMeta.setPackageName(projectMeta.getGroupId());
         }
