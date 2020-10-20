@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.sentinel.webmvc.config;
+package org.hongxi.whatsmars.sentinel.webmvc.configure;
 
 import com.alibaba.csp.sentinel.adapter.spring.webmvc.SentinelWebInterceptor;
 import com.alibaba.csp.sentinel.adapter.spring.webmvc.SentinelWebTotalInterceptor;

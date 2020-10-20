@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.boot.sample.mybatis.config;
+package org.hongxi.whatsmars.boot.sample.mybatis.configure;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;

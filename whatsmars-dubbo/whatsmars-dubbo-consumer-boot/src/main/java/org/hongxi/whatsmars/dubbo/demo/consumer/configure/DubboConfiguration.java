@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.dubbo.demo.consumer.config;
+package org.hongxi.whatsmars.dubbo.demo.consumer.configure;
 
 import org.apache.dubbo.config.RegistryConfig;
 import org.springframework.boot.context.properties.ConfigurationProperties;

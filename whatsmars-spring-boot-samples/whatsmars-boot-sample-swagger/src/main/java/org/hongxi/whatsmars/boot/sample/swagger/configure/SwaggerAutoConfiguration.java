@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.boot.sample.swagger.config;
+package org.hongxi.whatsmars.boot.sample.swagger.configure;
 
 import com.fasterxml.classmate.TypeResolver;
 import org.hongxi.whatsmars.boot.sample.swagger.Application;

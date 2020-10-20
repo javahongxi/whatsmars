@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.boot.sample.beans.autoconfigure;
+package org.hongxi.whatsmars.boot.sample.beans.configure;
 
 import org.hongxi.whatsmars.boot.sample.beans.Planet;
 import org.springframework.beans.BeansException;

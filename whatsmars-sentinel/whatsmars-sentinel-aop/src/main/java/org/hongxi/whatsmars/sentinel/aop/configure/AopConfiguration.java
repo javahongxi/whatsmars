@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.sentinel.aop.config;
+package org.hongxi.whatsmars.sentinel.aop.configure;
 
 import com.alibaba.csp.sentinel.annotation.aspectj.SentinelResourceAspect;
 import org.springframework.context.annotation.Bean;
