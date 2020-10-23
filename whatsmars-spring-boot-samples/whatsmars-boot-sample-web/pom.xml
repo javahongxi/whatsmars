@@ -24,6 +24,10 @@
             <groupId>org.hongxi</groupId>
             <artifactId>whatsmars-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
