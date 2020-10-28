@@ -42,9 +42,10 @@ whatsmars-zk-embed | zk TestingServer
 - [x] [*Spring Boot*](https://github.com/spring-projects/spring-boot)
 - [x] [*Spring Framework*](https://github.com/spring-projects/spring-framework)
 - [x] [*Spring Data*](https://github.com/spring-projects/spring-data-examples)
-- [ ] [*Spring Cloud*](https://github.com/spring-cloud)
+- [x] [*Spring Cloud*](https://github.com/spring-cloud)
 - [x] [*Redis*](https://github.com/antirez/redis)
 - [x] [*Elasticsearch*](https://github.com/elastic/elasticsearch)
+- [ ] [*GoLab*](https://github.com/javahongxi/golab)
 
 ### Friendship links
 - [*阿里巴巴Java开发手册*](https://github.com/alibaba/Alibaba-Java-Coding-Guidelines) 📚
