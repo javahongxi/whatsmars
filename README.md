@@ -58,4 +58,4 @@ whatsmars-zk-embed | zk TestingServer
 - 先看书再看源码，事半功倍，另外推荐看官方文档
 - 架构师不仅要对一两个领域的技术有深入研究，还要有技术广度和判断能力
 
-&copy; [hongxi.org](http://hongxi.org) | [java.hongxi.org](https://github.com/javahongxi/java)
+&copy; [hongxi.org](http://hongxi.org) | [java.hongxi.org](http://java.hongxi.org)
