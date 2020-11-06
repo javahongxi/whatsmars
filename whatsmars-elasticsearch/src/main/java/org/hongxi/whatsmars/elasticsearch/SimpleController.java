@@ -7,6 +7,8 @@ import org.elasticsearch.client.Request;
 import org.elasticsearch.client.Response;
 import org.elasticsearch.client.RestClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
+import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +29,15 @@ public class SimpleController {
     private CustomerRepository repository;
 
     @Autowired
+    private ElasticsearchRestTemplate elasticsearchRestTemplate;
+
+    @Autowired
     private RestClient restClient;
+
+    @RequestMapping("/indexExists/{indexName}")
+    public Boolean indexExists(@PathVariable String indexName) {
+        return elasticsearchRestTemplate.indexOps(IndexCoordinates.of(indexName)).exists();
+    }
 
     @RequestMapping("/save")
     public String testEsRepo() {
