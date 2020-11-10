@@ -1,5 +1,5 @@
 # 🚀whatsmars
-*`./mvnw clean package -Dmaven.test.skip`* [`java 8+`](http://www.oracle.com/technetwork/java/javase/downloads) [`mvnrepository`](http://mvn.hongxi.org)
+*`./mvnw clean package -Dmaven.test.skip`* [`java 11+`](http://www.oracle.com/technetwork/java/javase/downloads) [`mvnrepository`](http://mvn.hongxi.org)
 <br>*What's Mars? Mars is the fourth planet from the Sun and the second-smallest planet in the Solar System after Mercury.*
 <br>Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketMQ**🔥 + **Elasticsearch**🔥)
 - [Spring Boot](https://spring.io/projects/spring-boot) 解放生产力的利器
@@ -28,7 +28,6 @@ whatsmars-shardingsphere | 分布式数据库中间件
 whatsmars-spring | Spring Framework
 whatsmars-spring-boot-samples | Spring Boot Samples
 whatsmars-spring-cloud | Spring Cloud 微服务生态
-whatsmars-spring-data | Spring Data
 whatsmars-zk | zookeeper remoting 封装
 whatsmars-zk-embed | zk TestingServer
 

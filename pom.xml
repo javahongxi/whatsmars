@@ -40,7 +40,7 @@
     <!--这里的properties会覆盖父pom里的重名的配置-->
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
 
         <commons-beanutils.version>1.9.3</commons-beanutils.version>
         <commons-collections.version>3.2.2</commons-collections.version>
@@ -271,6 +271,10 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
