@@ -3,6 +3,7 @@ package org.hongxi.whatsmars.boot.sample.web.configure;
 import org.hongxi.whatsmars.boot.sample.web.filter.FirewallFilter;
 import org.hongxi.whatsmars.boot.sample.web.filter.SampleWrapperFilter;
 import org.hongxi.whatsmars.boot.sample.web.filter.SampleSessionFilter;
+import org.hongxi.whatsmars.boot.sample.web.filter.UriFilter;
 import org.hongxi.whatsmars.boot.sample.web.interceptor.SampleSessionInterceptor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
@@ -31,6 +32,11 @@ public class SampleWebAutoConfiguration implements WebMvcConfigurer {
     @Bean
     public FirewallFilter firewallFilter() {
         return new FirewallFilter();
+    }
+
+    @Bean
+    public UriFilter uriFilter() {
+        return new UriFilter();
     }
 
     @Bean

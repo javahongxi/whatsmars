@@ -23,7 +23,6 @@ public class DefaultExceptionHandler {
     @ExceptionHandler(BusinessException.class)
     @ResponseBody
     public Result<Void> handleLogicException(HttpServletRequest request, BusinessException e) {
-        log.error("business exception handled, request:{}", request.getRequestURI(), e);
         return ResultHelper.newErrorResult(e.getCode(), e.getMsg());
     }
 

@@ -12,15 +12,25 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/sample")
 public class SampleController {
 
-    @GetMapping("/hello")
+    @GetMapping({"/hello", "hi"})
     public Result<String> hello(@RequestParam String userId,
                                 @RequestParam Integer age) {
         String hello = userId + "," + age;
         return ResultHelper.newSuccessResult(hello);
     }
 
-    @PostMapping("/hello2")
+    @PostMapping("/hello")
     public Result<User> hello2(@RequestBody User user) {
         return ResultHelper.newSuccessResult(user);
+    }
+
+    @GetMapping("/hello3")
+    public Result<String> hello3(String name) {
+        return ResultHelper.newSuccessResult("Hello, " + name);
+    }
+
+    @GetMapping("/hello/{name}")
+    public Result<String> hello4(@PathVariable String name) {
+        return ResultHelper.newSuccessResult("Hello, " + name);
     }
 }
