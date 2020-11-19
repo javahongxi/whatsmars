@@ -29,7 +29,6 @@
         <module>whatsmars-spring-boot-samples</module>
         <module>whatsmars-elasticsearch</module>
         <module>whatsmars-zk</module>
-        <module>whatsmars-spring-data</module>
         <module>whatsmars-archetypes</module>
         <module>whatsmars-netty</module>
         <module>whatsmars-sentinel</module>
