@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Created by shenhongxi on 2019/4/14.
@@ -47,5 +48,18 @@ public class StreamTests {
                 .collect(HashMap::new, (m, word) -> m.put(word, word.toUpperCase()), HashMap::putAll);
         System.out.println(result);
         assert result.size() == words.size();
+    }
+
+    @Test
+    public void t4() {
+        System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", "10");
+        CopyOnWriteArrayList<Integer> numbers = new CopyOnWriteArrayList<>();
+        IntStream.range(0, 10000).parallel().forEach(numbers::add);
+        System.out.println(numbers.size() == 10000);
+
+        // 下面的操作会报错 ArrayIndexOutOfBoundsException
+        List<Integer> list2 = new ArrayList<>();
+        numbers.parallelStream().forEach(list2::add);
+        System.out.println(list2.size() == numbers.size());
     }
 }

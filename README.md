@@ -18,6 +18,7 @@ whatsmars-common | 通用公共模块
 whatsmars-dubbo | 高性能分布式RPC框架
 whatsmars-elasticjob | 分布式调度框架
 whatsmars-elasticsearch | Elasticsearch
+whatsmars-java | Java SE Demo
 whatsmars-mq | 消息中间件RocketMQ,Kafka等
 whatsmars-netty | NIO框架首选
 whatsmars-reactor | 响应式编程

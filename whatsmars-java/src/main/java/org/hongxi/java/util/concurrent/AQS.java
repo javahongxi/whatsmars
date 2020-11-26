@@ -108,7 +108,7 @@ import java.util.concurrent.locks.*;
  * 7.如果最终成功获取了锁，线程会从lock()方法返回，继续往下执行；否则，线程会阻塞等待。
  *
  * @author shenhongxi 2019/8/13
- * @see java.util.concurrent.locks.AbstractQueuedSynchronizer
+ * @see AbstractQueuedSynchronizer
  */
 public abstract class AQS implements java.io.Serializable {
 
@@ -408,7 +408,7 @@ public abstract class AQS implements java.io.Serializable {
 
     /**
      * The current owner of exclusive mode synchronization.
-     * @see java.util.concurrent.locks.AbstractOwnableSynchronizer
+     * @see AbstractOwnableSynchronizer
      */
     private transient Thread exclusiveOwnerThread;
 

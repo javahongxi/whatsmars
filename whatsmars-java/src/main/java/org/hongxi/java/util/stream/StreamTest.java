@@ -10,7 +10,7 @@ import static java.util.stream.Collectors.*;
 /**
  * Created by shenhongxi on 2018/1/11.
  */
-public class Test {
+public class StreamTest {
     public static void main(String[] args) {
         Collection<Task> tasks = Arrays.asList(
                 new Task(Status.OPEN, 5),
