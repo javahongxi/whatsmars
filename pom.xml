@@ -270,11 +270,8 @@
         </dependencies>
     </dependencyManagement>
 
+    <!-- compile or test -->
     <dependencies>
-        <dependency>
-            <groupId>javax.annotation</groupId>
-            <artifactId>javax.annotation-api</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
