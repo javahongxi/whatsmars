@@ -1,4 +1,4 @@
-package org.hongxi.java.util.function;
+package org.hongxi.java.util.function.supplier;
 
 import java.util.function.Supplier;
 
