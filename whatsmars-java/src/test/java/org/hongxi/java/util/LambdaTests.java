@@ -21,7 +21,7 @@ public class LambdaTests {
 
     @Test
     public void t2() {
-        Arrays.asList("a", "b", "c").forEach(e -> System.out.println(e));
+        Arrays.asList("a", "b", "c").forEach(System.out::println);
     }
 
     @Test
@@ -45,15 +45,14 @@ public class LambdaTests {
 
     @Test
     public void t5() {
-        Optional<String> fullName = Optional.ofNullable(null);
-        System.out.println("Full Name is set? " + fullName.isPresent());
-        System.out.println("Full Name: " + fullName.orElseGet(() -> "[none]"));
+        Optional<String> fullName = Optional.empty();
+        System.out.println("Full Name: " + fullName.orElse("[none]"));
         System.out.println(fullName.map(s -> "Hey " + s + "!").orElse("Hey Stranger!"));
     }
 
     @Test
     public void t6() {
-        long[] arr = new long [20000];
+        long[] arr = new long[20000];
 
         Arrays.parallelSetAll(arr,
                 index -> ThreadLocalRandom.current().nextInt(1000000));
