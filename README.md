@@ -28,11 +28,10 @@ whatsmars-sentinel | 流量控制与熔断降级组件
 whatsmars-shardingsphere | 分布式数据库中间件
 whatsmars-spring | Spring Framework
 whatsmars-spring-boot-samples | Spring Boot Samples
-whatsmars-spring-cloud | Spring Cloud 微服务生态
 whatsmars-zk | zookeeper remoting 封装
 whatsmars-zk-embed | zk TestingServer
 
-### Rocket Stack
+### Keywords
 - [x] [*Java SE*](http://java.hongxi.org)
 - [x] [*Netty*](https://github.com/netty/netty)
 - [x] [*Dubbo*](https://github.com/apache/dubbo)

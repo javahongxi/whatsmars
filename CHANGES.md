@@ -1,3 +1,7 @@
+## JAWS.SR1
+- Upgrade spring boot to 2.4.3
+- Remove 'whatsmars-spring-cloud'
+
 ## Rocket.S9
 - Upgrade spring boot to 2.3.0.RELEASE
 - Upgrade elasticjob to 3.0.0-alpha

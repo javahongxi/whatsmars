@@ -6,7 +6,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
-@Document(indexName = "customer", type = "customer", shards = 1, replicas = 0, refreshInterval = "-1")
+@Document(indexName = "customer", shards = 1, replicas = 0, refreshInterval = "-1")
 public class Customer {
 
 	@JsonIgnore
