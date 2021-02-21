@@ -4,10 +4,14 @@ spring:
 
 ---
 spring:
-  profiles: dev
+  config:
+    activate:
+      on-profile: dev
 name: a
 
 ---
 spring:
-  profiles: prod
+  config:
+    activate:
+      on-profile: prod
 name: b

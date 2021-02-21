@@ -6,7 +6,9 @@ mybatis:
 
 ---
 spring:
-  profiles: sharding
+  config:
+    activate:
+      on-profile: sharding
   shardingsphere:
     datasource:
       names: ds0,ds1
@@ -45,7 +47,9 @@ spring:
 
 ---
 spring:
-  profiles: sharding-db
+  config:
+    activate:
+      on-profile: sharding-db
   shardingsphere:
     sharding:
       default-database-strategy:
@@ -76,7 +80,9 @@ spring:
 
 ---
 spring:
-  profiles: sharding-tbl
+  config:
+    activate:
+      on-profile: sharding-tbl
   shardingsphere:
     sharding:
       tables:
@@ -105,7 +111,9 @@ spring:
 
 ---
 spring:
-  profiles: masterslave
+  config:
+    activate:
+      on-profile: masterslave
   shardingsphere:
     masterslave:
       load-balance-algorithm-type: round_robin
@@ -135,7 +143,9 @@ spring:
 
 ---
 spring:
-  profiles: sharding-masterslave
+  config:
+    activate:
+      on-profile: sharding-masterslave
   shardingsphere:
     sharding:
       default-database-strategy:
