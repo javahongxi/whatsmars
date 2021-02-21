@@ -42,14 +42,14 @@ whatsmars-zk-embed | zk TestingServer
 - [x] [*Spring Boot*](https://github.com/spring-projects/spring-boot)
 - [x] [*Spring Framework*](https://github.com/spring-projects/spring-framework)
 - [x] [*Spring Data*](https://github.com/spring-projects/spring-data-examples)
-- [x] [*Spring Cloud*](https://github.com/spring-cloud)
+- [ ] [*Spring Cloud*](https://github.com/spring-cloud)
 - [x] [*Redis*](https://github.com/antirez/redis)
 - [x] [*Elasticsearch*](https://github.com/elastic/elasticsearch)
-- [ ] [*GoLab*](https://github.com/javahongxi/golab)
 
 ### Friendship links
 - [*阿里巴巴Java开发手册*](https://github.com/alibaba/Alibaba-Java-Coding-Guidelines) 📚
 - [*Java诊断利器Arthas*](https://github.com/alibaba/arthas) 👀
+- [*Go 生态研究*](https://github.com/javahongxi/golab) 🦈
 
 ### Warm tips
 - Java两大核心技术：并发，NIO
