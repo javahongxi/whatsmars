@@ -4,7 +4,7 @@
 <br>Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketMQ**🔥 + **Elasticsearch**🔥)
 - [Spring Boot](https://spring.io/projects/spring-boot) Spring makes Java simple, Spring Boot makes Spring simple.
 - [《Redis设计与实现》](https://e.jd.com/30189715.html) 缓存，NoSQL 数据库，分布式锁，位图
-- [Dubbo](http://dubbo.apache.org/en-us/) / [《企业IT架构转型之道：阿里巴巴中台战略思想与架构实战》](https://book.douban.com/subject/27039508/) 分布式 RPC，微服务架构
+- [Dubbo](http://dubbo.apache.org) / [《企业IT架构转型之道：阿里巴巴中台战略思想与架构实战》](https://book.douban.com/subject/27039508/) 分布式 RPC，微服务架构
 - [《RocketMQ技术内幕：RocketMQ架构设计与实现原理》](https://e.jd.com/30446645.html) / [《Apache Kafka 源码剖析》](https://e.jd.com/30352947.html) 削峰填谷，异步解耦，顺序消息，分布式事务消息，大数据分析，分布式模缓存同步
 - [*Elasticsearch*](https://www.elastic.co) *搜索、分析和存储您的数据*
 
