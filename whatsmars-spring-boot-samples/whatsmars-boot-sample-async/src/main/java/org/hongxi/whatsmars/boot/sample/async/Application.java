@@ -1,5 +1,6 @@
 package org.hongxi.whatsmars.boot.sample.async;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -11,6 +12,7 @@ import java.util.concurrent.ExecutionException;
 /**
  * Created by shenhongxi on 2020/8/16.
  */
+@Slf4j
 @EnableAsync
 @SpringBootApplication
 public class Application {
@@ -22,11 +24,11 @@ public class Application {
         CompletableFuture<String> future = messageService.hello("world");
         messageService.send("world");
         try {
-            System.out.println(future.get());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+            log.info(future.get());
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
+        messageService.send();
+        log.info("......end");
     }
 }
