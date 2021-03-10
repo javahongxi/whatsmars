@@ -13,15 +13,6 @@ public class Constants {
     public static final String[] EXCLUDE_PATHS = new String[]{
             "/error",
             "/error/**",
-            "/actuator/**",
-            "/**/*.html",
-            "/**/*.css",
-            "/**/*.js",
-            "/**/*.png",
-            "/**/*.jpg",
-            "/**/*.jpeg",
-            "/**/*.gif",
-            "/**/fonts/*",
-            "/**/*.svg"
+            "/actuator/**"
     };
 }
