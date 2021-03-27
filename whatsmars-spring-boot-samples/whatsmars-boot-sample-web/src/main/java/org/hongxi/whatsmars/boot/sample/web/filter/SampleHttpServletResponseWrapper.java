@@ -17,15 +17,15 @@ public class SampleHttpServletResponseWrapper extends HttpServletResponseWrapper
 
     private ContentCachingResponseWrapper responseWrapper;
 
-    private SampleResponseBodyHandler sampleResponseBodyHandler;
+    private ResponseBodyHandler responseBodyHandler;
 
     private String responseBody;
 
     public SampleHttpServletResponseWrapper(HttpServletResponse response,
-                            SampleResponseBodyHandler sampleResponseBodyHandler) {
+                            ResponseBodyHandler responseBodyHandler) {
         super(response);
         this.responseWrapper = new ContentCachingResponseWrapper(response);
-        this.sampleResponseBodyHandler = sampleResponseBodyHandler;
+        this.responseBodyHandler = responseBodyHandler;
     }
 
     @Override
@@ -88,7 +88,7 @@ public class SampleHttpServletResponseWrapper extends HttpServletResponseWrapper
         byte[] rawContentArray = responseWrapper.getContentAsByteArray();
         this.responseBody = new String(rawContentArray);
         if (rawContentArray != null && rawContentArray.length > 0) {
-            byte[] result = sampleResponseBodyHandler.handle(rawContentArray);
+            byte[] result = responseBodyHandler.handle(rawContentArray);
             write(result);
         }
     }

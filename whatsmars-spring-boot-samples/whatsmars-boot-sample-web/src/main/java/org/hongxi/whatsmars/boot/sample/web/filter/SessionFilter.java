@@ -15,7 +15,7 @@ import static org.hongxi.whatsmars.boot.sample.web.constants.Constants.WEB_SESSI
 /**
  * Created by shenhongxi on 2020/8/16.
  */
-public class SampleSessionFilter extends OncePerRequestFilter implements OrderedFilter {
+public class SessionFilter extends OncePerRequestFilter implements OrderedFilter {
 
     private int order = REQUEST_WRAPPER_FILTER_MAX_ORDER + WEB_SESSION_FILTER_ORDER;
 

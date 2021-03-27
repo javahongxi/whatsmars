@@ -1,5 +1,6 @@
 package org.hongxi.whatsmars.boot.sample.web.filter;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.hongxi.whatsmars.common.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static org.hongxi.whatsmars.boot.sample.web.constants.Constants.WEB_URI_FILTER_ORDER;
+import static org.hongxi.whatsmars.boot.sample.web.constants.Constants.WEB_MONITOR_FILTER_ORDER;
 
 /**
  * Created by shenhongxi on 2020/11/12.
  */
-public class UriFilter extends OncePerRequestFilter implements OrderedFilter {
+@Slf4j
+public class MonitorFilter extends OncePerRequestFilter implements OrderedFilter {
 
     // 针对只有一个uri映射到的method
     private final Map<String, String> methodUriMap = new HashMap<>(128);
@@ -34,7 +36,7 @@ public class UriFilter extends OncePerRequestFilter implements OrderedFilter {
     @Autowired
     private RequestMappingHandlerMapping requestMappingHandlerMapping;
 
-    private int order = REQUEST_WRAPPER_FILTER_MAX_ORDER + WEB_URI_FILTER_ORDER;
+    private int order = REQUEST_WRAPPER_FILTER_MAX_ORDER + WEB_MONITOR_FILTER_ORDER;
 
     private static final String UNKNOWN_URI = "/unknown";
 
@@ -47,15 +49,15 @@ public class UriFilter extends OncePerRequestFilter implements OrderedFilter {
     protected void initFilterBean() throws ServletException {
         super.initFilterBean();
         this.preLoadAllUris();
-        System.out.println(methodUriMap);
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
-        String methodName = getMethodName(request);
-        System.out.println(methodName);
+        String uri = getURI(request);
+        log.info("uri: {}", uri);
         filterChain.doFilter(request, response);
+        // record monitor data
     }
 
     private void preLoadAllUris() {
@@ -71,7 +73,7 @@ public class UriFilter extends OncePerRequestFilter implements OrderedFilter {
         }
     }
 
-    private String getMethodName(HttpServletRequest request) {
+    private String getURI(HttpServletRequest request) {
         if (methodUriMap.containsValue(request.getRequestURI())) {
             return request.getRequestURI();
         }

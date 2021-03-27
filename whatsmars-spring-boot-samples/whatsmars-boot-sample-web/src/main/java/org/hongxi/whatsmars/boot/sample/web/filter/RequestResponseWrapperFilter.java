@@ -15,7 +15,7 @@ import static org.hongxi.whatsmars.boot.sample.web.constants.Constants.WEB_CRYPT
 /**
  * Created by shenhongxi on 2020/10/23.
  */
-public class SampleWrapperFilter extends OncePerRequestFilter implements OrderedFilter {
+public class RequestResponseWrapperFilter extends OncePerRequestFilter implements OrderedFilter {
 
     private int order = REQUEST_WRAPPER_FILTER_MAX_ORDER + WEB_CRYPTO_FILTER_ORDER;
 
@@ -28,10 +28,11 @@ public class SampleWrapperFilter extends OncePerRequestFilter implements Ordered
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
         byte[] requestBody = IOUtils.toByteArray(request.getInputStream());
+        // if client encrypted the request body, here you need to decrypt it
         SampleHttpServletRequestWrapper wrapperRequest =
                 new SampleHttpServletRequestWrapper(request, requestBody);
         SampleHttpServletResponseWrapper wrapperResponse =
-                new SampleHttpServletResponseWrapper(response, new SampleResponseBodyHandler());
+                new SampleHttpServletResponseWrapper(response, new ResponseBodyHandler());
         filterChain.doFilter(wrapperRequest, wrapperResponse);
         wrapperResponse.copyBodyToResponse();
     }

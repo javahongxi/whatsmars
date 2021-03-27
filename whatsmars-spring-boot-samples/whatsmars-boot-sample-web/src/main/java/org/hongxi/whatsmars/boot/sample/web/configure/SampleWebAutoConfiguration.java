@@ -1,10 +1,10 @@
 package org.hongxi.whatsmars.boot.sample.web.configure;
 
 import org.hongxi.whatsmars.boot.sample.web.filter.FirewallFilter;
-import org.hongxi.whatsmars.boot.sample.web.filter.SampleWrapperFilter;
-import org.hongxi.whatsmars.boot.sample.web.filter.SampleSessionFilter;
-import org.hongxi.whatsmars.boot.sample.web.filter.UriFilter;
-import org.hongxi.whatsmars.boot.sample.web.interceptor.SampleSessionInterceptor;
+import org.hongxi.whatsmars.boot.sample.web.filter.RequestResponseWrapperFilter;
+import org.hongxi.whatsmars.boot.sample.web.filter.SessionFilter;
+import org.hongxi.whatsmars.boot.sample.web.filter.MonitorFilter;
+import org.hongxi.whatsmars.boot.sample.web.interceptor.SessionInterceptor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,18 +35,18 @@ public class SampleWebAutoConfiguration implements WebMvcConfigurer {
     }
 
     @Bean
-    public UriFilter uriFilter() {
-        return new UriFilter();
+    public MonitorFilter uriFilter() {
+        return new MonitorFilter();
     }
 
     @Bean
-    public SampleSessionFilter sampleSessionFilter() {
-        return new SampleSessionFilter();
+    public SessionFilter sampleSessionFilter() {
+        return new SessionFilter();
     }
 
     @Bean
-    public SampleWrapperFilter sampleCryptoFilter() {
-        return new SampleWrapperFilter();
+    public RequestResponseWrapperFilter sampleCryptoFilter() {
+        return new RequestResponseWrapperFilter();
     }
 
     /**
@@ -54,7 +54,7 @@ public class SampleWebAutoConfiguration implements WebMvcConfigurer {
      * @return
      */
     @Bean
-    public SampleSessionInterceptor sampleSessionInterceptor() {
-        return new SampleSessionInterceptor();
+    public SessionInterceptor sampleSessionInterceptor() {
+        return new SessionInterceptor();
     }
 }
