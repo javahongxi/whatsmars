@@ -72,6 +72,9 @@ public class UriFilter extends OncePerRequestFilter implements OrderedFilter {
     }
 
     private String getMethodName(HttpServletRequest request) {
+        if (methodUriMap.containsValue(request.getRequestURI())) {
+            return request.getRequestURI();
+        }
         try {
             HandlerExecutionChain handlerExecutionChain =  requestMappingHandlerMapping.getHandler(request);
             Object objHandler = handlerExecutionChain.getHandler();
