@@ -13,7 +13,7 @@
     <groupId>org.hongxi</groupId>
     <artifactId>whatsmars-parent</artifactId>
     <packaging>pom</packaging>
-    <version>JAWS.SR1</version>
+    <version>2021.4.0</version>
     <url>https://github.com/javahongxi/whatsmars</url>
 
     <modules>

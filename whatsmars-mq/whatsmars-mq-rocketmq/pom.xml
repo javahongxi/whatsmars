@@ -5,7 +5,7 @@
     <parent>
         <artifactId>whatsmars-mq</artifactId>
         <groupId>org.hongxi</groupId>
-        <version>JAWS.SR1</version>
+        <version>2021.4.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -22,7 +22,7 @@
         <dependency>
             <groupId>org.hongxi</groupId>
             <artifactId>rocketmq-spring-boot-starter</artifactId>
-            <version>JAWS.SR1</version>
+            <version>2021.4.0</version>
         </dependency>
     </dependencies>
 
