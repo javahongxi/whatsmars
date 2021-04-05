@@ -33,7 +33,7 @@ whatsmars-zk | zookeeper remoting 封装
 whatsmars-zk-embed | zk TestingServer
 
 ### Keywords
-- [x] [*Java SE*](http://java.hongxi.org)
+- [x] [*Java SE*](http://github.com/javahongxi/java)
 - [x] [*Netty*](https://github.com/netty/netty)
 - [x] [*Dubbo*](https://github.com/apache/dubbo)
 - [x] [*RocketMQ*](https://github.com/apache/rocketmq)
