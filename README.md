@@ -28,6 +28,7 @@ whatsmars-sentinel | 流量控制与熔断降级组件
 whatsmars-shardingsphere | 分布式数据库中间件
 whatsmars-spring | Spring Framework
 whatsmars-spring-boot-samples | Spring Boot Samples
+whatsmars-spring-cloud | Spring Cloud 生态
 whatsmars-zk | zookeeper remoting 封装
 whatsmars-zk-embed | zk TestingServer
 
