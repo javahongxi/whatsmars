@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.boot.sample.webflux;
+package org.hongxi.whatsmars.boot.sample.webflux.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
