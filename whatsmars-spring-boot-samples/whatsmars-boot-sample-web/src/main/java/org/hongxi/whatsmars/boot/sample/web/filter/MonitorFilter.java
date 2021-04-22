@@ -8,6 +8,7 @@ import org.springframework.boot.web.servlet.filter.OrderedFilter;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerExecutionChain;
+import org.springframework.web.servlet.mvc.condition.PatternsRequestCondition;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
@@ -30,9 +31,11 @@ import static org.hongxi.whatsmars.boot.sample.web.constants.Constants.WEB_MONIT
 public class MonitorFilter extends OncePerRequestFilter implements OrderedFilter {
 
     // 针对只有一个uri映射到的method
-    private final Map<String, String> methodUriMap = new HashMap<>(128);
+    // key: methodSign value: uriPattern
+    private final Map<String, String> uriPatterns = new HashMap<>(128);
     // 多个uri映射到同一个method  @RequestMapping({"/hi", "/hello"})
-    private final Map<String, RequestMappingInfo> methodReqInfoMap = new HashMap<>();
+    // key: methodSign value: RequestMappingInfo
+    private final Map<String, RequestMappingInfo> requestMappings = new HashMap<>();
     @Autowired
     private RequestMappingHandlerMapping requestMappingHandlerMapping;
 
@@ -54,7 +57,7 @@ public class MonitorFilter extends OncePerRequestFilter implements OrderedFilter
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
-        String uri = getURI(request);
+        String uri = getUriPattern(request);
         log.info("uri: {}", uri);
         filterChain.doFilter(request, response);
         // record monitor data
@@ -63,37 +66,49 @@ public class MonitorFilter extends OncePerRequestFilter implements OrderedFilter
     private void preLoadAllUris() {
         Map<RequestMappingInfo, HandlerMethod> requestMapInfoHandlerMap = requestMappingHandlerMapping.getHandlerMethods();
         for (RequestMappingInfo info : requestMapInfoHandlerMap.keySet()) {
-            Set<String> patterns = info.getPatternsCondition().getPatterns();
+            PatternsRequestCondition patternsRequestCondition = info.getPatternsCondition();
+            if (patternsRequestCondition == null) {
+                continue;
+            }
+            Set<String> patterns = patternsRequestCondition.getPatterns();
             String methodSignal = requestMapInfoHandlerMap.get(info).getMethod().toGenericString();
             if (patterns.size() == 1) {
-                methodUriMap.put(methodSignal, patterns.iterator().next());
+                uriPatterns.put(methodSignal, patterns.iterator().next());
             } else {
-                methodReqInfoMap.put(methodSignal, info);
+                requestMappings.put(methodSignal, info);
             }
         }
     }
 
-    private String getURI(HttpServletRequest request) {
-        if (methodUriMap.containsValue(request.getRequestURI())) {
+    private String getUriPattern(HttpServletRequest request) {
+        if (request.getRequestURI() == null) {
+            return request.getServletPath() != null ? request.getServletPath() : UNKNOWN_URI;
+        }
+        if (uriPatterns.containsValue(request.getRequestURI())) {
             return request.getRequestURI();
         }
         try {
             HandlerExecutionChain handlerExecutionChain =  requestMappingHandlerMapping.getHandler(request);
-            Object objHandler = handlerExecutionChain.getHandler();
-            if (objHandler instanceof HandlerMethod) {
-                HandlerMethod handlerMethod = (HandlerMethod)objHandler;
+            if (handlerExecutionChain == null) {
+                return UNKNOWN_URI;
+            }
+            Object handler = handlerExecutionChain.getHandler();
+            if (handler instanceof HandlerMethod) {
+                HandlerMethod handlerMethod = (HandlerMethod) handler;
                 String methodSign = handlerMethod.getMethod().toGenericString();
-                String storedMethod = methodUriMap.get(methodSign);
-                if (StringUtils.isNotBlank(storedMethod)) {
-                    return storedMethod;
-                } else if(methodReqInfoMap.containsKey(methodSign)) {
-                    RequestMappingInfo mappingInfo = methodReqInfoMap.get(methodSign);
-                    final String reqUri = request.getRequestURI();
-                    if (reqUri != null) {
-                        List<String> matchedMethods = mappingInfo.getPatternsCondition().getMatchingPatterns(reqUri);
-                        if (CollectionUtils.isNotEmpty(matchedMethods)) {
-                            return matchedMethods.get(0);
-                        }
+                String uriPattern = uriPatterns.get(methodSign);
+                if (StringUtils.isNotBlank(uriPattern)) {
+                    return uriPattern;
+                }
+                if (requestMappings.containsKey(methodSign)) {
+                    RequestMappingInfo mappingInfo = requestMappings.get(methodSign);
+                    PatternsRequestCondition patternsRequestCondition = mappingInfo.getPatternsCondition();
+                    if (patternsRequestCondition == null) {
+                        return UNKNOWN_URI;
+                    }
+                    List<String> matchingPatterns = patternsRequestCondition.getMatchingPatterns(request.getRequestURI());
+                    if (CollectionUtils.isNotEmpty(matchingPatterns)) {
+                        return matchingPatterns.get(0);
                     }
                 }
             }
