@@ -1,5 +1,7 @@
 package org.hongxi.whatsmars.reactor.core;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.junit.Test;
 import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
@@ -499,18 +501,18 @@ public class FluxTests {
 
     @Test
     public void usingWhenExample() throws InterruptedException {
-        Flux.usingWhen(
-                Transaction.beginTransaction(),
-                transaction -> transaction.insertRows(Flux.just("A", "B")),
-                Transaction::commit,
-                Transaction::rollback
-        ).subscribe(
-                d -> System.out.println("onNext: " + d),
-                e -> System.out.println("onError: " + e.getMessage()),
-                () -> System.out.println("onComplete")
-        );
-
-        Thread.sleep(1000);
+//        Flux.usingWhen(
+//                Transaction.beginTransaction(),
+//                transaction -> transaction.insertRows(Flux.just("A", "B")),
+//                Transaction::commit,
+//                Transaction::rollback
+//        ).subscribe(
+//                d -> System.out.println("onNext: " + d),
+//                e -> System.out.println("onError: " + e.getMessage()),
+//                () -> System.out.println("onComplete")
+//        );
+//
+//        Thread.sleep(1000);
     }
 
     private Flux<String> recommendedBooks(String userId) {
@@ -527,20 +529,20 @@ public class FluxTests {
 
     @Test
     public void handlingErrors() throws InterruptedException {
-        Flux.just("user-1")
-                .flatMap(user ->
-                        recommendedBooks(user)
-                                .retryBackoff(5, Duration.ofMillis(100))
-                                .timeout(Duration.ofSeconds(3))
-                                .onErrorResume(e -> Flux.just("The Martian"))
-                )
-                .subscribe(
-                        b -> System.out.println("onNext: " + b),
-                        e -> System.err.println("onError: " + e.getMessage()),
-                        () -> System.out.println("onComplete")
-                );
-
-        Thread.sleep(5000);
+//        Flux.just("user-1")
+//                .flatMap(user ->
+//                        recommendedBooks(user)
+//                                .retryBackoff(5, Duration.ofMillis(100))
+//                                .timeout(Duration.ofSeconds(3))
+//                                .onErrorResume(e -> Flux.just("The Martian"))
+//                )
+//                .subscribe(
+//                        b -> System.out.println("onNext: " + b),
+//                        e -> System.err.println("onError: " + e.getMessage()),
+//                        () -> System.out.println("onComplete")
+//                );
+//
+//        Thread.sleep(5000);
     }
 
     @Test
@@ -632,21 +634,21 @@ public class FluxTests {
 
     @Test
     public void composeExample() {
-        Function<Flux<String>, Flux<String>> logUserInfo = (stream) -> {
-            if (random.nextBoolean()) {
-                return stream
-                        .doOnNext(e -> System.out.println("[path A] User: " + e));
-            } else {
-                return stream
-                        .doOnNext(e -> System.out.println("[path B] User: " + e));
-            }
-        };
-
-        Flux<String> publisher = Flux.just("1", "2")
-                .compose(logUserInfo);
-
-        publisher.subscribe();
-        publisher.subscribe();
+//        Function<Flux<String>, Flux<String>> logUserInfo = (stream) -> {
+//            if (random.nextBoolean()) {
+//                return stream
+//                        .doOnNext(e -> System.out.println("[path A] User: " + e));
+//            } else {
+//                return stream
+//                        .doOnNext(e -> System.out.println("[path B] User: " + e));
+//            }
+//        };
+//
+//        Flux<String> publisher = Flux.just("1", "2")
+//                .compose(logUserInfo);
+//
+//        publisher.subscribe();
+//        publisher.subscribe();
     }
 
     static class Connection implements AutoCloseable {
@@ -719,6 +721,26 @@ public class FluxTests {
         }
     }
 
+    @Test
+    public void concatMapExample() {
+        List<User> users = new ArrayList<>();
+        users.add(new User(null, "lily"));
+        users.add(new User("2", "lucy"));
+        Flux.fromIterable(users)
+                .concatMap(user -> {
+                    if (user.id == null) {
+                        return Mono.empty();
+                    } else {
+                        return Mono.just(user.id);
+                    }
+                })
+                .next()
+                .flatMap(Mono::just)
+                .subscribe(System.out::println);
+    }
+
+    @AllArgsConstructor
+    @NoArgsConstructor
     static class User {
         public String id, name;
     }
