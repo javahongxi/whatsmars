@@ -27,19 +27,19 @@ public class DemoApplicationTest {
         Order order = new Order("1");
         webTestClient
                 .post()
-                .uri("/orders")
+                .uri("/order/create")
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromObject(order))
                 .exchange()
                 .expectStatus().isCreated()
-                .expectHeader().valueEquals("location", "/orders/1");
+                .expectHeader().valueEquals("location", "/order/1");
     }
 
     @Test
     public void shouldNotBeNotFoundInCaseOfWrongContentType() {
         webTestClient
                 .post()
-                .uri("/orders")
+                .uri("/order/create")
                 .contentType(MediaType.TEXT_HTML)
                 .exchange()
                 .expectStatus().isNotFound();
@@ -51,7 +51,7 @@ public class DemoApplicationTest {
         shouldBeAbleToPostOrder();
         webTestClient
                 .get()
-                .uri("/orders/1")
+                .uri("/order/1")
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
                 .expectStatus().isOk()

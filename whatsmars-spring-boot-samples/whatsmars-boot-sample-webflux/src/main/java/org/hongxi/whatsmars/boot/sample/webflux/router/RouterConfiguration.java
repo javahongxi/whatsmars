@@ -24,13 +24,13 @@ public class RouterConfiguration {
     @Bean
     public RouterFunction<ServerResponse> routes(OrderHandler orderHandler) {
         return
-                nest(path("/orders"),
+                nest(path("/order"),
                         nest(accept(APPLICATION_JSON),
                                 route(GET("/{id}"), orderHandler::get)
                                         .andRoute(method(HttpMethod.GET), orderHandler::list)
                         )
                                 .andNest(contentType(APPLICATION_JSON),
-                                        route(POST("/"), orderHandler::create)
+                                        route(POST("/create"), orderHandler::create)
                                 )
                                 .andNest((serverRequest) -> serverRequest.cookies()
                                                 .containsKey("Redirect-Traffic"),

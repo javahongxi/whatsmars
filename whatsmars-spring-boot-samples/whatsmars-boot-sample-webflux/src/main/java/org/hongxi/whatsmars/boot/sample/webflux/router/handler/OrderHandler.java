@@ -24,7 +24,7 @@ public class OrderHandler {
             .bodyToMono(Order.class)
             .flatMap(orderRepository::save)
             .flatMap(o ->
-                ServerResponse.created(URI.create("/orders/" + o.getId()))
+                ServerResponse.created(URI.create("/order/" + o.getId()))
                               .build()
             );
     }
