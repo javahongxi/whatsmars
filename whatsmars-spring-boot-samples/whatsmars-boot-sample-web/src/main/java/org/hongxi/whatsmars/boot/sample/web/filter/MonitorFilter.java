@@ -81,8 +81,8 @@ public class MonitorFilter extends OncePerRequestFilter implements OrderedFilter
     }
 
     private String getUriPattern(HttpServletRequest request) {
-        if (request.getRequestURI() == null) {
-            return request.getServletPath() != null ? request.getServletPath() : UNKNOWN_URI;
+        if (StringUtils.isBlank(request.getRequestURI())) {
+            return UNKNOWN_URI;
         }
         if (uriPatterns.containsValue(request.getRequestURI())) {
             return request.getRequestURI();
