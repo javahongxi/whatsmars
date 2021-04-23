@@ -8,6 +8,7 @@ import org.springframework.boot.web.reactive.error.ErrorAttributes;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.reactive.function.server.ServerRequest;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,6 +35,10 @@ public class DefaultExceptionHandler extends DefaultErrorWebExceptionHandler {
             code = ((BusinessException) error).getCode();
             msg = error.getMessage();
             options.excluding(ErrorAttributeOptions.Include.STACK_TRACE);
+        } else if (error instanceof ResponseStatusException &&
+                ((ResponseStatusException) error).getStatus().is4xxClientError()) {
+            code = ((ResponseStatusException) error).getStatus().value();
+            msg = error.getMessage();
         } else {
             code = HttpStatus.INTERNAL_SERVER_ERROR.value();
             msg = "服务内部错误";
