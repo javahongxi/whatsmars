@@ -29,7 +29,7 @@ mvn archetype:generate                                  \
   -DarchetypeCatalog=internal                           \
   -DarchetypeGroupId=org.hongxi                         \
   -DarchetypeArtifactId=${type}-archetype               \
-  -DarchetypeVersion=2021.4.0                          \
+  -DarchetypeVersion=2021.4.1                          \
   -DgroupId=${groupId}                                  \
   -DartifactId=${artifactId}                            \
   -Dversion=1.0.0-SNAPSHOT                              \

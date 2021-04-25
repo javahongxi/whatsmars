@@ -18,7 +18,7 @@
         <dependency>
             <groupId>org.hongxi</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>
-            <version>2021.4.0</version>
+            <version>2021.4.1</version>
         </dependency>
 #if (${includeActuator} == 'true' || ${includeActuator} == 'Y' || ${includeActuator} == 'y')
         <dependency>

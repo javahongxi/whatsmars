@@ -5,7 +5,7 @@
     <parent>
         <artifactId>whatsmars-parent</artifactId>
         <groupId>org.hongxi</groupId>
-        <version>2021.4.0</version>
+        <version>2021.4.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -36,7 +36,7 @@
         <dependency>
             <groupId>org.hongxi</groupId>
             <artifactId>whatsmars-zk-embed</artifactId>
-            <version>2021.4.0</version>
+            <version>2021.4.1</version>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>

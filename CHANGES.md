@@ -1,4 +1,4 @@
-## 2021.4.0
+## 2021.4.1
 - Upgrade to java 11
 - Upgrade spring boot to 2.4.3
 - Move module `whatsmars-rpc` to [jaws](https://github.com/javahongxi/jaws)
