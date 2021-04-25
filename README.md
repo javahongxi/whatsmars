@@ -23,7 +23,7 @@ whatsmars-mq | 消息中间件RocketMQ,Kafka等
 whatsmars-netty | NIO框架首选
 whatsmars-reactor | 响应式编程
 whatsmars-redis | Redis客户端简单封装
-whatsmars-rpc | RPC核心实现
+whatsmars-rpc | 轻量级RPC框架实现
 whatsmars-sentinel | 流量控制与熔断降级组件
 whatsmars-shardingsphere | 分布式数据库中间件
 whatsmars-spring | Spring Framework
@@ -49,7 +49,7 @@ whatsmars-zk-embed | zk TestingServer
 ### Friendship links
 - [*阿里巴巴Java开发手册*](https://github.com/alibaba/Alibaba-Java-Coding-Guidelines) 📚
 - [*Java诊断利器Arthas*](https://github.com/alibaba/arthas) 👀
-- [*Go 生态研究*](https://github.com/javahongxi/golab) 🦈
+- [*手把手教你实现RPC框架*](https://github.com/javahongxi/jaws) 🦈
 
 ### Warm tips
 - Java两大核心技术：并发，NIO
