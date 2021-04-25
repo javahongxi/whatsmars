@@ -1,5 +1,6 @@
 package org.hongxi.whatsmars.boot.sample.web.configure;
 
+import org.hongxi.whatsmars.boot.sample.web.filter.AccessFilter;
 import org.hongxi.whatsmars.boot.sample.web.filter.RequestResponseWrapperFilter;
 import org.hongxi.whatsmars.boot.sample.web.filter.SessionFilter;
 import org.hongxi.whatsmars.boot.sample.web.filter.MonitorFilter;
@@ -26,6 +27,11 @@ public class SampleWebAutoConfiguration implements WebMvcConfigurer {
         registry.addInterceptor(sampleSessionInterceptor())
                 .excludePathPatterns(Arrays.asList(EXCLUDE_PATHS))
                 .order(-100);
+    }
+
+    @Bean
+    public AccessFilter accessFilter() {
+        return new AccessFilter();
     }
 
     @Bean

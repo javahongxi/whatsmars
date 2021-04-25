@@ -17,7 +17,8 @@ import reactor.core.publisher.Mono;
 public class LogFilter implements WebFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
-        log.info("request path: {}", exchange.getRequest().getPath());
+        log.info("request path: {} params: {}",
+                exchange.getRequest().getPath(), exchange.getRequest().getQueryParams());
         return chain.filter(exchange);
     }
 }
