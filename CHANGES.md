@@ -1,6 +1,6 @@
 ## 2021.4.0
 - Upgrade spring boot to 2.4.3
-- Remove 'whatsmars-spring-cloud'
+- Move some modules to other projects
 
 ## Rocket.S9
 - Upgrade spring boot to 2.3.0.RELEASE
