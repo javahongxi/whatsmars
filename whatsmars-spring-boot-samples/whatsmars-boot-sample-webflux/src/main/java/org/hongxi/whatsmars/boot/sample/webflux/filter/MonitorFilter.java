@@ -21,21 +21,23 @@ public class MonitorFilter implements WebFilter {
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         preHandle(exchange);
         return chain.filter(exchange)
-                .doOnEach((signal) -> postHandle(exchange));
+                .doOnSuccess(signal -> postHandle(exchange, null))
+                .doOnError(cause -> postHandle(exchange, cause));
     }
 
     private void preHandle(ServerWebExchange exchange) {
         log.info("preHandle");
         exchange.getAttributes().put(START_TIMESTAMP, System.currentTimeMillis());
-        throw new RuntimeException("test exception");
+//        throw new RuntimeException("test exception");
     }
 
-    private void postHandle(ServerWebExchange exchange) {
+    private void postHandle(ServerWebExchange exchange, Throwable throwable) {
         log.info("postHandle");
         Long start = exchange.getAttribute(START_TIMESTAMP);
         if (start != null) {
             long cost = System.currentTimeMillis() - start;
-            log.info("uri: {}, cost: {}", exchange.getRequest().getPath(), cost);
+            log.info("uri: {}, cost: {}, error: {}",
+                    exchange.getRequest().getPath(), cost, throwable != null);
         }
     }
 }

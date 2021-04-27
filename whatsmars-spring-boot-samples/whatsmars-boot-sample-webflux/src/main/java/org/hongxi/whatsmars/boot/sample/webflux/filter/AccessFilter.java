@@ -22,7 +22,7 @@ public class AccessFilter implements WebFilter {
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         log.info("access start from uri: {}", exchange.getRequest().getPath());
         return chain.filter(exchange)
-                .doOnEach((signal) -> onEach(exchange));
+                .doOnEach(signal -> onEach(exchange));
     }
 
     private void onEach(ServerWebExchange exchange) {
