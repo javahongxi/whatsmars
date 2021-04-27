@@ -2,14 +2,17 @@ package org.hongxi.whatsmars.boot.sample.webflux.router.handler;
 
 import java.net.URI;
 
+import lombok.extern.slf4j.Slf4j;
 import org.hongxi.whatsmars.boot.sample.webflux.dao.OrderRepository;
 import org.hongxi.whatsmars.boot.sample.webflux.model.Order;
+import org.springframework.util.Assert;
 import reactor.core.publisher.Mono;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
+@Slf4j
 @Service
 public class OrderHandler {
 
@@ -30,8 +33,11 @@ public class OrderHandler {
     }
 
     public Mono<ServerResponse> get(ServerRequest request) {
+        String id = request.pathVariable("id");
+        Assert.isTrue(id.length() >= 6, "id length < 6");
+        log.info("id: {}", id);
         return orderRepository
-            .findById(request.pathVariable("id"))
+            .findById(id)
             .flatMap(order ->
                 ServerResponse
                     .ok()

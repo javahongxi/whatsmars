@@ -1,6 +1,7 @@
 package org.hongxi.whatsmars.boot.sample.webflux.filter;
 
 import lombok.extern.slf4j.Slf4j;
+import org.reactivestreams.Publisher;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
@@ -14,17 +15,20 @@ import reactor.core.publisher.Mono;
 @Slf4j
 @Order(-2)
 @Component
-public class ExceptionFilter implements WebFilter {
+public class AccessFilter implements WebFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         return chain.filter(exchange)
-                .doFinally(signalType -> postHandle(exchange));
+                .transformDeferred((call) -> filter(exchange, call));
     }
 
-    private void postHandle(ServerWebExchange exchange) {
-        log.info("postHandle");
-        Boolean test = exchange.getAttribute("test");
-        log.info("attribute `test`: {}", test);
+    private Publisher<Void> filter(ServerWebExchange exchange, Mono<Void> call) {
+        return call.doOnEach((any) -> onEach(exchange));
+    }
+
+    private void onEach(ServerWebExchange exchange) {
+        log.info("start clear context like ThreadLocal, Attributes");
+        exchange.getAttributes().remove("test");
     }
 }

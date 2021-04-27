@@ -1,5 +1,6 @@
 package org.hongxi.whatsmars.boot.sample.webflux.exception;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.web.ErrorProperties;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 import org.springframework.boot.autoconfigure.web.reactive.error.DefaultErrorWebExceptionHandler;
@@ -16,6 +17,7 @@ import java.util.Map;
 /**
  * Created by shenhongxi on 2021/4/22.
  */
+@Slf4j
 public class DefaultExceptionHandler extends DefaultErrorWebExceptionHandler {
 
     public DefaultExceptionHandler(ErrorAttributes errorAttributes,
@@ -40,6 +42,7 @@ public class DefaultExceptionHandler extends DefaultErrorWebExceptionHandler {
             code = ((ResponseStatusException) error).getStatus().value();
             msg = error.getMessage();
         } else {
+            log.error("exception handled, request:{}", request.path(), error);
             code = HttpStatus.INTERNAL_SERVER_ERROR.value();
             msg = "服务内部错误";
         }
