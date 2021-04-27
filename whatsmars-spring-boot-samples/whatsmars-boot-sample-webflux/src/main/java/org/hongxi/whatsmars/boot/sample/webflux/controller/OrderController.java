@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.hongxi.whatsmars.boot.sample.webflux.dao.OrderRepository;
 import org.hongxi.whatsmars.boot.sample.webflux.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
@@ -26,6 +27,8 @@ public class OrderController {
     @GetMapping("/{id}")
     public Mono<Order> findById(@PathVariable String id) {
         log.info("id: {}", id);
+        Assert.isTrue(id.length() >= 6, "id length < 6");
+
         return orderRepository.findById(id);
     }
 

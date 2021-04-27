@@ -34,8 +34,9 @@ public class OrderHandler {
 
     public Mono<ServerResponse> get(ServerRequest request) {
         String id = request.pathVariable("id");
-        Assert.isTrue(id.length() >= 6, "id length < 6");
         log.info("id: {}", id);
+        Assert.isTrue(id.length() >= 6, "id length < 6");
+
         return orderRepository
             .findById(id)
             .flatMap(order ->
