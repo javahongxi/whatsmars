@@ -44,7 +44,7 @@ public class DefaultExceptionHandler extends DefaultErrorWebExceptionHandler {
         } else {
             log.error("exception handled, request:{}", request.path(), error);
             code = HttpStatus.INTERNAL_SERVER_ERROR.value();
-            msg = "服务内部错误";
+            msg = HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase();
         }
         errorAttributes.put("code", code);
         errorAttributes.put("msg", msg);
