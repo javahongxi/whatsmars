@@ -8,7 +8,7 @@ import java.util.Objects;
 public class SampleSessionContext {
 
     private static final ThreadLocal<SampleSessionContext> CONTEXT =
-            ThreadLocal.withInitial(() -> new SampleSessionContext());
+            ThreadLocal.withInitial(SampleSessionContext::new);
 
     private String userId;
 
