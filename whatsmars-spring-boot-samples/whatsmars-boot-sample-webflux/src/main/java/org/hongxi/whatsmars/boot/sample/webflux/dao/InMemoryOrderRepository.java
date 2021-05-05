@@ -29,8 +29,7 @@ public class InMemoryOrderRepository implements OrderRepository {
     }
 
     @Override
-    public Mono<Void> deleteById(String id) {
-        orders.remove(id);
-        return Mono.empty();
+    public Mono<Order> deleteById(String id) {
+        return Mono.justOrEmpty(orders.remove(id));
     }
 }

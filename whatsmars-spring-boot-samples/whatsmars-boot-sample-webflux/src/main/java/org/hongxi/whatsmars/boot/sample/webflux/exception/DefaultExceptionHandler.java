@@ -29,30 +29,34 @@ public class DefaultExceptionHandler extends DefaultErrorWebExceptionHandler {
 
     @Override
     protected Map<String, Object> getErrorAttributes(ServerRequest request, ErrorAttributeOptions options) {
-        Throwable error = super.getError(request);
-        Map<String, Object> errorAttributes = new HashMap<>(4);
+        Map<String, Object> errorAttributes = new HashMap<>();
+        HttpStatus status;
         int code;
         String msg;
+        Throwable error = super.getError(request);
         if (error instanceof BusinessException) {
+            status = HttpStatus.OK;
             code = ((BusinessException) error).getCode();
             msg = error.getMessage();
             options.excluding(ErrorAttributeOptions.Include.STACK_TRACE);
         } else if (error instanceof ResponseStatusException &&
                 ((ResponseStatusException) error).getStatus().is4xxClientError()) {
-            code = ((ResponseStatusException) error).getStatus().value();
-            msg = error.getMessage();
+            status = ((ResponseStatusException) error).getStatus();
+            code = status.value();
+            if (status == HttpStatus.BAD_REQUEST) {
+                msg = "参数错误";
+            } else {
+                msg = error.getMessage();
+            }
         } else {
             log.error("exception handled, request:{}", request.path(), error);
-            code = HttpStatus.INTERNAL_SERVER_ERROR.value();
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+            code = status.value();
             msg = HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase();
         }
+        errorAttributes.put("status", status.value());
         errorAttributes.put("code", code);
         errorAttributes.put("msg", msg);
         return errorAttributes;
-    }
-
-    @Override
-    protected int getHttpStatus(Map<String, Object> errorAttributes) {
-        return HttpStatus.OK.value();
     }
 }

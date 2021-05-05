@@ -24,7 +24,7 @@ public class RouterConfiguration {
     @Bean
     public RouterFunction<ServerResponse> routes(OrderHandler orderHandler) {
         return
-                nest(path("/order"),
+                nest(path("/func/order"),
                         nest(accept(APPLICATION_JSON),
                                 route(GET("/{id}"), orderHandler::get)
                                         .andRoute(method(HttpMethod.GET), orderHandler::list)

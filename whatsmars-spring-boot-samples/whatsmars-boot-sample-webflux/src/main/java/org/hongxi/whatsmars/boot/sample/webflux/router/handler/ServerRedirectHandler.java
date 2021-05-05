@@ -1,13 +1,12 @@
 package org.hongxi.whatsmars.boot.sample.webflux.router.handler;
 
-import reactor.core.publisher.Mono;
-
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.server.HandlerFunction;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
+import reactor.core.publisher.Mono;
 
 public class ServerRedirectHandler implements HandlerFunction<ServerResponse> {
 

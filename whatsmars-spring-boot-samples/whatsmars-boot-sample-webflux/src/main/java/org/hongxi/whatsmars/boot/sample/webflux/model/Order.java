@@ -1,13 +1,18 @@
 package org.hongxi.whatsmars.boot.sample.webflux.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Order {
 
     private String id;
+
+    private Long start;
+
+    public Order() {
+    }
+
+    public Order(String id) {
+        this.id = id;
+    }
 }

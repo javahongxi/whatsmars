@@ -9,5 +9,5 @@ public interface OrderRepository {
 
     Mono<Order> save(Order order);
 
-    Mono<Void> deleteById(String id);
+    Mono<Order> deleteById(String id);
 }
