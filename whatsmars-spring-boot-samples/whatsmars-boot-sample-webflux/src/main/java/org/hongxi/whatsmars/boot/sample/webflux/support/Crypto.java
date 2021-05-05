@@ -1,8 +1,10 @@
 package org.hongxi.whatsmars.boot.sample.webflux.support;
 
 import org.springframework.util.MultiValueMap;
+import org.springframework.util.MultiValueMapAdapter;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -16,8 +18,9 @@ public class Crypto {
      * @return
      */
     public static Map<String, Object> decrypt(Map<String, Object> requestBody) {
-        requestBody.put("start", System.currentTimeMillis());
-        return requestBody;
+        Map<String, Object> decrypted = new HashMap<>(requestBody);
+        decrypted.put("start", System.currentTimeMillis());
+        return decrypted;
     }
 
     /**
@@ -26,8 +29,9 @@ public class Crypto {
      * @return
      */
     public static MultiValueMap<String, String> decrypt(MultiValueMap<String, String> formData) {
-        formData.put("start", Collections.singletonList(String.valueOf(System.currentTimeMillis())));
-        return formData;
+        MultiValueMap<String, String> decrypted = new MultiValueMapAdapter<>(formData);
+        decrypted.put("start", Collections.singletonList(String.valueOf(System.currentTimeMillis())));
+        return decrypted;
     }
 
     /**

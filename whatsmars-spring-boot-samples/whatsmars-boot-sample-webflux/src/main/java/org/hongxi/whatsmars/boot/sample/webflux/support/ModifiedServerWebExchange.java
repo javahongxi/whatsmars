@@ -17,6 +17,9 @@ public class ModifiedServerWebExchange extends ServerWebExchangeDecorator {
     @Override
     public Mono<MultiValueMap<String, String>> getFormData() {
         return super.getFormData()
-                .map(Crypto::decrypt);
+                .map(Crypto::decrypt)
+                .doOnNext(decrypted -> getDelegate().getAttributes()
+                        .put(WebUtils.REQUEST_PARAMS_ATTR, decrypted)
+                );
     }
 }

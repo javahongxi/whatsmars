@@ -55,4 +55,19 @@ class SampleApplicationTests {
 				.consumeWith(e -> MatcherAssert.assertThat(e.getResponseBody(), Matchers.hasProperty("id", Matchers.equalTo("123456"))));
 	}
 
+	@Test
+	public void shouldBeAbleToDeleteOrder() {
+		shouldBeAbleToPostOrder();
+		webTestClient
+				.post()
+				.uri("/order/delete?userId=123")
+				.contentType(MediaType.APPLICATION_FORM_URLENCODED)
+				.body(BodyInserters.fromFormData("id", "123456"))
+				.accept(MediaType.APPLICATION_JSON)
+				.exchange()
+				.expectStatus().isOk()
+				.expectBody(Order.class)
+				.consumeWith(e -> MatcherAssert.assertThat(e.getResponseBody(), Matchers.hasProperty("id", Matchers.equalTo("123456"))));
+	}
+
 }
