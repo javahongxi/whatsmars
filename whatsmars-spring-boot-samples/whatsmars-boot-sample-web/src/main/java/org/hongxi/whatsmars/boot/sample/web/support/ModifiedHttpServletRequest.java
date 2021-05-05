@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.boot.sample.web.filter;
+package org.hongxi.whatsmars.boot.sample.web.support;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -13,11 +13,11 @@ import java.util.*;
 /**
  * Created by shenhongxi on 2020/10/23.
  */
-public class SampleHttpServletRequestWrapper extends HttpServletRequestWrapper {
+public class ModifiedHttpServletRequest extends HttpServletRequestWrapper {
 
     private final byte[] jsonBytes;
 
-    public SampleHttpServletRequestWrapper(HttpServletRequest request, byte[] jsonBytes) {
+    public ModifiedHttpServletRequest(HttpServletRequest request, byte[] jsonBytes) {
         super(request);
         this.jsonBytes = jsonBytes;
     }

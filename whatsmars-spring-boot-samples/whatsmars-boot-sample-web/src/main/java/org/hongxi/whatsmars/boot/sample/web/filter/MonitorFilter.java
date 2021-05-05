@@ -2,9 +2,11 @@ package org.hongxi.whatsmars.boot.sample.web.filter;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.hongxi.whatsmars.boot.sample.web.support.WebUtils;
 import org.hongxi.whatsmars.common.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.filter.OrderedFilter;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerExecutionChain;
@@ -22,13 +24,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static org.hongxi.whatsmars.boot.sample.web.constants.Constants.WEB_MONITOR_FILTER_ORDER;
-
 /**
  * Created by shenhongxi on 2020/11/12.
  */
 @Slf4j
-public class MonitorFilter extends OncePerRequestFilter implements OrderedFilter {
+@Order(-3)
+@Component
+public class MonitorFilter extends OncePerRequestFilter {
 
     // 针对只有一个uri映射到的method
     // key: methodSign value: uriPattern
@@ -39,14 +41,7 @@ public class MonitorFilter extends OncePerRequestFilter implements OrderedFilter
     @Autowired
     private RequestMappingHandlerMapping requestMappingHandlerMapping;
 
-    private int order = REQUEST_WRAPPER_FILTER_MAX_ORDER + WEB_MONITOR_FILTER_ORDER;
-
     private static final String UNKNOWN_URI = "/unknown";
-
-    @Override
-    public int getOrder() {
-        return order;
-    }
 
     @Override
     protected void initFilterBean() throws ServletException {
@@ -57,10 +52,17 @@ public class MonitorFilter extends OncePerRequestFilter implements OrderedFilter
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
+        if ((Boolean) request.getAttribute(WebUtils.SHOULD_NOT_FILTER_ATTR)) {
+            filterChain.doFilter(request, response);
+            return;
+        }
         String uri = getUriPattern(request);
         log.info("uri: {}", uri);
+        if (uri != null && !uri.equals(UNKNOWN_URI)) {
+            request.setAttribute(WebUtils.PATH_PATTERN_ATTR, uri);
+        }
         filterChain.doFilter(request, response);
-        // record monitor data
+        // 可以记录接口维度的耗时、调用次数、异常率等数据
     }
 
     private void preLoadAllUris() {

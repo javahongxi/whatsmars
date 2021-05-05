@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.boot.sample.web.filter;
+package org.hongxi.whatsmars.boot.sample.web.support;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.util.ContentCachingResponseWrapper;
@@ -13,19 +13,15 @@ import java.util.Objects;
 /**
  * Created by shenhongxi on 2020/10/23.
  */
-public class SampleHttpServletResponseWrapper extends HttpServletResponseWrapper {
+public class ModifiedHttpServletResponse extends HttpServletResponseWrapper {
 
     private ContentCachingResponseWrapper responseWrapper;
 
-    private ResponseBodyHandler responseBodyHandler;
-
     private String responseBody;
 
-    public SampleHttpServletResponseWrapper(HttpServletResponse response,
-                            ResponseBodyHandler responseBodyHandler) {
+    public ModifiedHttpServletResponse(HttpServletResponse response) {
         super(response);
         this.responseWrapper = new ContentCachingResponseWrapper(response);
-        this.responseBodyHandler = responseBodyHandler;
     }
 
     @Override
@@ -87,8 +83,8 @@ public class SampleHttpServletResponseWrapper extends HttpServletResponseWrapper
     public void copyBodyToResponse() throws IOException {
         byte[] rawContentArray = responseWrapper.getContentAsByteArray();
         this.responseBody = new String(rawContentArray);
-        if (rawContentArray != null && rawContentArray.length > 0) {
-            byte[] result = responseBodyHandler.handle(rawContentArray);
+        if (rawContentArray.length > 0) {
+            byte[] result = Crypto.encrypt(rawContentArray);
             write(result);
         }
     }
