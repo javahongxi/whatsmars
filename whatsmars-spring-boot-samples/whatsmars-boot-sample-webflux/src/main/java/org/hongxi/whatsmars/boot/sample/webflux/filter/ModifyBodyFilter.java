@@ -44,7 +44,8 @@ public class ModifyBodyFilter implements WebFilter {
         if (contentType != null && contentType.isCompatibleWith(MediaType.APPLICATION_JSON)) {
             Map<String, Object> decrypted = Crypto.decrypt(params);
             exchange.getAttributes().put(WebUtils.REQUEST_PARAMS_ATTR, decrypted);
-            ServerHttpRequest serverHttpRequest = new ModifiedServerHttpRequest(exchange.getRequest(), decrypted);
+            byte[] rawBody = JacksonUtils.serialize(decrypted);
+            ServerHttpRequest serverHttpRequest = new ModifiedServerHttpRequest(exchange.getRequest(), rawBody);
             return exchange.mutate().request(serverHttpRequest).response(serverHttpResponse).build();
         }
 
