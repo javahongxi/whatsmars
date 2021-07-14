@@ -15,7 +15,7 @@
     <description>elasticjob demo</description>
 
     <properties>
-        <elasticjob.version>3.0.0-RC1</elasticjob.version>
+        <elasticjob.version>3.0.0</elasticjob.version>
     </properties>
 
     <dependencies>
