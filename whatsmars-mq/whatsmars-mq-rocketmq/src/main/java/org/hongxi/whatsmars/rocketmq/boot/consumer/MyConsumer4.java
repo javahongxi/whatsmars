@@ -15,6 +15,6 @@ public class MyConsumer4 implements RocketMQListener<String> {
     @Override
     public void onMessage(String message) {
         log.info("received message: " + message);
-        int a = 1 / 0;
+        throw new RuntimeException("test retry consume");
     }
 }
