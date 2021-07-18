@@ -1,41 +1,58 @@
 package org.hongxi.whatsmars.boot.sample.webflux.support;
 
-import io.netty.buffer.ByteBufAllocator;
 import org.springframework.core.io.buffer.DataBuffer;
-import org.springframework.core.io.buffer.NettyDataBufferFactory;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.http.MediaType;
 import org.springframework.http.server.reactive.ServerHttpRequestDecorator;
+import org.springframework.util.MultiValueMap;
+import org.springframework.util.MultiValueMapAdapter;
+import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by shenhongxi on 2021/4/29.
  */
 public class ModifiedServerHttpRequest extends ServerHttpRequestDecorator {
 
+    private final ServerWebExchange exchange;
+
     private final byte[] rawBody;
 
-    public ModifiedServerHttpRequest(ServerHttpRequest delegate, byte[] rawBody) {
-        super(delegate);
+    public ModifiedServerHttpRequest(ServerWebExchange exchange, byte[] rawBody) {
+        super(exchange.getRequest());
+        this.exchange = exchange;
         this.rawBody = rawBody;
     }
 
     @Override
+    public MultiValueMap<String, String> getQueryParams() {
+        Map<String, List<String>> targetMap = new HashMap<>();
+        MultiValueMap<String, String> all = new MultiValueMapAdapter<>(targetMap);
+        all.addAll(super.getQueryParams());
+        Map<String, Object> params = JacksonUtils.deserialize(this.rawBody, Map.class);
+        params.forEach((k, v) -> {
+            if (v != null) {
+                all.add(k, v.toString());
+            }
+        });
+        return all;
+    }
+
+    @Override
     public Flux<DataBuffer> getBody() {
-        NettyDataBufferFactory nettyDataBufferFactory = new NettyDataBufferFactory(ByteBufAllocator.DEFAULT);
-        DataBuffer buffer = nettyDataBufferFactory.allocateBuffer(this.rawBody.length);
-        buffer.write(this.rawBody);
-        return Flux.just(buffer);
+        return Flux.just(exchange.getResponse().bufferFactory().wrap(this.rawBody));
     }
 
     @Override
     public HttpHeaders getHeaders() {
-        // 必须 new，不能直接操作 super.getHeaders()（readonly）
-        HttpHeaders headers = new HttpHeaders();
-        headers.addAll(super.getHeaders());
+        HttpHeaders headers = HttpHeaders.writableHttpHeaders(super.getHeaders());
         headers.setContentLength(this.rawBody.length);
+        headers.setContentType(MediaType.APPLICATION_JSON);
         return headers;
     }
 
