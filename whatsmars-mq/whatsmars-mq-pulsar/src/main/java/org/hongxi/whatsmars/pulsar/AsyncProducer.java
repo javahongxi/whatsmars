@@ -7,7 +7,7 @@ import org.apache.pulsar.client.api.PulsarClientException;
 /**
  * Created by shenhongxi on 2021/7/20.
  */
-public class DemoProducer {
+public class AsyncProducer {
 
     public static void main(String[] args) throws PulsarClientException {
         PulsarClient client = PulsarClient.builder()
@@ -18,6 +18,8 @@ public class DemoProducer {
                 .topic("my-topic")
                 .create();
 
-        producer.send("My message".getBytes());
+        producer.sendAsync("my-async-message".getBytes()).thenAccept(msgId -> {
+            System.out.println("Message with ID " + msgId + " successfully sent");
+        });
     }
 }

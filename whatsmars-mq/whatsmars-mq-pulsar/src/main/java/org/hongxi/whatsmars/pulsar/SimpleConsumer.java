@@ -8,7 +8,7 @@ import org.apache.pulsar.client.api.PulsarClientException;
 /**
  * Created by shenhongxi on 2021/7/20.
  */
-public class DemoConsumer {
+public class SimpleConsumer {
 
     public static void main(String[] args) throws PulsarClientException {
         PulsarClient client = PulsarClient.builder()
