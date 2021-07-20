@@ -1,0 +1,1 @@
+本地测试使用 `bin/pulsar standalone` 启动 broker 即可
