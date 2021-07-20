@@ -28,6 +28,7 @@
         <module>whatsmars-otter-mq</module>
         <module>whatsmars-mq-kafka-server</module>
         <module>whatsmars-mq-kafka-spring</module>
+        <module>whatsmars-mq-pulsar</module>
     </modules>
 
     <dependencyManagement>
