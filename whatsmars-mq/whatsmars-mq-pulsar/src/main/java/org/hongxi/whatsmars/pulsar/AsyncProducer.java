@@ -18,8 +18,9 @@ public class AsyncProducer {
                 .topic("my-topic")
                 .create();
 
-        producer.sendAsync("my-async-message".getBytes()).thenAccept(msgId -> {
-            System.out.println("Message with ID " + msgId + " successfully sent");
-        });
+        producer.sendAsync("my-async-message".getBytes()).whenComplete((messageId, throwable) -> {
+            System.out.println("Message with ID " + messageId + " successfully sent");
+                }
+        );
     }
 }
