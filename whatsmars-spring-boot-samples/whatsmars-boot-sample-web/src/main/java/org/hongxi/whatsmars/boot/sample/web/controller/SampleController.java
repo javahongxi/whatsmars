@@ -18,7 +18,7 @@ public class SampleController {
 
     @GetMapping({"/hello", "hi"})
     public Result<String> hello(@RequestParam String userId,
-                                @RequestParam @Min(value = 18, message = "age must greater then 18") Integer age) {
+                                @RequestParam @Min(value = 18) Integer age) {
         String hello = userId + "," + age;
         return ResultHelper.newSuccessResult(hello);
     }
