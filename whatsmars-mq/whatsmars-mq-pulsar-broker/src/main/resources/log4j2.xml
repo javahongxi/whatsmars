@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" monitorInterval="2">
+
+    <Properties>
+        <Property name="log_path">/tmp/logs/whatsmars-mq-pulsar-broker</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %5p (%c{1}#%M:%L) %t - %m%n"/>
+        </Console>
+
+        <RollingFile name="debug" fileName="${log_path}/debug.log"
+                     filePattern="${log_path}/debug-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss,SSS} %5p (%c{1}#%M:%L) %t - %m%n</Pattern>
+            </PatternLayout>
+            <Filters>
+                <ThresholdFilter level="DEBUG"/>
+                <ThresholdFilter level="INFO" onMatch="DENY" onMismatch="NEUTRAL"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="100MB"/>
+            </Policies>
+        </RollingFile>
+        <RollingFile name="info" fileName="${log_path}/whatsmars-mq-pulsar-broker.log"
+                     filePattern="${log_path}/whatsmars-mq-pulsar-broker-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss,SSS} %5p (%c{1}#%M:%L) %t - %m%n</Pattern>
+            </PatternLayout>
+            <Filters>
+                <ThresholdFilter level="INFO"/>
+                <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="100MB"/>
+            </Policies>
+        </RollingFile>
+        <RollingFile name="error" fileName="${log_path}/error.log"
+                     filePattern="${log_path}/error-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss,SSS} %5p (%c{1}#%M:%L) %t - %m%n</Pattern>
+            </PatternLayout>
+            <ThresholdFilter level="ERROR"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="100MB"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="debug"/>
+            <AppenderRef ref="info"/>
+            <AppenderRef ref="error"/>
+        </Root>
+    </Loggers>
+
+</Configuration>

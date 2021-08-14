@@ -29,6 +29,7 @@
         <module>whatsmars-mq-kafka-server</module>
         <module>whatsmars-mq-kafka-spring</module>
         <module>whatsmars-mq-pulsar</module>
+        <module>whatsmars-mq-pulsar-broker</module>
     </modules>
 
     <dependencyManagement>
@@ -47,6 +48,12 @@
                 <groupId>org.apache.rocketmq</groupId>
                 <artifactId>rocketmq-tools</artifactId>
                 <version>${rocketmq.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.pulsar</groupId>
+                <artifactId>pulsar-broker</artifactId>
+                <version>${pulsar.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
