@@ -83,11 +83,11 @@ public class MonitorFilter extends OncePerRequestFilter {
     }
 
     private String getUriPattern(HttpServletRequest request) {
-        if (StringUtils.isBlank(request.getRequestURI())) {
+        if (StringUtils.isBlank(request.getServletPath())) {
             return UNKNOWN_URI;
         }
-        if (uriPatterns.containsValue(request.getRequestURI())) {
-            return request.getRequestURI();
+        if (uriPatterns.containsValue(request.getServletPath())) {
+            return request.getServletPath();
         }
         try {
             HandlerExecutionChain handlerExecutionChain =  requestMappingHandlerMapping.getHandler(request);
@@ -108,7 +108,7 @@ public class MonitorFilter extends OncePerRequestFilter {
                     if (patternsRequestCondition == null) {
                         return UNKNOWN_URI;
                     }
-                    List<String> matchingPatterns = patternsRequestCondition.getMatchingPatterns(request.getRequestURI());
+                    List<String> matchingPatterns = patternsRequestCondition.getMatchingPatterns(request.getServletPath());
                     if (CollectionUtils.isNotEmpty(matchingPatterns)) {
                         return matchingPatterns.get(0);
                     }

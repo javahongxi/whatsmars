@@ -6,6 +6,8 @@ spring:
 #      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 
 server:
+  servlet:
+    context-path: /mars
   port: 8080
   tomcat:
     uri-encoding: UTF-8
