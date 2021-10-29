@@ -5,6 +5,7 @@ import org.hongxi.whatsmars.boot.sample.web.exception.BusinessException;
 import org.hongxi.whatsmars.boot.sample.web.support.WebUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.HandlerMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 public class SessionInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        // can use request.getAttribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE) instead
         if (request.getAttribute(WebUtils.PATH_PATTERN_ATTR) == null) {
             return true;
         }
