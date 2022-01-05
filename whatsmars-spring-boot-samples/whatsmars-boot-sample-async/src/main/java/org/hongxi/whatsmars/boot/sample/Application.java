@@ -1,10 +1,12 @@
-package org.hongxi.whatsmars.boot.sample.async;
+package org.hongxi.whatsmars.boot.sample;
 
 import lombok.extern.slf4j.Slf4j;
+import org.hongxi.whatsmars.boot.sample.async.MessageService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -13,6 +15,7 @@ import java.util.concurrent.ExecutionException;
  * Created by shenhongxi on 2020/8/16.
  */
 @Slf4j
+@EnableScheduling
 @EnableAsync
 @SpringBootApplication
 public class Application {
