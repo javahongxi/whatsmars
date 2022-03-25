@@ -29,7 +29,12 @@ public class ModifyBodyFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
+
+        System.out.println("parameter userId: " + request.getParameter("userId"));
         byte[] requestBody = IOUtils.toByteArray(request.getInputStream());
+        System.out.println("requestBody: " + new String(requestBody));
+        System.out.println("parameter userId: " + request.getParameter("userId"));
+
         ModifiedHttpServletRequest wrapperRequest =
                 new ModifiedHttpServletRequest(request, Crypto.decrypt(requestBody));
         ModifiedHttpServletResponse wrapperResponse =

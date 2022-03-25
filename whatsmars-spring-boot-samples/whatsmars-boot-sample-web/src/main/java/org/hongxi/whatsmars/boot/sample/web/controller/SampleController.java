@@ -16,14 +16,24 @@ import javax.validation.constraints.Min;
 @RequestMapping("/sample")
 public class SampleController {
 
-    @GetMapping({"/hello", "hi"})
+    @GetMapping({"/hey", "hi"})
     public Result<String> hello(@RequestParam String userId,
                                 @RequestParam @Min(value = 18) Integer age) {
         String hello = userId + "," + age;
         return ResultHelper.newSuccessResult(hello);
     }
 
+    @GetMapping("/hello")
+    public Result<String> helloGet(@RequestParam String userId) {
+        return ResultHelper.newSuccessResult(userId);
+    }
+
     @PostMapping("/hello")
+    public Result<String> helloPost(@RequestParam String userId) {
+        return ResultHelper.newSuccessResult(userId);
+    }
+
+    @PostMapping("/hello2")
     public Result<User> hello2(@RequestBody User user) {
         return ResultHelper.newSuccessResult(user);
     }
