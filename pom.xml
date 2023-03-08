@@ -51,7 +51,7 @@
         <commons-logging.version>1.2</commons-logging.version>
         <curator.version>5.1.0</curator.version>
         <disruptor.version>3.4.2</disruptor.version>
-        <dubbo.version>2.7.3</dubbo.version>
+        <dubbo.version>2.7.21</dubbo.version>
         <fastjson.version>1.2.70</fastjson.version>
         <fst.version>2.57</fst.version>
         <guava.version>20.0</guava.version>
