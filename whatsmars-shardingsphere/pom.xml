@@ -25,9 +25,9 @@
             <version>${shardingsphere.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.shardingsphere</groupId>
-            <artifactId>sharding-core</artifactId>
-            <version>3.1.0</version>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>shardingsphere-sharding-core</artifactId>
+            <version>${shardingsphere.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
