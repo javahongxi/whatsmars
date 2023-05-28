@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: sharding
+    active: sharding2
 mybatis:
   config-location: classpath:META-INF/mybatis-config.xml
 
@@ -43,6 +43,47 @@ spring:
             inline:
               sharding-column: order_id
               algorithm-expression: t_order_item_${order_id % 2}
+          key-generator-column-name: order_item_id
+
+---
+spring:
+  config:
+    activate:
+      on-profile: sharding2
+  shardingsphere:
+    datasource:
+      names: ds0,ds1
+      ds0:
+        type: org.apache.commons.dbcp2.BasicDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/demo_ds_0
+        username: root
+        password: root1234
+      ds1:
+        type: org.apache.commons.dbcp2.BasicDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/demo_ds_1
+        username: root
+        password: root1234
+    sharding:
+      default-database-strategy:
+        inline:
+          sharding-column: user_id
+          algorithm-expression: ds${user_id % 2}
+      tables:
+        t_order:
+          actual-data-nodes: ds${0..1}.t_order_${0..1}
+          table-strategy:
+            standard:
+              sharding-column: order_id
+              precise-algorithm-class-name: org.hongxi.whatsmars.shardingsphere.rule.MyTablePreciseShardingAlgorithm
+          key-generator-column-name: order_id
+        t_order_item:
+          actual-data-nodes: ds${0..1}.t_order_item_${0..1}
+          table-strategy:
+            standard:
+              sharding-column: order_id
+              precise-algorithm-class-name: org.hongxi.whatsmars.shardingsphere.rule.MyTablePreciseShardingAlgorithm
           key-generator-column-name: order_item_id
 
 ---
