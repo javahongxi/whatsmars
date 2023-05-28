@@ -15,13 +15,13 @@
     <description>shardingjdbc demo</description>
 
     <properties>
-        <shardingsphere.version>4.0.1</shardingsphere.version>
+        <shardingsphere.version>5.3.2</shardingsphere.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.apache.shardingsphere</groupId>
-            <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+            <artifactId>shardingsphere-jdbc-core</artifactId>
             <version>${shardingsphere.version}</version>
         </dependency>
         <dependency>
@@ -29,8 +29,8 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
         </dependency>
         <dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>

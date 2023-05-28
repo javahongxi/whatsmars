@@ -13,13 +13,13 @@ spring:
     datasource:
       names: ds0,ds1
       ds0:
-        type: org.apache.commons.dbcp.BasicDataSource
+        type: org.apache.commons.dbcp2.BasicDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
         url: jdbc:mysql://127.0.0.1:3306/demo_ds_0
         username: root
         password: root1234
       ds1:
-        type: org.apache.commons.dbcp.BasicDataSource
+        type: org.apache.commons.dbcp2.BasicDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
         url: jdbc:mysql://127.0.0.1:3306/demo_ds_1
         username: root
@@ -67,13 +67,13 @@ spring:
       ds_0:
         driver-class-name: com.mysql.cj.jdbc.Driver
         password: ''
-        type: org.apache.commons.dbcp.BasicDataSource
+        type: org.apache.commons.dbcp2.BasicDataSource
         url: jdbc:mysql://localhost:3306/demo_ds_0
         username: root
       ds_1:
         driver-class-name: com.mysql.cj.jdbc.Driver
         password: ''
-        type: org.apache.commons.dbcp.BasicDataSource
+        type: org.apache.commons.dbcp2.BasicDataSource
         url: jdbc:mysql://localhost:3306/demo_ds_1
         username: root
       names: ds_0,ds_1
@@ -104,7 +104,7 @@ spring:
       ds:
         driver-class-name: com.mysql.cj.jdbc.Driver
         password: ''
-        type: org.apache.commons.dbcp.BasicDataSource
+        type: org.apache.commons.dbcp2.BasicDataSource
         url: jdbc:mysql://localhost:3306/demo_ds
         username: root
       names: ds
@@ -124,19 +124,19 @@ spring:
       ds_master:
         driver-class-name: com.mysql.cj.jdbc.Driver
         password: ''
-        type: org.apache.commons.dbcp.BasicDataSource
+        type: org.apache.commons.dbcp2.BasicDataSource
         url: jdbc:mysql://localhost:3306/demo_ds_master
         username: root
       ds_slave_0:
         driver-class-name: com.mysql.cj.jdbc.Driver
         password: ''
-        type: org.apache.commons.dbcp.BasicDataSource
+        type: org.apache.commons.dbcp2.BasicDataSource
         url: jdbc:mysql://localhost:3306/demo_ds_slave_0
         username: root
       ds_slave_1:
         driver-class-name: com.mysql.cj.jdbc.Driver
         password: ''
-        type: org.apache.commons.dbcp.BasicDataSource
+        type: org.apache.commons.dbcp2.BasicDataSource
         url: jdbc:mysql://localhost:3306/demo_ds_slave_1
         username: root
       names: ds_master,ds_slave_0,ds_slave_1
@@ -178,37 +178,37 @@ spring:
       ds_master_0:
         driver-class-name: com.mysql.cj.jdbc.Driver
         password: ''
-        type: org.apache.commons.dbcp.BasicDataSource
+        type: org.apache.commons.dbcp2.BasicDataSource
         url: jdbc:mysql://localhost:3306/demo_ds_master_0
         username: root
       ds_master_0_slave_0:
         driver-class-name: com.mysql.cj.jdbc.Driver
         password: ''
-        type: org.apache.commons.dbcp.BasicDataSource
+        type: org.apache.commons.dbcp2.BasicDataSource
         url: jdbc:mysql://localhost:3306/demo_ds_master_0_slave_0
         username: root
       ds_master_0_slave_1:
         driver-class-name: com.mysql.cj.jdbc.Driver
         password: ''
-        type: org.apache.commons.dbcp.BasicDataSource
+        type: org.apache.commons.dbcp2.BasicDataSource
         url: jdbc:mysql://localhost:3306/demo_ds_master_0_slave_1
         username: root
       ds_master_1:
         driver-class-name: com.mysql.cj.jdbc.Driver
         password: ''
-        type: org.apache.commons.dbcp.BasicDataSource
+        type: org.apache.commons.dbcp2.BasicDataSource
         url: jdbc:mysql://localhost:3306/demo_ds_master_1
         username: root
       ds_master_1_slave_0:
         driver-class-name: com.mysql.cj.jdbc.Driver
         password: ''
-        type: org.apache.commons.dbcp.BasicDataSource
+        type: org.apache.commons.dbcp2.BasicDataSource
         url: jdbc:mysql://localhost:3306/demo_ds_master_1_slave_0
         username: root
       ds_master_1_slave_1:
         driver-class-name: com.mysql.cj.jdbc.Driver
         password: ''
-        type: org.apache.commons.dbcp.BasicDataSource
+        type: org.apache.commons.dbcp2.BasicDataSource
         url: jdbc:mysql://localhost:3306/demo_ds_master_1_slave_1
         username: root
       names: ds_master_0,ds_master_1,ds_master_0_slave_0,ds_master_0_slave_1,ds_master_1_slave_0,ds_master_1_slave_1
