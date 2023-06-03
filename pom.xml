@@ -42,7 +42,7 @@
     <properties>
         <java.version>11</java.version>
 
-        <commons-beanutils.version>1.9.3</commons-beanutils.version>
+        <commons-beanutils.version>1.9.4</commons-beanutils.version>
         <commons-collections.version>3.2.2</commons-collections.version>
         <commons-fileupload.version>1.3.3</commons-fileupload.version>
         <commons-io.version>2.7</commons-io.version>
