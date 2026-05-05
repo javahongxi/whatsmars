@@ -8,8 +8,6 @@
 - [Apache RocketMQ](https://rocketmq.apache.org/) / [Apache Kafka](http://kafka.apache.org/) 削峰填谷，异步解耦，顺序消息，分布式事务消息，大数据分析，分布式模缓存同步
 - [Elasticsearch](https://www.elastic.co) *搜索、分析和存储您的数据*
 
-👻 [start.spring.io](https://start.spring.io) 👻 [wiki.hongxi.org](http://wiki.hongxi.org)
-
 ### Modules intro
 Module | Intro
 ------ | ------
