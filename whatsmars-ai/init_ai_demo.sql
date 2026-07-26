@@ -1,5 +1,6 @@
 -- brew install postgresql@18
 -- brew install pgvector
+-- brew services start postgresql@18
 -- createdb $USER
 -- psql -f init_ai_demo.sql
 
