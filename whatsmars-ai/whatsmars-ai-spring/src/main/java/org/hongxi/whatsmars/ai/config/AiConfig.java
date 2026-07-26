@@ -2,7 +2,6 @@ package org.hongxi.whatsmars.ai.config;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.model.ChatModel;
-import org.springframework.ai.deepseek.DeepSeekChatModel;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,7 +15,6 @@ import org.springframework.context.annotation.Primary;
  * 定义不同场景的 ChatClient：
  * - 默认的 chatClient 使用 application.yml 中配置的模型（qwen-plus，纯文本）
  * - visionChatClient 使用支持多模态的模型（如 qwen3.7-plus），用于图像识别
- * - deepSeekChatClient 使用 DeepSeek 模型
  * </p>
  *
  * @author hongxi
@@ -50,14 +48,5 @@ public class AiConfig {
         return builder
                 .defaultOptions(OpenAiChatOptions.builder().model(visionModel).build())
                 .build();
-    }
-
-    /**
-     * 使用 ChatClient.builder(deepSeekChatModel) 直接基于 DeepSeekChatModel 构建，
-     * 避免使用共享的 ChatClient.Builder（底层绑定 @Primary 的 OpenAiChatModel）。
-     */
-    @Bean
-    public ChatClient deepSeekChatClient(DeepSeekChatModel deepSeekChatModel) {
-        return ChatClient.builder(deepSeekChatModel).build();
     }
 }

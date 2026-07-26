@@ -1,8 +1,8 @@
-package org.hongxi.whatsmars.ai.controller;
+package org.hongxi.whatsmars.ai.deepseek.controller;
 
-import org.hongxi.whatsmars.ai.tool.SearchTools;
-import org.hongxi.whatsmars.ai.tool.TimeTools;
-import org.hongxi.whatsmars.ai.tool.WeatherTools;
+import org.hongxi.whatsmars.ai.deepseek.tool.SearchTools;
+import org.hongxi.whatsmars.ai.deepseek.tool.TimeTools;
+import org.hongxi.whatsmars.ai.deepseek.tool.WeatherTools;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.client.ChatClient;
@@ -20,16 +20,16 @@ public class DeepSeekController {
 
     private static final Logger log = LoggerFactory.getLogger(DeepSeekController.class);
 
-    private final ChatClient deepSeekChatClient;
+    private final ChatClient chatClient;
     private final WeatherTools weatherTools;
     private final TimeTools timeTools;
     private final SearchTools searchTools;
 
-    public DeepSeekController(ChatClient deepSeekChatClient,
+    public DeepSeekController(ChatClient.Builder builder,
                               WeatherTools weatherTools,
                               TimeTools timeTools,
                               SearchTools searchTools) {
-        this.deepSeekChatClient = deepSeekChatClient;
+        this.chatClient = builder.build();
         this.weatherTools = weatherTools;
         this.timeTools = timeTools;
         this.searchTools = searchTools;
@@ -41,7 +41,7 @@ public class DeepSeekController {
     @RequestMapping("/chat")
     public String chat(@RequestParam String message) {
         log.info("收到聊天请求: {}", message);
-        return deepSeekChatClient.prompt()
+        return chatClient.prompt()
                 .user(message)
                 .call()
                 .content();
@@ -53,7 +53,7 @@ public class DeepSeekController {
     @RequestMapping("/chat/stream")
     public ResponseEntity<Flux<String>> chatStream(@RequestParam String message) {
         log.info("开始流式对话: {}", message);
-        Flux<String> flux = deepSeekChatClient.prompt()
+        Flux<String> flux = chatClient.prompt()
                 .user(message)
                 .stream()
                 .content()
@@ -74,7 +74,7 @@ public class DeepSeekController {
     @RequestMapping("/system-message")
     public String chatWithSystemMessage(@RequestParam String message) {
         log.info("System Message 对话: {}", message);
-        String response = deepSeekChatClient.prompt()
+        String response = chatClient.prompt()
                 .system("你是一个资深的 Java 架构师，擅长设计高并发、高可用的分布式系统。回答要专业、深入。")
                 .options(OpenAiChatOptions.builder().temperature(0.4).build()) // 低温度=更准确、更快回答
                 .user(message)
@@ -93,7 +93,7 @@ public class DeepSeekController {
     @RequestMapping("/creative")
     public String creativeChat(@RequestParam String message) {
         log.info("创意性对话: {}", message);
-        String response = deepSeekChatClient.prompt()
+        String response = chatClient.prompt()
                 .system("你是一个富有创造力的作家，擅长写故事和诗歌。")
                 .options(OpenAiChatOptions.builder().temperature(0.9).build()) // 高温度=更有创造力
                 .user(message)
@@ -122,7 +122,7 @@ public class DeepSeekController {
     @RequestMapping("/agent/chat")
     public String agentChat(@RequestParam String message) {
         log.info("Agent 收到问题: {}", message);
-        String response = deepSeekChatClient.prompt()
+        String response = chatClient.prompt()
                 .system("""
                         你是一个智能助手，可以使用各种工具来帮助用户解决问题。
                         
@@ -161,7 +161,7 @@ public class DeepSeekController {
         try {
             Resource imageResource = new UrlResource(imageUrl);
 
-            String description = deepSeekChatClient.prompt()
+            String description = chatClient.prompt()
                     .options(OpenAiChatOptions.builder().model("deepseek-v4-flash").build())
                     .user(userSpec -> userSpec
                             .text(prompt)

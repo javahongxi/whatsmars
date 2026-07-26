@@ -25,13 +25,6 @@ spring:
           model: text-embedding-v3 # Embedding 模型（用于 RAG 向量化）
       vision:
         model: qwen3.7-plus # 多模态视觉模型（需支持图像输入）
-    deepseek:
-      api-key: ${DEEPSEEK_API_KEY:}
-      base-url: https://api.deepseek.com
-      chat:
-        options:
-          model: deepseek-v4-pro
-          temperature: 0.7
     vectorstore:
       pgvector:
         dimensions: 1024           # text-embedding-v3 向量维度

@@ -1,0 +1,13 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: whatsmars-ai-deepseek
+  ai:
+    deepseek:
+      api-key: ${DEEPSEEK_API_KEY:}
+      base-url: https://api.deepseek.com
+      chat:
+        options:
+          model: deepseek-v4-pro
+          temperature: 0.7

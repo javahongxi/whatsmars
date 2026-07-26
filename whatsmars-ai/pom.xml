@@ -16,6 +16,8 @@
         <module>whatsmars-ai-spring</module>
         <module>whatsmars-ai-langchain4j</module>
         <module>whatsmars-ai-alibaba</module>
+        <module>whatsmars-ai-mcp-client</module>
+        <module>whatsmars-ai-deepseek</module>
     </modules>
 
     <properties>
