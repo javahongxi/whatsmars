@@ -15,7 +15,7 @@
 
 ### Spring AI 核心功能（whatsmars-ai-spring）
 
-> 本项目基于 Spring AI 1.1.x，支持多模型提供商：阿里通义千问（Qwen）+ DeepSeek。
+> 本项目基于 Spring AI 1.1.x，使用阿里通义千问（Qwen）模型。
 >
 > **大部分接口已改为流式响应（SSE）**，浏览器访问 `http://localhost:8083` 即可体验。
 
@@ -127,19 +127,7 @@ curl -X POST "http://localhost:8083/ai/vision/analyze-url" \
 
 ---
 
-#### 8. DeepSeek 模型集成
-
-多模型提供商共存，通过不同 `ChatClient` Bean 实现模型切换。
-
-```bash
-curl "http://localhost:8083/deepseek/chat?message=你好"
-curl "http://localhost:8083/deepseek/chat/stream?message=武汉简介"
-curl "http://localhost:8083/deepseek/agent/chat?message=北京天气怎么样？"
-```
-
----
-
-#### 9. ChatMemory 多轮对话记忆（流式）
+#### 8. ChatMemory 多轮对话记忆（流式）
 
 基于 `spring-ai-starter-model-chat-memory-repository-jdbc`，对话历史持久化到 PostgreSQL，支持会话隔离。
 
@@ -165,7 +153,7 @@ curl -X DELETE http://localhost:8083/ai/memory/session-001
 
 ---
 
-#### 10. PromptTemplate 提示词模板（流式）
+#### 9. PromptTemplate 提示词模板（流式）
 
 使用 Spring AI 的 `PromptTemplate` 进行 `{variable}` 占位符替换，**所有接口均为流式 SSE**。
 
@@ -189,7 +177,7 @@ curl -X POST http://localhost:8083/ai/prompt/code \
 
 ---
 
-#### 11. RAG（检索增强生成）（流式）
+#### 10. RAG（检索增强生成）（流式）
 
 前置条件：PostgreSQL + pgvector
 ```shell
