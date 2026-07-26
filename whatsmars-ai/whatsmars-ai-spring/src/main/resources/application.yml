@@ -14,7 +14,7 @@ spring:
     password: ai_user
   ai:
     openai:
-      api-key: ${OPENAI_API_KEY}
+      api-key: ${OPENAI_API_KEY:}
       base-url: https://dashscope.aliyuncs.com/compatible-mode
       chat:
         options:
@@ -26,7 +26,7 @@ spring:
       vision:
         model: qwen3.7-plus # 多模态视觉模型（需支持图像输入）
     deepseek:
-      api-key: ${DEEPSEEK_API_KEY}
+      api-key: ${DEEPSEEK_API_KEY:}
       base-url: https://api.deepseek.com
       chat:
         options:

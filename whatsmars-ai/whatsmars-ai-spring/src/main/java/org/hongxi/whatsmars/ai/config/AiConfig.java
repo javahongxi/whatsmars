@@ -53,13 +53,11 @@ public class AiConfig {
     }
 
     /**
-     * DeepSeek ChatClient
+     * 使用 ChatClient.builder(deepSeekChatModel) 直接基于 DeepSeekChatModel 构建，
+     * 避免使用共享的 ChatClient.Builder（底层绑定 @Primary 的 OpenAiChatModel）。
      */
     @Bean
-    public ChatClient deepSeekChatClient(ChatClient.Builder builder,
-                                         DeepSeekChatModel deepSeekChatModel) {
-        return builder
-                .defaultOptions(OpenAiChatOptions.builder().model(deepSeekChatModel.getDefaultOptions().getModel()).build())
-                .build();
+    public ChatClient deepSeekChatClient(DeepSeekChatModel deepSeekChatModel) {
+        return ChatClient.builder(deepSeekChatModel).build();
     }
 }
