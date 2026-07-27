@@ -16,9 +16,9 @@ CREATE DATABASE ai_demo OWNER ai_user;
 -- 4. 启用 pgvector 扩展（必须先连到 ai_demo 数据库再启用）
 CREATE EXTENSION IF NOT EXISTS vector;
 
--- 5. 初始化 vector_store 表
+-- 5. 初始化 langchain4j_vector_store 表
 -- 维度根据你使用的模型调整，Qwen text-embedding-v3 为 1024
-CREATE TABLE IF NOT EXISTS vector_store (
+CREATE TABLE IF NOT EXISTS langchain4j_vector_store (
                                             id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     content TEXT NOT NULL,
     embedding VECTOR(1024),
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS vector_store (
 
 -- 6. 为向量字段创建索引（极大提升检索速度）
 -- CREATE INDEX IF NOT EXISTS vector_store_embedding_idx
---     ON vector_store
+--     ON langchain4j_vector_store
 --     USING ivfflat (embedding vector_cosine_ops)
 --     WITH (lists = 100);
 
