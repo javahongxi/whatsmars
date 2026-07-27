@@ -32,6 +32,7 @@
         <module>whatsmars-grpc</module>
         <module>whatsmars-scheduling</module>
         <module>whatsmars-arthas</module>
+        <module>whatsmars-ai</module>
     </modules>
 
     <!--这里的properties会覆盖父pom里的重名的配置-->
