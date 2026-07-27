@@ -27,7 +27,6 @@
         <module>whatsmars-elasticsearch</module>
         <module>whatsmars-netty</module>
         <module>whatsmars-sentinel</module>
-        <module>whatsmars-ai</module>
         <module>whatsmars-curator</module>
         <module>whatsmars-nacos</module>
         <module>whatsmars-grpc</module>
