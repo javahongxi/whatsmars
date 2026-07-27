@@ -10,4 +10,4 @@
 
 - **whatsmars-ai** — 聚焦 LangChain4j 生态，深度探索其原理和应用
 - **spring-cloud-samples** — 聚焦 Spring AI 2.0 在微服务场景的应用
-- **babi 系列** — 面向开发者的 AI Coding Agent，探索 Agent 开发模式
+- **babi 系列** — 面向开发者的 AI Coding Agent，实践 Agent 架构模式
