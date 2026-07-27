@@ -1,17 +1,5 @@
-## AI 集成的"三轨策略"
-> 如需体验 Spring AI 2.0，请访问 https://github.com/javahongxi/spring-cloud-samples
-
-### 模块概览
-
-| 模块                       | 框架                    | 端口   | 说明                                             |
-|--------------------------|-----------------------|------|------------------------------------------------|
-| whatsmars-ai-alibaba     | Spring AI Alibaba 1.x | 8081 | Spring AI Alibaba Agent Graph 框架演示（ReactAgent） |
-| whatsmars-ai-langchain4j | LangChain4j           | 8082 | LangChain4j 功能演示（流式对话/工具调用/RAG/记忆）             |
-| whatsmars-ai-spring      | Spring AI 1.1.x       | 8083 | Spring AI 核心功能演示（Chat/Tool/RAG/Memory 等）       |
-
-> 三个模块均内置 Web 演示页面，启动后直接在浏览器中体验全部功能。
-
----
+## AI 集成的"双轨策略"
+> Spring AI 更多高级功能，请访问 https://github.com/javahongxi/spring-cloud-samples
 
 ### Spring AI 核心功能（whatsmars-ai-spring）
 
@@ -23,7 +11,7 @@
 
 启动后访问 [http://localhost:8083](http://localhost:8083)，页面包含以下 Tab：
 
-基础对话 | 流式对话 | System消息 | Few-Shot | 创意对话 | 工具调用 | ReAct Agent | RAG 问答 | 对话记忆 | 提示词模板 | 结构化输出 | 缓存 | 视觉
+基础对话 | 流式对话 | System消息 | Few-Shot | 创意对话 | 工具调用 | ReAct Agent | RAG 问答 | 对话记忆 | 结构化输出
 
 ---
 
@@ -95,39 +83,7 @@ curl "http://localhost:8083/ai/react-agent/chat?message=北京天气怎么样？
 
 ---
 
-#### 6. 多模态视觉理解
-
-支持图片分析、OCR、图表解读、代码截图转代码、多图片对比。
-
-| 接口                                | 说明       |
-|-----------------------------------|----------|
-| `POST /ai/vision/analyze-url`     | URL 图片分析 |
-| `POST /ai/vision/analyze-upload`  | 上传图片分析   |
-| `POST /ai/vision/ocr`             | OCR 文字识别 |
-| `POST /ai/vision/chart-analysis`  | 图表分析     |
-| `POST /ai/vision/code-from-image` | 代码截图转代码  |
-| `POST /ai/vision/compare`         | 多图片对比    |
-
-```bash
-curl -X POST "http://localhost:8083/ai/vision/analyze-url" \
-  -d "imageUrl=https://imagecloud.thepaper.cn/thepaper/image/333/857/150.jpg"
-```
-
----
-
-#### 7. AI 缓存
-
-使用缓存优化 AI 响应性能。
-
-| 方法     | 路径                    | 说明       |
-|--------|-----------------------|----------|
-| GET    | `/ai/cache/chat`      | 带缓存的聊天   |
-| GET    | `/ai/cache/benchmark` | 缓存性能对比测试 |
-| DELETE | `/ai/cache/clear-all` | 清除所有缓存   |
-
----
-
-#### 8. ChatMemory 多轮对话记忆（流式）
+#### 6. ChatMemory 多轮对话记忆（流式）
 
 基于 `spring-ai-starter-model-chat-memory-repository-jdbc`，对话历史持久化到 PostgreSQL，支持会话隔离。
 
@@ -153,31 +109,7 @@ curl -X DELETE http://localhost:8083/ai/memory/session-001
 
 ---
 
-#### 9. PromptTemplate 提示词模板（流式）
-
-使用 Spring AI 的 `PromptTemplate` 进行 `{variable}` 占位符替换，**所有接口均为流式 SSE**。
-
-| 接口                        | 说明         |
-|---------------------------|------------|
-| `POST /ai/prompt/product` | 产品描述生成（流式） |
-| `POST /ai/prompt/code`    | 代码解释（流式）   |
-| `POST /ai/prompt/custom`  | 自定义模板（流式）  |
-
-```shell
-# 产品描述生成
-curl -X POST http://localhost:8083/ai/prompt/product \
-  -H "Content-Type: application/json" \
-  -d '{"product":"Spring AI 实战手册","category":"技术书籍","tone":"专业且幽默"}'
-
-# 代码解释
-curl -X POST http://localhost:8083/ai/prompt/code \
-  -H "Content-Type: application/json" \
-  -d '{"code":"public record Point(int x, int y) {}","language":"Java","level":"初学者"}'
-```
-
----
-
-#### 10. RAG（检索增强生成）（流式）
+#### 7. RAG（检索增强生成）（流式）
 
 前置条件：PostgreSQL + pgvector
 ```shell
@@ -204,24 +136,6 @@ curl --get --data-urlencode "question=What is Spring AI?" "http://localhost:8083
 ```
 
 > 完整 RAG 流程：文档摄入 → TokenTextSplitter 自动分块 → PgVector 向量化存储 → 相似性检索 → 上下文增强 Prompt → LLM 流式生成。当知识库无相关文档时自动降级为纯 LLM 回答。
-
----
-
-### Spring AI Alibaba Agent（whatsmars-ai-alibaba）
-
-> 基于 Spring AI Alibaba 1.x 的 Agent Graph 框架，演示如何构建有状态的 ReAct 智能体。
-
-#### 核心特性
-
-- **ReactAgent**：基于 Graph 有状态工作流的 ReAct 推理循环
-- **MemorySaver**：内置记忆管理，支持多轮会话上下文保持
-- **线程隔离**：通过 `threadId` 实现多会话完全隔离
-- **工具集成**：复用 Spring AI `@Tool` 注解注册工具
-
-> 与 Spring AI 原生 ReAct Agent 的区别：Spring AI Alibaba 的 ReactAgent 基于 Graph 有状态工作流，
-> 支持条件路由、中断恢复、多智能体编排等高级特性，更适合构建复杂 Agent 应用。
-
-启动后会自动打开演示页面 http://localhost:8081/chatui/index.html
 
 ---
 
@@ -304,24 +218,3 @@ curl "http://localhost:8082/ai/memory/chat?sessionId=user1&message=我叫什么�
 curl "http://localhost:8082/ai/memory/chat?sessionId=user2&message=我叫什么名字？"
 ```
 
----
-
-### 其他
-
-**RediSearch 安装方式**
-
-```shell
-brew install redis
-brew services start redis
-redis-cli module list
-mkdir -p /opt/homebrew/lib/redis/modules
-open https://packages.redis.io/homebrew/redis-oss-8.8.0-arm64.zip
-unzip -o ~/Downloads/redis-oss-8.8.0-arm64.zip -d /tmp/redis-oss-8.8.0-arm64
-cp /tmp/redis-oss-8.8.0-arm64/lib/redis/modules/*.so /opt/homebrew/lib/redis/modules/
-echo "loadmodule /opt/homebrew/lib/redis/modules/redisearch.so" >> /opt/homebrew/etc/redis.conf
-echo "loadmodule /opt/homebrew/lib/redis/modules/rejson.so" >> /opt/homebrew/etc/redis.conf
-brew install llvm@18
-brew services restart redis
-redis-cli module list
-rm -rf /tmp/redis-oss-8.8.0-arm64
-```

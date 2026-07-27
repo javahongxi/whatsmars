@@ -1,0 +1,48 @@
+server:
+  port: 8887
+spring:
+  application:
+    name: whatsmars-ai-langchain4j
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ai_demo
+    username: ai_user
+    password: ai_user
+  jpa:
+    hibernate:
+      ddl-auto: update   # 自动创建/更新 chat_memory 表
+    show-sql: false
+    open-in-view: false
+
+langchain4j:
+  open-ai:
+    chat-model:
+      base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
+      api-key: ${OPENAI_API_KEY}
+      model-name: qwen-plus
+      log-requests: false
+      log-responses: false
+      temperature: 0.7
+      top-p: 0.9
+    streaming-chat-model:
+      base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
+      api-key: ${OPENAI_API_KEY}
+      model-name: qwen-plus
+      log-requests: false
+      log-responses: false
+      temperature: 0.7
+      top-p: 0.9
+    embedding-model:
+      base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
+      api-key: ${OPENAI_API_KEY}
+      model-name: text-embedding-v3
+      log-requests: false
+      log-responses: false
+
+pgvector:
+  host: localhost
+  port: 5432
+  database: ai_demo
+  user: ai_user
+  password: ai_user
+  table: langchain4j_vector_store
+  dimension: 1024  # text-embedding-v3 默认维度
