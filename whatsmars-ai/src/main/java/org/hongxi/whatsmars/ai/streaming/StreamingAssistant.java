@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.ai.stream;
+package org.hongxi.whatsmars.ai.streaming;
 
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.TokenStream;
@@ -13,7 +13,7 @@ import dev.langchain4j.service.spring.AiService;
  * @author hongxi
  */
 @AiService
-public interface StreamAssistant {
+public interface StreamingAssistant {
 
     /**
      * 流式对话
