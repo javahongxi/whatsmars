@@ -21,15 +21,15 @@ import java.util.concurrent.Executors;
  */
 @RestController
 @RequestMapping("/ai/stream")
-public class StreamingController {
+public class StreamController {
 
-    private static final Logger log = LoggerFactory.getLogger(StreamingController.class);
+    private static final Logger log = LoggerFactory.getLogger(StreamController.class);
     
     // 用于异步处理流式响应
     private static final ExecutorService executor = Executors.newCachedThreadPool();
 
     @Autowired
-    private StreamingAssistant assistant;
+    private StreamAssistant assistant;
 
     /**
      * 流式对话接口

@@ -86,28 +86,14 @@
     </div></header>
 
     <div class="tab-bar"><div class="tab-inner">
-        <button class="tab-btn active" onclick="switchTab('simple')">基础对话</button>
-        <button class="tab-btn" onclick="switchTab('stream')">流式对话</button>
+        <button class="tab-btn active" onclick="switchTab('stream')">流式对话</button>
         <button class="tab-btn" onclick="switchTab('tool')">工具调用</button>
         <button class="tab-btn" onclick="switchTab('rag')">RAG 问答</button>
         <button class="tab-btn" onclick="switchTab('memory')">对话记忆</button>
     </div></div>
 
-    <!-- 基础对话 -->
-    <div id="tab-simple" class="tab-content active">
-        <div class="content-inner">
-            <div class="desc">基础 AI 对话接口，调用 <code>GET /ai/chat?message=...</code> 返回完整回复。</div>
-            <div class="examples">
-                <button onclick="quickSend('simple','你好，请介绍一下你自己')">你好，介绍下自己</button>
-                <button onclick="quickSend('simple','Java 17 有哪些新特性？')">Java 17 新特性</button>
-                <button onclick="quickSend('simple','用一句话解释什么是微服务')">什么是微服务</button>
-            </div>
-            <div class="msg-area" id="msgs-simple"></div>
-        </div>
-    </div>
-
     <!-- 流式对话 -->
-    <div id="tab-stream" class="tab-content">
+    <div id="tab-stream" class="tab-content active">
         <div class="content-inner">
             <div class="desc">基于 TokenStream + SSE 实现流式输出，调用 <code>GET /ai/stream/chat?message=...</code>，实时显示 AI 逐字回复。</div>
             <div class="examples">
@@ -183,7 +169,7 @@
     </div>
 
     <script>
-        let currentTab = 'simple';
+        let currentTab = 'stream';
         const userInput = document.getElementById('user-input');
         const sendBtn = document.getElementById('send-btn');
 
@@ -264,51 +250,18 @@
             userInput.style.height = 'auto';
             sendBtn.disabled = true;
 
-            if (tab === 'stream' || tab === 'rag' || tab === 'tool' || tab === 'memory') {
-                let url;
-                if (tab === 'memory') {
-                    const sessionId = document.getElementById('session-id').value.trim() || 'default';
-                    url = '/ai/memory/chat?sessionId=' + encodeURIComponent(sessionId) + '&message=' + encodeURIComponent(message);
-                } else {
-                    const endpoints = { stream: '/ai/stream/chat', rag: '/ai/rag/chat', tool: '/ai/tool/chat' };
-                    url = endpoints[tab] + '?message=' + encodeURIComponent(message);
-                }
-                sendStreamRequest(message, url, tab);
+            let url;
+            if (tab === 'memory') {
+                const sessionId = document.getElementById('session-id').value.trim() || 'default';
+                url = '/ai/memory/chat?sessionId=' + encodeURIComponent(sessionId) + '&message=' + encodeURIComponent(message);
             } else {
-                sendSimpleRequest(tab, message);
+                const endpoints = { stream: '/ai/stream/chat', rag: '/ai/rag/chat', tool: '/ai/tool/chat' };
+                url = endpoints[tab] + '?message=' + encodeURIComponent(message);
             }
+            sendStreamRequest(message, url, tab);
         }
 
-        // Simple - single request
-        function sendSimpleRequest(tab, message) {
-            const endpoints = { simple: '/ai/chat' };
-            const url = endpoints[tab] + '?message=' + encodeURIComponent(message);
-
-            // Show typing indicator
-            const msgDiv = addMessage(tab, 'assistant', '');
-            const indicator = document.createElement('div');
-            indicator.className = 'typing-indicator';
-            indicator.innerHTML = '<span></span><span></span><span></span>';
-            msgDiv.appendChild(indicator);
-
-            fetch(url)
-                .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
-                .then(text => {
-                    indicator.remove();
-                    renderMarkdown(msgDiv, text);
-                    sendBtn.disabled = false;
-                    userInput.focus();
-                })
-                .catch(err => {
-                    indicator.remove();
-                    msgDiv.className = 'msg error';
-                    msgDiv.textContent = '⚠️ 请求失败: ' + err.message;
-                    sendBtn.disabled = false;
-                    userInput.focus();
-                });
-        }
-
-        // Stream - SSE (reusable for stream / rag / function / memory tabs)
+        // Stream - SSE (reusable for stream / rag / tool / memory tabs)
         // url is already built by caller (some tabs need extra params like sessionId)
         function sendStreamRequest(message, url, tab) {
             const msgArea = document.getElementById('msgs-' + tab);

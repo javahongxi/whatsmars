@@ -13,7 +13,7 @@ import dev.langchain4j.service.spring.AiService;
  * @author hongxi
  */
 @AiService
-public interface StreamingAssistant {
+public interface StreamAssistant {
 
     /**
      * 流式对话
