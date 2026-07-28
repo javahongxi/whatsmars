@@ -1,10 +1,9 @@
-package org.hongxi.whatsmars.ai.config;
+package org.hongxi.whatsmars.ai.tc;
 
 import dev.langchain4j.agent.tool.ToolExecutionRequest;
 import dev.langchain4j.data.message.ToolExecutionResultMessage;
 import dev.langchain4j.model.chat.StreamingChatModel;
 import dev.langchain4j.service.AiServices;
-import org.hongxi.whatsmars.ai.tc.ToolCallingAssistant;
 import org.hongxi.whatsmars.ai.tool.HttpRequestTool;
 import org.hongxi.whatsmars.ai.tool.SystemInfoTool;
 import org.hongxi.whatsmars.ai.tool.TimeTool;
