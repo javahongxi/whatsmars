@@ -9,3 +9,4 @@ spring:
         name: whatsmars-mcp    # MCP 服务名称，Client 连接时使用
         version: 1.0.0         # 服务版本
         type: SYNC             # 运行模式：SYNC（同步）或 ASYNC（异步）
+        protocol: streamable
