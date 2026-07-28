@@ -55,6 +55,7 @@
         <grpc.version>1.81.0</grpc.version>
         <guava.version>33.6.0-jre</guava.version>
         <hessian-lite.version>4.0.4</hessian-lite.version>
+        <langchain4j-bom.version>1.18.0</langchain4j-bom.version>
         <msgpack.version>0.9.12</msgpack.version>
         <mybatis-spring.version>3.0.5</mybatis-spring.version>
         <mybatis-plus.version>3.5.15</mybatis-plus.version>
@@ -77,6 +78,16 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--如果一个 bom 里定义了很多第三方依赖的版本，那么是不建议引入这样的 bom 的-->
+            <!--而 langchain4j-bom 就很好，它只包含 langchain4j 自身的模块-->
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-bom</artifactId>
+                <version>${langchain4j-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -199,8 +210,6 @@
                 <version>${sentinel.version}</version>
             </dependency>
 
-            <!--如果一个bom里定义了很多第三方依赖的版本，那么是不建议引入这样的bom的-->
-            <!--而grpc-bom就很好，它只包含grpc自身的模块-->
             <dependency>
                 <groupId>io.grpc</groupId>
                 <artifactId>grpc-bom</artifactId>

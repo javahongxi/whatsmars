@@ -11,10 +11,6 @@
 
     <artifactId>whatsmars-ai</artifactId>
 
-    <properties>
-        <langchain4j.beta.version>1.17.2-beta27</langchain4j.beta.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -27,17 +23,14 @@
         <dependency>
             <groupId>dev.langchain4j</groupId>
             <artifactId>langchain4j-spring-boot-starter</artifactId>
-            <version>${langchain4j.beta.version}</version>
         </dependency>
         <dependency>
             <groupId>dev.langchain4j</groupId>
             <artifactId>langchain4j-open-ai-spring-boot-starter</artifactId>
-            <version>${langchain4j.beta.version}</version>
         </dependency>
         <dependency>
             <groupId>dev.langchain4j</groupId>
             <artifactId>langchain4j-pgvector</artifactId>
-            <version>${langchain4j.beta.version}</version>
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
