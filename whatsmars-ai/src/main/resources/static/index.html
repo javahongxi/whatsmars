@@ -88,7 +88,7 @@
     <div class="tab-bar"><div class="tab-inner">
         <button class="tab-btn active" onclick="switchTab('simple')">基础对话</button>
         <button class="tab-btn" onclick="switchTab('stream')">流式对话</button>
-        <button class="tab-btn" onclick="switchTab('function')">函数调用</button>
+        <button class="tab-btn" onclick="switchTab('tool')">工具调用</button>
         <button class="tab-btn" onclick="switchTab('rag')">RAG 问答</button>
         <button class="tab-btn" onclick="switchTab('memory')">对话记忆</button>
     </div></div>
@@ -118,19 +118,20 @@
         </div>
     </div>
 
-    <!-- 函数调用 -->
-    <div id="tab-function" class="tab-content">
+    <!-- 工具调用 -->
+    <div id="tab-tool" class="tab-content">
         <div class="content-inner">
-            <div class="desc">AI 根据问题自动调用工具函数，调用 <code>GET /ai/function/chat?message=...</code>，流式输出。<br>
-            可用工具：获取当前时间/日期、加减乘除、天气查询、字符串操作等。</div>
+            <div class="desc">AI 根据问题自动调用工具，调用 <code>GET /ai/tool/chat?message=...</code>，流式输出。<br>
+            可用工具：实时时间查询、日期差计算、HTTP 请求（GET/POST）、网络搜索（Tavily）、系统环境信息。</div>
             <div class="examples">
-                <button onclick="quickSend('function','现在几点了？')">现在几点了？</button>
-                <button onclick="quickSend('function','今天日期是多少？')">今天日期</button>
-                <button onclick="quickSend('function','计算 123 + 456')">计算 123+456</button>
-                <button onclick="quickSend('function','北京天气怎么样？')">北京天气</button>
-                <button onclick="quickSend('function','把 hello world 反转')">反转字符串</button>
+                <button onclick="quickSend('tool','现在几点了？')">现在几点了？</button>
+                <button onclick="quickSend('tool','距离国庆节还有多少天？')">日期倒计时</button>
+                <button onclick="quickSend('tool','帮我请求一下 https://jsonplaceholder.typicode.com/posts/1')">HTTP 请求</button>
+                <button onclick="quickSend('tool','搜索一下最近有什么新上映的电影')">网络搜索</button>
+                <button onclick="quickSend('tool','当前系统内存使用情况')">系统信息</button>
+                <button onclick="quickSend('tool','查看当前环境变量')">环境变量</button>
             </div>
-            <div class="msg-area" id="msgs-function"></div>
+            <div class="msg-area" id="msgs-tool"></div>
         </div>
     </div>
 
@@ -263,13 +264,13 @@
             userInput.style.height = 'auto';
             sendBtn.disabled = true;
 
-            if (tab === 'stream' || tab === 'rag' || tab === 'function' || tab === 'memory') {
+            if (tab === 'stream' || tab === 'rag' || tab === 'tool' || tab === 'memory') {
                 let url;
                 if (tab === 'memory') {
                     const sessionId = document.getElementById('session-id').value.trim() || 'default';
                     url = '/ai/memory/chat?sessionId=' + encodeURIComponent(sessionId) + '&message=' + encodeURIComponent(message);
                 } else {
-                    const endpoints = { stream: '/ai/stream/chat', rag: '/ai/rag/chat', function: '/ai/function/chat' };
+                    const endpoints = { stream: '/ai/stream/chat', rag: '/ai/rag/chat', tool: '/ai/tool/chat' };
                     url = endpoints[tab] + '?message=' + encodeURIComponent(message);
                 }
                 sendStreamRequest(message, url, tab);

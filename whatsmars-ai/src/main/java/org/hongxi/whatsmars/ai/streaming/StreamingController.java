@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.ai;
+package org.hongxi.whatsmars.ai.streaming;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

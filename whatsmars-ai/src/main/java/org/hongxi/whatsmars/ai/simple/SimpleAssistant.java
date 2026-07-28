@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.ai;
+package org.hongxi.whatsmars.ai.simple;
 
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.spring.AiService;

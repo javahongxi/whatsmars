@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.ai;
+package org.hongxi.whatsmars.ai.streaming;
 
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.TokenStream;

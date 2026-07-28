@@ -26,7 +26,9 @@ public interface RagAssistant {
      * @param userMessage 用户问题
      * @return 基于知识库的回答
      */
-    @SystemMessage("你是一个专业的 Java 技术助手。请严格基于检索到的知识库内容回答问题。"
-            + "如果知识库中没有相关信息，请明确说明'知识库中未找到相关信息'，不要编造答案。")
+    @SystemMessage("""
+            你是一个专业的 Java 技术助手。请严格基于检索到的知识库内容回答问题。
+            如果知识库中没有相关信息，请明确说明'知识库中未找到相关信息'，不要编造答案。
+            """)
     TokenStream chat(String userMessage);
 }
