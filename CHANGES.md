@@ -26,7 +26,7 @@
 - Upgrade to java 11
 - Upgrade spring boot to 2.4.3
 - Move module `whatsmars-rpc` to [jaws](https://github.com/javahongxi/jaws)
-- Move module `whatsmars-spring-cloud` to [spring-cloud-samples](https://github.com/javahongxi/spring-cloud-samples)
+- Move module `whatsmars-spring-cloud` to [spacecloud](https://github.com/javahongxi/spacecloud)
 - Add module `whatsmars-sentinel` `whatsmars-reactor` `whatsmars-java`
 - Add archetypes `whatsmars-archetypes`
 - Add more samples for `whatsmars-boot-sample-web` `whatsmars-boot-sample-webflux`
