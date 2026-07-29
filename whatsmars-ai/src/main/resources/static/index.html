@@ -242,8 +242,15 @@
                 renderMarkdown(div, text);
             }
             msgArea.appendChild(div);
-            msgArea.scrollTop = msgArea.scrollHeight;
+            scrollToBottom(tab);
             return div;
+        }
+
+        function scrollToBottom(tab) {
+            const tabContent = document.getElementById('tab-' + tab);
+            if (tabContent) {
+                tabContent.scrollTop = tabContent.scrollHeight;
+            }
         }
 
         function renderMarkdown(el, text) {
@@ -299,7 +306,7 @@
                 if (indicator.parentNode) indicator.remove();
                 rawText += e.data;
                 renderMarkdown(msgDiv, rawText);
-                msgArea.scrollTop = msgArea.scrollHeight;
+                scrollToBottom(tab);
             };
 
             eventSource.addEventListener('error', function() {
