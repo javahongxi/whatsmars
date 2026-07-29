@@ -31,8 +31,8 @@ Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketM
 | whatsmars-spring-boot-samples | Spring Boot Samples，20+个示例           |
 
 ### Related Projects
-- Spring Cloud Alibaba Full-Stack Microservices Sample: [spring-cloud-samples](https://github.com/javahongxi/spring-cloud-samples)
+- Spring Cloud Alibaba full-stack microservices in practice: [spacecloud](https://github.com/javahongxi/spacecloud)
 - High-performance Java 17 RPC framework built on Netty: [jaws](https://github.com/javahongxi/jaws)
-- An AI Coding Agent exploring ReAct architecture patterns: [babi](https://github.com/javahongxi/babi)
+- An AI coding agent exploring ReAct architecture patterns: [babi](https://github.com/javahongxi/babi)
 
 &copy; [hongxi.org](http://hongxi.org)
