@@ -1,13 +1,14 @@
 # 🚀whatsmars
-*`./mvnw clean package`* [`java 17+`](https://adoptium.net/zh-CN/temurin/releases)
-<br>Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketMQ**🔥 + **Elasticsearch**🔥)
+
+[![Java](https://img.shields.io/badge/Java-17+-orange.svg)](https://adoptium.net/zh-CN/temurin/releases)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.x-brightgreen.svg)](https://spring.io/projects/spring-boot)
+
+Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketMQ**🔥 + **Elasticsearch**🔥)
 - [Spring Boot](https://spring.io/projects/spring-boot) 提高生产力的利器
 - [Redis](https://redis.io/) 缓存，NoSQL 数据库，分布式锁，位图
 - [Apache Dubbo](http://dubbo.apache.org) / [Spring Cloud](https://github.com/javahongxi/spring-cloud-samples) 分布式 RPC，微服务架构
 - [Apache RocketMQ](https://rocketmq.apache.org/) / [Apache Kafka](http://kafka.apache.org/) 削峰填谷，异步解耦，顺序消息，延迟消息，事务消息
 - [Elasticsearch](https://www.elastic.co) *搜索、分析和存储您的数据*
-
-本项目基于 Spring Boot 3.5.x，不涉及 Spring Cloud。如需 Spring Cloud 全栈微服务实战，请访问 [spring-cloud-samples](https://github.com/javahongxi/spring-cloud-samples)
 
 ### Module Overview
 | Module                        | Description                              |
@@ -29,7 +30,7 @@
 | whatsmars-spring              | Spring 核心功能完整示例                  |
 | whatsmars-spring-boot-samples | Spring Boot Samples，20+个示例           |
 
-### Related projects
+### Related Projects
 - Spring Cloud Alibaba Full-Stack Microservices Sample: [spring-cloud-samples](https://github.com/javahongxi/spring-cloud-samples)
 - High-performance Java 17 RPC framework built on Netty: [jaws](https://github.com/javahongxi/jaws)
 - An AI Coding Agent exploring ReAct architecture patterns: [babi](https://github.com/javahongxi/babi)
