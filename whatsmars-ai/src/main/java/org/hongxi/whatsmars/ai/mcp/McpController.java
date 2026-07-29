@@ -19,7 +19,7 @@ import java.util.concurrent.Executors;
  * </p>
  * <p>
  * AI 通过 MCP Client 连接 whatsmars-mcp Server，
- * 可以调用获取服务器时间、获取系统信息等工具来回答用户问题。
+ * 可以调用天气查询、地图服务等工具来回答用户问题。
  * </p>
  *
  * @author hongxi

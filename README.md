@@ -18,7 +18,7 @@
 | whatsmars-dubbo               | 高性能分布式RPC框架，Dubbo 3.3           |
 | whatsmars-elasticsearch       | ElasticsearchClient 全方位示例           |
 | whatsmars-grpc                | 跨语言的RPC框架，含与 Dubbo Triple 互通  |
-| whatsmars-mcp                 | Spring AI MCP Server，SSE 协议暴露工具   |
+| whatsmars-mcp                 | MCP Server，Streamable HTTP 协议暴露工具 |
 | whatsmars-mq                  | 消息中间件RocketMQ/Kafka/RabbitMQ/Pulsar |
 | whatsmars-nacos               | 注册与配置中心完整示例                   |
 | whatsmars-netty               | NIO框架首选，基础到高级功能              |

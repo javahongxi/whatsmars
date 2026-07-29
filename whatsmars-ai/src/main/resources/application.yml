@@ -2,7 +2,7 @@ server:
   port: 8887
 spring:
   application:
-    name: whatsmars-ai-langchain4j
+    name: whatsmars-ai
   datasource:
     url: jdbc:postgresql://localhost:5432/ai_demo
     username: ai_user
@@ -37,6 +37,11 @@ langchain4j:
       model-name: text-embedding-v3
       log-requests: false
       log-responses: false
+
+mcp:
+  server:
+    url: http://localhost:8886/mcp
+    key: whatsmars-mcp
 
 pgvector:
   host: localhost

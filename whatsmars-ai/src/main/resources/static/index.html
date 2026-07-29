@@ -90,6 +90,7 @@
         <button class="tab-btn" onclick="switchTab('tool')">工具调用</button>
         <button class="tab-btn" onclick="switchTab('rag')">RAG 问答</button>
         <button class="tab-btn" onclick="switchTab('memory')">对话记忆</button>
+        <button class="tab-btn" onclick="switchTab('mcp')">MCP</button>
     </div></div>
 
     <!-- 流式对话 -->
@@ -147,6 +148,22 @@
                 <button onclick="quickSend('memory','我最擅长什么技术？')">我最擅长什么？</button>
             </div>
             <div class="msg-area" id="msgs-memory"></div>
+        </div>
+    </div>
+
+    <!-- MCP 工具调用 -->
+    <div id="tab-mcp" class="tab-content">
+        <div class="content-inner">
+            <div class="desc">AI 通过 MCP 协议（Streamable HTTP）连接远程 MCP Server，调用 <code>GET /ai/mcp/chat?message=...</code>，流式输出。<br>
+            可用工具：天气查询（Open-Meteo）、地图服务（百度地图 URI API）。</div>
+            <div class="examples">
+                <button onclick="quickSend('mcp','北京今天天气怎么样？')">北京天气</button>
+                <button onclick="quickSend('mcp','上海未来三天天气预报')">上海 3 天预报</button>
+                <button onclick="quickSend('mcp','帮我看看故宫在哪里')">故宫位置</button>
+                <button onclick="quickSend('mcp','从北京站到故宫怎么走？')">路线规划</button>
+                <button onclick="quickSend('mcp','北京附近有什么好吃的火锅店？')">搜索火锅店</button>
+            </div>
+            <div class="msg-area" id="msgs-mcp"></div>
         </div>
     </div>
 
@@ -255,7 +272,7 @@
                 const sessionId = document.getElementById('session-id').value.trim() || 'default';
                 url = '/ai/memory/chat?sessionId=' + encodeURIComponent(sessionId) + '&message=' + encodeURIComponent(message);
             } else {
-                const endpoints = { stream: '/ai/stream/chat', rag: '/ai/rag/chat', tool: '/ai/tool/chat' };
+                const endpoints = { stream: '/ai/stream/chat', rag: '/ai/rag/chat', tool: '/ai/tool/chat', mcp: '/ai/mcp/chat' };
                 url = endpoints[tab] + '?message=' + encodeURIComponent(message);
             }
             sendStreamRequest(message, url, tab);

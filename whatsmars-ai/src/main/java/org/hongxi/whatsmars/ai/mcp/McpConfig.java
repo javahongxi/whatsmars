@@ -9,6 +9,7 @@ import dev.langchain4j.model.chat.StreamingChatModel;
 import dev.langchain4j.service.AiServices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
  * MCP 配置
  * <p>
  * 演示 LangChain4j 作为 MCP Client 通过 Streamable HTTP 传输协议连接 whatsmars-mcp Server。
- * whatsmars-mcp Server（Spring AI）暴露了 toUpperCase、toLowerCase、reverseString 三个工具，
+ * whatsmars-mcp Server（Spring AI）暴露了天气查询和地图服务工具，
  * AI 可以调用这些工具来回答用户问题。
  * </p>
  * <p>
@@ -30,16 +31,21 @@ public class McpConfig {
 
     private static final Logger log = LoggerFactory.getLogger(McpConfig.class);
 
+    @Value("${mcp.server.url}")
+    private String mcpUrl;
+
+    @Value("${mcp.server.key}")
+    private String mcpKey;
+
     /**
      * MCP Client - 通过 Streamable HTTP 连接 whatsmars-mcp Server
      * <p>
      * 通过 Streamable HTTP 传输协议连接本地运行的 whatsmars-mcp Server（端口 8886），
-     * 服务端暴露了 toUpperCase、toLowerCase、reverseString 三个工具。
+     * 服务端暴露了天气查询（get_weather）和地图服务（show_location/plan_route/search_place）工具。
      * </p>
      */
     @Bean(destroyMethod = "close")
     public McpClient mcpClient() {
-        String mcpUrl = "http://localhost:8886/mcp";
         log.info("MCP Client 连接 Streamable HTTP 端点: {}", mcpUrl);
 
         McpTransport transport = StreamableHttpMcpTransport.builder()
@@ -49,7 +55,7 @@ public class McpConfig {
                 .build();
 
         return new DefaultMcpClient.Builder()
-                .key("whatsmars-mcp")
+                .key(mcpKey)
                 .transport(transport)
                 .build();
     }
