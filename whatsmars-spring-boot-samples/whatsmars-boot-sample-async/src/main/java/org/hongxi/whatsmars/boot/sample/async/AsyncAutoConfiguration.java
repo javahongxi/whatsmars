@@ -9,7 +9,7 @@ import java.util.concurrent.Executors;
 /**
  * Created by shenhongxi on 2020/8/16.
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class AsyncAutoConfiguration {
 
     @Bean

@@ -13,7 +13,7 @@ import org.springframework.core.io.ClassPathResource;
  * <p>Loads {@code application-{profile}.properties} based on the
  * active profile determined by {@link ProfileUtils}.</p>
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class PropertyConfiguration {
 
     @Bean

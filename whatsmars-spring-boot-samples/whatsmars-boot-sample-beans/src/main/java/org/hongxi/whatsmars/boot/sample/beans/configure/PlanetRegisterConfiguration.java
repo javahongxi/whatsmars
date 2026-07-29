@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
  * Created by shenhongxi on 2020/6/23.
  */
 @EnableConfigurationProperties(PlanetProperties.class)
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class PlanetRegisterConfiguration implements InitializingBean, ApplicationContextAware {
 
     private ConfigurableApplicationContext applicationContext;

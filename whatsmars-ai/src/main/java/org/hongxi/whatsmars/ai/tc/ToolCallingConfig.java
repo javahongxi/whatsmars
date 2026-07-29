@@ -22,7 +22,7 @@ import java.util.function.Function;
  *
  * @author hongxi
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class ToolCallingConfig {
 
     /**

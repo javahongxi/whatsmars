@@ -17,7 +17,7 @@ import java.util.concurrent.CompletableFuture;
  *   <li>{@code @EnableScheduling} — enables {@code @Scheduled} periodic tasks</li>
  * </ul>
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @EnableAsync
 @EnableScheduling
 @ComponentScan(basePackages = "org.hongxi.whatsmars.spring.task")

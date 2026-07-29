@@ -27,7 +27,7 @@ import java.util.List;
     @MapperScan(basePackages = "org.hongxi.whatsmars.boot.sample.mybatis.dao.user", sqlSessionTemplateRef = "userSqlSessionTemplate"),
     @MapperScan(basePackages = "org.hongxi.whatsmars.boot.sample.mybatis.dao.trade", sqlSessionTemplateRef = "tradeSqlSessionTemplate")
 })
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class MybatisConfiguration {
 
     @Bean("userSqlSessionTemplate")

@@ -29,7 +29,7 @@ import java.util.Objects;
 @ComponentScan(basePackages = "org.hongxi.whatsmars.spring.configurer")
 @Import({AppConfig.class, DataSourceProperties.class, ConditionalConfig.class})
 @ImportResource("classpath:spring-context.xml")
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class Application {
 
     public static void main(String[] args) {

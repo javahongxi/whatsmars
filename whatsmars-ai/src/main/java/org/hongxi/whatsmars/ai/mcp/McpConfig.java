@@ -26,7 +26,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author hongxi
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class McpConfig {
 
     private static final Logger log = LoggerFactory.getLogger(McpConfig.class);

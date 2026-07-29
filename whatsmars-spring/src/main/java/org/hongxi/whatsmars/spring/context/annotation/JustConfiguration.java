@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
  * {@link AppConfiguration}. Shows that multiple configuration classes can
  * coexist in the same application context.
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class JustConfiguration {
 
     @Bean

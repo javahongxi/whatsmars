@@ -23,7 +23,7 @@ import java.util.Map;
  * <p>
  * 配置两个独立的 Kafka 集群连接，包括生产者和消费者的相关 Bean
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class MultiKafkaConfig {
 
     @Value(value = "${kafka.servers}")

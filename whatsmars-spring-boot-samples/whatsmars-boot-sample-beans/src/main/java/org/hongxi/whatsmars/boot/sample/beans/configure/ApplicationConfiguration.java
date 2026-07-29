@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Created by shenhongxi on 2020/6/22.
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(TestProperties.class)
 public class ApplicationConfiguration {
 

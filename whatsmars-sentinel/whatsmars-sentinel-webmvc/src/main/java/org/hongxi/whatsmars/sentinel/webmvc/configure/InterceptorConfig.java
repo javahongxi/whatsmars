@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 /**
  * Config sentinel interceptor
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class InterceptorConfig implements WebMvcConfigurer {
 
     @Override

@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Created by shenhongxi on 2020/7/17.
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class ActuatorAutoConfiguration {
 
     @Bean

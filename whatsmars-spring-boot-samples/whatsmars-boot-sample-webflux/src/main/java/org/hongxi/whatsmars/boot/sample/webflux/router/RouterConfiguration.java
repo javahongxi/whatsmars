@@ -16,7 +16,7 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 /**
  * Created by shenhongxi on 2021/4/22.
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class RouterConfiguration {
 
     final ServerRedirectHandler serverRedirectHandler = new ServerRedirectHandler();

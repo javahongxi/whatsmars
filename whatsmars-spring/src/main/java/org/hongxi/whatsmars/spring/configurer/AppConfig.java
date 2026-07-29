@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Scope;
  * - {@code @Lazy} for deferred bean initialization
  * - {@code @Scope} for prototype-scoped beans
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @PropertySource(value = "classpath:config.properties")
 public class AppConfig {
 

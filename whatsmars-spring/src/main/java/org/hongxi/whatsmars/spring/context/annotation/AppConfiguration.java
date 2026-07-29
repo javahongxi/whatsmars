@@ -10,13 +10,13 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Demonstrates:
  * <ul>
- *   <li>{@code @Configuration} - marks this as a full configuration class (CGLIB-proxied)</li>
+ *   <li>{@code @Configuration(proxyBeanMethods = false)} - marks this as a lite configuration class (no CGLIB proxy)</li>
  *   <li>{@code @ComponentScan} - auto-detects {@code @Service}, {@code @Repository} etc.</li>
  *   <li>{@code @Autowired} - field injection of a scanned component</li>
  *   <li>{@code @Bean} - programmatic bean definition inside a configuration class</li>
  * </ul>
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @ComponentScan(basePackages = {
         "org.hongxi.whatsmars.spring.context.annotation.service",
         "org.hongxi.whatsmars.spring.context.annotation.repository"

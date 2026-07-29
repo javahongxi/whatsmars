@@ -15,7 +15,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  */
 @ComponentScan(basePackages = "org.hongxi.whatsmars.spring.aspect")
 @EnableAspectJAutoProxy
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class Application {
 
     public static void main(String[] args) {

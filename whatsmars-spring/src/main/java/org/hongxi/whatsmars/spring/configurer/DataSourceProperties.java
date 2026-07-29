@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Primary;
  * Demonstrates type-safe configuration property binding
  * and bean dependency management with {@code @DependsOn} / {@code @Primary}.
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class DataSourceProperties {
 
     @Value("${datasource.url:jdbc:h2:mem:test}")

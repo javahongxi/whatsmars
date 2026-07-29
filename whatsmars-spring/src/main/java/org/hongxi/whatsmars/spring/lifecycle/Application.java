@@ -34,7 +34,7 @@ import org.springframework.context.annotation.Configuration;
  * </ol>
  */
 @ComponentScan(basePackages = "org.hongxi.whatsmars.spring.lifecycle")
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class Application {
 
     public static void main(String[] args) {

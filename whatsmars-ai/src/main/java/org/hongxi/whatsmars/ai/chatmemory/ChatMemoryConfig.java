@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author hongxi
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class ChatMemoryConfig {
 
     /**

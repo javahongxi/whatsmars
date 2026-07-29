@@ -12,7 +12,7 @@ import java.util.Properties;
 /**
  * Nacos Naming Service 配置类
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class NamingConfig {
 
     @Value("${nacos.server-addr:127.0.0.1:8848}")

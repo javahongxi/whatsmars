@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * @see OnPropertyCondition
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @Conditional(OnPropertyCondition.class)
 public class ConditionalConfig {
 

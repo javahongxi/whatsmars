@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author hongxi
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class SentinelNacosConfig {
 
     private static final Logger log = LoggerFactory.getLogger(SentinelNacosConfig.class);

@@ -8,7 +8,7 @@ import redis.clients.jedis.JedisPoolConfig;
 /**
  * Jedis 连接池配置
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class JedisConfig {
 
     @Bean(destroyMethod = "close")

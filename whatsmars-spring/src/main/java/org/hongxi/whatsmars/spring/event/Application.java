@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
  * </ul>
  */
 @ComponentScan(basePackages = "org.hongxi.whatsmars.spring.event")
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class Application {
 
     public static void main(String[] args) {

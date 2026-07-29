@@ -10,7 +10,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  * 线程池配置
  * Spring Boot 项目中推荐使用 ThreadPoolTaskExecutor
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class ThreadPoolConfig {
 
     @Bean
