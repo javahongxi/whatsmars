@@ -5,7 +5,7 @@
 | 项目             | 聚焦方向        | 核心框架               | 语言          |
 |------------------|-----------------|------------------------|---------------|
 | **whatsmars-ai** | AI 框架集成     | **LangChain4j**        | Java          |
-| **spacecloud**   | AI 框架集成     | **Spring AI 2.0**      | Java          |
+| **spacecloud**   | AI + 微服务     | **Spring AI 2.0**      | Java          |
 | **babi 系列**    | AI Coding Agent | AgentScope / LangGraph | Java / Python |
 
 - **whatsmars-ai** — 聚焦 LangChain4j 生态，深度探索其原理和应用
