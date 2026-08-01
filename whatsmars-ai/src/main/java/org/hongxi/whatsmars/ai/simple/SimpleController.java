@@ -2,7 +2,6 @@ package org.hongxi.whatsmars.ai.simple;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,8 +16,11 @@ public class SimpleController {
 
     private static final Logger log = LoggerFactory.getLogger(SimpleController.class);
 
-    @Autowired
-    private SimpleAssistant assistant;
+    private final SimpleAssistant assistant;
+
+    public SimpleController(SimpleAssistant assistant) {
+        this.assistant = assistant;
+    }
 
     /**
      * 简单的聊天接口

@@ -24,11 +24,8 @@ public class HttpRequestTool {
 
     private final HttpClient httpClient;
 
-    public HttpRequestTool() {
-        this.httpClient = HttpClient.newBuilder()
-                .connectTimeout(Duration.ofSeconds(10))
-                .followRedirects(HttpClient.Redirect.NORMAL)
-                .build();
+    public HttpRequestTool(HttpClient httpClient) {
+        this.httpClient = httpClient;
     }
 
     /**

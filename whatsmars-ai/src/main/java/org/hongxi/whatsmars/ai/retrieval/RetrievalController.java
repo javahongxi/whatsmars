@@ -1,17 +1,13 @@
 package org.hongxi.whatsmars.ai.retrieval;
 
+import org.hongxi.whatsmars.ai.common.SseHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
-
-import java.io.IOException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * 知识库问答控制器
@@ -36,8 +32,6 @@ public class RetrievalController {
 
     private static final Logger log = LoggerFactory.getLogger(RetrievalController.class);
 
-    private static final ExecutorService executor = Executors.newCachedThreadPool();
-
     private final RetrievalAssistant assistant;
 
     public RetrievalController(RetrievalAssistant assistant) {
@@ -50,39 +44,11 @@ public class RetrievalController {
      * @param message 用户问题
      * @return SSE 发射器
      */
-    @GetMapping(value = "/chat", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @GetMapping(value = "/chat", produces = "text/event-stream")
     public SseEmitter chat(@RequestParam String message) {
         log.info("RetrievalAugmentor 流式问答 - 问题: {}", message);
-
         SseEmitter emitter = new SseEmitter(0L);
-
-        executor.execute(() -> {
-            try {
-                assistant.chat(message)
-                        .onPartialResponse(token -> {
-                            try {
-                                log.debug("Retrieval 发送 token: {}", token);
-                                emitter.send(SseEmitter.event().data(token));
-                            } catch (IOException e) {
-                                log.error("Retrieval 发送 token 失败", e);
-                                emitter.completeWithError(e);
-                            }
-                        })
-                        .onCompleteResponse(response -> {
-                            log.info("RetrievalAugmentor 流式问答完成");
-                            emitter.complete();
-                        })
-                        .onError(error -> {
-                            log.error("RetrievalAugmentor 流式问答出错", error);
-                            emitter.completeWithError(error);
-                        })
-                        .start();
-            } catch (Exception e) {
-                log.error("RetrievalAugmentor 流式问答异常", e);
-                emitter.completeWithError(e);
-            }
-        });
-
+        SseHelper.stream(assistant.chat(message), emitter);
         return emitter;
     }
 }

@@ -1,15 +1,11 @@
 package org.hongxi.whatsmars.ai.chatmemory;
 
+import org.hongxi.whatsmars.ai.common.SseHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
-
-import java.io.IOException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * 多轮对话控制器
@@ -36,8 +32,6 @@ public class ChatMemoryController {
 
     private static final Logger log = LoggerFactory.getLogger(ChatMemoryController.class);
 
-    private static final ExecutorService executor = Executors.newCachedThreadPool();
-
     private final ChatMemoryAssistant assistant;
     private final ChatMemoryJpaRepository chatMemoryJpaRepository;
 
@@ -53,41 +47,13 @@ public class ChatMemoryController {
      * @param message   用户消息
      * @return SSE 发射器
      */
-    @GetMapping(value = "/chat", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @GetMapping(value = "/chat", produces = "text/event-stream")
     public SseEmitter chat(
             @RequestParam String sessionId,
             @RequestParam String message) {
         log.info("会话 [{}] 消息: {}", sessionId, message);
-
         SseEmitter emitter = new SseEmitter(0L);
-
-        executor.execute(() -> {
-            try {
-                assistant.chat(sessionId, message)
-                        .onPartialResponse(token -> {
-                            try {
-                                log.debug("会话 [{}] 发送 token: {}", sessionId, token);
-                                emitter.send(SseEmitter.event().data(token));
-                            } catch (IOException e) {
-                                log.error("会话 [{}] 发送 token 失败", sessionId, e);
-                                emitter.completeWithError(e);
-                            }
-                        })
-                        .onCompleteResponse(response -> {
-                            log.info("会话 [{}] 流式完成", sessionId);
-                            emitter.complete();
-                        })
-                        .onError(error -> {
-                            log.error("会话 [{}] 流式出错", sessionId, error);
-                            emitter.completeWithError(error);
-                        })
-                        .start();
-            } catch (Exception e) {
-                log.error("会话 [{}] 流式异常", sessionId, e);
-                emitter.completeWithError(e);
-            }
-        });
-
+        SseHelper.stream(assistant.chat(sessionId, message), emitter);
         return emitter;
     }
 

@@ -34,11 +34,9 @@ public class WebSearchTool {
     private final String apiKey;
     private final ObjectMapper objectMapper;
 
-    public WebSearchTool(@Value("${TAVILY_API_KEY:}") String apiKey) {
+    public WebSearchTool(HttpClient httpClient, @Value("${TAVILY_API_KEY:}") String apiKey) {
+        this.httpClient = httpClient;
         this.apiKey = apiKey != null && !apiKey.isEmpty() ? apiKey : System.getenv("TAVILY_API_KEY");
-        this.httpClient = HttpClient.newBuilder()
-                .connectTimeout(Duration.ofSeconds(10))
-                .build();
         this.objectMapper = new ObjectMapper();
     }
 

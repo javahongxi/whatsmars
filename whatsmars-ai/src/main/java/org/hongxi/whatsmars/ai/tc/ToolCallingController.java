@@ -1,14 +1,10 @@
 package org.hongxi.whatsmars.ai.tc;
 
+import org.hongxi.whatsmars.ai.common.SseHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
-
-import java.io.IOException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * 工具调用控制器
@@ -35,8 +31,6 @@ public class ToolCallingController {
 
     private static final Logger log = LoggerFactory.getLogger(ToolCallingController.class);
 
-    private static final ExecutorService executor = Executors.newCachedThreadPool();
-
     private final ToolCallingAssistant assistant;
 
     public ToolCallingController(ToolCallingAssistant assistant) {
@@ -49,39 +43,11 @@ public class ToolCallingController {
      * @param message 用户消息
      * @return SSE 发射器
      */
-    @GetMapping(value = "/chat", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @GetMapping(value = "/chat", produces = "text/event-stream")
     public SseEmitter chat(@RequestParam String message) {
         log.info("工具调用 - 收到消息: {}", message);
-
         SseEmitter emitter = new SseEmitter(0L);
-
-        executor.execute(() -> {
-            try {
-                assistant.chat(message)
-                        .onPartialResponse(token -> {
-                            try {
-                                log.debug("工具调用发送 token: {}", token);
-                                emitter.send(SseEmitter.event().data(token));
-                            } catch (IOException e) {
-                                log.error("工具调用发送 token 失败", e);
-                                emitter.completeWithError(e);
-                            }
-                        })
-                        .onCompleteResponse(response -> {
-                            log.info("工具调用流式完成");
-                            emitter.complete();
-                        })
-                        .onError(error -> {
-                            log.error("工具调用流式出错", error);
-                            emitter.completeWithError(error);
-                        })
-                        .start();
-            } catch (Exception e) {
-                log.error("工具调用流式异常", e);
-                emitter.completeWithError(e);
-            }
-        });
-
+        SseHelper.stream(assistant.chat(message), emitter);
         return emitter;
     }
 }
