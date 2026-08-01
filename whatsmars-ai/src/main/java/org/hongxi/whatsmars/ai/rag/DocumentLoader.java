@@ -6,6 +6,7 @@ import dev.langchain4j.data.document.splitter.DocumentSplitters;
 import dev.langchain4j.data.embedding.Embedding;
 import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.model.embedding.EmbeddingModel;
+import dev.langchain4j.store.embedding.EmbeddingSearchRequest;
 import dev.langchain4j.store.embedding.EmbeddingStore;
 import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
@@ -40,10 +41,24 @@ public class DocumentLoader {
 
     /**
      * 启动时加载并索引 documents 目录下的所有文档
+     * <p>
+     * 摄入前先检查向量存储是否已有数据，避免重复摄入
+     * </p>
      */
     @PostConstruct
     public void loadDocuments() {
         try {
+            // 先检查向量存储是否已有数据，避免重复摄入
+            Embedding probeEmbedding = embeddingModel.embed("probe").content();
+            var existingResults = embeddingStore.search(EmbeddingSearchRequest.builder()
+                    .queryEmbedding(probeEmbedding)
+                    .maxResults(1)
+                    .build());
+            if (!existingResults.matches().isEmpty()) {
+                log.info("向量存储已有数据，跳过文档摄入");
+                return;
+            }
+
             Path docsPath = new ClassPathResource("documents").getFile().toPath();
             log.info("从 {} 加载知识库文档...", docsPath);
 

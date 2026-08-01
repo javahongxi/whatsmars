@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LangChain4j Demo - whatsmars</title>
+    <title>LangChain Java Demo - whatsmars</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github.min.css">
     <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/highlight.min.js"></script>
@@ -77,11 +77,18 @@
         .examples { display: flex; flex-wrap: wrap; gap: 8px; }
         .examples button { background: #f0f4ff; border: 1px solid #d2e3fc; border-radius: 16px; padding: 6px 14px; font-size: 12px; color: #1a73e8; cursor: pointer; transition: all 0.2s; }
         .examples button:hover { background: #d2e3fc; }
+
+        /* Strategy toggle */
+        .strategy-bar { display: flex; align-items: center; gap: 12px; font-size: 13px; color: #555; }
+        .strategy-bar label { cursor: pointer; display: flex; align-items: center; gap: 6px; }
+        .strategy-bar .tag { font-size: 11px; padding: 1px 6px; border-radius: 8px; }
+        .strategy-bar .tag-basic { background: #e8f0fe; color: #1a73e8; }
+        .strategy-bar .tag-advanced { background: #fce8e6; color: #c5221f; }
     </style>
 </head>
 <body>
     <header><div class="header-inner">
-        <h1>LangChain4j Demo</h1>
+        <h1>LangChain Java Demo</h1>
         <span class="badge">whatsmars-ai</span>
     </div></header>
 
@@ -125,8 +132,13 @@
     <!-- RAG 问答 -->
     <div id="tab-rag" class="tab-content">
         <div class="content-inner">
-            <div class="desc">基于知识库的检索增强生成（RAG），调用 <code>GET /ai/rag/chat?message=...</code>，流式实时输出。<br>
+            <div class="desc" id="rag-desc">基于知识库的检索增强生成（RAG），调用 <code>GET /ai/rag/chat</code>，流式实时输出。<br>
             知识库包含 Spring Boot 核心知识和 Java 并发编程文档，AI 先检索相关内容再逐字回答。</div>
+            <div class="strategy-bar">
+                <span>检索策略：</span>
+                <label><input type="radio" name="rag-strategy" value="rag" checked onchange="updateRagDesc()"> 标准检索 <span class="tag tag-basic">ContentRetriever</span></label>
+                <label><input type="radio" name="rag-strategy" value="retrieval" onchange="updateRagDesc()"> 查询扩展 <span class="tag tag-advanced">RetrievalAugmentor</span></label>
+            </div>
             <div class="examples">
                 <button onclick="quickSend('rag','Spring Boot 有哪些核心特性？')">Spring Boot 核心特性</button>
                 <button onclick="quickSend('rag','什么是 ConcurrentHashMap？')">ConcurrentHashMap</button>
@@ -278,8 +290,11 @@
             if (tab === 'memory') {
                 const sessionId = document.getElementById('session-id').value.trim() || 'default';
                 url = '/ai/memory/chat?sessionId=' + encodeURIComponent(sessionId) + '&message=' + encodeURIComponent(message);
+            } else if (tab === 'rag') {
+                const strategy = document.querySelector('input[name="rag-strategy"]:checked').value;
+                url = '/ai/' + strategy + '/chat?message=' + encodeURIComponent(message);
             } else {
-                const endpoints = { stream: '/ai/stream/chat', rag: '/ai/rag/chat', tool: '/ai/tool/chat', mcp: '/ai/mcp/chat' };
+                const endpoints = { stream: '/ai/stream/chat', tool: '/ai/tool/chat', mcp: '/ai/mcp/chat' };
                 url = endpoints[tab] + '?message=' + encodeURIComponent(message);
             }
             sendStreamRequest(message, url, tab);
@@ -338,6 +353,16 @@
         }
 
         userInput.focus();
+
+        function updateRagDesc() {
+            const strategy = document.querySelector('input[name="rag-strategy"]:checked').value;
+            const desc = document.getElementById('rag-desc');
+            if (strategy === 'rag') {
+                desc.innerHTML = '基于知识库的检索增强生成（RAG），调用 <code>GET /ai/rag/chat</code>，流式实时输出。<br>\n            使用 <code>ContentRetriever</code> 直接检索，单路向量搜索。知识库包含 Spring Boot 核心知识和 Java 并发编程文档。';
+            } else {
+                desc.innerHTML = '基于自定义 <code>RetrievalAugmentor</code> 的高级 RAG，调用 <code>GET /ai/retrieval/chat</code>，流式实时输出。<br>\n            使用 <code>ExpandingQueryTransformer</code> 将查询扩展为 3 条变体，分别检索后合并去重，召回率更高。';
+            }
+        }
     </script>
 </body>
 </html>

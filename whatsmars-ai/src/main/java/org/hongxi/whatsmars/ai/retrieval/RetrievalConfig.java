@@ -1,0 +1,105 @@
+package org.hongxi.whatsmars.ai.retrieval;
+
+import dev.langchain4j.data.segment.TextSegment;
+import dev.langchain4j.model.chat.ChatModel;
+import dev.langchain4j.model.embedding.EmbeddingModel;
+import dev.langchain4j.model.input.PromptTemplate;
+import dev.langchain4j.rag.DefaultRetrievalAugmentor;
+import dev.langchain4j.rag.RetrievalAugmentor;
+import dev.langchain4j.rag.content.injector.DefaultContentInjector;
+import dev.langchain4j.rag.query.router.DefaultQueryRouter;
+import dev.langchain4j.rag.query.transformer.ExpandingQueryTransformer;
+import dev.langchain4j.store.embedding.EmbeddingStore;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * 自定义 RetrievalAugmentor 配置
+ * <p>
+ * 演示如何通过 DefaultRetrievalAugmentor 组装完整的 RAG 流水线：
+ * <pre>
+ * 用户查询
+ *   ↓
+ * QueryTransformer（查询扩展：1条 → 3条变体查询）
+ *   ↓
+ * QueryRouter（路由到 ContentRetriever 检索知识库）
+ *   ↓
+ * ContentAggregator（合并去重多路检索结果）
+ *   ↓
+ * ContentInjector（将检索内容注入到用户消息中）
+ *   ↓
+ * 增强后的消息 → LLM 生成回答
+ * </pre>
+ * <p>
+ * 与现有 rag 包的区别：
+ * <ul>
+ *   <li>rag 包：通过 @AiService 自动发现 ContentRetriever，内部隐式创建 DefaultRetrievalAugmentor</li>
+ *   <li>retrieval 包：显式构建 RetrievalAugmentor，可自定义查询改写、路由、聚合等每个环节</li>
+ * </ul>
+ *
+ * @author hongxi
+ */
+@Configuration(proxyBeanMethods = false)
+public class RetrievalConfig {
+
+    private static final Logger log = LoggerFactory.getLogger(RetrievalConfig.class);
+
+    /**
+     * 自定义 RetrievalAugmentor
+     * <p>
+     * 核心组件说明：
+     * <ul>
+     *   <li>ExpandingQueryTransformer - 利用 LLM 将用户查询扩展为 3 条不同角度的变体查询，
+     *       提升检索召回率（例如："Spring Boot 特性" → "Spring Boot 核心功能有哪些" /
+     *       "Spring Boot 框架的主要特点" / "Spring Boot 提供了什么能力"）</li>
+     *   <li>CustomContentRetriever - 自定义检索器，对每条变体查询分别执行向量检索</li>
+     *   <li>DefaultContentInjector - 将检索到的文档片段以模板格式注入到用户消息中</li>
+     * </ul>
+     *
+     * @param chatModel      对话模型（用于查询扩展）
+     * @param embeddingModel 嵌入模型（用于向量化查询）
+     * @param embeddingStore 向量存储（复用已有的 pgvector）
+     * @return 自定义的 RetrievalAugmentor
+     */
+    @Bean
+    public RetrievalAugmentor retrievalAugmentor(
+            ChatModel chatModel,
+            EmbeddingModel embeddingModel,
+            EmbeddingStore<TextSegment> embeddingStore) {
+
+        log.info("初始化自定义 RetrievalAugmentor（含查询扩展）");
+
+        // 1. 查询扩展：将 1 条查询扩展为 3 条变体
+        var queryTransformer = ExpandingQueryTransformer.builder()
+                .chatModel(chatModel)
+                .n(3)
+                .build();
+
+        // 2. 自定义内容检索器
+        var contentRetriever = new CustomContentRetriever(embeddingStore, embeddingModel, 5, 0.5);
+
+        // 3. 查询路由器：将（多条）查询路由到检索器
+        var queryRouter = new DefaultQueryRouter(contentRetriever);
+
+        // 4. 内容注入器：将检索结果拼接到用户消息中
+        var contentInjector = DefaultContentInjector.builder()
+                .promptTemplate(new PromptTemplate("""
+                        {{userMessage}}
+                        
+                        基于以下参考资料回答用户问题。
+                        如果参考资料中没有相关信息，请明确说明。
+                        
+                        参考资料:
+                        {{contents}}
+                        """))
+                .build();
+
+        return DefaultRetrievalAugmentor.builder()
+                .queryTransformer(queryTransformer)
+                .queryRouter(queryRouter)
+                .contentInjector(contentInjector)
+                .build();
+    }
+}
