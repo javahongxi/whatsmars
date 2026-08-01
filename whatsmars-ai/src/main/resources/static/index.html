@@ -83,7 +83,14 @@
         .strategy-bar label { cursor: pointer; display: flex; align-items: center; gap: 6px; }
         .strategy-bar .tag { font-size: 11px; padding: 1px 6px; border-radius: 8px; }
         .strategy-bar .tag-basic { background: #e8f0fe; color: #1a73e8; }
-        .strategy-bar .tag-advanced { background: #fce8e6; color: #c5221f; } */
+        .strategy-bar .tag-advanced { background: #fce8e6; color: #c5221f; }
+
+        /* Agentic pattern selector */
+        .pattern-bar { display: flex; gap: 6px; flex-wrap: wrap; }
+        .pattern-btn { background: #f0f4ff; border: 1px solid #d2e3fc; border-radius: 16px; padding: 5px 14px; font-size: 12px; color: #1a73e8; cursor: pointer; transition: all 0.2s; }
+        .pattern-btn:hover { background: #d2e3fc; }
+        .pattern-btn.active { background: #1a73e8; color: #fff; border-color: #1a73e8; }
+        .status-msg { background: #fff8e1; border-radius: 8px; padding: 8px 14px; font-size: 13px; color: #795548; border-left: 3px solid #ffc107; }
     </style>
 </head>
 <body>
@@ -98,6 +105,7 @@
         <button class="tab-btn" onclick="switchTab('rag')">RAG 问答</button>
         <button class="tab-btn" onclick="switchTab('memory')">对话记忆</button>
         <button class="tab-btn" onclick="switchTab('mcp')">MCP</button>
+        <button class="tab-btn" onclick="switchTab('agentic')">Agentic</button>
     </div></div>
 
     <!-- 流式对话 -->
@@ -175,6 +183,21 @@
         </div>
     </div>
 
+    <!-- Agentic 编排 -->
+    <div id="tab-agentic" class="tab-content">
+        <div class="content-inner">
+            <div class="desc" id="agentic-desc">基于 <code>langchain4j-agentic</code> 的多 Agent 编排模式，支持基础 Agent、顺序/循环/并行工作流和监督者编排。<br>流式端点通过 SSE 实时输出，中间步骤同步执行，最终结果流式返回。</div>
+            <div class="pattern-bar">
+                <button class="pattern-btn active" onclick="selectPattern('basic')">基础 Agent</button>
+                <button class="pattern-btn" onclick="selectPattern('sequential')">顺序工作流</button>
+                <button class="pattern-btn" onclick="selectPattern('loop')">循环工作流</button>
+                <button class="pattern-btn" onclick="selectPattern('parallel')">并行工作流</button>
+            </div>
+            <div class="examples" id="agentic-examples"></div>
+            <div class="msg-area" id="msgs-agentic"></div>
+        </div>
+    </div>
+
     <!-- Session bar (only for memory tab) -->
     <div class="session-bar" id="session-bar" style="display:none;">
         <div class="session-inner">
@@ -195,6 +218,7 @@
 
     <script>
         let currentTab = 'stream';
+        let agenticPattern = 'basic';
         const userInput = document.getElementById('user-input');
         const sendBtn = document.getElementById('send-btn');
 
@@ -216,11 +240,77 @@
             currentTab = tab;
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            document.querySelector('.tab-btn[onclick*="\'' + tab + '\'"]').classList.add('active');
+            document.querySelector('.tab-btn[onclick*="\'' + tab + '\'"').classList.add('active');
             document.getElementById('tab-' + tab).classList.add('active');
             document.getElementById('session-bar').style.display = tab === 'memory' ? 'flex' : 'none';
+            if (tab === 'agentic') updateAgenticUI();
             userInput.focus();
         }
+        
+        // ---- Agentic pattern config ----
+        const agenticPatterns = {
+            basic: {
+                label: '基础 Agent',
+                desc: '单 Agent 配合 <code>web_search</code> 工具调用，流式输出研究报告。',
+                examples: [
+                    { text: 'Java 21 虚拟线程最新发展', body: { topic: 'Java 21虚拟线程的最新发展和最佳实践' } },
+                    { text: 'Spring AI 核心特性', body: { topic: 'Spring AI 2.0核心特性和应用场景' } },
+                ],
+                endpoint: '/ai/agentic/basic/stream',
+                bodyKey: 'topic',
+            },
+            sequential: {
+                label: '顺序工作流',
+                desc: '研究 → 摘要 → 翻译，中间步骤同步执行，最终翻译结果流式输出。',
+                examples: [
+                    { text: 'Spring Boot 4.x 新特性', body: { topic: 'Spring Boot 4.x 新特性' } },
+                    { text: 'Kubernetes 入门指南', body: { topic: 'Kubernetes核心概念和入门指南' } },
+                ],
+                endpoint: '/ai/agentic/sequential/stream',
+                bodyKey: 'topic',
+            },
+            loop: {
+                label: '循环工作流',
+                desc: '写作 → 评审循环迭代，SSE 实时推送每轮进度和评分，最终输出达标文档。',
+                examples: [
+                    { text: 'Redis 分布式锁', body: { topic: 'Redis分布式锁的正确实现方式' } },
+                    { text: 'MySQL 索引优化', body: { topic: 'MySQL索引优化最佳实践' } },
+                ],
+                endpoint: '/ai/agentic/loop/stream',
+                bodyKey: 'topic',
+            },
+            parallel: {
+                label: '并行工作流',
+                desc: '安全 + 性能 + 最佳实践三路并行审查，最终聚合报告流式输出。',
+                examples: [
+                    { text: 'SQL 注入示例', body: { code: 'public User getUser(String id) {\n    String sql = "SELECT * FROM users WHERE id = " + id;\n    return jdbcTemplate.queryForObject(sql, User.class);\n}' } },
+                    { text: '空指针风险示例', body: { code: 'public String getUserName(User user) {\n    return user.getAddress().getCity().getName();\n}' } },
+                ],
+                endpoint: '/ai/agentic/parallel/stream',
+                bodyKey: 'code',
+            },
+        };
+        
+        function selectPattern(p) {
+            agenticPattern = p;
+            document.querySelectorAll('.pattern-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector('.pattern-btn[onclick*="\'' + p + '\'"').classList.add('active');
+            updateAgenticUI();
+        }
+        
+        function updateAgenticUI() {
+            const cfg = agenticPatterns[agenticPattern];
+            document.getElementById('agentic-desc').innerHTML = cfg.desc;
+            const exDiv = document.getElementById('agentic-examples');
+            exDiv.innerHTML = '';
+            cfg.examples.forEach(ex => {
+                const btn = document.createElement('button');
+                btn.textContent = ex.text;
+                btn.onclick = () => { switchTab('agentic'); selectPattern(agenticPattern); userInput.value = ex.text; sendMessage(); };
+                exDiv.appendChild(btn);
+            });
+        }
+        updateAgenticUI();
 
         function quickSend(tab, message) {
             switchTab(tab);
@@ -296,6 +386,14 @@
             userInput.style.height = 'auto';
             sendBtn.disabled = true;
 
+            if (tab === 'agentic') {
+                const cfg = agenticPatterns[agenticPattern];
+                const body = {};
+                body[cfg.bodyKey] = message;
+                sendAgenticStream(cfg.endpoint, body, 'agentic');
+                return;
+            }
+
             let url;
             if (tab === 'memory') {
                 const sessionId = document.getElementById('session-id').value.trim() || 'default';
@@ -359,6 +457,107 @@
                 sendBtn.disabled = false;
                 userInput.focus();
             };
+        }
+
+        // ---- Agentic POST SSE streaming (fetch + ReadableStream) ----
+        function sendAgenticStream(endpoint, body, tab) {
+            const msgArea = document.getElementById('msgs-' + tab);
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'msg assistant';
+            msgArea.appendChild(msgDiv);
+
+            const indicator = document.createElement('div');
+            indicator.className = 'typing-indicator';
+            indicator.innerHTML = '<span></span><span></span><span></span>';
+            msgDiv.appendChild(indicator);
+
+            let rawText = '';
+
+            fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body),
+            }).then(response => {
+                if (!response.ok) throw new Error('HTTP ' + response.status);
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let buffer = '';
+
+                function read() {
+                    reader.read().then(({ done, value }) => {
+                        if (done) {
+                            if (indicator.parentNode) indicator.remove();
+                            if (rawText) renderMarkdown(msgDiv, rawText);
+                            sendBtn.disabled = false;
+                            userInput.focus();
+                            return;
+                        }
+                        buffer += decoder.decode(value, { stream: true });
+                        const lines = buffer.split('\n');
+                        buffer = lines.pop();
+
+                        let eventName = '';
+                        for (const line of lines) {
+                            if (line.startsWith('event:')) {
+                                eventName = line.substring(6).trim();
+                            } else if (line.startsWith('data:')) {
+                                const data = line.substring(5).trim();
+                                if (indicator.parentNode) indicator.remove();
+
+                                if (eventName === 'iteration') {
+                                    try {
+                                        const obj = JSON.parse(data);
+                                        const statusLabel = obj.status === 'writing' ? '✍️ 写作中' : '🔍 评审中';
+                                        addStatusMsg(msgArea, '第 ' + obj.iteration + ' 轮 - ' + statusLabel);
+                                    } catch (e) { addStatusMsg(msgArea, data); }
+                                } else if (eventName === 'review') {
+                                    try {
+                                        const obj = JSON.parse(data);
+                                        if (obj.score !== undefined) {
+                                            addStatusMsg(msgArea, '评分: ' + obj.score.toFixed(2) + ' - ' + (obj.feedback || ''));
+                                        } else {
+                                            rawText = data;
+                                            renderMarkdown(msgDiv, rawText);
+                                            scrollToBottom(tab);
+                                        }
+                                    } catch (e) {
+                                        rawText = data;
+                                        renderMarkdown(msgDiv, rawText);
+                                        scrollToBottom(tab);
+                                    }
+                                } else if (eventName === 'document') {
+                                    rawText = data;
+                                    renderMarkdown(msgDiv, rawText);
+                                    scrollToBottom(tab);
+                                } else {
+                                    rawText += data;
+                                    renderMarkdown(msgDiv, rawText);
+                                    scrollToBottom(tab);
+                                }
+                                eventName = '';
+                            }
+                        }
+                        read();
+                    });
+                }
+                read();
+            }).catch(err => {
+                if (indicator.parentNode) indicator.remove();
+                if (!rawText) {
+                    msgDiv.className = 'msg error';
+                    msgDiv.textContent = '⚠️ 请求失败: ' + err.message;
+                }
+                sendBtn.disabled = false;
+                userInput.focus();
+            });
+        }
+
+        function addStatusMsg(msgArea, text) {
+            const div = document.createElement('div');
+            div.className = 'status-msg';
+            div.textContent = text;
+            msgArea.appendChild(div);
+            msgArea.scrollTop = msgArea.scrollHeight;
         }
 
         userInput.focus();
