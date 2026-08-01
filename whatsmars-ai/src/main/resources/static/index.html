@@ -78,6 +78,23 @@
         .examples button { background: #f0f4ff; border: 1px solid #d2e3fc; border-radius: 16px; padding: 6px 14px; font-size: 12px; color: #1a73e8; cursor: pointer; transition: all 0.2s; }
         .examples button:hover { background: #d2e3fc; }
 
+        /* Sources panel */
+        .sources-panel { background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 10px 14px; margin-bottom: 8px; font-size: 12px; }
+        .sources-panel .sources-title { font-weight: 600; color: #333; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; cursor: pointer; }
+        .sources-panel .sources-title .arrow { transition: transform 0.2s; display: inline-block; }
+        .sources-panel .sources-title .arrow.open { transform: rotate(90deg); }
+        .sources-panel .sources-list { display: none; flex-direction: column; gap: 6px; }
+        .sources-panel .sources-list.show { display: flex; }
+        .sources-panel .source-item { background: #fff; border: 1px solid #eee; border-radius: 6px; padding: 8px 10px; }
+        .sources-panel .source-item .source-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+        .sources-panel .source-item .source-idx { background: #1a73e8; color: #fff; border-radius: 50%; width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; }
+        .sources-panel .source-item .source-file { color: #666; font-size: 11px; }
+        .sources-panel .source-item .source-scores { display: flex; gap: 8px; font-size: 10px; color: #888; }
+        .sources-panel .source-item .source-scores .tag { padding: 1px 5px; border-radius: 4px; }
+        .sources-panel .source-item .source-scores .tag-retrieval { background: #e8f0fe; color: #1a73e8; }
+        .sources-panel .source-item .source-scores .tag-rerank { background: #fce8e6; color: #c5221f; }
+        .sources-panel .source-item .source-text { color: #555; font-size: 11px; line-height: 1.5; margin-top: 4px; word-break: break-all; }
+
         /* Strategy toggle */
         .strategy-bar { display: flex; align-items: center; gap: 12px; font-size: 13px; color: #555; }
         .strategy-bar label { cursor: pointer; display: flex; align-items: center; gap: 6px; }
@@ -140,9 +157,9 @@
     <!-- RAG 问答 -->
     <div id="tab-rag" class="tab-content">
         <div class="content-inner">
-            <div class="desc">基于自定义 <code>RetrievalAugmentor</code> 的检索增强生成（RAG），调用 <code>GET /ai/retrieval/chat</code>，流式实时输出。<br>
-            使用 <code>ExpandingQueryTransformer</code> 将查询扩展为 3 条变体，分别检索后合并去重，召回率更高。<br>
-            知识库包含 Spring Boot 核心知识和 Java 并发编程文档。</div>
+            <div class="desc">基于高级 RAG 流水线的检索增强生成，调用 <code>GET /ai/retrieval/chat</code>，流式实时输出。<br>
+            流水线：<code>查询压缩</code> → <code>智能路由</code>（闲聊自动跳过检索）→ <code>向量检索</code> → <code>LLM 重排序</code> → <code>来源标注</code>。<br>
+            回答完成后展示引用来源，增强可信度。知识库包含 Spring Boot 核心知识和 Java 并发编程文档。</div>
             <div class="examples">
                 <button onclick="quickSend('rag','Spring Boot 有哪些核心特性？')">Spring Boot 核心特性</button>
                 <button onclick="quickSend('rag','什么是 ConcurrentHashMap？')">ConcurrentHashMap</button>
@@ -407,7 +424,7 @@
             sendStreamRequest(message, url, tab);
         }
 
-        // Stream - SSE (reusable for stream / rag / tool / memory tabs)
+        // Stream - SSE (reusable for stream / tool / memory tabs)
         // url is already built by caller (some tabs need extra params like sessionId)
         function sendStreamRequest(message, url, tab) {
             const msgArea = document.getElementById('msgs-' + tab);
@@ -423,6 +440,20 @@
 
             let rawText = '';
             const eventSource = new EventSource(url);
+
+            // Handle 'sources' event (only for RAG tab)
+            eventSource.addEventListener('sources', function(e) {
+                if (indicator.parentNode) indicator.remove();
+                try {
+                    const sources = JSON.parse(e.data);
+                    if (sources && sources.length > 0) {
+                        const sourcesEl = buildSourcesPanel(sources);
+                        msgDiv.insertBefore(sourcesEl, msgDiv.firstChild);
+                    }
+                } catch (err) {
+                    console.warn('解析来源失败:', err);
+                }
+            });
 
             eventSource.onmessage = function(e) {
                 if (indicator.parentNode) indicator.remove();
@@ -457,6 +488,61 @@
                 sendBtn.disabled = false;
                 userInput.focus();
             };
+        }
+
+        // Build sources panel HTML
+        function buildSourcesPanel(sources) {
+            const panel = document.createElement('div');
+            panel.className = 'sources-panel';
+
+            const title = document.createElement('div');
+            title.className = 'sources-title';
+            title.innerHTML = '<span class="arrow">&#9654;</span> 引用来源 (' + sources.length + '条)';
+            title.onclick = function() {
+                const list = panel.querySelector('.sources-list');
+                const arrow = title.querySelector('.arrow');
+                list.classList.toggle('show');
+                arrow.classList.toggle('open');
+            };
+            panel.appendChild(title);
+
+            const list = document.createElement('div');
+            list.className = 'sources-list show';
+            title.querySelector('.arrow').classList.add('open');
+
+            sources.forEach(function(src, idx) {
+                const item = document.createElement('div');
+                item.className = 'source-item';
+
+                const header = document.createElement('div');
+                header.className = 'source-header';
+
+                const left = document.createElement('div');
+                left.style.display = 'flex';
+                left.style.alignItems = 'center';
+                left.style.gap = '6px';
+                left.innerHTML = '<span class="source-idx">' + (idx + 1) + '</span>' +
+                    '<span class="source-file">' + (src.fileName || '未知来源') + '</span>';
+
+                const scores = document.createElement('div');
+                scores.className = 'source-scores';
+                scores.innerHTML = '<span class="tag tag-retrieval">检索 ' + (src.score * 100).toFixed(1) + '%</span>' +
+                    '<span class="tag tag-rerank">重排 ' + src.reRankScore + '/10</span>';
+
+                header.appendChild(left);
+                header.appendChild(scores);
+                item.appendChild(header);
+
+                const text = document.createElement('div');
+                text.className = 'source-text';
+                text.textContent = src.text;
+                item.appendChild(text);
+
+                list.appendChild(item);
+            });
+
+            panel.appendChild(list);
+            return panel;
         }
 
         // ---- Agentic POST SSE streaming (fetch + ReadableStream) ----

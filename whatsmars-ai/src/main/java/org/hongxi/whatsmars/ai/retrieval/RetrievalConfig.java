@@ -7,8 +7,6 @@ import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.model.input.PromptTemplate;
 import dev.langchain4j.rag.DefaultRetrievalAugmentor;
 import dev.langchain4j.rag.content.injector.DefaultContentInjector;
-import dev.langchain4j.rag.query.router.DefaultQueryRouter;
-import dev.langchain4j.rag.query.transformer.ExpandingQueryTransformer;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.pgvector.PgVectorEmbeddingStore;
@@ -18,22 +16,28 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.List;
+
 /**
  * RAG（检索增强生成）配置
  * <p>
- * 配置向量存储和自定义 RetrievalAugmentor，构建完整的 RAG 流水线：
+ * 配置向量存储和自定义 RetrievalAugmentor，构建高级 RAG 流水线：
  * <pre>
  * 用户查询
  *   ↓
- * QueryTransformer（查询扩展：1条 → 3条变体查询）
+ * CompressingQueryTransformer（查询压缩：去除冗余表达，保留核心关键词）
  *   ↓
- * QueryRouter（路由到 ContentRetriever 检索知识库）
+ * SmartQueryRouter（智能路由：LLM 判断是否需要知识库检索，闲聊则跳过）
  *   ↓
- * ContentAggregator（合并去重多路检索结果）
+ * CustomContentRetriever（向量检索知识库，保留相似度分数）
  *   ↓
- * ContentInjector（将检索内容注入到用户消息中）
+ * ReRankingContentAggregator（LLM 重排序 + 来源捕获）
+ *   ↓
+ * DefaultContentInjector（注入上下文 + 来源标注）
  *   ↓
  * 增强后的消息 → LLM 生成回答
+ *   ↓
+ * SSE 返回回答 + 来源列表（增强可信度）
  * </pre>
  *
  * @author hongxi
@@ -102,7 +106,7 @@ public class RetrievalConfig {
      * </p>
      *
      * @param streamingChatModel 流式对话模型
-     * @param chatModel          对话模型（用于查询扩展）
+     * @param chatModel          对话模型（用于查询压缩、路由分类、重排序）
      * @param embeddingModel     嵌入模型（用于向量化查询）
      * @param embeddingStore     向量存储
      * @return 手动构建的 RetrievalAssistant
@@ -114,41 +118,44 @@ public class RetrievalConfig {
             EmbeddingModel embeddingModel,
             EmbeddingStore<TextSegment> embeddingStore) {
 
-        log.info("手动构建 RetrievalAssistant（含自定义 RAG 流水线）");
+        log.info("手动构建 RetrievalAssistant（高级 RAG 流水线：压缩 → 路由 → 检索 → 重排 → 来源）");
 
-        // 1. 查询扩展：利用 LLM 将用户查询扩展为 3 条不同角度的变体查询
-        var queryTransformer = ExpandingQueryTransformer.builder()
-                .chatModel(chatModel)
-                .n(3)
-                .build();
+        // 1. 查询压缩：利用 LLM 将冗长查询压缩为简洁关键词
+        var queryTransformer = new CompressingQueryTransformer(chatModel);
 
-        // 2. 自定义内容检索器
+        // 2. 自定义内容检索器（保留相似度分数到 metadata）
         var contentRetriever = new CustomContentRetriever(embeddingStore, embeddingModel, 5, 0.5);
 
-        // 3. 查询路由器：将（多条）查询路由到检索器
-        var queryRouter = new DefaultQueryRouter(contentRetriever);
+        // 3. 智能查询路由器：LLM 判断是否需要知识库检索，闲聊则跳过
+        var queryRouter = new SmartQueryRouter(chatModel, contentRetriever);
 
-        // 4. 内容注入器：将检索到的文档片段以模板格式注入到用户消息中
+        // 4. LLM 重排序聚合器：合并去重后按相关性评分排序，取 Top-3
+        var contentAggregator = new ReRankingContentAggregator(chatModel, 3);
+
+        // 5. 内容注入器：带来源标注，让 LLM 知道每条资料的出处
         var contentInjector = DefaultContentInjector.builder()
                 .promptTemplate(new PromptTemplate("""
                         {{userMessage}}
                         
                         基于以下参考资料回答用户问题。
                         如果参考资料中没有相关信息，请明确说明。
+                        回答时请引用资料来源编号（如 [1]、[2]）。
                         
                         参考资料:
                         {{contents}}
                         """))
+                .metadataKeysToInclude(List.of("file_name", "score"))
                 .build();
 
-        // 5. 构建 RetrievalAugmentor（不作为 Bean 暴露，避免污染其他 @AiService）
+        // 6. 构建 RetrievalAugmentor（不作为 Bean 暴露，避免污染其他 @AiService）
         var retrievalAugmentor = DefaultRetrievalAugmentor.builder()
                 .queryTransformer(queryTransformer)
                 .queryRouter(queryRouter)
+                .contentAggregator(contentAggregator)
                 .contentInjector(contentInjector)
                 .build();
 
-        // 6. 手动构建 RetrievalAssistant
+        // 7. 手动构建 RetrievalAssistant
         return AiServices.builder(RetrievalAssistant.class)
                 .streamingChatModel(streamingChatModel)
                 .retrievalAugmentor(retrievalAugmentor)

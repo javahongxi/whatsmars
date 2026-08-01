@@ -13,7 +13,9 @@ import dev.langchain4j.store.embedding.EmbeddingStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 自定义内容检索器
@@ -67,12 +69,16 @@ public class CustomContentRetriever implements ContentRetriever {
                 matches.size(),
                 matches.isEmpty() ? "N/A" : String.format("%.4f", matches.get(0).score()));
 
-        // 3. 将匹配结果转为 Content 列表
+        // 3. 将匹配结果转为 Content 列表，保留相似度分数到 metadata
         return matches.stream()
                 .map(match -> {
                     log.debug("  - [score={}] {}", String.format("%.4f", match.score()),
                             match.embedded().text().substring(0, Math.min(80, match.embedded().text().length())));
-                    return Content.from(match.embedded());
+                    // 将 score 写入 metadata，供后续重排序和来源展示使用
+                    Map<String, Object> meta = new HashMap<>(match.embedded().metadata().toMap());
+                    meta.put("score", String.valueOf(match.score()));
+                    TextSegment enriched = new TextSegment(match.embedded().text(), dev.langchain4j.data.document.Metadata.from(meta));
+                    return Content.from(enriched);
                 })
                 .toList();
     }
