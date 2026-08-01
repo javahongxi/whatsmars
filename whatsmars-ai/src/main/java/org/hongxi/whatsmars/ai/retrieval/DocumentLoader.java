@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.ai.rag;
+package org.hongxi.whatsmars.ai.retrieval;
 
 import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.loader.FileSystemDocumentLoader;
@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
+
 /**
  * 文档加载器
  * <p>

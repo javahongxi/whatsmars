@@ -83,7 +83,7 @@
         .strategy-bar label { cursor: pointer; display: flex; align-items: center; gap: 6px; }
         .strategy-bar .tag { font-size: 11px; padding: 1px 6px; border-radius: 8px; }
         .strategy-bar .tag-basic { background: #e8f0fe; color: #1a73e8; }
-        .strategy-bar .tag-advanced { background: #fce8e6; color: #c5221f; }
+        .strategy-bar .tag-advanced { background: #fce8e6; color: #c5221f; } */
     </style>
 </head>
 <body>
@@ -132,13 +132,9 @@
     <!-- RAG 问答 -->
     <div id="tab-rag" class="tab-content">
         <div class="content-inner">
-            <div class="desc" id="rag-desc">基于知识库的检索增强生成（RAG），调用 <code>GET /ai/rag/chat</code>，流式实时输出。<br>
-            知识库包含 Spring Boot 核心知识和 Java 并发编程文档，AI 先检索相关内容再逐字回答。</div>
-            <div class="strategy-bar">
-                <span>检索策略：</span>
-                <label><input type="radio" name="rag-strategy" value="rag" checked onchange="updateRagDesc()"> 标准检索 <span class="tag tag-basic">ContentRetriever</span></label>
-                <label><input type="radio" name="rag-strategy" value="retrieval" onchange="updateRagDesc()"> 查询扩展 <span class="tag tag-advanced">RetrievalAugmentor</span></label>
-            </div>
+            <div class="desc">基于自定义 <code>RetrievalAugmentor</code> 的检索增强生成（RAG），调用 <code>GET /ai/retrieval/chat</code>，流式实时输出。<br>
+            使用 <code>ExpandingQueryTransformer</code> 将查询扩展为 3 条变体，分别检索后合并去重，召回率更高。<br>
+            知识库包含 Spring Boot 核心知识和 Java 并发编程文档。</div>
             <div class="examples">
                 <button onclick="quickSend('rag','Spring Boot 有哪些核心特性？')">Spring Boot 核心特性</button>
                 <button onclick="quickSend('rag','什么是 ConcurrentHashMap？')">ConcurrentHashMap</button>
@@ -291,8 +287,7 @@
                 const sessionId = document.getElementById('session-id').value.trim() || 'default';
                 url = '/ai/memory/chat?sessionId=' + encodeURIComponent(sessionId) + '&message=' + encodeURIComponent(message);
             } else if (tab === 'rag') {
-                const strategy = document.querySelector('input[name="rag-strategy"]:checked').value;
-                url = '/ai/' + strategy + '/chat?message=' + encodeURIComponent(message);
+                url = '/ai/retrieval/chat?message=' + encodeURIComponent(message);
             } else {
                 const endpoints = { stream: '/ai/stream/chat', tool: '/ai/tool/chat', mcp: '/ai/mcp/chat' };
                 url = endpoints[tab] + '?message=' + encodeURIComponent(message);
@@ -354,15 +349,7 @@
 
         userInput.focus();
 
-        function updateRagDesc() {
-            const strategy = document.querySelector('input[name="rag-strategy"]:checked').value;
-            const desc = document.getElementById('rag-desc');
-            if (strategy === 'rag') {
-                desc.innerHTML = '基于知识库的检索增强生成（RAG），调用 <code>GET /ai/rag/chat</code>，流式实时输出。<br>\n            使用 <code>ContentRetriever</code> 直接检索，单路向量搜索。知识库包含 Spring Boot 核心知识和 Java 并发编程文档。';
-            } else {
-                desc.innerHTML = '基于自定义 <code>RetrievalAugmentor</code> 的高级 RAG，调用 <code>GET /ai/retrieval/chat</code>，流式实时输出。<br>\n            使用 <code>ExpandingQueryTransformer</code> 将查询扩展为 3 条变体，分别检索后合并去重，召回率更高。';
-            }
-        }
+
     </script>
 </body>
 </html>

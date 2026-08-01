@@ -14,7 +14,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * 基于自定义 RetrievalAugmentor 的知识库问答控制器
+ * 知识库问答控制器
  * <p>
  * 演示 RetrievalAugmentor 的完整 RAG 流水线：
  * 用户提问 → 查询扩展(1→3) → 向量检索知识库 → 合并去重 → 拼接上下文 → LLM 流式生成回答
@@ -26,11 +26,6 @@ import java.util.concurrent.Executors;
  *   <li>GET /ai/retrieval/chat?message=什么是 ConcurrentHashMap？</li>
  *   <li>GET /ai/retrieval/chat?message=线程池的核心参数有哪些？</li>
  * </ul>
- * </p>
- * <p>
- * 与 /ai/rag/chat 的区别：
- * 该接口使用 ExpandingQueryTransformer 将用户查询扩展为 3 条变体查询，
- * 分别检索后合并去重，通常能获得更高的召回率和更准确的回答。
  * </p>
  *
  * @author hongxi

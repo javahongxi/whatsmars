@@ -10,15 +10,17 @@ import dev.langchain4j.rag.content.injector.DefaultContentInjector;
 import dev.langchain4j.rag.query.router.DefaultQueryRouter;
 import dev.langchain4j.rag.query.transformer.ExpandingQueryTransformer;
 import dev.langchain4j.store.embedding.EmbeddingStore;
+import dev.langchain4j.store.embedding.pgvector.PgVectorEmbeddingStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * 自定义 RetrievalAugmentor 配置
+ * RAG（检索增强生成）配置
  * <p>
- * 演示如何通过 DefaultRetrievalAugmentor 组装完整的 RAG 流水线：
+ * 配置向量存储和自定义 RetrievalAugmentor，构建完整的 RAG 流水线：
  * <pre>
  * 用户查询
  *   ↓
@@ -32,12 +34,6 @@ import org.springframework.context.annotation.Configuration;
  *   ↓
  * 增强后的消息 → LLM 生成回答
  * </pre>
- * <p>
- * 与现有 rag 包的区别：
- * <ul>
- *   <li>rag 包：通过 @AiService 自动发现 ContentRetriever，内部隐式创建 DefaultRetrievalAugmentor</li>
- *   <li>retrieval 包：显式构建 RetrievalAugmentor，可自定义查询改写、路由、聚合等每个环节</li>
- * </ul>
  *
  * @author hongxi
  */
@@ -45,6 +41,51 @@ import org.springframework.context.annotation.Configuration;
 public class RetrievalConfig {
 
     private static final Logger log = LoggerFactory.getLogger(RetrievalConfig.class);
+
+    @Value("${pgvector.host:localhost}")
+    private String host;
+
+    @Value("${pgvector.port:5432}")
+    private int port;
+
+    @Value("${pgvector.database:ai_demo}")
+    private String database;
+
+    @Value("${pgvector.user:ai_user}")
+    private String user;
+
+    @Value("${pgvector.password:ai_user}")
+    private String password;
+
+    @Value("${pgvector.table:langchain4j_vector_store}")
+    private String table;
+
+    @Value("${pgvector.dimension:1024}")
+    private int dimension;
+
+    /**
+     * PgVector 向量存储
+     * <p>
+     * 使用 PostgreSQL + pgvector 扩展作为持久化向量存储，
+     * 支持向量存储、相似性搜索和混合检索。
+     * 启动时自动创建表，不删除已有数据以避免重复摄入。
+     * </p>
+     */
+    @Bean
+    public EmbeddingStore<TextSegment> embeddingStore() {
+        log.info("初始化 PgVectorEmbeddingStore [{}:{}/{}]", host, port, database);
+        return PgVectorEmbeddingStore.builder()
+                .host(host)
+                .port(port)
+                .database(database)
+                .user(user)
+                .password(password)
+                .table(table)
+                .dimension(dimension)
+                .createTable(true)
+                .dropTableFirst(false)
+                .build();
+    }
 
     /**
      * 自定义 RetrievalAugmentor
