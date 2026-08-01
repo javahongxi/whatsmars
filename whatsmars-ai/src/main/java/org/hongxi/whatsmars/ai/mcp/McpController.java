@@ -1,5 +1,6 @@
 package org.hongxi.whatsmars.ai.mcp;
 
+import org.hongxi.whatsmars.ai.condition.ConditionalOnMcpStatusUp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ import java.util.concurrent.Executors;
  */
 @RestController
 @RequestMapping("/ai/mcp")
+@ConditionalOnMcpStatusUp
 public class McpController {
 
     private static final Logger log = LoggerFactory.getLogger(McpController.class);

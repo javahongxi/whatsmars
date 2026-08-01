@@ -10,6 +10,7 @@ import dev.langchain4j.service.AiServices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.hongxi.whatsmars.ai.condition.ConditionalOnMcpStatusUp;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -27,6 +28,7 @@ import org.springframework.context.annotation.Configuration;
  * @author hongxi
  */
 @Configuration(proxyBeanMethods = false)
+@ConditionalOnMcpStatusUp
 public class McpConfig {
 
     private static final Logger log = LoggerFactory.getLogger(McpConfig.class);
