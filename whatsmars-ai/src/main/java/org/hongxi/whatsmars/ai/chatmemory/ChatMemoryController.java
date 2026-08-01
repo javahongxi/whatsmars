@@ -3,10 +3,8 @@ package org.hongxi.whatsmars.ai.chatmemory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.io.IOException;
@@ -41,9 +39,11 @@ public class ChatMemoryController {
     private static final ExecutorService executor = Executors.newCachedThreadPool();
 
     private final ChatMemoryAssistant assistant;
+    private final ChatMemoryJpaRepository chatMemoryJpaRepository;
 
-    public ChatMemoryController(ChatMemoryAssistant assistant) {
+    public ChatMemoryController(ChatMemoryAssistant assistant, ChatMemoryJpaRepository chatMemoryJpaRepository) {
         this.assistant = assistant;
+        this.chatMemoryJpaRepository = chatMemoryJpaRepository;
     }
 
     /**
@@ -89,5 +89,18 @@ public class ChatMemoryController {
         });
 
         return emitter;
+    }
+
+    /**
+     * 清除指定会话的所有对话记忆
+     *
+     * @param sessionId 会话 ID
+     * @return 删除结果
+     */
+    @DeleteMapping
+    public ResponseEntity<String> deleteMemory(@RequestParam String sessionId) {
+        log.info("清除会话 [{}] 的对话记忆", sessionId);
+        chatMemoryJpaRepository.deleteByMemoryId(sessionId);
+        return ResponseEntity.ok("会话 [" + sessionId + "] 已清空");
     }
 }

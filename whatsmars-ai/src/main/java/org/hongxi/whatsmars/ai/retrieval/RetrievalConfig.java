@@ -2,13 +2,14 @@ package org.hongxi.whatsmars.ai.retrieval;
 
 import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.model.chat.ChatModel;
+import dev.langchain4j.model.chat.StreamingChatModel;
 import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.model.input.PromptTemplate;
 import dev.langchain4j.rag.DefaultRetrievalAugmentor;
-import dev.langchain4j.rag.RetrievalAugmentor;
 import dev.langchain4j.rag.content.injector.DefaultContentInjector;
 import dev.langchain4j.rag.query.router.DefaultQueryRouter;
 import dev.langchain4j.rag.query.transformer.ExpandingQueryTransformer;
+import dev.langchain4j.service.AiServices;
 import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.pgvector.PgVectorEmbeddingStore;
 import org.slf4j.Logger;
@@ -88,31 +89,34 @@ public class RetrievalConfig {
     }
 
     /**
-     * 自定义 RetrievalAugmentor
+     * 手动构建 RetrievalAssistant
      * <p>
-     * 核心组件说明：
-     * <ul>
-     *   <li>ExpandingQueryTransformer - 利用 LLM 将用户查询扩展为 3 条不同角度的变体查询，
-     *       提升检索召回率（例如："Spring Boot 特性" → "Spring Boot 核心功能有哪些" /
-     *       "Spring Boot 框架的主要特点" / "Spring Boot 提供了什么能力"）</li>
-     *   <li>CustomContentRetriever - 自定义检索器，对每条变体查询分别执行向量检索</li>
-     *   <li>DefaultContentInjector - 将检索到的文档片段以模板格式注入到用户消息中</li>
-     * </ul>
+     * 为什么不用 @AiService？
+     * 因为 @AiService 会自动将容器中的 RetrievalAugmentor Bean 注入到所有 @AiService 接口，
+     * 导致 ChatMemoryAssistant、SimpleAssistant 等也被迫走 RAG 流程。
+     * </p>
+     * <p>
+     * 通过 AiServices.builder() 手动构建，可以精确控制：
+     * - RetrievalAugmentor 只注入到 RetrievalAssistant
+     * - 不暴露 RetrievalAugmentor 为独立 Bean，避免污染其他助手
+     * </p>
      *
-     * @param chatModel      对话模型（用于查询扩展）
-     * @param embeddingModel 嵌入模型（用于向量化查询）
-     * @param embeddingStore 向量存储（复用已有的 pgvector）
-     * @return 自定义的 RetrievalAugmentor
+     * @param streamingChatModel 流式对话模型
+     * @param chatModel          对话模型（用于查询扩展）
+     * @param embeddingModel     嵌入模型（用于向量化查询）
+     * @param embeddingStore     向量存储
+     * @return 手动构建的 RetrievalAssistant
      */
     @Bean
-    public RetrievalAugmentor retrievalAugmentor(
+    public RetrievalAssistant retrievalAssistant(
+            StreamingChatModel streamingChatModel,
             ChatModel chatModel,
             EmbeddingModel embeddingModel,
             EmbeddingStore<TextSegment> embeddingStore) {
 
-        log.info("初始化自定义 RetrievalAugmentor（含查询扩展）");
+        log.info("手动构建 RetrievalAssistant（含自定义 RAG 流水线）");
 
-        // 1. 查询扩展：将 1 条查询扩展为 3 条变体
+        // 1. 查询扩展：利用 LLM 将用户查询扩展为 3 条不同角度的变体查询
         var queryTransformer = ExpandingQueryTransformer.builder()
                 .chatModel(chatModel)
                 .n(3)
@@ -124,7 +128,7 @@ public class RetrievalConfig {
         // 3. 查询路由器：将（多条）查询路由到检索器
         var queryRouter = new DefaultQueryRouter(contentRetriever);
 
-        // 4. 内容注入器：将检索结果拼接到用户消息中
+        // 4. 内容注入器：将检索到的文档片段以模板格式注入到用户消息中
         var contentInjector = DefaultContentInjector.builder()
                 .promptTemplate(new PromptTemplate("""
                         {{userMessage}}
@@ -137,10 +141,17 @@ public class RetrievalConfig {
                         """))
                 .build();
 
-        return DefaultRetrievalAugmentor.builder()
+        // 5. 构建 RetrievalAugmentor（不作为 Bean 暴露，避免污染其他 @AiService）
+        var retrievalAugmentor = DefaultRetrievalAugmentor.builder()
                 .queryTransformer(queryTransformer)
                 .queryRouter(queryRouter)
                 .contentInjector(contentInjector)
+                .build();
+
+        // 6. 手动构建 RetrievalAssistant
+        return AiServices.builder(RetrievalAssistant.class)
+                .streamingChatModel(streamingChatModel)
+                .retrievalAugmentor(retrievalAugmentor)
                 .build();
     }
 }

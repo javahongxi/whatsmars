@@ -2,21 +2,16 @@ package org.hongxi.whatsmars.ai.retrieval;
 
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.TokenStream;
-import dev.langchain4j.service.spring.AiService;
 
 /**
  * 基于自定义 RetrievalAugmentor 的知识库问答助手
  * <p>
- * 与 rag 包的 RagAssistant 区别：
- * <ul>
- *   <li>RagAssistant：依赖自动发现的 ContentRetriever，底层使用默认的 DefaultRetrievalAugmentor</li>
- *   <li>RetrievalAssistant：Spring 容器中存在自定义的 RetrievalAugmentor Bean，
- *       @AiService 自动发现并使用它，从而启用查询扩展等高级 RAG 特性</li>
- * </ul>
+ * 注意：该接口不使用 @AiService 注解，而是在 RetrievalConfig 中通过 AiServices.builder() 手动构建。
+ * 这样可以精确控制 RetrievalAugmentor 只注入到这一个助手，避免污染其他 @AiService 接口。
+ * </p>
  *
  * @author hongxi
  */
-@AiService
 public interface RetrievalAssistant {
 
     /**

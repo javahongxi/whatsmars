@@ -231,11 +231,25 @@
         function clearCurrentTab() {
             const msgArea = document.getElementById('msgs-' + currentTab);
             if (msgArea) msgArea.innerHTML = '';
+            if (currentTab === 'memory') {
+                const sessionId = document.getElementById('session-id').value.trim() || 'default';
+                fetch('/ai/memory?sessionId=' + encodeURIComponent(sessionId), { method: 'DELETE' })
+                    .then(res => res.text())
+                    .then(msg => console.log(msg))
+                    .catch(err => console.error('清除会话失败:', err));
+            }
         }
 
         function clearChat(tab) {
             const msgArea = document.getElementById('msgs-' + tab);
             if (msgArea) msgArea.innerHTML = '';
+            if (tab === 'memory') {
+                const sessionId = document.getElementById('session-id').value.trim() || 'default';
+                fetch('/ai/memory?sessionId=' + encodeURIComponent(sessionId), { method: 'DELETE' })
+                    .then(res => res.text())
+                    .then(msg => console.log(msg))
+                    .catch(err => console.error('清除会话失败:', err));
+            }
         }
 
         function addMessage(tab, role, text) {

@@ -4,18 +4,17 @@ import dev.langchain4j.service.MemoryId;
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.TokenStream;
 import dev.langchain4j.service.UserMessage;
-import dev.langchain4j.service.spring.AiService;
 
 /**
  * 支持多轮对话记忆的 AI 助手
  * <p>
  * 使用 @MemoryId 注解实现会话隔离，每个 sessionId 维护独立的对话历史。
- * langchain4j-spring-boot-starter 会自动为接口创建 ChatMemoryProvider。
+ * 不使用 @AiService 注解，而是在 ChatMemoryConfig 中通过 AiServices.builder() 手动构建，
+ * 避免 langchain4j-spring-boot-starter 自动注入 RetrievalAugmentor（RAG 污染）。
  * </p>
  *
  * @author hongxi
  */
-@AiService
 public interface ChatMemoryAssistant {
 
     /**

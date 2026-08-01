@@ -2,6 +2,8 @@ package org.hongxi.whatsmars.ai.chatmemory;
 
 import dev.langchain4j.memory.chat.ChatMemoryProvider;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
+import dev.langchain4j.model.chat.StreamingChatModel;
+import dev.langchain4j.service.AiServices;
 import dev.langchain4j.store.memory.chat.ChatMemoryStore;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -45,6 +47,24 @@ public class ChatMemoryConfig {
                 .id(memoryId)
                 .maxMessages(20)
                 .chatMemoryStore(chatMemoryStore)
+                .build();
+    }
+
+    /**
+     * 手动构建 ChatMemoryAssistant
+     * <p>
+     * 不使用 @AiService，避免 langchain4j-spring-boot-starter 自动将容器中的
+     * RetrievalAugmentor（由 EmbeddingStore + EmbeddingModel 触发自动创建）
+     * 注入到该接口，导致普通对话也走 RAG 流程、注入无关的知识库内容。
+     * </p>
+     */
+    @Bean
+    public ChatMemoryAssistant chatMemoryAssistant(
+            StreamingChatModel streamingChatModel,
+            ChatMemoryProvider chatMemoryProvider) {
+        return AiServices.builder(ChatMemoryAssistant.class)
+                .streamingChatModel(streamingChatModel)
+                .chatMemoryProvider(chatMemoryProvider)
                 .build();
     }
 }

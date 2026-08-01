@@ -1,17 +1,16 @@
 package org.hongxi.whatsmars.ai.simple;
 
 import dev.langchain4j.service.SystemMessage;
-import dev.langchain4j.service.spring.AiService;
 
 /**
  * 基础 AI 助手接口
  * <p>
- * 简单的单轮对话示例，不带上下文记忆
+ * 简单的单轮对话示例，不带上下文记忆。
+ * 不使用 @AiService，在 SimpleConfig 中手动构建，避免自动注入 RAG。
  * </p>
  *
  * @author hongxi
  */
-@AiService
 public interface SimpleAssistant {
 
     /**

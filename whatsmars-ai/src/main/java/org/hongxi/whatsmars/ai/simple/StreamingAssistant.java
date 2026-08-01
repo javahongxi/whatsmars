@@ -1,18 +1,17 @@
-package org.hongxi.whatsmars.ai.streaming;
+package org.hongxi.whatsmars.ai.simple;
 
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.TokenStream;
-import dev.langchain4j.service.spring.AiService;
 
 /**
  * 支持流式响应的 AI 助手
  * <p>
- * 使用 TokenStream 实现流式输出
+ * 使用 TokenStream 实现流式输出。
+ * 不使用 @AiService，在 SimpleConfig 中手动构建，避免自动注入 RAG。
  * </p>
  *
  * @author hongxi
  */
-@AiService
 public interface StreamingAssistant {
 
     /**
