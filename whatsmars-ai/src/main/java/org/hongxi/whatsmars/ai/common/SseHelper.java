@@ -54,6 +54,11 @@ public final class SseHelper {
                 stream.onPartialResponse(token -> {
                     try {
                         Object data = tokenMapper != null ? tokenMapper.apply(token) : token;
+                        // SSE 协议用 \n 作为字段/事件分隔符，token 中的换行符会被丢失，
+                        // 因此需要先转义：\\ → \\\\，\n → \\n，客户端负责反转义
+                        if (data instanceof String) {
+                            data = ((String) data).replace("\\", "\\\\").replace("\n", "\\n");
+                        }
                         emitter.send(SseEmitter.event().data(data));
                     } catch (IOException e) {
                         log.error("发送 token 失败", e);

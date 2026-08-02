@@ -371,6 +371,21 @@
             }
         }
 
+        // SSE 数据反转义：服务端对 token 中的换行符做了转义（\\n → \n），这里还原
+        function unescapeSseData(s) {
+            var result = '';
+            for (var i = 0; i < s.length; i++) {
+                if (s[i] === '\\' && i + 1 < s.length) {
+                    if (s[i + 1] === 'n') { result += '\n'; i++; }
+                    else if (s[i + 1] === '\\') { result += '\\'; i++; }
+                    else { result += s[i]; }
+                } else {
+                    result += s[i];
+                }
+            }
+            return result;
+        }
+
         function renderMarkdown(el, text) {
             if (typeof marked !== 'undefined') {
                 el.innerHTML = '<div class="md-content">' + marked.parse(text) + '</div>';
@@ -445,7 +460,7 @@
 
             eventSource.onmessage = function(e) {
                 if (indicator.parentNode) indicator.remove();
-                rawText += e.data;
+                rawText += unescapeSseData(e.data);
                 renderMarkdown(msgDiv, rawText);
                 scrollToBottom(tab);
             };
@@ -554,10 +569,77 @@
                 const reader = response.body.getReader();
                 const decoder = new TextDecoder();
                 let buffer = '';
+                let eventName = '';
+                let eventData = '';
+                let hasData = false;
+
+                // 分发已累积的 SSE 事件
+                function dispatchEvent() {
+                    if (!hasData) return;
+                    const data = eventData;
+                    hasData = false;
+                    eventData = '';
+                    if (indicator.parentNode) indicator.remove();
+
+                    if (eventName === 'iteration') {
+                        try {
+                            const obj = JSON.parse(data);
+                            const statusLabel = obj.status === 'writing' ? '✍️ 写作中' : '🔍 评审中';
+                            addStatusMsg(msgArea, '第 ' + obj.iteration + ' 轮 - ' + statusLabel);
+                        } catch (e) { addStatusMsg(msgArea, data); }
+                    } else if (eventName === 'review') {
+                        try {
+                            const obj = JSON.parse(data);
+                            if (obj.score !== undefined) {
+                                addStatusMsg(msgArea, '评分: ' + obj.score.toFixed(2) + ' - ' + (obj.feedback || ''));
+                            } else {
+                                rawText = data;
+                                renderMarkdown(msgDiv, rawText);
+                                scrollToBottom(tab);
+                            }
+                        } catch (e) {
+                            rawText = data;
+                            renderMarkdown(msgDiv, rawText);
+                            scrollToBottom(tab);
+                        }
+                    } else if (eventName === 'document') {
+                        // 文档内容为多行 markdown，Spring SseEmitter 会拆分为多个 data: 行
+                        // 此处 data 已按 SSE 规范用 \n 拼接，可直接渲染
+                        rawText = data;
+                        renderMarkdown(msgDiv, rawText);
+                        scrollToBottom(tab);
+                    } else {
+                        rawText += unescapeSseData(data);
+                        renderMarkdown(msgDiv, rawText);
+                        scrollToBottom(tab);
+                    }
+                    eventName = '';
+                }
+
+                // 解析 buffer 中的 SSE 行
+                function processLines() {
+                    const lines = buffer.split('\n');
+                    buffer = lines.pop();
+                    for (const line of lines) {
+                        if (line.startsWith('event:')) {
+                            dispatchEvent();
+                            eventName = line.substring(6).trim();
+                        } else if (line.startsWith('data:')) {
+                            if (hasData) eventData += '\n';
+                            eventData += line.substring(5).trim();
+                            hasData = true;
+                        } else if (line.trim() === '') {
+                            dispatchEvent();
+                        }
+                    }
+                }
 
                 function read() {
                     reader.read().then(({ done, value }) => {
                         if (done) {
+                            // 处理 buffer 中剩余数据
+                            if (buffer.trim()) processLines();
+                            dispatchEvent();
                             if (indicator.parentNode) indicator.remove();
                             if (rawText) renderMarkdown(msgDiv, rawText);
                             sendBtn.disabled = false;
@@ -565,50 +647,7 @@
                             return;
                         }
                         buffer += decoder.decode(value, { stream: true });
-                        const lines = buffer.split('\n');
-                        buffer = lines.pop();
-
-                        let eventName = '';
-                        for (const line of lines) {
-                            if (line.startsWith('event:')) {
-                                eventName = line.substring(6).trim();
-                            } else if (line.startsWith('data:')) {
-                                const data = line.substring(5).trim();
-                                if (indicator.parentNode) indicator.remove();
-
-                                if (eventName === 'iteration') {
-                                    try {
-                                        const obj = JSON.parse(data);
-                                        const statusLabel = obj.status === 'writing' ? '✍️ 写作中' : '🔍 评审中';
-                                        addStatusMsg(msgArea, '第 ' + obj.iteration + ' 轮 - ' + statusLabel);
-                                    } catch (e) { addStatusMsg(msgArea, data); }
-                                } else if (eventName === 'review') {
-                                    try {
-                                        const obj = JSON.parse(data);
-                                        if (obj.score !== undefined) {
-                                            addStatusMsg(msgArea, '评分: ' + obj.score.toFixed(2) + ' - ' + (obj.feedback || ''));
-                                        } else {
-                                            rawText = data;
-                                            renderMarkdown(msgDiv, rawText);
-                                            scrollToBottom(tab);
-                                        }
-                                    } catch (e) {
-                                        rawText = data;
-                                        renderMarkdown(msgDiv, rawText);
-                                        scrollToBottom(tab);
-                                    }
-                                } else if (eventName === 'document') {
-                                    rawText = data;
-                                    renderMarkdown(msgDiv, rawText);
-                                    scrollToBottom(tab);
-                                } else {
-                                    rawText += data;
-                                    renderMarkdown(msgDiv, rawText);
-                                    scrollToBottom(tab);
-                                }
-                                eventName = '';
-                            }
-                        }
+                        processLines();
                         read();
                     });
                 }
