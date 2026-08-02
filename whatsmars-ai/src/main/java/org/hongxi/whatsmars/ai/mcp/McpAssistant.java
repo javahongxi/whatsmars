@@ -28,5 +28,5 @@ public interface McpAssistant {
             3. 不要编造结果，必须基于工具返回的实际数据回答。
             4. 用中文回答。
             """)
-    TokenStream chat(String userMessage);
+    TokenStream chat(String message);
 }

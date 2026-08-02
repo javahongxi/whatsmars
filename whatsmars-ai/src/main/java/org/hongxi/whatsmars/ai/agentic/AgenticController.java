@@ -7,10 +7,7 @@ import org.hongxi.whatsmars.ai.common.SseHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.util.Map;
@@ -20,7 +17,7 @@ import java.util.concurrent.Executors;
 /**
  * Agentic Patterns 控制器
  * <p>
- * 提供 5 种 Agent 编排模式的 REST API，每种模式同时提供同步和流式（SSE）两个端点：
+ * 提供 5 种 Agent 编排模式的 REST API，每种模式提供同步和流式（SSE）端点：
  * <ul>
  *   <li>POST /ai/agentic/basic           - 基础 Agent（同步）</li>
  *   <li>GET  /ai/agentic/basic/stream    - 基础 Agent（流式）</li>
@@ -29,8 +26,7 @@ import java.util.concurrent.Executors;
  *   <li>POST /ai/agentic/loop            - 循环工作流（同步）</li>
  *   <li>GET  /ai/agentic/loop/stream     - 循环工作流（SSE 进度事件 + 最终文档）</li>
  *   <li>POST /ai/agentic/parallel        - 并行工作流（同步）</li>
- *   <li>GET  /ai/agentic/parallel/stream - 并行工作流（流式）</li>
- *   <li>POST /ai/agentic/supervisor      - 监督者编排（同步，不支持流式）</li>
+ *   <li>POST /ai/agentic/supervisor      - 监督者编排（同步）</li>
  * </ul>
  * </p>
  *
@@ -79,14 +75,12 @@ public class AgenticController {
      * Agent 可以自动调用 web_search 工具获取实时信息。
      * </p>
      *
-     * @param request 包含 topic 字段
+     * @param message 研究主题
      * @return 研究报告
      */
     @PostMapping("/basic")
-    public Map<String, String> basicAgent(@RequestBody Map<String, String> request) {
-        String topic = request.get("topic");
-        String result = researchAgent.research(topic);
-        return Map.of("topic", topic, "result", result);
+    public String basicAgent(@RequestParam String message) {
+        return researchAgent.research(message);
     }
 
     /**
@@ -95,14 +89,12 @@ public class AgenticController {
      * 三个 Agent 依次执行，每个 Agent 的输出作为下一个 Agent 的输入。
      * </p>
      *
-     * @param request 包含 topic 字段
+     * @param message 研究主题
      * @return 最终翻译结果
      */
     @PostMapping("/sequential")
-    public Map<String, String> sequentialWorkflow(@RequestBody Map<String, String> request) {
-        String topic = request.get("topic");
-        String result = (String) sequentialWorkflow.invoke(Map.of("topic", topic));
-        return Map.of("topic", topic, "translation", result);
+    public String sequentialWorkflow(@RequestParam String message) {
+        return (String) sequentialWorkflow.invoke(Map.of("topic", message));
     }
 
     /**
@@ -112,14 +104,12 @@ public class AgenticController {
      * 当评审分数 >= 0.7 或达到最大迭代次数（3次）时退出。
      * </p>
      *
-     * @param request 包含 topic 字段
-     * @return 最终文档和评审结果
+     * @param message 写作主题
+     * @return 最终文档
      */
     @PostMapping("/loop")
-    public Map<String, Object> loopWorkflow(@RequestBody Map<String, String> request) {
-        String topic = request.get("topic");
-        String result = (String) loopWorkflow.invoke(Map.of("topic", topic, "feedback", "无"));
-        return Map.of("topic", topic, "document", result);
+    public String loopWorkflow(@RequestParam String message) {
+        return (String) loopWorkflow.invoke(Map.of("topic", message, "feedback", "无"));
     }
 
     /**
@@ -128,27 +118,42 @@ public class AgenticController {
      * 三个审查 Agent 并行执行，最终聚合为一份综合审查报告。
      * </p>
      *
-     * @param request 包含 code 字段
+     * @param message 待审查的代码
      * @return 综合审查报告
      */
     @PostMapping("/parallel")
-    public Map<String, String> parallelWorkflow(@RequestBody Map<String, String> request) {
-        String code = request.get("code");
-        String result = (String) parallelWorkflow.invoke(Map.of("code", code));
-        return Map.of("review", result);
+    public String parallelWorkflow(@RequestParam String message) {
+        return (String) parallelWorkflow.invoke(Map.of("code", message));
+    }
+
+    /**
+     * 监督者编排：动态调度专家 Agent
+     * <p>
+     * Supervisor 根据用户问题自动决定调用哪些专家、以什么顺序调用。
+     * 与确定性工作流不同，监督者模式是动态的、由 LLM 自主决策的。
+     * 注：当前 SupervisorAgent 不支持流式，仅提供同步接口。
+     * </p>
+     *
+     * @param message 用户问题
+     * @return 监督者的综合回复
+     */
+    @PostMapping("/supervisor")
+    public String supervisorAgent(@RequestParam String message) {
+        return supervisorAgent.invoke(message);
     }
 
     // ==================== 流式 SSE 端点 ====================
 
     /**
      * 基础 Agent（流式）：单 Agent + 工具调用，SSE 流式输出
+     *
+     * @param message 研究主题
      */
     @PostMapping(value = "/basic/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public SseEmitter streamBasicAgent(@RequestBody Map<String, String> request) {
-        String topic = request.get("topic");
-        log.info("流式基础 Agent，topic: {}", topic);
+    public SseEmitter streamBasicAgent(@RequestParam String message) {
+        log.info("流式基础 Agent，message: {}", message);
         SseEmitter emitter = new SseEmitter(0L);
-        TokenStream tokenStream = streamingResearchAgent.research(topic);
+        TokenStream tokenStream = streamingResearchAgent.research(message);
         SseHelper.stream(tokenStream, emitter);
         return emitter;
     }
@@ -158,13 +163,14 @@ public class AgenticController {
      * <p>
      * 中间步骤（研究、摘要）同步执行，最后一步（翻译）流式返回。
      * </p>
+     *
+     * @param message 研究主题
      */
     @PostMapping(value = "/sequential/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public SseEmitter streamSequentialWorkflow(@RequestBody Map<String, String> request) {
-        String topic = request.get("topic");
-        log.info("流式顺序工作流，topic: {}", topic);
+    public SseEmitter streamSequentialWorkflow(@RequestParam String message) {
+        log.info("流式顺序工作流，message: {}", message);
         SseEmitter emitter = new SseEmitter(0L);
-        TokenStream tokenStream = (TokenStream) streamingSequentialWorkflow.invoke(Map.of("topic", topic));
+        TokenStream tokenStream = (TokenStream) streamingSequentialWorkflow.invoke(Map.of("topic", message));
         SseHelper.stream(tokenStream, emitter);
         return emitter;
     }
@@ -180,11 +186,12 @@ public class AgenticController {
      *   <li>event: document，data: 最终文档内容</li>
      * </ul>
      * </p>
+     *
+     * @param message 写作主题
      */
     @PostMapping(value = "/loop/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public SseEmitter streamLoopWorkflow(@RequestBody Map<String, String> request) {
-        String topic = request.get("topic");
-        log.info("流式循环工作流，topic: {}", topic);
+    public SseEmitter streamLoopWorkflow(@RequestParam String message) {
+        log.info("流式循环工作流，message: {}", message);
         SseEmitter emitter = new SseEmitter(0L);
 
         EXECUTOR.execute(() -> {
@@ -197,7 +204,7 @@ public class AgenticController {
                     // 发送写作进度事件
                     emitter.send(SseEmitter.event().name("iteration")
                             .data(Map.of("iteration", i, "status", "writing")));
-                    document = writerAgent.writeDocument(topic, feedback);
+                    document = writerAgent.writeDocument(message, feedback);
 
                     // 发送评审进度事件
                     emitter.send(SseEmitter.event().name("iteration")
@@ -224,50 +231,5 @@ public class AgenticController {
         });
 
         return emitter;
-    }
-
-    /**
-     * 并行工作流（SSE）：三路并行审查，完成后以 SSE 事件返回聚合报告
-     * <p>
-     * 并行工作流不适合逐字流式（需等待三路审查全部完成后才能聚合），
-     * 此处通过 SSE 包装同步执行结果，前端可统一处理。
-     * </p>
-     */
-    @PostMapping(value = "/parallel/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public SseEmitter streamParallelWorkflow(@RequestBody Map<String, String> request) {
-        String code = request.get("code");
-        log.info("流式并行工作流");
-        SseEmitter emitter = new SseEmitter(0L);
-
-        EXECUTOR.execute(() -> {
-            try {
-                String result = (String) parallelWorkflow.invoke(Map.of("code", code));
-                emitter.send(SseEmitter.event().name("review").data(result));
-                emitter.complete();
-            } catch (Exception e) {
-                log.error("流式并行工作流异常", e);
-                emitter.completeWithError(e);
-            }
-        });
-
-        return emitter;
-    }
-
-    /**
-     * 监督者编排：动态调度专家 Agent
-     * <p>
-     * Supervisor 根据用户问题自动决定调用哪些专家、以什么顺序调用。
-     * 与确定性工作流不同，监督者模式是动态的、由 LLM 自主决策的。
-     * 注：当前 SupervisorAgent 不支持流式，仅提供同步接口。
-     * </p>
-     *
-     * @param request 包含 request 字段（用户问题）
-     * @return 监督者的综合回复
-     */
-    @PostMapping("/supervisor")
-    public Map<String, String> supervisorAgent(@RequestBody Map<String, String> request) {
-        String userRequest = request.get("request");
-        String result = supervisorAgent.invoke(userRequest);
-        return Map.of("result", result);
     }
 }

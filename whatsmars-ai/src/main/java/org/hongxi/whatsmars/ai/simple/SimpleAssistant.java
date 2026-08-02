@@ -16,9 +16,9 @@ public interface SimpleAssistant {
     /**
      * 进行单轮对话
      *
-     * @param userMessage 用户消息
+     * @param message 用户消息
      * @return AI 回复
      */
     @SystemMessage("你是一个专业的 Java 技术专家，回答要简洁、准确。")
-    String chat(String userMessage);
+    String chat(String message);
 }

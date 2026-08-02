@@ -26,7 +26,7 @@ public interface ToolCallingAssistant {
     /**
      * 与 AI 对话，AI 可以根据需要调用工具
      *
-     * @param userMessage 用户消息
+     * @param message 用户消息
      * @return AI 回复（可能包含工具调用结果）
      */
     @SystemMessage("""
@@ -41,5 +41,5 @@ public interface ToolCallingAssistant {
             3. 不要编造数据，如果不确定就使用工具验证。
             4. 用中文回答。
             """)
-    TokenStream chat(String userMessage);
+    TokenStream chat(String message);
 }

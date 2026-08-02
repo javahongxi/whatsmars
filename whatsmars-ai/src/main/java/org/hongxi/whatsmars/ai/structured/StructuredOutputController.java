@@ -40,13 +40,13 @@ public class StructuredOutputController {
      * 测试: "我叫张三，今年28岁，是一名Java架构师，喜欢跑步和读书，邮箱是zhangsan@example.com"
      * </p>
      *
-     * @param text 包含用户信息的自然语言
+     * @param message 包含用户信息的自然语言
      * @return 结构化的 UserInfo 对象（JSON）
      */
     @PostMapping("/extract-user")
-    public StructuredOutputAssistant.UserInfo extractUserInfo(@RequestParam String text) {
-        log.info("提取用户信息: {}", text);
-        StructuredOutputAssistant.UserInfo result = assistant.extractUserInfo(text);
+    public StructuredOutputAssistant.UserInfo extractUserInfo(@RequestParam String message) {
+        log.info("提取用户信息: {}", message);
+        StructuredOutputAssistant.UserInfo result = assistant.extractUserInfo(message);
         log.info("提取结果: {}", result);
         return result;
     }
@@ -57,13 +57,13 @@ public class StructuredOutputController {
      * 测试: "这个产品太棒了，用起来非常顺手，强烈推荐！"
      * </p>
      *
-     * @param text 待分析文本
+     * @param message 待分析文本
      * @return 情感分析结果（JSON）
      */
     @PostMapping("/sentiment")
-    public StructuredOutputAssistant.SentimentResult analyzeSentiment(@RequestParam String text) {
-        log.info("情感分析: {}", text);
-        StructuredOutputAssistant.SentimentResult result = assistant.analyzeSentiment(text);
+    public StructuredOutputAssistant.SentimentResult analyzeSentiment(@RequestParam String message) {
+        log.info("情感分析: {}", message);
+        StructuredOutputAssistant.SentimentResult result = assistant.analyzeSentiment(message);
         log.info("分析结果: {}", result);
         return result;
     }
@@ -74,13 +74,13 @@ public class StructuredOutputController {
      * 测试: "明天要交项目报告，下午3点和王总开会讨论Q3预算，别忘了给小李发周报，下周一前完成代码review"
      * </p>
      *
-     * @param text 包含待办事项的文本
+     * @param message 包含待办事项的文本
      * @return 待办事项列表（JSON）
      */
     @PostMapping("/todos")
-    public StructuredOutputAssistant.TodoList extractTodos(@RequestParam String text) {
-        log.info("提取待办事项: {}", text);
-        StructuredOutputAssistant.TodoList result = assistant.extractTodos(text);
+    public StructuredOutputAssistant.TodoList extractTodos(@RequestParam String message) {
+        log.info("提取待办事项: {}", message);
+        StructuredOutputAssistant.TodoList result = assistant.extractTodos(message);
         log.info("提取结果: {}", result);
         return result;
     }
@@ -91,13 +91,13 @@ public class StructuredOutputController {
      * 测试: "查询年龄大于25岁的用户，按注册时间倒序排列，取前10条"
      * </p>
      *
-     * @param description 自然语言查询描述
+     * @param message 自然语言查询描述
      * @return SQL 生成结果（JSON）
      */
     @PostMapping("/sql")
-    public StructuredOutputAssistant.SqlResult generateSql(@RequestParam String description) {
-        log.info("生成 SQL: {}", description);
-        StructuredOutputAssistant.SqlResult result = assistant.generateSql(description);
+    public StructuredOutputAssistant.SqlResult generateSql(@RequestParam String message) {
+        log.info("生成 SQL: {}", message);
+        StructuredOutputAssistant.SqlResult result = assistant.generateSql(message);
         log.info("SQL 结果: {}", result);
         return result;
     }

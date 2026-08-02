@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * ChatModel 监听器示例
  * <p>
  * 通过实现 {@link ChatModelListener} 接口，监听所有 ChatModel 的请求、响应和异常事件。
- * 注册为 Spring Bean 后，langchain4j-spring-boot-starter 会自动将其注入到所有 ChatModel 中。
+ * 注册为 Spring Bean 后，langchain4j-open-ai-spring-boot-starter 会自动将其注入到所有 ChatModel 中。
  * </p>
  * <p>
  * 典型用途：

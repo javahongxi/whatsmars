@@ -208,7 +208,6 @@
                 <button class="pattern-btn active" onclick="selectPattern('basic')">基础 Agent</button>
                 <button class="pattern-btn" onclick="selectPattern('sequential')">顺序工作流</button>
                 <button class="pattern-btn" onclick="selectPattern('loop')">循环工作流</button>
-                <button class="pattern-btn" onclick="selectPattern('parallel')">并行工作流</button>
             </div>
             <div class="examples" id="agentic-examples"></div>
             <div class="msg-area" id="msgs-agentic"></div>
@@ -270,41 +269,31 @@
                 label: '基础 Agent',
                 desc: '单 Agent 配合 <code>web_search</code> 工具调用，流式输出研究报告。',
                 examples: [
-                    { text: 'Java 21 虚拟线程最新发展', body: { topic: 'Java 21虚拟线程的最新发展和最佳实践' } },
-                    { text: 'Spring AI 核心特性', body: { topic: 'Spring AI 2.0核心特性和应用场景' } },
+                    { text: 'Java 21 虚拟线程最新发展', params: 'message=Java 21虚拟线程的最新发展和最佳实践' },
+                    { text: 'Spring AI 核心特性', params: 'message=Spring AI 2.0核心特性和应用场景' },
                 ],
                 endpoint: '/ai/agentic/basic/stream',
-                bodyKey: 'topic',
+                paramKey: 'message',
             },
             sequential: {
                 label: '顺序工作流',
                 desc: '研究 → 摘要 → 翻译，中间步骤同步执行，最终翻译结果流式输出。',
                 examples: [
-                    { text: 'Spring Boot 4.x 新特性', body: { topic: 'Spring Boot 4.x 新特性' } },
-                    { text: 'Kubernetes 入门指南', body: { topic: 'Kubernetes核心概念和入门指南' } },
+                    { text: 'Spring Boot 4.x 新特性', params: 'message=Spring Boot 4.x 新特性' },
+                    { text: 'Kubernetes 入门指南', params: 'message=Kubernetes核心概念和入门指南' },
                 ],
                 endpoint: '/ai/agentic/sequential/stream',
-                bodyKey: 'topic',
+                paramKey: 'message',
             },
             loop: {
                 label: '循环工作流',
                 desc: '写作 → 评审循环迭代，SSE 实时推送每轮进度和评分，最终输出达标文档。',
                 examples: [
-                    { text: 'Redis 分布式锁', body: { topic: 'Redis分布式锁的正确实现方式' } },
-                    { text: 'MySQL 索引优化', body: { topic: 'MySQL索引优化最佳实践' } },
+                    { text: 'Redis 分布式锁', params: 'message=Redis分布式锁的正确实现方式' },
+                    { text: 'MySQL 索引优化', params: 'message=MySQL索引优化最佳实践' },
                 ],
                 endpoint: '/ai/agentic/loop/stream',
-                bodyKey: 'topic',
-            },
-            parallel: {
-                label: '并行工作流',
-                desc: '安全 + 性能 + 最佳实践三路并行审查，最终聚合报告流式输出。',
-                examples: [
-                    { text: 'SQL 注入示例', body: { code: 'public User getUser(String id) {\n    String sql = "SELECT * FROM users WHERE id = " + id;\n    return jdbcTemplate.queryForObject(sql, User.class);\n}' } },
-                    { text: '空指针风险示例', body: { code: 'public String getUserName(User user) {\n    return user.getAddress().getCity().getName();\n}' } },
-                ],
-                endpoint: '/ai/agentic/parallel/stream',
-                bodyKey: 'code',
+                paramKey: 'message',
             },
         };
         
@@ -405,9 +394,8 @@
 
             if (tab === 'agentic') {
                 const cfg = agenticPatterns[agenticPattern];
-                const body = {};
-                body[cfg.bodyKey] = message;
-                sendAgenticStream(cfg.endpoint, body, 'agentic');
+                const paramValue = encodeURIComponent(message);
+                sendAgenticStream(cfg.endpoint + '?' + cfg.paramKey + '=' + paramValue, 'agentic');
                 return;
             }
 
@@ -546,7 +534,7 @@
         }
 
         // ---- Agentic POST SSE streaming (fetch + ReadableStream) ----
-        function sendAgenticStream(endpoint, body, tab) {
+        function sendAgenticStream(url, tab) {
             const msgArea = document.getElementById('msgs-' + tab);
             const msgDiv = document.createElement('div');
             msgDiv.className = 'msg assistant';
@@ -559,10 +547,8 @@
 
             let rawText = '';
 
-            fetch(endpoint, {
+            fetch(url, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(body),
             }).then(response => {
                 if (!response.ok) throw new Error('HTTP ' + response.status);
                 const reader = response.body.getReader();

@@ -20,9 +20,9 @@ public interface StreamingAssistant {
      * 返回 TokenStream，可以通过 onPartialResponse/onCompleteResponse/onError 处理流式数据
      * </p>
      *
-     * @param userMessage 用户消息
+     * @param message 用户消息
      * @return 流式响应
      */
     @SystemMessage("你是一个专业的 Java 技术专家，回答要简洁、准确。")
-    TokenStream chat(String userMessage);
+    TokenStream chat(String message);
 }
