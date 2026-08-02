@@ -123,6 +123,7 @@
         <button class="tab-btn" onclick="switchTab('memory')">对话记忆</button>
         <button class="tab-btn" onclick="switchTab('mcp')">MCP</button>
         <button class="tab-btn" onclick="switchTab('agentic')">Agentic</button>
+        <button class="tab-btn" onclick="switchTab('guardrails')">Guardrails</button>
     </div></div>
 
     <!-- 流式对话 -->
@@ -211,6 +212,21 @@
             </div>
             <div class="examples" id="agentic-examples"></div>
             <div class="msg-area" id="msgs-agentic"></div>
+        </div>
+    </div>
+
+    <!-- Guardrails 护栏 -->
+    <div id="tab-guardrails" class="tab-content">
+        <div class="content-inner">
+            <div class="desc">基于 LangChain4j Guardrails 的输入安全过滤，调用 <code>GET /ai/guardrails/chat?message=...</code>，流式输出。<br>
+            输入护栏：过滤敏感词汇（fuck, shit, damn, ass），检测到敏感词时拒绝请求。<br>
+            尝试发送包含敏感词的消息，观察护栏拦截效果。</div>
+            <div class="examples">
+                <button onclick="quickSend('guardrails','请介绍一下 Spring Boot')">正常问题</button>
+                <button onclick="quickSend('guardrails','Java 并发编程有哪些最佳实践？')">Java 最佳实践</button>
+                <button onclick="quickSend('guardrails','this is fucking bullshit')">触发输入护栏</button>
+            </div>
+            <div class="msg-area" id="msgs-guardrails"></div>
         </div>
     </div>
 
@@ -420,6 +436,8 @@
                 url = '/ai/memory/chat?sessionId=' + encodeURIComponent(sessionId) + '&message=' + encodeURIComponent(message);
             } else if (tab === 'rag') {
                 url = '/ai/retrieval/chat?message=' + encodeURIComponent(message);
+            } else if (tab === 'guardrails') {
+                url = '/ai/guardrails/chat?message=' + encodeURIComponent(message);
             } else {
                 const endpoints = { stream: '/ai/stream/chat', tool: '/ai/tool/chat', mcp: '/ai/mcp/chat' };
                 url = endpoints[tab] + '?message=' + encodeURIComponent(message);
