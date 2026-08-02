@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LangChain Java Demo - whatsmars</title>
+    <title>LangChain4j Demo - whatsmars</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github.min.css">
     <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/highlight.min.js"></script>
@@ -108,22 +108,33 @@
         .pattern-btn:hover { background: #d2e3fc; }
         .pattern-btn.active { background: #1a73e8; color: #fff; border-color: #1a73e8; }
         .status-msg { background: #fff8e1; border-radius: 8px; padding: 8px 14px; font-size: 13px; color: #795548; border-left: 3px solid #ffc107; }
+
+        /* Structured output */
+        .structured-modes { display: flex; gap: 6px; flex-wrap: wrap; }
+        .json-result { background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 14px 16px; font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; line-height: 1.6; white-space: pre-wrap; word-break: break-all; color: #333; }
+        .json-result .json-key { color: #0550ae; }
+        .json-result .json-string { color: #0a3069; }
+        .json-result .json-number { color: #cf222e; }
+        .json-result .json-bool { color: #8250df; }
+        .json-result .json-null { color: #6e7781; }
+        .structured-label { font-size: 12px; color: #888; margin-bottom: 4px; }
     </style>
 </head>
 <body>
     <header><div class="header-inner">
-        <h1>LangChain Java Demo</h1>
+        <h1>LangChain4j Demo</h1>
         <span class="badge">whatsmars-ai</span>
     </div></header>
 
     <div class="tab-bar"><div class="tab-inner">
         <button class="tab-btn active" onclick="switchTab('stream')">流式对话</button>
+        <button class="tab-btn" onclick="switchTab('structured')">结构化输出</button>
         <button class="tab-btn" onclick="switchTab('tool')">工具调用</button>
-        <button class="tab-btn" onclick="switchTab('rag')">RAG 问答</button>
         <button class="tab-btn" onclick="switchTab('memory')">对话记忆</button>
+        <button class="tab-btn" onclick="switchTab('rag')">RAG 问答</button>
         <button class="tab-btn" onclick="switchTab('mcp')">MCP</button>
-        <button class="tab-btn" onclick="switchTab('agentic')">Agentic</button>
         <button class="tab-btn" onclick="switchTab('guardrails')">Guardrails</button>
+        <button class="tab-btn" onclick="switchTab('agentic')">Agentic</button>
     </div></div>
 
     <!-- 流式对话 -->
@@ -135,6 +146,22 @@
                 <button onclick="quickSend('stream','用200字介绍 Spring Boot')">介绍 Spring Boot</button>
             </div>
             <div class="msg-area" id="msgs-stream"></div>
+        </div>
+    </div>
+
+    <!-- 结构化输出 -->
+    <div id="tab-structured" class="tab-content">
+        <div class="content-inner">
+            <div class="desc">基于 LangChain4j Structured Output 能力，AI 返回结构化 JSON 对象而非自由文本。<br>
+            调用 <code>POST /ai/structured/...</code>，输入自然语言，输出对应的 Java POJO（JSON 展示）。</div>
+            <div class="structured-modes">
+                <button class="pattern-btn active" onclick="selectStructuredMode('extract-user')">提取用户信息</button>
+                <button class="pattern-btn" onclick="selectStructuredMode('sentiment')">情感分析</button>
+                <button class="pattern-btn" onclick="selectStructuredMode('todos')">提取待办事项</button>
+                <button class="pattern-btn" onclick="selectStructuredMode('sql')">自然语言转 SQL</button>
+            </div>
+            <div class="examples" id="structured-examples"></div>
+            <div class="msg-area" id="msgs-structured"></div>
         </div>
     </div>
 
@@ -155,6 +182,20 @@
         </div>
     </div>
 
+    <!-- 对话记忆 -->
+    <div id="tab-memory" class="tab-content">
+        <div class="content-inner">
+            <div class="desc">基于 <code>@MemoryId</code> 的多轮对话记忆，流式输出，调用 <code>GET /ai/memory/chat?sessionId=...&message=...</code>。<br>
+            相同 sessionId 的对话会保留上下文，不同 sessionId 互相隔离。</div>
+            <div class="examples">
+                <button onclick="quickSend('memory','你好，我叫张三')">你好，我叫张三</button>
+                <button onclick="quickSend('memory','我叫什么名字？')">我叫什么名字？</button>
+                <button onclick="quickSend('memory','我最擅长什么技术？')">我最擅长什么？</button>
+            </div>
+            <div class="msg-area" id="msgs-memory"></div>
+        </div>
+    </div>
+
     <!-- RAG 问答 -->
     <div id="tab-rag" class="tab-content">
         <div class="content-inner">
@@ -168,20 +209,6 @@
                 <button onclick="quickSend('rag','阿里巴巴规范为什么不推荐用 Executors？')">Executors 问题</button>
             </div>
             <div class="msg-area" id="msgs-rag"></div>
-        </div>
-    </div>
-
-    <!-- 对话记忆 -->
-    <div id="tab-memory" class="tab-content">
-        <div class="content-inner">
-            <div class="desc">基于 <code>@MemoryId</code> 的多轮对话记忆，流式输出，调用 <code>GET /ai/memory/chat?sessionId=...&message=...</code>。<br>
-            相同 sessionId 的对话会保留上下文，不同 sessionId 互相隔离。</div>
-            <div class="examples">
-                <button onclick="quickSend('memory','你好，我叫张三')">你好，我叫张三</button>
-                <button onclick="quickSend('memory','我叫什么名字？')">我叫什么名字？</button>
-                <button onclick="quickSend('memory','我最擅长什么技术？')">我最擅长什么？</button>
-            </div>
-            <div class="msg-area" id="msgs-memory"></div>
         </div>
     </div>
 
@@ -201,20 +228,6 @@
         </div>
     </div>
 
-    <!-- Agentic 编排 -->
-    <div id="tab-agentic" class="tab-content">
-        <div class="content-inner">
-            <div class="desc" id="agentic-desc">基于 <code>langchain4j-agentic</code> 的多 Agent 编排模式，支持基础 Agent、顺序/循环/并行工作流和监督者编排。<br>流式端点通过 SSE 实时输出，中间步骤同步执行，最终结果流式返回。</div>
-            <div class="pattern-bar">
-                <button class="pattern-btn active" onclick="selectPattern('basic')">基础 Agent</button>
-                <button class="pattern-btn" onclick="selectPattern('sequential')">顺序工作流</button>
-                <button class="pattern-btn" onclick="selectPattern('loop')">循环工作流</button>
-            </div>
-            <div class="examples" id="agentic-examples"></div>
-            <div class="msg-area" id="msgs-agentic"></div>
-        </div>
-    </div>
-
     <!-- Guardrails 护栏 -->
     <div id="tab-guardrails" class="tab-content">
         <div class="content-inner">
@@ -227,6 +240,20 @@
                 <button onclick="quickSend('guardrails','this is fucking bullshit')">触发输入护栏</button>
             </div>
             <div class="msg-area" id="msgs-guardrails"></div>
+        </div>
+    </div>
+
+    <!-- Agentic 编排 -->
+    <div id="tab-agentic" class="tab-content">
+        <div class="content-inner">
+            <div class="desc" id="agentic-desc">基于 <code>langchain4j-agentic</code> 的多 Agent 编排模式，支持基础 Agent、顺序/循环/并行工作流和监督者编排。<br>流式端点通过 SSE 实时输出，中间步骤同步执行，最终结果流式返回。</div>
+            <div class="pattern-bar">
+                <button class="pattern-btn active" onclick="selectPattern('basic')">基础 Agent</button>
+                <button class="pattern-btn" onclick="selectPattern('sequential')">顺序工作流</button>
+                <button class="pattern-btn" onclick="selectPattern('loop')">循环工作流</button>
+            </div>
+            <div class="examples" id="agentic-examples"></div>
+            <div class="msg-area" id="msgs-agentic"></div>
         </div>
     </div>
 
@@ -250,6 +277,7 @@
 
     <script>
         let currentTab = 'stream';
+        let structuredMode = 'extract-user';
         let agenticPattern = 'basic';
         const userInput = document.getElementById('user-input');
         const sendBtn = document.getElementById('send-btn');
@@ -268,6 +296,79 @@
             if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
         });
 
+        // ---- Structured Output config ----
+        const structuredModes = {
+            'extract-user': {
+                label: '提取用户信息',
+                endpoint: '/ai/structured/extract-user',
+                examples: [
+                    '我叫张三，今年28岁，是一名Java架构师，喜欢跑步和读书，邮箱是zhangsan@example.com',
+                    '李华，35岁，产品经理，热爱篮球，联系方式 lihua@test.com',
+                ],
+            },
+            'sentiment': {
+                label: '情感分析',
+                endpoint: '/ai/structured/sentiment',
+                examples: [
+                    '这个产品太棒了，用起来非常顺手，强烈推荐！',
+                    '等了半天快递终于到了，但是打开发现东西有瑕疵，有点失望',
+                    '今天天气还行，不冷不热，适合出门散步',
+                ],
+            },
+            'todos': {
+                label: '提取待办事项',
+                endpoint: '/ai/structured/todos',
+                examples: [
+                    '明天要交项目报告，下午3点和王总开会讨论Q3预算，别忘了给小李发周报，下周一前完成代码review',
+                    '下周五之前完成数据库迁移，今天下班前回复客户邮件，记得预约下周体检',
+                ],
+            },
+            'sql': {
+                label: '自然语言转 SQL',
+                endpoint: '/ai/structured/sql',
+                examples: [
+                    '查询年龄大于25岁的用户，按注册时间倒序排列，取前10条',
+                    '统计每个部门的员工数量，按数量从高到低排序',
+                    '查找最近30天内下单超过3次的客户，显示客户名和订单总额',
+                ],
+            },
+        };
+
+        function selectStructuredMode(mode) {
+            structuredMode = mode;
+            document.querySelectorAll('#tab-structured .pattern-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector('#tab-structured .pattern-btn[onclick*="\'' + mode + '\'"]').classList.add('active');
+            updateStructuredExamples();
+        }
+
+        function updateStructuredExamples() {
+            const cfg = structuredModes[structuredMode];
+            const exDiv = document.getElementById('structured-examples');
+            exDiv.innerHTML = '';
+            cfg.examples.forEach(text => {
+                const btn = document.createElement('button');
+                btn.textContent = text.length > 24 ? text.substring(0, 24) + '...' : text;
+                btn.title = text;
+                btn.onclick = () => { switchTab('structured'); selectStructuredMode(structuredMode); userInput.value = text; sendMessage(); };
+                exDiv.appendChild(btn);
+            });
+        }
+        updateStructuredExamples();
+
+        function syntaxHighlight(json) {
+            return json.replace(/("(\\u[a-fA-F0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(\.\d+)?([eE][+-]?\d+)?)/g, function (match) {
+                let cls = 'json-number';
+                if (/^"/.test(match)) {
+                    cls = /:$/.test(match) ? 'json-key' : 'json-string';
+                } else if (/true|false/.test(match)) {
+                    cls = 'json-bool';
+                } else if (/null/.test(match)) {
+                    cls = 'json-null';
+                }
+                return '<span class="' + cls + '">' + match + '</span>';
+            });
+        }
+
         function switchTab(tab) {
             currentTab = tab;
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -276,6 +377,7 @@
             document.getElementById('tab-' + tab).classList.add('active');
             document.getElementById('session-bar').style.display = tab === 'memory' ? 'flex' : 'none';
             if (tab === 'agentic') updateAgenticUI();
+            if (tab === 'structured') updateStructuredExamples();
             userInput.focus();
         }
         
@@ -315,8 +417,8 @@
         
         function selectPattern(p) {
             agenticPattern = p;
-            document.querySelectorAll('.pattern-btn').forEach(b => b.classList.remove('active'));
-            document.querySelector('.pattern-btn[onclick*="\'' + p + '\'"').classList.add('active');
+            document.querySelectorAll('#tab-agentic .pattern-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector('#tab-agentic .pattern-btn[onclick*="\'' + p + '\'"]').classList.add('active');
             updateAgenticUI();
         }
         
@@ -427,6 +529,11 @@
                 const cfg = agenticPatterns[agenticPattern];
                 const paramValue = encodeURIComponent(message);
                 sendAgenticStream(cfg.endpoint + '?' + cfg.paramKey + '=' + paramValue, 'agentic');
+                return;
+            }
+
+            if (tab === 'structured') {
+                sendStructuredRequest(message);
                 return;
             }
 
@@ -694,6 +801,53 @@
             div.textContent = text;
             msgArea.appendChild(div);
             msgArea.scrollTop = msgArea.scrollHeight;
+        }
+
+        function sendStructuredRequest(message) {
+            const tab = 'structured';
+            const msgArea = document.getElementById('msgs-' + tab);
+            const cfg = structuredModes[structuredMode];
+
+            userInput.value = '';
+            userInput.style.height = 'auto';
+            sendBtn.disabled = true;
+
+            // Show loading indicator
+            const resultDiv = document.createElement('div');
+            resultDiv.className = 'msg assistant';
+            const indicator = document.createElement('div');
+            indicator.className = 'typing-indicator';
+            indicator.innerHTML = '<span></span><span></span><span></span>';
+            resultDiv.appendChild(indicator);
+            msgArea.appendChild(resultDiv);
+            scrollToBottom(tab);
+
+            fetch(cfg.endpoint + '?message=' + encodeURIComponent(message), { method: 'POST' })
+                .then(res => {
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    return res.json();
+                })
+                .then(data => {
+                    indicator.remove();
+                    const label = document.createElement('div');
+                    label.className = 'structured-label';
+                    label.textContent = cfg.label + ' — 结构化结果';
+                    resultDiv.appendChild(label);
+                    const jsonDiv = document.createElement('div');
+                    jsonDiv.className = 'json-result';
+                    jsonDiv.innerHTML = syntaxHighlight(JSON.stringify(data, null, 2));
+                    resultDiv.appendChild(jsonDiv);
+                    scrollToBottom(tab);
+                    sendBtn.disabled = false;
+                    userInput.focus();
+                })
+                .catch(err => {
+                    indicator.remove();
+                    resultDiv.className = 'msg error';
+                    resultDiv.textContent = '⚠️ 请求失败: ' + err.message;
+                    sendBtn.disabled = false;
+                    userInput.focus();
+                });
         }
 
         userInput.focus();
