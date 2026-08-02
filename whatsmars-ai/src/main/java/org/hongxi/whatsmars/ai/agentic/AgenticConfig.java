@@ -264,9 +264,11 @@ public class AgenticConfig {
                 .subAgents(researcher, summarizer, securityReviewer, performanceReviewer, bestPracticeReviewer)
                 .contextGenerationStrategy(SupervisorContextStrategy.CHAT_MEMORY_AND_SUMMARIZATION)
                 .responseStrategy(SupervisorResponseStrategy.SUMMARY)
-                .supervisorContext("你是一个技术顾问主管。根据用户的问题，合理调度专家团队。" +
-                        "如果需要研究，先调用研究员；如果需要代码审查，调用审查专家。" +
-                        "用中文回答。")
+                .supervisorContext("""
+                                   你是一个技术顾问主管。根据用户的问题，合理调度专家团队。
+                                   如果需要研究，先调用研究员；如果需要代码审查，调用审查专家。
+                                   用中文回答。
+                                   """)
                 .build();
     }
 }
