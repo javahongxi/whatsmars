@@ -17,15 +17,10 @@ import org.springframework.web.client.RestClient;
 public class ImageGenerationConfig {
 
     @Bean
-    public RestClient dashScopeRestClient() {
-        return RestClient.builder().build();
-    }
-
-    @Bean
     public DashScopeImageModel dashScopeImageModel(
-            RestClient dashScopeRestClient,
+            RestClient restClient,
             @Value("${langchain4j.open-ai.chat-model.api-key}") String apiKey,
             @Value("${langchain4j.open-ai.image.model:wan2.7-image-pro}") String model) {
-        return new DashScopeImageModel(dashScopeRestClient, apiKey, model);
+        return new DashScopeImageModel(restClient, apiKey, model);
     }
 }

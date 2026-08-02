@@ -18,10 +18,10 @@ public class AudioConfig {
 
     @Bean
     public DashScopeTtsModel dashScopeTtsModel(
-            RestClient dashScopeRestClient,
+            RestClient restClient,
             @Value("${langchain4j.open-ai.chat-model.api-key}") String apiKey,
             @Value("${langchain4j.open-ai.audio.speech.model:cosyvoice-v3-plus}") String model,
             @Value("${langchain4j.open-ai.audio.speech.voice:longanyang}") String voice) {
-        return new DashScopeTtsModel(dashScopeRestClient, apiKey, model, voice);
+        return new DashScopeTtsModel(restClient, apiKey, model, voice);
     }
 }

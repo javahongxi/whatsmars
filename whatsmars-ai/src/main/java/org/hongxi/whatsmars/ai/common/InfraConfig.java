@@ -2,6 +2,7 @@ package org.hongxi.whatsmars.ai.common;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestClient;
 
 import java.net.http.HttpClient;
 import java.time.Duration;
@@ -23,5 +24,10 @@ public class InfraConfig {
                 .connectTimeout(Duration.ofSeconds(10))
                 .followRedirects(HttpClient.Redirect.NORMAL)
                 .build();
+    }
+
+    @Bean
+    public RestClient restClient() {
+        return RestClient.builder().build();
     }
 }
