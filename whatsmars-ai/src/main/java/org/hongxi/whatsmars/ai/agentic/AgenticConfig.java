@@ -42,6 +42,54 @@ public class AgenticConfig {
     }
 
     /**
+     * 基础 Agent（流式）：研究助手，支持 SSE 流式输出
+     */
+    @Bean
+    public StreamingResearchAgent streamingResearchAgent(StreamingChatModel streamingChatModel, WebSearchTool webSearchTool) {
+        return AgenticServices.agentBuilder(StreamingResearchAgent.class)
+                .streamingChatModel(streamingChatModel)
+                .tools(webSearchTool)
+                .outputKey("researchResult")
+                .build();
+    }
+
+    /**
+     * 写作 Agent（同步）
+     */
+    @Bean
+    public WriterAgent writerAgent(ChatModel chatModel) {
+        return AgenticServices.agentBuilder(WriterAgent.class)
+                .chatModel(chatModel)
+                .outputKey("document")
+                .build();
+    }
+
+    /**
+     * 写作 Agent（流式）
+     * <p>
+     * 返回 TokenStream，支持 SSE 实时流式输出写作内容。
+     * </p>
+     */
+    @Bean
+    public StreamingWriterAgent streamingWriterAgent(StreamingChatModel streamingChatModel) {
+        return AgenticServices.agentBuilder(StreamingWriterAgent.class)
+                .streamingChatModel(streamingChatModel)
+                .outputKey("document")
+                .build();
+    }
+
+    /**
+     * 评审 Agent（同步）
+     */
+    @Bean
+    public QualityReviewerAgent qualityReviewerAgent(ChatModel chatModel) {
+        return AgenticServices.agentBuilder(QualityReviewerAgent.class)
+                .chatModel(chatModel)
+                .outputKey("review")
+                .build();
+    }
+
+    /**
      * 顺序工作流：研究 → 摘要 → 翻译
      * <p>
      * 每个 Agent 的输出通过 AgenticScope 传递给下一个 Agent。
@@ -77,38 +125,34 @@ public class AgenticConfig {
     }
 
     /**
-     * 循环工作流 - 写作 Agent（同步）
-     */
-    @Bean
-    public WriterAgent writerAgent(ChatModel chatModel) {
-        return AgenticServices.agentBuilder(WriterAgent.class)
-                .chatModel(chatModel)
-                .outputKey("document")
-                .build();
-    }
-
-    /**
-     * 循环工作流 - 写作 Agent（流式）
+     * 顺序工作流（流式）：研究 → 摘要 → 翻译
      * <p>
-     * 返回 TokenStream，支持 SSE 实时流式输出写作内容。
+     * 中间步骤（研究、摘要）使用同步 ChatModel，
+     * 最后一步（翻译）使用 StreamingChatModel，使最终结果支持流式输出。
      * </p>
      */
     @Bean
-    public StreamingWriterAgent streamingWriterAgent(StreamingChatModel streamingChatModel) {
-        return AgenticServices.agentBuilder(StreamingWriterAgent.class)
-                .streamingChatModel(streamingChatModel)
-                .outputKey("document")
-                .build();
-    }
-
-    /**
-     * 循环工作流 - 评审 Agent（同步）
-     */
-    @Bean
-    public QualityReviewerAgent qualityReviewerAgent(ChatModel chatModel) {
-        return AgenticServices.agentBuilder(QualityReviewerAgent.class)
+    public UntypedAgent streamingSequentialWorkflow(ChatModel chatModel, StreamingChatModel streamingChatModel, WebSearchTool webSearchTool) {
+        var research = AgenticServices.agentBuilder(ResearchAgent.class)
                 .chatModel(chatModel)
-                .outputKey("review")
+                .tools(webSearchTool)
+                .outputKey("researchResult")
+                .build();
+
+        var summarize = AgenticServices.agentBuilder(SummarizerAgent.class)
+                .chatModel(chatModel)
+                .outputKey("summary")
+                .build();
+
+        // 最后一步使用流式 Agent，使整个工作流返回 TokenStream
+        var translate = AgenticServices.agentBuilder(StreamingTranslatorAgent.class)
+                .streamingChatModel(streamingChatModel)
+                .outputKey("translation")
+                .build();
+
+        return AgenticServices.sequenceBuilder()
+                .subAgents(research, summarize, translate)
+                .outputKey("translation")
                 .build();
     }
 
@@ -176,50 +220,6 @@ public class AgenticConfig {
                             %s
                             """.formatted(security, performance, bestPractice);
                 })
-                .build();
-    }
-
-    /**
-     * 基础 Agent（流式）：研究助手，支持 SSE 流式输出
-     */
-    @Bean
-    public StreamingResearchAgent streamingResearchAgent(StreamingChatModel streamingChatModel, WebSearchTool webSearchTool) {
-        return AgenticServices.agentBuilder(StreamingResearchAgent.class)
-                .streamingChatModel(streamingChatModel)
-                .tools(webSearchTool)
-                .outputKey("researchResult")
-                .build();
-    }
-
-    /**
-     * 顺序工作流（流式）：研究 → 摘要 → 翻译
-     * <p>
-     * 中间步骤（研究、摘要）使用同步 ChatModel，
-     * 最后一步（翻译）使用 StreamingChatModel，使最终结果支持流式输出。
-     * </p>
-     */
-    @Bean
-    public UntypedAgent streamingSequentialWorkflow(ChatModel chatModel, StreamingChatModel streamingChatModel, WebSearchTool webSearchTool) {
-        var research = AgenticServices.agentBuilder(ResearchAgent.class)
-                .chatModel(chatModel)
-                .tools(webSearchTool)
-                .outputKey("researchResult")
-                .build();
-
-        var summarize = AgenticServices.agentBuilder(SummarizerAgent.class)
-                .chatModel(chatModel)
-                .outputKey("summary")
-                .build();
-
-        // 最后一步使用流式 Agent，使整个工作流返回 TokenStream
-        var translate = AgenticServices.agentBuilder(StreamingTranslatorAgent.class)
-                .streamingChatModel(streamingChatModel)
-                .outputKey("translation")
-                .build();
-
-        return AgenticServices.sequenceBuilder()
-                .subAgents(research, summarize, translate)
-                .outputKey("translation")
                 .build();
     }
 
