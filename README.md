@@ -33,6 +33,6 @@ Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketM
 ### Related Projects
 - Spring Cloud Alibaba full-stack microservices in practice: [spacecloud](https://github.com/javahongxi/spacecloud)
 - High-performance Java 17 RPC framework built on Netty: [jaws](https://github.com/javahongxi/jaws)
-- An AI coding agent exploring ReAct architecture patterns: [babi](https://github.com/javahongxi/babi)
+- AI coding agent built on AgentScope / LangGraph4j / Spring AI: [babi](https://github.com/javahongxi/babi)
 
 &copy; [hongxi.org](http://hongxi.org)
