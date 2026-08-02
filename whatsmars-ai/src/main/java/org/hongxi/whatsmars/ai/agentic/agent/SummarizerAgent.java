@@ -1,4 +1,4 @@
-package org.hongxi.whatsmars.ai.agentic;
+package org.hongxi.whatsmars.ai.agentic.agent;
 
 import dev.langchain4j.agentic.Agent;
 import dev.langchain4j.service.SystemMessage;

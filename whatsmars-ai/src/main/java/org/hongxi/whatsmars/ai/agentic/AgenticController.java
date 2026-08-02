@@ -3,6 +3,7 @@ package org.hongxi.whatsmars.ai.agentic;
 import dev.langchain4j.agentic.UntypedAgent;
 import dev.langchain4j.agentic.supervisor.SupervisorAgent;
 import dev.langchain4j.service.TokenStream;
+import org.hongxi.whatsmars.ai.agentic.agent.*;
 import org.hongxi.whatsmars.ai.common.SseHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +20,7 @@ import java.util.concurrent.Executors;
 /**
  * Agentic Patterns 控制器
  * <p>
- * 提供 5 种 Agent 编排模式的 REST API，每种模式提供同步和流式（SSE）端点：
+ * 提供 6 种 Agent 编排模式的 REST API，每种模式提供同步和流式（SSE）端点：
  * <ul>
  *   <li>POST /ai/agentic/basic           - 基础 Agent（同步）</li>
  *   <li>GET  /ai/agentic/basic/stream    - 基础 Agent（流式）</li>
@@ -28,6 +29,8 @@ import java.util.concurrent.Executors;
  *   <li>POST /ai/agentic/loop            - 循环工作流（同步）</li>
  *   <li>GET  /ai/agentic/loop/stream     - 循环工作流（SSE 进度事件 + 最终文档）</li>
  *   <li>POST /ai/agentic/parallel        - 并行工作流（同步）</li>
+ *   <li>POST /ai/agentic/conditional     - 条件工作流（同步）</li>
+ *   <li>GET  /ai/agentic/conditional/stream - 条件工作流（流式）</li>
  *   <li>POST /ai/agentic/supervisor      - 监督者编排（同步）</li>
  * </ul>
  * </p>
@@ -47,7 +50,12 @@ public class AgenticController {
     private final UntypedAgent streamingSequentialWorkflow;
     private final UntypedAgent loopWorkflow;
     private final UntypedAgent parallelWorkflow;
+    private final UntypedAgent conditionalWorkflow;
     private final SupervisorAgent supervisorAgent;
+    private final CategoryRouterAgent categoryRouterAgent;
+    private final StreamingMedicalExpertAgent streamingMedicalExpertAgent;
+    private final StreamingLegalExpertAgent streamingLegalExpertAgent;
+    private final StreamingTechnicalExpertAgent streamingTechnicalExpertAgent;
     private final StreamingWriterAgent streamingWriterAgent;
     private final QualityReviewerAgent qualityReviewerAgent;
 
@@ -57,7 +65,12 @@ public class AgenticController {
                              UntypedAgent streamingSequentialWorkflow,
                              UntypedAgent loopWorkflow,
                              UntypedAgent parallelWorkflow,
+                             UntypedAgent conditionalWorkflow,
                              SupervisorAgent supervisorAgent,
+                             CategoryRouterAgent categoryRouterAgent,
+                             StreamingMedicalExpertAgent streamingMedicalExpertAgent,
+                             StreamingLegalExpertAgent streamingLegalExpertAgent,
+                             StreamingTechnicalExpertAgent streamingTechnicalExpertAgent,
                              StreamingWriterAgent streamingWriterAgent,
                              QualityReviewerAgent qualityReviewerAgent) {
         this.researchAgent = researchAgent;
@@ -66,7 +79,12 @@ public class AgenticController {
         this.streamingSequentialWorkflow = streamingSequentialWorkflow;
         this.loopWorkflow = loopWorkflow;
         this.parallelWorkflow = parallelWorkflow;
+        this.conditionalWorkflow = conditionalWorkflow;
         this.supervisorAgent = supervisorAgent;
+        this.categoryRouterAgent = categoryRouterAgent;
+        this.streamingMedicalExpertAgent = streamingMedicalExpertAgent;
+        this.streamingLegalExpertAgent = streamingLegalExpertAgent;
+        this.streamingTechnicalExpertAgent = streamingTechnicalExpertAgent;
         this.streamingWriterAgent = streamingWriterAgent;
         this.qualityReviewerAgent = qualityReviewerAgent;
     }
@@ -126,6 +144,67 @@ public class AgenticController {
     @PostMapping("/parallel")
     public String parallelWorkflow(@RequestParam String message) {
         return (String) parallelWorkflow.invoke(Map.of("code", message));
+    }
+
+    /**
+     * 条件工作流：分类 → 专家路由
+     * <p>
+     * 先由分类 Agent 将用户请求分类（医疗/法律/技术），
+     * 再根据分类结果路由到对应的专家 Agent 处理。
+     * </p>
+     *
+     * @param message 用户问题
+     * @return 专家回复
+     */
+    @PostMapping("/conditional")
+    public String conditionalWorkflow(@RequestParam String message) {
+        return (String) conditionalWorkflow.invoke(Map.of("request", message));
+    }
+
+    /**
+     * 条件工作流（流式）：分类 → 专家路由，专家回复 SSE 流式输出
+     * <p>
+     * 分类 Agent 同步执行，根据分类结果路由到对应专家 Agent 后流式返回。
+     * </p>
+     *
+     * @param message 用户问题
+     */
+    @PostMapping(value = "/conditional/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public SseEmitter streamConditionalWorkflow(@RequestParam String message) {
+        log.info("流式条件工作流，message: {}", message);
+        SseEmitter emitter = new SseEmitter(0L);
+
+        EXECUTOR.execute(() -> {
+            try {
+                // 1. 同步分类
+                CategoryRouterAgent.RequestCategory category = categoryRouterAgent.classify(message);
+                log.info("分类结果: {}", category);
+
+                emitter.send(SseEmitter.event().name("category")
+                        .data(Map.of("category", category.name())));
+
+                // 2. 根据分类结果流式调用对应专家
+                TokenStream tokenStream = switch (category) {
+                    case MEDICAL -> streamingMedicalExpertAgent.medical(message);
+                    case LEGAL -> streamingLegalExpertAgent.legal(message);
+                    case TECHNICAL -> streamingTechnicalExpertAgent.technical(message);
+                    default -> {
+                        emitter.send(SseEmitter.event().data("抱歉，无法识别您的问题类别，请尝试重新描述。"));
+                        emitter.complete();
+                        yield null;
+                    }
+                };
+
+                if (tokenStream != null) {
+                    SseHelper.stream(tokenStream, emitter);
+                }
+            } catch (Exception e) {
+                log.error("流式条件工作流异常", e);
+                emitter.completeWithError(e);
+            }
+        });
+
+        return emitter;
     }
 
     /**

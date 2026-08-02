@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LangChain4j Demo - whatsmars</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github.min.css" id="hljs-light">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github-dark.min.css" id="hljs-dark" disabled>
     <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/highlight.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f5f5; height: 100vh; display: flex; flex-direction: column; }
-        header { background: #1a1a2e; color: #fff; padding: 14px 24px; display: flex; align-items: center; gap: 12px; justify-content: center; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f0e8; height: 100vh; display: flex; flex-direction: column; }
+        header { background: #1a1a2e; color: #fff; padding: 14px 24px; display: flex; align-items: center; justify-content: center; }
         header .header-inner { max-width: 900px; width: 100%; display: flex; align-items: center; gap: 12px; }
         header h1 { font-size: 18px; font-weight: 600; }
         header .badge { background: #00d2ff33; color: #00d2ff; font-size: 12px; padding: 2px 8px; border-radius: 10px; }
+        .theme-toggle { background: none; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; padding: 4px 10px; font-size: 16px; cursor: pointer; color: #fff; transition: background 0.2s; margin-left: auto; flex-shrink: 0; }
+        .theme-toggle:hover { background: rgba(255,255,255,0.15); }
 
         /* Tabs */
-        .tab-bar { background: #fff; border-bottom: 1px solid #e0e0e0; padding: 0 24px; display: flex; gap: 0; overflow-x: auto; justify-content: center; }
+        .tab-bar { background: #faf6f0; border-bottom: 1px solid #e0dbd3; padding: 0 24px; display: flex; gap: 0; overflow-x: auto; justify-content: center; }
         .tab-bar .tab-inner { max-width: 900px; width: 100%; display: flex; gap: 0; }
         .tab-btn { padding: 12px 18px; font-size: 13px; font-weight: 500; color: #666; background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; transition: all 0.2s; }
         .tab-btn:hover { color: #333; }
@@ -35,7 +38,7 @@
         .msg-area { flex: 1; min-height: 200px; display: flex; flex-direction: column; gap: 12px; }
         .msg { padding: 12px 16px; border-radius: 12px; line-height: 1.6; font-size: 14px; word-break: break-word; }
         .msg.user { max-width: 75%; align-self: flex-end; background: #1a73e8; color: #fff; border-bottom-right-radius: 4px; white-space: pre-wrap; }
-        .msg.assistant { width: 100%; background: #fff; color: #333; border-bottom-left-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .msg.assistant { width: 100%; background: #faf6f0; color: #333; border-bottom-left-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
         .msg.error { background: #fce8e6; color: #c5221f; }
 
         /* Markdown */
@@ -43,29 +46,29 @@
         .md-content h1 { font-size: 1.4em; } .md-content h2 { font-size: 1.2em; } .md-content h3 { font-size: 1.1em; }
         .md-content p { margin: 6px 0; }
         .md-content ul, .md-content ol { padding-left: 1.8em; margin: 6px 0; }
-        .md-content pre { background: #f6f8fa; border-radius: 6px; padding: 10px; overflow-x: auto; margin: 6px 0; font-size: 13px; }
+        .md-content pre { background: #f5f0e8; border-radius: 6px; padding: 10px; overflow-x: auto; margin: 6px 0; font-size: 13px; }
         .md-content code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 0.9em; }
-        .md-content :not(pre) > code { background: #f0f0f0; padding: 2px 5px; border-radius: 3px; }
+        .md-content :not(pre) > code { background: #ede8e0; padding: 2px 5px; border-radius: 3px; }
         .md-content table { border-collapse: collapse; margin: 6px 0; width: 100%; }
         .md-content th, .md-content td { border: 1px solid #ddd; padding: 5px 10px; text-align: left; }
-        .md-content th { background: #f6f8fa; }
+        .md-content th { background: #f5f0e8; }
 
         /* Input area */
-        .input-area { padding: 16px 24px; background: #fff; border-top: 1px solid #e0e0e0; display: flex; gap: 10px; align-items: flex-end; justify-content: center; }
+        .input-area { padding: 16px 24px; background: #faf6f0; border-top: 1px solid #e0dbd3; display: flex; gap: 10px; align-items: flex-end; justify-content: center; }
         .input-area .input-inner { max-width: 900px; width: 100%; display: flex; gap: 10px; align-items: flex-end; }
-        .input-area textarea { flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 10px 14px; font-size: 14px; font-family: inherit; resize: none; outline: none; min-height: 44px; max-height: 120px; line-height: 1.5; }
+        .input-area textarea { flex: 1; border: 1px solid #d8d3cb; border-radius: 8px; padding: 10px 14px; font-size: 14px; font-family: inherit; resize: none; outline: none; min-height: 44px; max-height: 120px; line-height: 1.5; background: #fdfbf7; }
         .input-area textarea:focus { border-color: #1a73e8; }
         .input-area button { background: #1a73e8; color: #fff; border: none; border-radius: 8px; padding: 10px 20px; font-size: 14px; cursor: pointer; white-space: nowrap; height: 44px; }
         .input-area button:hover { background: #1557b0; }
         .input-area button:disabled { background: #ccc; cursor: not-allowed; }
 
         /* Session bar for memory tab */
-        .session-bar { padding: 8px 24px; background: #fff; border-bottom: 1px solid #e0e0e0; display: flex; align-items: center; gap: 8px; font-size: 13px; color: #666; justify-content: center; }
+        .session-bar { padding: 8px 24px; background: #faf6f0; border-bottom: 1px solid #e0dbd3; display: flex; align-items: center; gap: 8px; font-size: 13px; color: #666; justify-content: center; }
         .session-bar .session-inner { max-width: 900px; width: 100%; display: flex; align-items: center; gap: 8px; }
-        .session-bar input { border: 1px solid #ddd; border-radius: 4px; padding: 4px 8px; font-size: 13px; width: 160px; outline: none; }
+        .session-bar input { border: 1px solid #d8d3cb; border-radius: 4px; padding: 4px 8px; font-size: 13px; width: 160px; outline: none; background: #fdfbf7; }
         .session-bar input:focus { border-color: #1a73e8; }
         .session-bar button { background: none; border: 1px solid #ddd; border-radius: 4px; padding: 4px 10px; font-size: 13px; cursor: pointer; color: #666; }
-        .session-bar button:hover { background: #f5f5f5; }
+        .session-bar button:hover { background: #f0ebe3; }
 
         .typing-indicator { display: inline-block; }
         .typing-indicator span { display: inline-block; width: 6px; height: 6px; background: #999; border-radius: 50%; margin: 0 2px; animation: bounce 1.4s infinite both; }
@@ -79,13 +82,13 @@
         .examples button:hover { background: #d2e3fc; }
 
         /* Sources panel */
-        .sources-panel { background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 10px 14px; margin-bottom: 8px; font-size: 12px; }
+        .sources-panel { background: #f5f0e8; border: 1px solid #e0dbd3; border-radius: 8px; padding: 10px 14px; margin-bottom: 8px; font-size: 12px; }
         .sources-panel .sources-title { font-weight: 600; color: #333; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; cursor: pointer; }
         .sources-panel .sources-title .arrow { transition: transform 0.2s; display: inline-block; }
         .sources-panel .sources-title .arrow.open { transform: rotate(90deg); }
         .sources-panel .sources-list { display: none; flex-direction: column; gap: 6px; }
         .sources-panel .sources-list.show { display: flex; }
-        .sources-panel .source-item { background: #fff; border: 1px solid #eee; border-radius: 6px; padding: 8px 10px; }
+        .sources-panel .source-item { background: #faf6f0; border: 1px solid #e8e3db; border-radius: 6px; padding: 8px 10px; }
         .sources-panel .source-item .source-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
         .sources-panel .source-item .source-idx { background: #1a73e8; color: #fff; border-radius: 50%; width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; }
         .sources-panel .source-item .source-file { color: #666; font-size: 11px; }
@@ -111,19 +114,69 @@
 
         /* Structured output */
         .structured-modes { display: flex; gap: 6px; flex-wrap: wrap; }
-        .json-result { background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 14px 16px; font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; line-height: 1.6; white-space: pre-wrap; word-break: break-all; color: #333; }
+        .json-result { background: #faf6f0; border: 1px solid #e0dbd3; border-radius: 8px; padding: 14px 16px; font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; line-height: 1.6; white-space: pre-wrap; word-break: break-all; color: #333; }
         .json-result .json-key { color: #0550ae; }
         .json-result .json-string { color: #0a3069; }
         .json-result .json-number { color: #cf222e; }
         .json-result .json-bool { color: #8250df; }
         .json-result .json-null { color: #6e7781; }
         .structured-label { font-size: 12px; color: #888; margin-bottom: 4px; }
+
+        /* Dark mode */
+        html[data-theme="dark"] body { background: #1a1a2e; }
+        html[data-theme="dark"] header { background: #0d1117; border-bottom: 1px solid #21262d; }
+        html[data-theme="dark"] .theme-toggle { background: none; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; color: #fff; }
+        html[data-theme="dark"] .theme-toggle:hover { background: rgba(255,255,255,0.1); }
+        html[data-theme="dark"] .tab-bar { background: #161b22; border-bottom-color: #30363d; }
+        html[data-theme="dark"] .tab-btn { color: #8b949e; }
+        html[data-theme="dark"] .tab-btn:hover { color: #c9d1d9; }
+        html[data-theme="dark"] .tab-btn.active { color: #58a6ff; border-bottom-color: #58a6ff; }
+        html[data-theme="dark"] .desc { background: rgba(30,42,58,0.8); color: #79b8ff; }
+        html[data-theme="dark"] .desc code { background: rgba(40,50,65,0.8); color: #79b8ff; }
+        html[data-theme="dark"] .msg.assistant { background: rgba(40,40,50,0.6); color: #e0e0e0; box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+        html[data-theme="dark"] .msg.error { background: rgba(60,20,20,0.6); color: #f85149; }
+        html[data-theme="dark"] .md-content h1, html[data-theme="dark"] .md-content h2 { border-bottom-color: #444; }
+        html[data-theme="dark"] .md-content pre { background: #161b22; }
+        html[data-theme="dark"] .md-content :not(pre) > code { background: #3a3a3a; }
+        html[data-theme="dark"] .md-content th { background: #2a2a2a; }
+        html[data-theme="dark"] .md-content th, html[data-theme="dark"] .md-content td { border-color: #444; }
+        html[data-theme="dark"] .input-area { background: #161b22; border-top-color: #30363d; }
+        html[data-theme="dark"] .input-area textarea { background: rgba(30,30,30,0.7); border-color: rgba(255,255,255,0.1); color: #e0e0e0; }
+        html[data-theme="dark"] .input-area textarea:focus { border-color: #58a6ff; }
+        html[data-theme="dark"] .input-area button { background: #1f6feb; }
+        html[data-theme="dark"] .input-area button:hover { background: #388bfd; }
+        html[data-theme="dark"] .session-bar { background: #161b22; border-bottom-color: #30363d; color: #aaa; }
+        html[data-theme="dark"] .session-bar input { background: rgba(30,30,30,0.7); border-color: rgba(255,255,255,0.1); color: #e0e0e0; }
+        html[data-theme="dark"] .session-bar input:focus { border-color: #58a6ff; }
+        html[data-theme="dark"] .session-bar button { border-color: #444 !important; color: #aaa !important; }
+        html[data-theme="dark"] .session-bar button:hover { border-color: #58a6ff !important; color: #e0e0e0 !important; }
+        html[data-theme="dark"] .examples button { background: rgba(30,42,58,0.8); border-color: #30363d; color: #58a6ff; }
+        html[data-theme="dark"] .examples button:hover { background: rgba(40,55,75,0.8); }
+        html[data-theme="dark"] .sources-panel { background: rgba(30,30,40,0.6); border-color: #30363d; }
+        html[data-theme="dark"] .sources-panel .sources-title { color: #c9d1d9; }
+        html[data-theme="dark"] .sources-panel .source-item { background: rgba(40,40,50,0.6); border-color: #30363d; }
+        html[data-theme="dark"] .sources-panel .source-item .source-text { color: #8b949e; }
+        html[data-theme="dark"] .pattern-btn { background: rgba(30,42,58,0.8); border-color: #30363d; color: #58a6ff; }
+        html[data-theme="dark"] .pattern-btn:hover { background: rgba(40,55,75,0.8); }
+        html[data-theme="dark"] .pattern-btn.active { background: #1f6feb; color: #fff; border-color: #1f6feb; }
+        html[data-theme="dark"] .status-msg { background: rgba(40,35,20,0.6); color: #d29922; border-left-color: #d29922; }
+        html[data-theme="dark"] .json-result { background: #161b22; border-color: #30363d; color: #c9d1d9; }
+        html[data-theme="dark"] .json-result .json-key { color: #79c0ff; }
+        html[data-theme="dark"] .json-result .json-string { color: #a5d6ff; }
+        html[data-theme="dark"] .json-result .json-number { color: #f85149; }
+        html[data-theme="dark"] .json-result .json-bool { color: #d2a8ff; }
+        html[data-theme="dark"] .json-result .json-null { color: #8b949e; }
+        html[data-theme="dark"] .structured-label { color: #8b949e; }
+        html[data-theme="dark"] .typing-indicator span { background: #666; }
+        html[data-theme="dark"] .strategy-bar { color: #aaa; }
+        html[data-theme="dark"] .input-area button[style*="background:#f0ebe3"] { background: rgba(40,40,50,0.6) !important; color: #aaa !important; border-color: #444 !important; }
     </style>
 </head>
 <body>
     <header><div class="header-inner">
         <h1>LangChain4j Demo</h1>
         <span class="badge">whatsmars-ai</span>
+        <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="切换主题">🌙</button>
     </div></header>
 
     <div class="tab-bar"><div class="tab-inner">
@@ -249,11 +302,14 @@
     <!-- Agentic 编排 -->
     <div id="tab-agentic" class="tab-content">
         <div class="content-inner">
-            <div class="desc" id="agentic-desc">基于 <code>langchain4j-agentic</code> 的多 Agent 编排模式，支持基础 Agent、顺序/循环/并行工作流和监督者编排。<br>流式端点通过 SSE 实时输出，中间步骤同步执行，最终结果流式返回。</div>
+            <div class="desc" id="agentic-desc">基于 <code>langchain4j-agentic</code> 的多 Agent 编排模式，支持基础 Agent、顺序/循环/并行工作流、条件路由和监督者编排。<br>流式端点通过 SSE 实时输出，中间步骤同步执行，最终结果流式返回。</div>
             <div class="pattern-bar">
                 <button class="pattern-btn active" onclick="selectPattern('basic')">基础 Agent</button>
                 <button class="pattern-btn" onclick="selectPattern('sequential')">顺序工作流</button>
                 <button class="pattern-btn" onclick="selectPattern('loop')">循环工作流</button>
+                <button class="pattern-btn" onclick="selectPattern('parallel')">并行工作流</button>
+                <button class="pattern-btn" onclick="selectPattern('conditional')">条件工作流</button>
+                <button class="pattern-btn" onclick="selectPattern('supervisor')">监督者编排</button>
             </div>
             <div class="examples" id="agentic-examples"></div>
             <div class="msg-area" id="msgs-agentic"></div>
@@ -316,7 +372,7 @@
         <div class="input-inner">
             <textarea id="user-input" placeholder="输入消息，Enter 发送，Shift+Enter 换行..." rows="1"></textarea>
             <button id="send-btn" onclick="sendMessage()">发送</button>
-            <button onclick="clearCurrentTab()" style="background:#f5f5f5;color:#666;border:1px solid #ddd;">清空</button>
+            <button onclick="clearCurrentTab()" style="background:#f0ebe3;color:#666;border:1px solid #d8d3cb;">清空</button>
         </div>
     </div>
 
@@ -437,6 +493,7 @@
                 ],
                 endpoint: '/ai/agentic/basic/stream',
                 paramKey: 'message',
+                streaming: true,
             },
             sequential: {
                 label: '顺序工作流',
@@ -447,6 +504,7 @@
                 ],
                 endpoint: '/ai/agentic/sequential/stream',
                 paramKey: 'message',
+                streaming: true,
             },
             loop: {
                 label: '循环工作流',
@@ -457,6 +515,41 @@
                 ],
                 endpoint: '/ai/agentic/loop/stream',
                 paramKey: 'message',
+                streaming: true,
+            },
+            parallel: {
+                label: '并行工作流',
+                desc: '安全 + 性能 + 最佳实践三路并行审查，最终聚合为综合审查报告。',
+                examples: [
+                    { text: '审查代码安全性', params: 'message=public String process(String id) { return db.query(id); }' },
+                    { text: '审查接口方案', params: 'message=REST API直接返回数据库查询结果，无缓存和限流' },
+                ],
+                endpoint: '/ai/agentic/parallel',
+                paramKey: 'message',
+                streaming: false,
+            },
+            conditional: {
+                label: '条件工作流',
+                desc: '分类 Agent 先将请求分类（医疗/法律/技术），再根据分类结果路由到对应专家 Agent。与监督者模式不同，条件工作流是确定性规则路由。',
+                examples: [
+                    { text: '我最近经常头痛怎么办', params: 'message=我最近经常头痛，应该怎么办' },
+                    { text: '租房合同到期纠纷', params: 'message=租房合同到期后房东不退押金怎么办' },
+                    { text: 'Spring Boot 启动失败', params: 'message=Spring Boot应用启动报BeanCreationException怎么排查' },
+                ],
+                endpoint: '/ai/agentic/conditional/stream',
+                paramKey: 'message',
+                streaming: true,
+            },
+            supervisor: {
+                label: '监督者编排',
+                desc: 'Supervisor 根据用户问题动态决定调用哪些专家、以什么顺序调用，由 LLM 自主决策。',
+                examples: [
+                    { text: '全面审查代码质量', params: 'message=请帮我全面审查这段代码的质量' },
+                    { text: '研究并总结技术方案', params: 'message=请研究一下GraalVM原生编译技术的优缺点' },
+                ],
+                endpoint: '/ai/agentic/supervisor',
+                paramKey: 'message',
+                streaming: false,
             },
         };
         
@@ -573,7 +666,11 @@
             if (tab === 'agentic') {
                 const cfg = agenticPatterns[agenticPattern];
                 const paramValue = encodeURIComponent(message);
-                sendAgenticStream(cfg.endpoint + '?' + cfg.paramKey + '=' + paramValue, 'agentic');
+                if (cfg.streaming) {
+                    sendAgenticStream(cfg.endpoint + '?' + cfg.paramKey + '=' + paramValue, 'agentic');
+                } else {
+                    sendAgenticSync(cfg.endpoint + '?' + cfg.paramKey + '=' + paramValue, 'agentic');
+                }
                 return;
             }
 
@@ -751,7 +848,12 @@
                     eventData = '';
                     if (indicator.parentNode) indicator.remove();
 
-                    if (eventName === 'iteration') {
+                    if (eventName === 'category') {
+                        try {
+                            const obj = JSON.parse(data);
+                            addStatusMsg(msgArea, '📋 分类结果: ' + obj.category);
+                        } catch (e) { addStatusMsg(msgArea, '分类: ' + data); }
+                    } else if (eventName === 'iteration') {
                         try {
                             const obj = JSON.parse(data);
                             const statusLabel = obj.status === 'writing' ? '✍️ 写作中' : '🔍 评审中';
@@ -848,6 +950,39 @@
             msgArea.scrollTop = msgArea.scrollHeight;
         }
 
+        // ---- Agentic POST sync (for parallel / conditional / supervisor) ----
+        function sendAgenticSync(url, tab) {
+            const msgArea = document.getElementById('msgs-' + tab);
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'msg assistant';
+            msgArea.appendChild(msgDiv);
+
+            const indicator = document.createElement('div');
+            indicator.className = 'typing-indicator';
+            indicator.innerHTML = '<span></span><span></span><span></span>';
+            msgDiv.appendChild(indicator);
+
+            fetch(url, { method: 'POST' })
+                .then(res => {
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    return res.text();
+                })
+                .then(text => {
+                    indicator.remove();
+                    renderMarkdown(msgDiv, text);
+                    scrollToBottom(tab);
+                    sendBtn.disabled = false;
+                    userInput.focus();
+                })
+                .catch(err => {
+                    indicator.remove();
+                    msgDiv.className = 'msg error';
+                    msgDiv.textContent = '⚠️ 请求失败: ' + err.message;
+                    sendBtn.disabled = false;
+                    userInput.focus();
+                });
+        }
+
         function sendStructuredRequest(message) {
             const tab = 'structured';
             const msgArea = document.getElementById('msgs-' + tab);
@@ -894,6 +1029,33 @@
                     userInput.focus();
                 });
         }
+
+        // Theme management
+        function applyTheme(theme, save) {
+            document.documentElement.setAttribute('data-theme', theme);
+            document.getElementById('theme-toggle').textContent = theme === 'dark' ? '☀️' : '🌙';
+            document.getElementById('hljs-light').disabled = (theme === 'dark');
+            document.getElementById('hljs-dark').disabled = (theme === 'light');
+            if (save) localStorage.setItem('whatsmars-ai-theme', theme);
+        }
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme') || 'light';
+            applyTheme(current === 'dark' ? 'light' : 'dark', true);
+        }
+        // Init theme: localStorage > system preference > light
+        (function() {
+            const saved = localStorage.getItem('whatsmars-ai-theme');
+            if (saved) { applyTheme(saved); }
+            else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) { applyTheme('dark'); }
+            else { applyTheme('light'); }
+            if (window.matchMedia) {
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+                    if (!localStorage.getItem('whatsmars-ai-theme')) {
+                        applyTheme(e.matches ? 'dark' : 'light');
+                    }
+                });
+            }
+        })();
 
         userInput.focus();
 

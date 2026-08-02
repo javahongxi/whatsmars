@@ -1,20 +1,20 @@
-package org.hongxi.whatsmars.ai.agentic;
+package org.hongxi.whatsmars.ai.agentic.agent;
 
 import dev.langchain4j.agentic.Agent;
 import dev.langchain4j.service.SystemMessage;
+import dev.langchain4j.service.TokenStream;
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
 
 /**
- * 基础 Agent - 研究助手
+ * 基础 Agent（流式） - 研究助手
  * <p>
- * 最简单的 Agent 模式：单个 Agent 配合工具调用完成任务。
- * 当需要实时信息时，Agent 会自动调用 web_search 工具。
+ * 与 {@link ResearchAgent} 功能相同，但返回 {@link TokenStream} 实现流式输出。
  * </p>
  *
  * @author hongxi
  */
-public interface ResearchAgent {
+public interface StreamingResearchAgent {
 
     @Agent("研究指定主题并生成详细的研究报告")
     @SystemMessage("""
@@ -29,5 +29,5 @@ public interface ResearchAgent {
             用中文撰写报告。
             """)
     @UserMessage("请研究以下主题：{{topic}}")
-    String research(@V("topic") String topic);
+    TokenStream research(@V("topic") String topic);
 }

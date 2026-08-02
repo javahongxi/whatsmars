@@ -14,7 +14,7 @@
 
 ## Agentic Patterns API
 
-提供 5 种 Agent 编排模式的 REST API，基于 `langchain4j-agentic` 框架。
+提供 6 种 Agent 编排模式的 REST API，基于 `langchain4j-agentic` 框架。
 
 ### 1. 基础 Agent（单 Agent + 工具调用）
 
@@ -52,7 +52,17 @@ curl -X POST http://localhost:8887/ai/agentic/parallel \
   -d "message=public String process(String id) { ... }"
 ```
 
-### 5. 监督者编排（LLM 自主调度专家 Agent）
+### 5. 条件工作流（分类 → 专家路由）
+
+先由分类 Agent 将用户请求分类（医疗/法律/技术），再根据分类结果路由到对应的专家 Agent。
+与监督者模式的 LLM 自主决策不同，条件工作流是基于确定性规则的路由。
+
+```bash
+curl -X POST http://localhost:8887/ai/agentic/conditional \
+  -d "message=我最近经常头痛，应该怎么办"
+```
+
+### 6. 监督者编排（LLM 自主调度专家 Agent）
 
 Supervisor 根据用户问题动态决定调用哪些专家、以什么顺序调用，与确定性工作流不同。
 
@@ -63,8 +73,8 @@ curl -X POST http://localhost:8887/ai/agentic/supervisor \
 
 ## 流式 SSE 端点
 
-基础 Agent、顺序工作流、循环工作流同时提供 SSE 流式端点。
-监督者编排和并行工作流暂不支持流式。
+基础 Agent、顺序工作流、循环工作流、条件工作流同时提供 SSE 流式端点。
+并行工作流和监督者编排暂不支持流式。
 
 ### 基础 Agent（流式）
 
@@ -108,4 +118,25 @@ data: {"iteration":2,"status":"writing"}
 ...
 event: document
 data: 最终文档内容
+```
+
+### 条件工作流（流式）
+
+分类 Agent 同步执行，根据分类结果路由到对应专家 Agent 后流式返回。
+先发送 `category` 事件，然后流式输出专家回复。
+
+```bash
+curl -N -X POST http://localhost:8887/ai/agentic/conditional/stream \
+  -d "message=我最近经常头痛，应该怎么办"
+```
+
+SSE 事件格式：
+
+```
+event: category
+data: {"category":"MEDICAL"}
+
+data: 专家回复 token1
+data: 专家回复 token2
+...
 ```
