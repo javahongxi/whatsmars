@@ -48,7 +48,6 @@ public class AgenticController {
     private final UntypedAgent loopWorkflow;
     private final UntypedAgent parallelWorkflow;
     private final SupervisorAgent supervisorAgent;
-    private final WriterAgent writerAgent;
     private final StreamingWriterAgent streamingWriterAgent;
     private final QualityReviewerAgent qualityReviewerAgent;
 
@@ -59,7 +58,6 @@ public class AgenticController {
                              UntypedAgent loopWorkflow,
                              UntypedAgent parallelWorkflow,
                              SupervisorAgent supervisorAgent,
-                             WriterAgent writerAgent,
                              StreamingWriterAgent streamingWriterAgent,
                              QualityReviewerAgent qualityReviewerAgent) {
         this.researchAgent = researchAgent;
@@ -69,7 +67,6 @@ public class AgenticController {
         this.loopWorkflow = loopWorkflow;
         this.parallelWorkflow = parallelWorkflow;
         this.supervisorAgent = supervisorAgent;
-        this.writerAgent = writerAgent;
         this.streamingWriterAgent = streamingWriterAgent;
         this.qualityReviewerAgent = qualityReviewerAgent;
     }
