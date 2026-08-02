@@ -135,6 +135,9 @@
         <button class="tab-btn" onclick="switchTab('mcp')">MCP</button>
         <button class="tab-btn" onclick="switchTab('guardrails')">Guardrails</button>
         <button class="tab-btn" onclick="switchTab('agentic')">Agentic</button>
+        <button class="tab-btn" onclick="switchTab('vision')">视觉理解</button>
+        <button class="tab-btn" onclick="switchTab('image')">图片生成</button>
+        <button class="tab-btn" onclick="switchTab('audio')">语音合成</button>
     </div></div>
 
     <!-- 流式对话 -->
@@ -254,6 +257,48 @@
             </div>
             <div class="examples" id="agentic-examples"></div>
             <div class="msg-area" id="msgs-agentic"></div>
+        </div>
+    </div>
+
+    <!-- 视觉理解 -->
+    <div id="tab-vision" class="tab-content">
+        <div class="content-inner">
+            <div class="desc">基于 qwen3.7-plus 多模态模型理解图片内容，调用 <code>POST /ai/vision/analyze</code>，传入图片 URL 和提示词。<br>
+            支持图片描述、OCR 文字识别、图表分析等多种视觉理解任务。</div>
+            <div class="examples">
+                <button onclick="quickVision('https://dashscope.oss-cn-beijing.aliyuncs.com/images/dog_and_girl.jpeg', '请详细描述这张图片的内容')">描述图片</button>
+                <button onclick="quickVision('https://dashscope.oss-cn-beijing.aliyuncs.com/images/dog_and_girl.jpeg', '图中有哪些角色？它们在做什么？')">角色识别</button>
+                <button onclick="quickVision('https://dashscope.oss-cn-beijing.aliyuncs.com/images/dog_and_girl.jpeg', '请分析这张图片的构图和色彩')">图片分析</button>
+            </div>
+            <div class="msg-area" id="msgs-vision"></div>
+        </div>
+    </div>
+
+    <!-- 图片生成 -->
+    <div id="tab-image" class="tab-content">
+        <div class="content-inner">
+            <div class="desc">基于 wan2.7-image-pro 模型生成图片，调用 <code>POST /ai/image/generate</code> 异步提交任务，前端轮询获取结果。<br>
+            输入文本描述，AI 生成对应图片。</div>
+            <div class="examples">
+                <button onclick="quickImage('一只可爱的橘猫在草地上玩耍')">橘猫</button>
+                <button onclick="quickImage('夕阳下的长城，水墨画风格')">水墨长城</button>
+                <button onclick="quickImage('未来科技城市，赛博朋克风格')">赛博城市</button>
+            </div>
+            <div class="msg-area" id="msgs-image"></div>
+        </div>
+    </div>
+
+    <!-- 语音合成 -->
+    <div id="tab-audio" class="tab-content">
+        <div class="content-inner">
+            <div class="desc">基于 cosyvoice-v3-plus 模型将文本转为语音，调用 <code>GET /ai/audio/tts</code>，返回 MP3 音频。<br>
+            默认语音角色：longanyang（男声）。</div>
+            <div class="examples">
+                <button onclick="quickAudio('你好，欢迎使用语音合成功能。')">欢迎语</button>
+                <button onclick="quickAudio('春眠不觉晓，处处闻啼鸟。夜来风雨声，花落知多少。')">古诗朗诵</button>
+                <button onclick="quickAudio('今天天气真不错，适合出去走走。')">日常对话</button>
+            </div>
+            <div class="msg-area" id="msgs-audio"></div>
         </div>
     </div>
 
@@ -852,6 +897,184 @@
 
         userInput.focus();
 
+        // ---- Vision (视觉理解) ----
+        function quickVision(imageUrl, prompt) {
+            switchTab('vision');
+            sendVisionRequest(imageUrl, prompt);
+        }
+
+        function sendVisionRequest(imageUrl, prompt) {
+            const tab = 'vision';
+            const msgArea = document.getElementById('msgs-' + tab);
+            addMessage(tab, 'user', prompt + '\n图片: ' + imageUrl);
+            sendBtn.disabled = true;
+
+            const resultDiv = document.createElement('div');
+            resultDiv.className = 'msg assistant';
+            const indicator = document.createElement('div');
+            indicator.className = 'typing-indicator';
+            indicator.innerHTML = '<span></span><span></span><span></span>';
+            resultDiv.appendChild(indicator);
+            msgArea.appendChild(resultDiv);
+            scrollToBottom(tab);
+
+            const formData = new URLSearchParams();
+            formData.append('imageUrl', imageUrl);
+            formData.append('prompt', prompt);
+
+            fetch('/ai/vision/analyze', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: formData.toString()
+            })
+            .then(res => {
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                return res.text();
+            })
+            .then(text => {
+                indicator.remove();
+                renderMarkdown(resultDiv, text);
+                scrollToBottom(tab);
+                sendBtn.disabled = false;
+                userInput.focus();
+            })
+            .catch(err => {
+                indicator.remove();
+                resultDiv.className = 'msg error';
+                resultDiv.textContent = '⚠️ 请求失败: ' + err.message;
+                sendBtn.disabled = false;
+                userInput.focus();
+            });
+        }
+
+        // ---- Image (图片生成) ----
+        function quickImage(prompt) {
+            switchTab('image');
+            sendImageRequest(prompt);
+        }
+
+        function sendImageRequest(prompt) {
+            const tab = 'image';
+            const msgArea = document.getElementById('msgs-' + tab);
+            addMessage(tab, 'user', prompt);
+            sendBtn.disabled = true;
+
+            const resultDiv = document.createElement('div');
+            resultDiv.className = 'msg assistant';
+            resultDiv.textContent = '正在生成图片，请稍候...';
+            msgArea.appendChild(resultDiv);
+            scrollToBottom(tab);
+
+            const formData = new URLSearchParams();
+            formData.append('prompt', prompt);
+
+            fetch('/ai/image/generate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: formData.toString()
+            })
+            .then(res => {
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                return res.json();
+            })
+            .then(data => {
+                const taskId = data.taskId;
+                pollImageStatus(taskId, resultDiv, tab);
+            })
+            .catch(err => {
+                resultDiv.className = 'msg error';
+                resultDiv.textContent = '⚠️ 请求失败: ' + err.message;
+                sendBtn.disabled = false;
+                userInput.focus();
+            });
+        }
+
+        function pollImageStatus(taskId, resultDiv, tab) {
+            const poll = setInterval(() => {
+                fetch('/ai/image/status/' + taskId)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'SUCCEEDED') {
+                        clearInterval(poll);
+                        resultDiv.innerHTML = '';
+                        const label = document.createElement('div');
+                        label.style.marginBottom = '8px';
+                        label.style.fontSize = '13px';
+                        label.style.color = '#666';
+                        label.textContent = '图片生成成功：';
+                        resultDiv.appendChild(label);
+                        data.urls.forEach(url => {
+                            const img = document.createElement('img');
+                            img.src = url;
+                            img.style.maxWidth = '100%';
+                            img.style.borderRadius = '8px';
+                            img.style.marginTop = '8px';
+                            resultDiv.appendChild(img);
+                        });
+                        scrollToBottom(tab);
+                        sendBtn.disabled = false;
+                        userInput.focus();
+                    } else if (data.status === 'FAILED' || data.status === 'CANCELED') {
+                        clearInterval(poll);
+                        resultDiv.className = 'msg error';
+                        resultDiv.textContent = '⚠️ 图片生成失败: ' + data.status;
+                        sendBtn.disabled = false;
+                        userInput.focus();
+                    }
+                    // PENDING / RUNNING: continue polling
+                })
+                .catch(err => {
+                    clearInterval(poll);
+                    resultDiv.className = 'msg error';
+                    resultDiv.textContent = '⚠️ 查询状态失败: ' + err.message;
+                    sendBtn.disabled = false;
+                    userInput.focus();
+                });
+            }, 2000);
+        }
+
+        // ---- Audio (语音合成) ----
+        function quickAudio(text) {
+            switchTab('audio');
+            sendAudioRequest(text);
+        }
+
+        function sendAudioRequest(text) {
+            const tab = 'audio';
+            const msgArea = document.getElementById('msgs-' + tab);
+            addMessage(tab, 'user', text);
+            sendBtn.disabled = true;
+
+            const resultDiv = document.createElement('div');
+            resultDiv.className = 'msg assistant';
+            resultDiv.textContent = '正在合成语音，请稍候...';
+            msgArea.appendChild(resultDiv);
+            scrollToBottom(tab);
+
+            const url = '/ai/audio/tts?text=' + encodeURIComponent(text);
+            fetch(url)
+            .then(res => {
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                return res.blob();
+            })
+            .then(blob => {
+                resultDiv.innerHTML = '';
+                const audio = document.createElement('audio');
+                audio.controls = true;
+                audio.src = URL.createObjectURL(blob);
+                audio.style.width = '100%';
+                resultDiv.appendChild(audio);
+                scrollToBottom(tab);
+                sendBtn.disabled = false;
+                userInput.focus();
+            })
+            .catch(err => {
+                resultDiv.className = 'msg error';
+                resultDiv.textContent = '⚠️ 请求失败: ' + err.message;
+                sendBtn.disabled = false;
+                userInput.focus();
+            });
+        }
 
     </script>
 </body>

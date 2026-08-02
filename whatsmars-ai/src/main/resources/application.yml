@@ -37,6 +37,14 @@ langchain4j:
       model-name: text-embedding-v3
       log-requests: false
       log-responses: false
+    multimodal:
+      model: qwen3.7-plus
+    image:
+      model: wan2.7-image-pro
+    audio:
+      speech:
+        model: cosyvoice-v3-plus
+        voice: longanyang
 
 mcp:
   server:
