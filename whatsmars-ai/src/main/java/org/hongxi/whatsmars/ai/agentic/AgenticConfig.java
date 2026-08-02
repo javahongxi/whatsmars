@@ -88,6 +88,20 @@ public class AgenticConfig {
     }
 
     /**
+     * 循环工作流 - 写作 Agent（流式）
+     * <p>
+     * 返回 TokenStream，支持 SSE 实时流式输出写作内容。
+     * </p>
+     */
+    @Bean
+    public StreamingWriterAgent streamingWriterAgent(StreamingChatModel streamingChatModel) {
+        return AgenticServices.agentBuilder(StreamingWriterAgent.class)
+                .streamingChatModel(streamingChatModel)
+                .outputKey("document")
+                .build();
+    }
+
+    /**
      * 循环工作流 - 评审 Agent（同步）
      */
     @Bean

@@ -586,6 +586,10 @@
                             const obj = JSON.parse(data);
                             const statusLabel = obj.status === 'writing' ? '✍️ 写作中' : '🔍 评审中';
                             addStatusMsg(msgArea, '第 ' + obj.iteration + ' 轮 - ' + statusLabel);
+                            // 新一轮写作开始时清空预览内容
+                            if (obj.status === 'writing') {
+                                rawText = '';
+                            }
                         } catch (e) { addStatusMsg(msgArea, data); }
                     } else if (eventName === 'review') {
                         try {
@@ -609,8 +613,11 @@
                         renderMarkdown(msgDiv, rawText);
                         scrollToBottom(tab);
                     } else {
+                        // 写作 token：逐字累积并渲染预览
                         rawText += unescapeSseData(data);
                         renderMarkdown(msgDiv, rawText);
+                        // 写作阶段保留打字指示器，让用户看到"正在写作"
+                        msgDiv.appendChild(indicator);
                         scrollToBottom(tab);
                     }
                     eventName = '';

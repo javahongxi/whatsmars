@@ -10,7 +10,9 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
+import java.io.IOException;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -47,6 +49,7 @@ public class AgenticController {
     private final UntypedAgent parallelWorkflow;
     private final SupervisorAgent supervisorAgent;
     private final WriterAgent writerAgent;
+    private final StreamingWriterAgent streamingWriterAgent;
     private final QualityReviewerAgent qualityReviewerAgent;
 
     public AgenticController(ResearchAgent researchAgent,
@@ -57,6 +60,7 @@ public class AgenticController {
                              UntypedAgent parallelWorkflow,
                              SupervisorAgent supervisorAgent,
                              WriterAgent writerAgent,
+                             StreamingWriterAgent streamingWriterAgent,
                              QualityReviewerAgent qualityReviewerAgent) {
         this.researchAgent = researchAgent;
         this.streamingResearchAgent = streamingResearchAgent;
@@ -66,6 +70,7 @@ public class AgenticController {
         this.parallelWorkflow = parallelWorkflow;
         this.supervisorAgent = supervisorAgent;
         this.writerAgent = writerAgent;
+        this.streamingWriterAgent = streamingWriterAgent;
         this.qualityReviewerAgent = qualityReviewerAgent;
     }
 
@@ -176,11 +181,12 @@ public class AgenticController {
     }
 
     /**
-     * 循环工作流（SSE）：每轮迭代发送进度事件，最终发送完整文档
+     * 循环工作流（SSE）：每轮迭代流式发送写作内容，评审后发送评分和反馈
      * <p>
      * SSE 事件格式：
      * <ul>
      *   <li>event: iteration，data: {"iteration": 1, "status": "writing"}</li>
+     *   <li>data: 写作 token（逐字流式输出）</li>
      *   <li>event: iteration，data: {"iteration": 1, "status": "reviewing"}</li>
      *   <li>event: review，data: {"score": 0.8, "feedback": "..."}</li>
      *   <li>event: document，data: 最终文档内容</li>
@@ -204,7 +210,32 @@ public class AgenticController {
                     // 发送写作进度事件
                     emitter.send(SseEmitter.event().name("iteration")
                             .data(Map.of("iteration", i, "status", "writing")));
-                    document = writerAgent.writeDocument(message, feedback);
+
+                    // 流式写作：逐 token 发送到前端
+                    StringBuilder docBuilder = new StringBuilder();
+                    CountDownLatch latch = new CountDownLatch(1);
+                    streamingWriterAgent.writeDocument(message, feedback)
+                            .onPartialResponse(token -> {
+                                docBuilder.append(token);
+                                // 转义 token 中的换行符，与 SseHelper 保持一致
+                                String escaped = token.replace("\\", "\\\\").replace("\n", "\\n");
+                                try {
+                                    emitter.send(SseEmitter.event().data(escaped));
+                                } catch (IOException e) {
+                                    log.error("发送写作 token 失败", e);
+                                    emitter.completeWithError(e);
+                                }
+                            })
+                            .onCompleteResponse(resp -> {
+                                if (docBuilder.isEmpty()) {
+                                    docBuilder.append(resp.aiMessage().text());
+                                }
+                                latch.countDown();
+                            })
+                            .onError(error -> latch.countDown())
+                            .start();
+                    latch.await();
+                    document = docBuilder.toString();
 
                     // 发送评审进度事件
                     emitter.send(SseEmitter.event().name("iteration")
