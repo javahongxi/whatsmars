@@ -12,7 +12,7 @@
 - **babi** — 深入实践 AI Coding Agent，探索 Agent 工程化落地
 - **jaws** — 支持将 Jaws RPC 服务自动暴露为 MCP Tools
 
-
+项目地址：
 - https://github.com/javahongxi/whatsmars
 - https://github.com/javahongxi/spacecloud
 - https://github.com/javahongxi/babi
