@@ -10,8 +10,8 @@ Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketM
 - [Apache RocketMQ](https://rocketmq.apache.org/) / [Apache Kafka](http://kafka.apache.org/) 削峰填谷，异步解耦，顺序消息，延迟消息，事务消息
 - [Elasticsearch](https://www.elastic.co) *搜索、分析和存储您的数据*
 
-### Module Overview
-| Module                        | Description                              |
+### 模块概览
+| 模块                          | 描述                                     |
 |-------------------------------|------------------------------------------|
 | whatsmars-ai                  | LangChain4j 深度探索                     |
 | whatsmars-common              | 通用公共模块，含 Java 并发包基础示例     |
@@ -30,9 +30,17 @@ Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketM
 | whatsmars-spring              | Spring 核心功能完整示例                  |
 | whatsmars-spring-boot-samples | Spring Boot Samples，20+个示例           |
 
-### Related Projects
-- Spring Cloud Alibaba full-stack microservices in practice: [spacecloud](https://github.com/javahongxi/spacecloud)
-- High-performance Java 17 RPC framework built on Netty: [jaws](https://github.com/javahongxi/jaws)
-- AI coding agent built on AgentScope / LangGraph4j / Spring AI: [babi](https://github.com/javahongxi/babi)
+### AI 能力版图
+| 项目           | 聚焦方向                        | 核心框架               | 语言          |
+|----------------|---------------------------------|------------------------|---------------|
+| **whatsmars**  | ai模块聚焦 langchain4j 深度探索 | **LangChain4j**        | Java          |
+| **spacecloud** | ai模块聚焦 Spring AI 2.0 应用   | **Spring AI 2.0**      | Java          |
+| **babi**       | AI Coding Agent                 | AgentScope / LangGraph | Java / Python |
+| **jaws**       | mcp模块支持 RPC 转 MCP 服务     | MCP Java SDK           | Java          |
+
+- **[whatsmars](https://github.com/javahongxi/whatsmars)** — ai模块聚焦 LangChain4j 生态，深度探索其原理和应用
+- **[spacecloud](https://github.com/javahongxi/spacecloud)** — ai模块聚焦 Spring AI 2.0 在微服务场景的应用
+- **[babi](https://github.com/javahongxi/babi)** — 深入实践 AI Coding Agent，探索 Agent 工程化落地
+- **[jaws](https://github.com/javahongxi/jaws)** — 支持将 Jaws RPC 服务自动暴露为 MCP Tools
 
 &copy; [hongxi.org](http://hongxi.org)
