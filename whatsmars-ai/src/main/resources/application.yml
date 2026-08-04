@@ -18,7 +18,7 @@ langchain4j:
     chat-model:
       base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
       api-key: ${OPENAI_API_KEY}
-      model-name: qwen-plus
+      model-name: qwen3.8-max
       log-requests: false
       log-responses: false
       temperature: 0.7
@@ -26,7 +26,7 @@ langchain4j:
     streaming-chat-model:
       base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
       api-key: ${OPENAI_API_KEY}
-      model-name: qwen-plus
+      model-name: qwen3.8-max
       log-requests: false
       log-responses: false
       temperature: 0.7
@@ -37,8 +37,6 @@ langchain4j:
       model-name: text-embedding-v3
       log-requests: false
       log-responses: false
-    multimodal:
-      model: qwen3.7-plus
     image:
       model: wan2.7-image-pro
     audio:

@@ -3,19 +3,16 @@ package org.hongxi.whatsmars.ai.vision;
 import dev.langchain4j.data.message.ImageContent;
 import dev.langchain4j.data.message.TextContent;
 import dev.langchain4j.data.message.UserMessage;
-import dev.langchain4j.http.client.spring.restclient.SpringRestClient;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.chat.response.ChatResponse;
-import dev.langchain4j.model.openai.OpenAiChatModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * 视觉理解控制器
  * <p>
- * 基于 LangChain4j 多模态能力（ImageContent），使用 qwen3.7-plus 模型理解图片内容。
+ * 使用多模态模型理解图片内容
  * 调用 <code>POST /ai/vision/analyze</code>，传入图片 URL 和提示词，返回 AI 对图片的理解。
  * </p>
  *
@@ -27,18 +24,10 @@ public class VisionController {
 
     private static final Logger log = LoggerFactory.getLogger(VisionController.class);
 
-    private final ChatModel multimodalChatModel;
+    private final ChatModel chatModel;
 
-    public VisionController(
-            @Value("${langchain4j.open-ai.chat-model.base-url}") String baseUrl,
-            @Value("${langchain4j.open-ai.chat-model.api-key}") String apiKey,
-            @Value("${langchain4j.open-ai.multimodal.model:qwen3.7-plus}") String model) {
-        this.multimodalChatModel = OpenAiChatModel.builder()
-                .baseUrl(baseUrl)
-                .apiKey(apiKey)
-                .modelName(model)
-                .httpClientBuilder(SpringRestClient.builder())
-                .build();
+    public VisionController(ChatModel chatModel) {
+        this.chatModel = chatModel;
     }
 
     /**
@@ -58,7 +47,7 @@ public class VisionController {
                 ImageContent.from(imageUrl)
         );
 
-        ChatResponse response = multimodalChatModel.chat(userMessage);
+        ChatResponse response = chatModel.chat(userMessage);
         String result = response.aiMessage().text();
         log.info("视觉理解结果: {}", result);
         return result;
