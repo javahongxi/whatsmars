@@ -31,6 +31,9 @@ langchain4j:
       log-responses: false
       temperature: 0.7
       top-p: 0.9
+      # 返回思考过程（DashScope 兼容模式的 reasoning_content 字段），
+      # 通过 TokenStream.onPartialThinking 流式输出给前端展示
+      return-thinking: true
     embedding-model:
       base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
       api-key: ${OPENAI_API_KEY}

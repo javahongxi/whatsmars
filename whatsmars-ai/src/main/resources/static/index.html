@@ -98,6 +98,11 @@
         .sources-panel .source-item .source-scores .tag-rerank { background: #fce8e6; color: #c5221f; }
         .sources-panel .source-item .source-text { color: #555; font-size: 11px; line-height: 1.5; margin-top: 4px; word-break: break-all; }
 
+        /* Reasoning panel（思考过程） */
+        .reasoning-box { margin-bottom: 10px; border-left: 3px solid #d2e3fc; background: #faf6f0; border-radius: 6px; padding: 8px 12px; }
+        .reasoning-box summary { cursor: pointer; color: #1a73e8; font-size: 12px; user-select: none; outline: none; }
+        .reasoning-text { margin-top: 6px; font-size: 13px; color: #888; line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+
         /* Strategy toggle */
         .strategy-bar { display: flex; align-items: center; gap: 12px; font-size: 13px; color: #555; }
         .strategy-bar label { cursor: pointer; display: flex; align-items: center; gap: 6px; }
@@ -156,6 +161,9 @@
         html[data-theme="dark"] .sources-panel .sources-title { color: #c9d1d9; }
         html[data-theme="dark"] .sources-panel .source-item { background: rgba(40,40,50,0.6); border-color: #30363d; }
         html[data-theme="dark"] .sources-panel .source-item .source-text { color: #8b949e; }
+        html[data-theme="dark"] .reasoning-box { background: rgba(30,30,40,0.6); border-left-color: #1f6feb; }
+        html[data-theme="dark"] .reasoning-box summary { color: #58a6ff; }
+        html[data-theme="dark"] .reasoning-text { color: #8b949e; }
         html[data-theme="dark"] .pattern-btn { background: rgba(30,42,58,0.8); border-color: #30363d; color: #58a6ff; }
         html[data-theme="dark"] .pattern-btn:hover { background: rgba(40,55,75,0.8); }
         html[data-theme="dark"] .pattern-btn.active { background: #1f6feb; color: #fff; border-color: #1f6feb; }
@@ -196,7 +204,8 @@
     <!-- 流式对话 -->
     <div id="tab-stream" class="tab-content active">
         <div class="content-inner">
-            <div class="desc">基于 TokenStream + SSE 实现流式输出，调用 <code>GET /ai/stream/chat?message=...</code>，实时显示 AI 逐字回复。</div>
+            <div class="desc">基于 TokenStream + SSE 实现流式输出，调用 <code>GET /ai/stream/chat?message=...</code>，实时显示 AI 逐字回复。<br>
+            思考模型会先流式展示 <code>reasoning</code> 思考过程，再输出 <code>token</code> 回答内容，最后发送 <code>done</code> 结束标记。</div>
             <div class="examples">
                 <button onclick="quickSend('stream','写一首关于编程的短诗')">写一首编程诗</button>
                 <button onclick="quickSend('stream','用200字介绍 Spring Boot')">介绍 Spring Boot</button>
@@ -709,7 +718,19 @@
             msgDiv.appendChild(indicator);
 
             let rawText = '';
+            let reasoningDiv = null;    // 思考过程折叠面板（<details>）
+            let reasoningText = null;   // 思考内容文本节点，增量追加
+            const answerDiv = document.createElement('div');
+            msgDiv.appendChild(answerDiv);
             const eventSource = new EventSource(url);
+
+            // 回答开始输出或流结束时，收起思考面板并更新标题
+            function finishReasoning() {
+                if (reasoningDiv && reasoningDiv.open) {
+                    reasoningDiv.open = false;
+                    reasoningDiv.querySelector('summary').textContent = '💭 已深度思考';
+                }
+            }
 
             // Handle 'sources' event (only for RAG tab)
             eventSource.addEventListener('sources', function(e) {
@@ -725,12 +746,40 @@
                 }
             });
 
+            // 思考过程（reasoning 事件），仅思考模型产生；非思考模型无此事件，不受影响
+            eventSource.addEventListener('reasoning', function(e) {
+                if (indicator.parentNode) indicator.remove();
+                if (!reasoningDiv) {
+                    reasoningDiv = document.createElement('details');
+                    reasoningDiv.open = true;
+                    reasoningDiv.className = 'reasoning-box';
+                    const summary = document.createElement('summary');
+                    summary.textContent = '💭 思考中...';
+                    reasoningDiv.appendChild(summary);
+                    reasoningText = document.createElement('div');
+                    reasoningText.className = 'reasoning-text';
+                    reasoningDiv.appendChild(reasoningText);
+                    msgDiv.insertBefore(reasoningDiv, answerDiv);
+                }
+                reasoningText.textContent += unescapeSseData(e.data);
+                scrollToBottom(tab);
+            });
+
             eventSource.onmessage = function(e) {
                 if (indicator.parentNode) indicator.remove();
+                finishReasoning();
                 rawText += unescapeSseData(e.data);
-                renderMarkdown(msgDiv, rawText);
+                renderMarkdown(answerDiv, rawText);
                 scrollToBottom(tab);
             };
+
+            // done 事件：流正常结束，避免依赖连接关闭触发的 error 事件
+            eventSource.addEventListener('done', function() {
+                finishReasoning();
+                eventSource.close();
+                sendBtn.disabled = false;
+                userInput.focus();
+            });
 
             eventSource.addEventListener('error', function() {
                 if (indicator.parentNode) indicator.remove();
@@ -884,6 +933,8 @@
                         rawText = data;
                         renderMarkdown(msgDiv, rawText);
                         scrollToBottom(tab);
+                    } else if (eventName === 'reasoning' || eventName === 'done') {
+                        // 思考过程与结束标记：Agentic 编排暂不单独展示思考内容，直接忽略
                     } else {
                         // 写作 token：逐字累积并渲染预览
                         rawText += unescapeSseData(data);

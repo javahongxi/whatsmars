@@ -16,12 +16,22 @@ import java.util.function.Function;
  * 封装 TokenStream → SseEmitter 的通用桥接逻辑，
  * 避免在每个 Controller 中重复编写相同的流式模板代码。
  * </p>
+ * <p>
+ * SSE 事件协议：
+ * <ul>
+ *   <li>{@code reasoning} — 模型思考过程增量（思考模型才会产生，需模型配置 return-thinking: true）</li>
+ *   <li>默认事件 — 回答文本增量</li>
+ *   <li>{@code done} — 流结束标记</li>
+ * </ul>
  *
  * @author hongxi
  */
 public final class SseHelper {
 
     private static final Logger log = LoggerFactory.getLogger(SseHelper.class);
+
+    private static final String REASONING_EVENT = "reasoning";
+    private static final String DONE_EVENT = "done";
 
     private static final ExecutorService EXECUTOR = Executors.newCachedThreadPool();
 
@@ -51,13 +61,20 @@ public final class SseHelper {
     public static void stream(TokenStream stream, SseEmitter emitter, Function<String, Object> tokenMapper) {
         EXECUTOR.execute(() -> {
             try {
-                stream.onPartialResponse(token -> {
+                stream.onPartialThinking(thinking -> {
+                    try {
+                        emitter.send(SseEmitter.event()
+                                .name(REASONING_EVENT)
+                                .data(escape(thinking.text())));
+                    } catch (IOException e) {
+                        log.error("发送思考内容失败", e);
+                        emitter.completeWithError(e);
+                    }
+                }).onPartialResponse(token -> {
                     try {
                         Object data = tokenMapper != null ? tokenMapper.apply(token) : token;
-                        // SSE 协议用 \n 作为字段/事件分隔符，token 中的换行符会被丢失，
-                        // 因此需要先转义：\\ → \\\\，\n → \\n，客户端负责反转义
                         if (data instanceof String) {
-                            data = ((String) data).replace("\\", "\\\\").replace("\n", "\\n");
+                            data = escape((String) data);
                         }
                         emitter.send(SseEmitter.event().data(data));
                     } catch (IOException e) {
@@ -65,6 +82,11 @@ public final class SseHelper {
                         emitter.completeWithError(e);
                     }
                 }).onCompleteResponse(response -> {
+                    try {
+                        emitter.send(SseEmitter.event().name(DONE_EVENT).data(""));
+                    } catch (IOException e) {
+                        log.warn("发送 done 事件失败", e);
+                    }
                     emitter.complete();
                 }).onError(error -> {
                     emitter.completeWithError(error);
@@ -74,5 +96,13 @@ public final class SseHelper {
                 emitter.completeWithError(e);
             }
         });
+    }
+
+    /**
+     * SSE 协议用 \n 作为字段/事件分隔符，文本中的换行符会被丢失，
+     * 因此需要先转义：\\ → \\\\，\n → \\n，客户端负责反转义
+     */
+    private static String escape(String text) {
+        return text.replace("\\", "\\\\").replace("\n", "\\n");
     }
 }
