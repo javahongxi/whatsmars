@@ -30,17 +30,12 @@ Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketM
 | whatsmars-spring              | Spring 核心功能完整示例                  |
 | whatsmars-spring-boot-samples | Spring Boot Samples，20+个示例           |
 
-### AI 能力版图
-| 项目           | 聚焦方向                        | 核心框架               | 语言          |
-|----------------|---------------------------------|------------------------|---------------|
-| **whatsmars**  | ai模块聚焦 langchain4j 深度探索 | **LangChain4j**        | Java          |
-| **spacecloud** | ai模块聚焦 Spring AI 2.0 应用   | **Spring AI 2.0**      | Java          |
-| **babi**       | AI Coding Agent                 | AgentScope / LangGraph | Java / Python |
-| **jaws**       | mcp模块支持 RPC 转 MCP 服务     | MCP Java SDK           | Java          |
+### 系列项目
 
-- **[whatsmars](https://github.com/javahongxi/whatsmars)** — ai模块聚焦 LangChain4j 生态，深度探索其原理和应用
-- **[spacecloud](https://github.com/javahongxi/spacecloud)** — ai模块聚焦 Spring AI 2.0 在微服务场景的应用
-- **[babi](https://github.com/javahongxi/babi)** — 深入实践 AI Coding Agent，探索 Agent 工程化落地
-- **[jaws](https://github.com/javahongxi/jaws)** — 支持将 Jaws RPC 服务自动暴露为 MCP Tools
+本仓库之外，还有几个围绕 **Java × AI** 的姊妹项目，构成从传统微服务到 AI 工程化的完整实践主线：
+
+- **[jaws](https://github.com/javahongxi/jaws)** — 核心不到 2 万行的轻量级 RPC 框架，对标 Dubbo 核心机制：自研 HTTP/2 传输消除队头阻塞、Server Streaming、实测 10 万 QPS，一次调用链可以完整读到尾；亦支持将 RPC 服务自动暴露为 MCP Tools
+- **[spacecloud](https://github.com/javahongxi/spacecloud)** — Spring AI 2.0 + Spring Boot 4.1 + Spring Cloud Alibaba 全栈微服务实践，HTTP / Dubbo / gRPC 多协议，AI 能力落地微服务的完整参考
+- **[babi](https://github.com/javahongxi/babi)** — 深入实践 AI Coding Agent，基于 AgentScope / LangGraph / Spring AI 三大框架探索 Agent 工程化落地
 
 &copy; [hongxi.org](http://hongxi.org)
