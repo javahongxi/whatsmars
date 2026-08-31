@@ -30,12 +30,9 @@ Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketM
 | whatsmars-spring              | Spring 核心功能完整示例                  |
 | whatsmars-spring-boot-samples | Spring Boot Samples，20+个示例           |
 
-### 系列项目
-
-本仓库之外，还有几个围绕 **Java × AI** 的姊妹项目，构成从传统微服务到 AI 工程化的完整实践主线：
-
-- **[jaws](https://github.com/javahongxi/jaws)** — 核心不到 2 万行的轻量级 RPC 框架，对标 Dubbo 核心机制：自研 HTTP/2 传输消除队头阻塞、Server Streaming、实测 10 万 QPS，一次调用链可以完整读到尾；亦支持将 RPC 服务自动暴露为 MCP Tools
-- **[spacecloud](https://github.com/javahongxi/spacecloud)** — Spring AI 2.0 + Spring Boot 4.1 + Spring Cloud Alibaba 全栈微服务实践，HTTP / Dubbo / gRPC 多协议，AI 能力落地微服务的完整参考
+### 其他项目
+- **[jaws](https://github.com/javahongxi/jaws)** — 一个核心约 2.3 万行、可以从头读到尾的轻量级 RPC 框架。它用不到 Dubbo 1/10 的代码量，完整实现了一个工业级 RPC 的核心机制。
+- **[spacecloud](https://github.com/javahongxi/spacecloud)** — Spring Cloud Alibaba 生产级微服务实践，覆盖 HTTP / Dubbo / gRPC 多协议、Sentinel 限流降级、Seata 分布式事务、Stream 消息驱动、Kafka 4.x，支持 AI 一键演示
 - **[babi](https://github.com/javahongxi/babi)** — 深入实践 AI Coding Agent，基于 AgentScope / LangGraph / Spring AI 三大框架探索 Agent 工程化落地
 
 &copy; [hongxi.org](http://hongxi.org)
