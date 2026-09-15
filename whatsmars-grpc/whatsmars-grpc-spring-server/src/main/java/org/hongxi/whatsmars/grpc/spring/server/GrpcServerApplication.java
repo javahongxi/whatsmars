@@ -22,9 +22,8 @@ public class GrpcServerApplication {
 			if (exception instanceof IllegalArgumentException) {
 				Metadata metadata = new Metadata();
 				metadata.put(Metadata.Key.of("error-code", Metadata.ASCII_STRING_MARSHALLER), "INVALID_ARGUMENT");
-				StatusException result = Status.INVALID_ARGUMENT.withDescription(exception.getMessage())
-					.asException(metadata);
-				return result;
+                return Status.INVALID_ARGUMENT.withDescription(exception.getMessage())
+                    .asException(metadata);
 			}
 			return null;
 		};

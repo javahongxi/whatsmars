@@ -1,6 +1,5 @@
 package org.hongxi.whatsmars.grpc.server.advanced;
 
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 
 import io.grpc.*;
