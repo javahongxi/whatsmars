@@ -3,6 +3,10 @@
 [![Java](https://img.shields.io/badge/Java-17+-orange.svg)](https://adoptium.net/zh-CN/temurin/releases)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.x-brightgreen.svg)](https://spring.io/projects/spring-boot)
 
+[![spacecloud](https://img.shields.io/badge/spacecloud-微服务实践-orange?style=for-the-badge&logo=spring)](https://github.com/javahongxi/spacecloud)
+[![jaws](https://img.shields.io/badge/jaws-轻量级RPC框架-blue?style=for-the-badge&logo=github)](https://github.com/javahongxi/jaws)
+[![babi](https://img.shields.io/badge/babi-AI_Agent-purple?style=for-the-badge&logo=huggingface)](https://github.com/javahongxi/babi)
+
 Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketMQ**🔥 + **Elasticsearch**🔥)
 - [Spring Boot](https://spring.io/projects/spring-boot) 提高生产力的利器
 - [Redis](https://redis.io/) 缓存，NoSQL 数据库，分布式锁，位图
@@ -30,9 +34,5 @@ Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketM
 | whatsmars-spring              | Spring 核心功能完整示例                  |
 | whatsmars-spring-boot-samples | Spring Boot Samples，20+个示例           |
 
-### 其他项目
-[![jaws](https://img.shields.io/badge/jaws-轻量级RPC框架-orange?style=for-the-badge&logo=github)](https://github.com/javahongxi/jaws)
-[![spacecloud](https://img.shields.io/badge/spacecloud-微服务实践-blue?style=for-the-badge&logo=spring)](https://github.com/javahongxi/spacecloud)
-[![babi](https://img.shields.io/badge/babi-AI_Agent-purple?style=for-the-badge&logo=openai)](https://github.com/javahongxi/babi)
 
 &copy; [hongxi.org](http://hongxi.org)
