@@ -40,7 +40,7 @@
     <properties>
         <java.version>17</java.version>
 
-        <calcite.version>1.41.0</calcite.version>
+        <calcite.version>1.42.0</calcite.version>
         <commons-codec.version>1.22.0</commons-codec.version>
         <commons-collections4.version>4.5.0</commons-collections4.version>
         <commons-io.version>2.22.0</commons-io.version>
