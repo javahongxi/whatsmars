@@ -70,7 +70,7 @@
         <shardingsphere.version>5.5.2</shardingsphere.version>
         <spring-grpc.version>0.12.0</spring-grpc.version>
         <xxl-job.version>3.4.0</xxl-job.version>
-        <zookeeper.version>3.9.3</zookeeper.version>
+        <zookeeper.version>3.9.5</zookeeper.version>
     </properties>
 
     <!--mvn dependency:tree -Dverbose-->
