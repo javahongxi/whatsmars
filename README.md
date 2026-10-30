@@ -5,7 +5,7 @@
 
 [![spacecloud](https://img.shields.io/badge/spacecloud-微服务实践-orange?style=for-the-badge&logo=spring)](https://github.com/javahongxi/spacecloud)
 [![jaws](https://img.shields.io/badge/jaws-轻量级RPC框架-blue?style=for-the-badge&logo=github)](https://github.com/javahongxi/jaws)
-[![babi](https://img.shields.io/badge/babi-AI_Agent-purple?style=for-the-badge&logo=huggingface)](https://github.com/javahongxi/babi)
+[![sweet](https://img.shields.io/badge/sweet-Go_RPC框架-00ADD8?style=for-the-badge&logo=go)](https://github.com/javahongxi/sweet)
 
 Java生态研究(**Spring Boot**🔥 + **Redis**🔥 + **Dubbo**🔥 + **RocketMQ**🔥 + **Elasticsearch**🔥)
 - [Spring Boot](https://spring.io/projects/spring-boot) 提高生产力的利器
